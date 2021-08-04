@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_8sdp">
+<RelativeLayout
+    android:id="@+id/relativ_background"
+    android:layout_width="@dimen/_35sdp"
+    android:layout_height="@dimen/_45sdp"
+    android:background="@drawable/cuv_outline">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+   android:layout_centerInParent="true"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:id="@+id/tv_week"
+       style="@style/ScreenTextView2"
+        android:textColor="@color/White"
+        android:text="wed"
+        android:textSize="@dimen/_11sdp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/tv_day"
+       style="@style/ScreenTextView2"
+        android:textColor="@color/White"
+        android:textSize="@dimen/_11sdp"
+        android:text="10"
+        android:layout_gravity="center"
+    ></TextView>
+</LinearLayout>
+</RelativeLayout>
+</RelativeLayout>

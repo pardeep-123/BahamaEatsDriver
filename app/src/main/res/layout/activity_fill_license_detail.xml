@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.login_register.Registration_Activity">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_licendedetail"
+            style="@style/BackButtonImage"
+            android:onClick="iv_backArrow_licendedetail"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White" />
+
+        <TextView
+            style="@style/Hedder"
+            android:text="@string/license_details" />
+
+        <ImageView
+            android:id="@+id/iv_edit_Licence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:padding="@dimen/_12sdp"
+            android:src="@drawable/edit2"
+            android:tint="@color/White"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/et_licenseNumber"
+                style="@style/EditextField"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="@string/licensnumber"
+                android:inputType="text">
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/et_dob"
+                style="@style/Textviewbackground"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="@string/dateofbirth"
+                android:inputType="date"
+                android:onClick="tv_birthdate_l" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Black"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_isuueon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/White"
+                        android:gravity="center"
+                        android:hint="@string/issued_on"
+                        android:onClick="Tv_isuueon"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_11sdp"
+                        app:drawableEndCompat="@drawable/arrowdown" />
+
+                    <TextView
+                        android:id="@+id/tv_expiryDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart=".20dp"
+                        android:layout_weight="1"
+                        android:background="#F4F4F4"
+                        android:gravity="center"
+                        android:hint="@string/expiry_date"
+                        android:onClick="Tv_edpiredate"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_11sdp"
+                        app:drawableEndCompat="@drawable/arrowdown" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/et_naitionality"
+                style="@style/EditextField3"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="@string/nationality"
+                android:inputType="textCapSentences" />
+
+            <TextView
+                android:id="@+id/et_licenseType"
+                style="@style/EditextField3"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:drawableEnd="@drawable/ccp_down_arrow"
+                android:hint="@string/license_type"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/et_vehicalModel"
+                    style="@style/EditextField"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:hint="@string/vehical_model"
+                    android:inputType="text"/>
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/et_vehicalMake"
+                    style="@style/EditextField"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:hint="@string/vehical_make"
+                    android:inputType="text"/>
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/et_vehicalColor"
+                    style="@style/EditextField"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:hint="@string/vehical_color"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_Licenceconfirm"
+                style="@style/CustomButton"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:text="@string/confirm" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

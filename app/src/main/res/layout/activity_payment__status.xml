@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.Payment_Status">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_payment"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:onClick="iv_backArrow_payment"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/earnings" />
+
+        <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_baseline_filter_alt_24" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hedder">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/LL_days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:id="@+id/LL_Day"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/et_border_bgradis"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_day"
+                        style="@style/ScreenTextVie5"
+                        android:layout_gravity="center"
+                        android:text="Day"
+                        android:textColor="@color/Black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_week"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/et_border_bgradis"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_week"
+                        style="@style/ScreenTextVie5"
+                        android:layout_gravity="center"
+                        android:text="Week"
+                        android:textColor="@color/colorTextView">
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_months"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/et_border_bgradis"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_months"
+                        style="@style/ScreenTextVie5"
+                        android:text="Month"
+                        android:textColor="@color/colorTextView" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_rootDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/tv_currentDate"
+                    style="@style/ScreenTextVie5"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_8sdp" />
+
+                <TextView
+                    android:id="@+id/tv_currentWeek"
+                    style="@style/ScreenTextVie5"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_8sdp" />
+
+                <TextView
+                    android:id="@+id/tv_currentMonth"
+                    style="@style/ScreenTextVie5"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_8sdp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_filterClear"
+                style="@style/ScreenTextVie5"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text="@string/clearFilter"
+                android:textColor="@color/White"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_tipsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:background="@color/White"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_totalLabel"
+
+                        style="@style/ScreenTextView3"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/total_deliver_fee"
+                        android:textColor="@color/Black" />
+
+                    <TextView
+                        android:id="@+id/tv_totalDelivery"
+                        style="@style/ScreenTextView1"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_tipLabel"
+                        style="@style/ScreenTextView3"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/total_tips_earned"
+                        android:textColor="@color/Black" />
+
+                    <TextView
+                        android:id="@+id/tv_tipDelivery"
+                        style="@style/ScreenTextView1"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_20sdp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tv_noDataAvailable"
+                    style="@style/ScreenTextView3"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_120sdp"
+                    android:text="@string/no_data_available"
+                    android:textColor="@color/White"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

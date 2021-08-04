@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.driver_documentation.AddDocumentationActivity">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_licendedetail"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:onClick="goToBackScreen"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            style="@style/Hedder"
+            android:text="@string/documentation" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="@string/upload_your_documents"
+                android:textColor="@color/White" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_weight=".4"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/user" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_28sdp"
+                        android:layout_weight="1.6"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:id="@+id/editDriverLicence"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_alignParentEnd="true"
+                            android:contentDescription="@string/app_name"
+                            android:onClick="editDriverLicense"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/edit_document"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginEnd="9dp"
+                            android:background="@drawable/dashed_bg"
+                            android:padding="@dimen/_5sdp">
+
+
+                            <LinearLayout
+                                android:onClick="editDriverLicense"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/iv_driverLicenceApprove"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/plus2" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/_10sdp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="@string/driver_licence"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_isApprrovedDriver"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="center"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_weight=".4"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/card" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_28sdp"
+                        android:layout_weight="1.6"
+                        android:padding="@dimen/_5sdp">
+
+
+                        <ImageView
+                            android:id="@+id/iv_editCarInsurance"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_alignParentEnd="true"
+                            android:contentDescription="@string/app_name"
+                            android:onClick="editCarInsurance"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/edit_document"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginEnd="9dp"
+                            android:background="@drawable/dashed_bg"
+                            android:padding="@dimen/_5sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:onClick="addDeleteCardInsurance"
+                                    android:id="@+id/iv_deleteCarDocument"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/plus2" />
+
+                                <LinearLayout
+                                    android:clickable="true"
+                                    android:id="@+id/ll_deleteCarDocument"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/_10sdp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="@string/car_insurance"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_isApprrovedCar"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="center"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_weight=".4"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/police" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_28sdp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.6"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:id="@+id/iv_editPoliceRecord"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_alignParentEnd="true"
+                            android:contentDescription="@string/app_name"
+                            android:onClick="editPoliceRecord"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/edit_document"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginEnd="9dp"
+                            android:background="@drawable/dashed_bg"
+                            android:padding="@dimen/_5sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/iv_addDeletePoliceRecord"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:contentDescription="@string/app_name"
+                                    android:onClick="addDeletePoliceRecord"
+                                    android:src="@drawable/plus2" />
+
+                                <LinearLayout
+                                    android:clickable="true"
+                                    android:id="@+id/ll_addDeletePoliceRecord"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/_10sdp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="@string/police_record"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_isAppovedPoliceRecord"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="center"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_weight=".4"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/user" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_28sdp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.6"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:id="@+id/iv_idCardRecord"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_alignParentEnd="true"
+                            android:contentDescription="@string/app_name"
+                            android:onClick="idCardRecord"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/edit_document"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginEnd="9dp"
+                            android:background="@drawable/dashed_bg"
+                            android:padding="@dimen/_5sdp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:clickable="true"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:onClick="deleteIdCardImages"
+                                    android:id="@+id/iv_driverIdCard"
+                                    android:layout_width="22dp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/plus2" />
+
+                                <LinearLayout
+                                    android:onClick="addIdCardRecord"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:paddingStart="@dimen/_10sdp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="@string/add_id_card"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_isAppovedIdCard"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="center"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/White"
+                                        android:textSize="5sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_Licenceconfirm"
+                style="@style/CustomButton"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:text="@string/continu"
+                android:textAllCaps="false"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout><!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    android:background="@drawable/black"-->
+    <!--    tools:context=".activity.driver_documentation.AddDocumentationActivity">-->
+
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/hedder"-->
+    <!--        style="@style/Heddersiz">-->
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/iv_backArrow_licendedetail"-->
+    <!--            style="@style/BackButtonImage"-->
+    <!--            android:contentDescription="@string/app_name"-->
+    <!--            android:onClick="goToBackScreen"-->
+    <!--            android:src="@drawable/backbtn" />-->
+
+    <!--        <TextView-->
+    <!--            style="@style/Hedder"-->
+    <!--            android:text="@string/documentation" />-->
+    <!--    </RelativeLayout>-->
+
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_below="@+id/hedder"-->
+    <!--        android:scrollbars="none">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="vertical">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_margin="@dimen/_15sdp"-->
+    <!--                android:fontFamily="@font/poppins_regular"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="@string/upload_your_documents"-->
+    <!--                android:textColor="@color/White" />-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="@dimen/_70sdp"-->
+    <!--                android:layout_marginTop="@dimen/_20sdp"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="0dp"-->
+    <!--                    android:layout_marginStart="@dimen/_15sdp"-->
+    <!--                    android:layout_marginEnd="@dimen/_15sdp"-->
+    <!--                    android:layout_weight="2"-->
+    <!--                    android:orientation="horizontal">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginTop="9dp"-->
+    <!--                        android:layout_weight=".4"-->
+    <!--                        android:contentDescription="@string/app_name"-->
+    <!--                        android:src="@drawable/user" />-->
+
+    <!--                    <RelativeLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center"-->
+    <!--                        android:layout_marginStart="@dimen/_28sdp"-->
+    <!--                        android:layout_weight="1.6"-->
+    <!--                        android:padding="@dimen/_5sdp">-->
+
+    <!--                        <ImageView-->
+    <!--                            android:visibility="gone"-->
+    <!--                            android:layout_width="@dimen/_17sdp"-->
+    <!--                            android:layout_height="@dimen/_17sdp"-->
+    <!--                            android:layout_alignParentEnd="true"-->
+    <!--                            android:contentDescription="@string/app_name"-->
+    <!--                            android:padding="@dimen/_2sdp"-->
+    <!--                            android:src="@drawable/edit_document" />-->
+
+    <!--                        <RelativeLayout-->
+    <!--                            android:onClick="moveToEditDocumentPage"-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_gravity="center"-->
+    <!--                            android:layout_marginTop="9dp"-->
+    <!--                            android:layout_marginEnd="9dp"-->
+    <!--                            android:background="@drawable/dashed_bg"-->
+    <!--                            android:padding="@dimen/_5sdp">-->
+
+
+    <!--                            <LinearLayout-->
+    <!--                                android:layout_width="wrap_content"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_centerHorizontal="true"-->
+    <!--                                android:orientation="horizontal">-->
+
+    <!--                                <ImageView-->
+    <!--                                    android:layout_width="@dimen/_20sdp"-->
+    <!--                                    android:layout_height="@dimen/_20sdp"-->
+    <!--                                    android:layout_gravity="center"-->
+    <!--                                    android:layout_marginStart="@dimen/_10sdp"-->
+    <!--                                    android:layout_marginTop="@dimen/_10sdp"-->
+    <!--                                    android:layout_marginBottom="@dimen/_10sdp"-->
+    <!--                                    android:contentDescription="@string/app_name"-->
+    <!--                                    android:src="@drawable/plus2" />-->
+
+    <!--                                <LinearLayout-->
+    <!--                                    android:layout_width="match_parent"-->
+    <!--                                    android:layout_height="wrap_content"-->
+    <!--                                    android:layout_gravity="center"-->
+    <!--                                    android:layout_weight="1"-->
+    <!--                                    android:orientation="vertical"-->
+    <!--                                    android:paddingStart="@dimen/_10sdp">-->
+
+    <!--                                    <TextView-->
+
+    <!--                                        android:layout_width="match_parent"-->
+    <!--                                        android:layout_height="wrap_content"-->
+    <!--                                        android:fontFamily="@font/poppins_medium"-->
+    <!--                                        android:gravity="center"-->
+    <!--                                        android:text="@string/driver_licence"-->
+    <!--                                        android:textAllCaps="true"-->
+    <!--                                        android:textColor="@color/White"-->
+    <!--                                        android:textSize="14sp" />-->
+
+    <!--                                    <TextView-->
+    <!--                                        android:visibility="gone"-->
+    <!--                                        android:layout_width="match_parent"-->
+    <!--                                        android:layout_height="wrap_content"-->
+    <!--                                        android:fontFamily="@font/poppins_regular"-->
+    <!--                                        android:gravity="center"-->
+    <!--                                        android:text="@string/approved"-->
+    <!--                                        android:textAllCaps="true"-->
+    <!--                                        android:textColor="@color/White"-->
+    <!--                                        android:textSize="5sp" />-->
+    <!--                                </LinearLayout>-->
+    <!--                            </LinearLayout>-->
+    <!--                        </RelativeLayout>-->
+
+    <!--                    </RelativeLayout>-->
+    <!--                </LinearLayout>-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="@dimen/_70sdp"-->
+    <!--                android:layout_marginTop="@dimen/_20sdp"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="0dp"-->
+    <!--                    android:layout_marginStart="@dimen/_15sdp"-->
+    <!--                    android:layout_marginEnd="@dimen/_15sdp"-->
+    <!--                    android:layout_weight="2"-->
+    <!--                    android:orientation="horizontal">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginTop="9dp"-->
+    <!--                        android:layout_weight=".4"-->
+    <!--                        android:contentDescription="@string/app_name"-->
+    <!--                        android:src="@drawable/card" />-->
+
+    <!--                    <RelativeLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center"-->
+    <!--                        android:layout_marginStart="@dimen/_28sdp"-->
+    <!--                        android:layout_weight="1.6"-->
+    <!--                        android:padding="@dimen/_5sdp">-->
+
+
+    <!--                        <ImageView-->
+    <!--                            android:visibility="gone"-->
+    <!--                            android:layout_width="@dimen/_17sdp"-->
+    <!--                            android:layout_height="@dimen/_17sdp"-->
+    <!--                            android:layout_alignParentEnd="true"-->
+    <!--                            android:contentDescription="@string/app_name"-->
+    <!--                            android:padding="@dimen/_2sdp"-->
+    <!--                            android:src="@drawable/edit_document" />-->
+
+    <!--                        <RelativeLayout-->
+    <!--                            android:onClick="moveToEditDocumentPage"-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_gravity="center"-->
+    <!--                            android:layout_marginTop="9dp"-->
+    <!--                            android:layout_marginEnd="9dp"-->
+    <!--                            android:background="@drawable/dashed_bg"-->
+    <!--                            android:padding="@dimen/_5sdp">-->
+
+    <!--                            <LinearLayout-->
+    <!--                                android:layout_width="wrap_content"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_centerHorizontal="true"-->
+    <!--                                android:orientation="horizontal">-->
+
+    <!--                                <ImageView-->
+    <!--                                    android:layout_width="@dimen/_20sdp"-->
+    <!--                                    android:layout_height="@dimen/_20sdp"-->
+    <!--                                    android:layout_gravity="center"-->
+    <!--                                    android:layout_marginStart="@dimen/_10sdp"-->
+    <!--                                    android:layout_marginTop="@dimen/_10sdp"-->
+    <!--                                    android:layout_marginBottom="@dimen/_10sdp"-->
+    <!--                                    android:contentDescription="@string/app_name"-->
+    <!--                                    android:src="@drawable/plus2" />-->
+
+    <!--                                <LinearLayout-->
+    <!--                                    android:layout_width="match_parent"-->
+    <!--                                    android:layout_height="wrap_content"-->
+    <!--                                    android:layout_gravity="center"-->
+    <!--                                    android:layout_weight="1"-->
+    <!--                                    android:orientation="vertical"-->
+    <!--                                    android:paddingStart="@dimen/_10sdp">-->
+
+    <!--                                    <TextView-->
+    <!--                                        android:layout_width="match_parent"-->
+    <!--                                        android:layout_height="wrap_content"-->
+    <!--                                        android:fontFamily="@font/poppins_medium"-->
+    <!--                                        android:gravity="center"-->
+    <!--                                        android:text="@string/car_insurance"-->
+    <!--                                        android:textAllCaps="true"-->
+    <!--                                        android:textColor="@color/White"-->
+    <!--                                        android:textSize="14sp" />-->
+
+    <!--                                    <TextView-->
+    <!--                                        android:layout_width="match_parent"-->
+    <!--                                        android:layout_height="wrap_content"-->
+    <!--                                        android:fontFamily="@font/poppins_regular"-->
+    <!--                                        android:gravity="center"-->
+    <!--                                        android:text="@string/approved"-->
+    <!--                                        android:textAllCaps="true"-->
+    <!--                                        android:textColor="@color/White"-->
+    <!--                                        android:visibility="gone"-->
+    <!--                                        android:textSize="5sp" />-->
+    <!--                                </LinearLayout>-->
+    <!--                            </LinearLayout>-->
+    <!--                        </RelativeLayout>-->
+
+    <!--                    </RelativeLayout>-->
+    <!--                </LinearLayout>-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="@dimen/_70sdp"-->
+    <!--                android:layout_marginTop="@dimen/_20sdp"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="0dp"-->
+    <!--                    android:layout_marginStart="@dimen/_15sdp"-->
+    <!--                    android:layout_marginEnd="@dimen/_15sdp"-->
+    <!--                    android:layout_weight="2"-->
+    <!--                    android:orientation="horizontal">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginTop="9dp"-->
+    <!--                        android:layout_weight=".4"-->
+    <!--                        android:contentDescription="@string/app_name"-->
+    <!--                        android:src="@drawable/police" />-->
+
+    <!--                    <RelativeLayout-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center"-->
+    <!--                        android:layout_marginStart="@dimen/_28sdp"-->
+    <!--                        android:layout_marginTop="5dp"-->
+    <!--                        android:layout_marginEnd="5dp"-->
+    <!--                        android:layout_weight="1.6"-->
+    <!--                        android:padding="@dimen/_5sdp">-->
+
+    <!--                        <ImageView-->
+    <!--                            android:visibility="gone"-->
+    <!--                            android:layout_width="@dimen/_17sdp"-->
+    <!--                            android:layout_height="@dimen/_17sdp"-->
+    <!--                            android:layout_alignParentEnd="true"-->
+    <!--                            android:contentDescription="@string/app_name"-->
+    <!--                            android:padding="@dimen/_2sdp"-->
+    <!--                            android:src="@drawable/edit_document" />-->
+
+    <!--                        <RelativeLayout-->
+    <!--                            android:onClick="moveToEditDocumentPage"-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="wrap_content"-->
+    <!--                            android:layout_gravity="center"-->
+    <!--                            android:layout_marginTop="9dp"-->
+    <!--                            android:layout_marginEnd="9dp"-->
+    <!--                            android:background="@drawable/dashed_bg"-->
+    <!--                            android:padding="@dimen/_5sdp">-->
+
+    <!--                            <LinearLayout-->
+    <!--                                android:layout_width="wrap_content"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_centerHorizontal="true"-->
+    <!--                                android:orientation="horizontal">-->
+
+    <!--                                <ImageView-->
+    <!--                                    android:layout_width="@dimen/_20sdp"-->
+    <!--                                    android:layout_height="@dimen/_20sdp"-->
+    <!--                                    android:layout_gravity="center"-->
+    <!--                                    android:layout_marginStart="@dimen/_10sdp"-->
+    <!--                                    android:layout_marginTop="@dimen/_10sdp"-->
+    <!--                                    android:layout_marginBottom="@dimen/_10sdp"-->
+    <!--                                    android:contentDescription="@string/app_name"-->
+    <!--                                    android:src="@drawable/plus2" />-->
+
+    <!--                                <LinearLayout-->
+    <!--                                    android:layout_width="match_parent"-->
+    <!--                                    android:layout_height="wrap_content"-->
+    <!--                                    android:layout_gravity="center"-->
+    <!--                                    android:layout_weight="1"-->
+    <!--                                    android:orientation="vertical"-->
+    <!--                                    android:paddingStart="@dimen/_10sdp">-->
+
+    <!--                                    <TextView-->
+    <!--                                        android:layout_width="match_parent"-->
+    <!--                                        android:layout_height="wrap_content"-->
+    <!--                                        android:fontFamily="@font/poppins_medium"-->
+    <!--                                        android:gravity="center"-->
+    <!--                                        android:text="@string/police_record"-->
+    <!--                                        android:textAllCaps="true"-->
+    <!--                                        android:textColor="@color/White"-->
+    <!--                                        android:textSize="14sp" />-->
+
+    <!--                                    <TextView-->
+    <!--                                        android:layout_width="match_parent"-->
+    <!--                                        android:layout_height="wrap_content"-->
+    <!--                                        android:fontFamily="@font/poppins_regular"-->
+    <!--                                        android:gravity="center"-->
+    <!--                                        android:text="@string/approved"-->
+    <!--                                        android:textAllCaps="true"-->
+    <!--                                        android:textColor="@color/White"-->
+    <!--                                        android:visibility="gone"-->
+    <!--                                        android:textSize="5sp" />-->
+    <!--                                </LinearLayout>-->
+    <!--                            </LinearLayout>-->
+    <!--                        </RelativeLayout>-->
+
+    <!--                    </RelativeLayout>-->
+    <!--                </LinearLayout>-->
+
+    <!--            </LinearLayout>-->
+
+
+    <!--            <Button-->
+    <!--                android:id="@+id/btn_Licenceconfirm"-->
+    <!--                style="@style/CustomButton"-->
+    <!--                android:layout_marginTop="@dimen/_50sdp"-->
+    <!--                android:text="@string/continu"-->
+    <!--                android:textAllCaps="false" />-->
+    <!--        </LinearLayout>-->
+    <!--    </ScrollView>-->
+    <!--</RelativeLayout>-->

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ android:background="@color/Background"
+    tools:context=".activity.Ride_Activity">
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:padding="@dimen/_6sdp"
+        android:background="@color/Black"
+        android:id="@+id/hedder">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="25"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:id="@+id/iv_drawable"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/nav_bar" />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:id="@+id/Relative_offline"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="1dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:src="@drawable/offline_car_btn2">
+                    </ImageView>
+
+                    <TextView
+                        style="@style/ScreenTextView1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:text="Offline"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp">
+
+                    </TextView>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="visible"
+                    android:id="@+id/Relative_Online"
+                    android:layout_marginEnd="1dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:src="@drawable/online_car_btn">
+                    </ImageView>
+
+                    <TextView
+                        style="@style/ScreenTextView1"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:text="Online"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp">
+
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="25"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <ImageView
+
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_5sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bell" />
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_5sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/circle_qmark" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/_50sdp"
+    android:layout_below="@id/hedder">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+          style="@style/ScreenTextView2"
+            android:textSize="@dimen/_18sdp"
+            android:includeFontPadding="false"
+            android:textColor="@color/Black"
+            android:text="You're Ready!"
+            android:layout_gravity="center">
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/black_btn"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/edit"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:gravity="center"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_12sdp">
+            </Button>
+            <Button
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:background="@drawable/btn_green"
+                android:fontFamily="@font/poppins_medium"
+                android:text="RIDE NOW"
+                android:gravity="center"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_12sdp">
+            </Button>
+
+        </LinearLayout>
+    </LinearLayout>
+
+<ImageView
+    android:layout_width="@dimen/_25sdp"
+    android:layout_height="@dimen/_25sdp"
+    android:src="@drawable/location_green_dot"
+    android:layout_centerInParent="true">
+
+</ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_100sdp"
+        android:layout_marginRight="@dimen/_60sdp"
+        >
+        <LinearLayout
+            android:id="@+id/LL_today"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/White"
+                android:text="TODAY"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/border_green_bottomflat">
+
+            </Button>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="UPCOMING"
+                android:textColor="@color/White"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:background="@drawable/border_gray_bottoflat">
+
+            </Button>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_below="@+id/LL_today"
+            android:background="@drawable/fill_whitebackground">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                >
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/circle_car_icon" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_centerVertical="true"
+    android:layout_toEndOf="@+id/imageView3">
+    <TextView
+        style="@style/ScreenTextView1"
+        android:text="11:30"
+        android:textSize="@dimen/_13sdp"
+        android:textColor="@color/Black"
+        android:layout_marginStart="20dp">
+
+    </TextView>
+    <TextView
+        style="@style/ScreenTextView1"
+        android:text="AM"
+        android:textSize="@dimen/_8sdp"
+        android:textColor="@color/Black">
+    </TextView>
+    <TextView
+        style="@style/ScreenTextView1"
+        android:text="-"
+        android:textSize="@dimen/_13sdp"
+        android:textColor="@color/Black"
+        android:layout_marginStart="10dp">
+
+    </TextView>
+
+
+    <TextView
+        style="@style/ScreenTextView1"
+        android:text="11:30"
+        android:textSize="@dimen/_13sdp"
+        android:textColor="@color/Black"
+        android:layout_marginStart="10dp">
+
+    </TextView>
+    <TextView
+        style="@style/ScreenTextView1"
+        android:text="PM"
+        android:textSize="@dimen/_8sdp"
+        android:textColor="@color/Black">
+    </TextView>
+</LinearLayout>
+
+                <TextView
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="0dp"
+                    android:padding="@dimen/_4sdp"
+                  android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="SHOW ALL"
+                    android:background="@drawable/white_border_identification"
+                    android:backgroundTint="@color/colorTextView">
+
+                </TextView>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_100sdp"
+        android:background="@drawable/sider_btn"
+        android:visibility="gone"
+        android:padding="@dimen/_5sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_medium"
+            android:includeFontPadding="false"
+            android:text="SLOTS"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_8sdp"></TextView>
+    </RelativeLayout>
+
+
+</RelativeLayout>
+</RelativeLayout>

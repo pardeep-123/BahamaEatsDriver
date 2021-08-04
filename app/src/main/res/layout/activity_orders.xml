@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Order.Orders_Activity">
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp"
+        android:id="@+id/hedder">
+        <ImageView
+            style="@style/BackButtonImage"
+            android:id="@+id/iv_backArrow_driving"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_toStartOf="@+id/iv_edit"
+    android:layout_toEndOf="@+id/iv_backArrow_driving"
+    android:layout_centerInParent="true"
+    android:orientation="vertical">
+    <TextView
+        style="@style/ScreenTextView1"
+        android:layout_centerVertical="true"
+        android:text="Pre-Paid Order"
+        android:textColor="@color/White"></TextView>
+
+    <TextView
+        style="@style/ScreenTextView1"
+        android:layout_centerVertical="true"
+        android:text="Paid with BE Card"
+        android:visibility="gone"
+        android:textColor="@color/White"></TextView>
+
+</LinearLayout>
+
+        <Button
+            android:id="@+id/iv_edit"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/outline"
+            android:text="@string/support"
+            android:textColor="@color/White"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_8sdp"
+            android:backgroundTint="@color/White"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+          />
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/hedder">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/map"
+        android:background="@color/Black"
+        android:scrollbars="none">
+
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <include layout="@layout/res_deliveries" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.80dp"
+        android:background="@color/White">
+
+    </View>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Customer"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="C.White"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.20dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:background="@color/LLgray">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Distance"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="2.3mi"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.20dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:background="@color/LLgray">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Delivery"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="1 of 1"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.20dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:background="@color/LLgray">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Wait time"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="3 min"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+        </TextView>
+    </LinearLayout>
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.80dp"
+        android:background="@color/White">
+
+    </View>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Food Items"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="$35.3"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.20dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/LLgray">
+
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Delivery Charges"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="$7.5"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+        </TextView>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.20dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/LLgray">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="70"
+            android:text="Tips"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+
+        </TextView>
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:layout_weight="30"
+            android:text="$2.00"
+            android:gravity="end"
+            android:textColor="@color/White"
+            android:includeFontPadding="false">
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+</RelativeLayout>

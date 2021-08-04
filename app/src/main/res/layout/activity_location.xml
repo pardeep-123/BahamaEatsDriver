@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:paddingLeft="@dimen/_15sdp"
+    android:paddingRight="@dimen/_15sdp">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            android:id="@+id/tv_id_hedder"
+            style="@style/Hedder"
+            android:text="@string/select_location"
+            android:textAllCaps="true" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/place_search"
+        style="@style/EditextField"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginRight="10dp"
+        android:autofillHints="@string/search_location"
+        android:hint="@string/search_location"
+        android:inputType="text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/places_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:orientation="vertical" />
+</LinearLayout>

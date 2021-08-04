@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.Pickup_By">
+
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp"
+        android:id="@+id/hedder">
+
+        <ImageView
+            style="@style/BackButtonImage"
+            android:id="@+id/iv_backArrow_driving"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/iv_edit"
+            android:layout_toEndOf="@+id/iv_backArrow_driving"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/HedderSmallsiz"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:text="PICKUP BY 10:30AM">
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/iv_edit"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/outline"
+            android:text="@string/support"
+            android:textColor="@color/White"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_7sdp"
+            android:backgroundTint="@color/White"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:background="@color/Black"
+        android:scrollbars="none">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/_20sdp"
+    android:paddingRight="@dimen/_20sdp"
+    android:paddingTop="@dimen/_20sdp">
+    <RelativeLayout
+        android:id="@+id/Relativ_r"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        >
+        <ImageView
+            android:id="@+id/iv_termscondition"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/starbucks_icon" />
+
+
+        <TextView
+            style="@style/ScreenTextView1"
+            android:text="Starbucks"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_14sdp"
+            android:layout_toEndOf="@+id/iv_termscondition">
+
+        </TextView>
+    </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/Relativ_r"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.80dp"
+        android:background="@color/colorTextView">
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical">
+        <TextView
+           style="@style/ScreenTextView2"
+            android:textColor="@color/White"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/_8sdp"
+            android:text="Customer:">
+        </TextView>
+        <TextView
+           style="@style/ScreenTextView2"
+            android:textColor="@color/White"
+            android:text="C. white"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/_13sdp">
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="vertical">
+        <TextView
+           style="@style/ScreenTextView1"
+            android:textColor="@color/White"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/_8sdp"
+            android:text="Payment:">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:src="@drawable/box_tick"
+                >
+
+            </ImageView>
+            <TextView
+                style="@style/ScreenTextView2"
+                android:textColor="@color/White"
+                android:text="Pay with BE Card"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/_13sdp">
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.80dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/colorTextView">
+    </View>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:orientation="vertical">
+    <TextView
+        style="@style/ScreenTextView1"
+        android:textColor="@color/White"
+        android:includeFontPadding="false"
+        android:text="Order Item">
+    </TextView>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_250sdp"
+    android:id="@+id/Recycler_order_item">
+</androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.80dp"
+        android:background="@color/colorTextView">
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/White"
+            android:text="Subtotal"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/poppins_medium">
+
+        </TextView>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+        <Button
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/outline"
+            android:text="$70.28"
+            android:textColor="@color/White"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_8sdp"
+            android:backgroundTint="@color/White"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical">
+        <TextView
+            style="@style/ScreenTextView2"
+            android:text="SWIPE"
+            android:layout_gravity="center"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_8sdp">
+        </TextView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/plain_green_button">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp">
+                <ImageView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/double_arrow_right" />
+
+                <TextView
+                    style="@style/ScreenTextView1"
+                    android:text="Confirm Pickup"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/White">
+                </TextView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
+
+</RelativeLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

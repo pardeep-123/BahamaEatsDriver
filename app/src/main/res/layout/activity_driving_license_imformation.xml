@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    tools:context=".activity.Driver_details.Driving_License_Imformation">
+
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp"
+        android:id="@+id/hedder">
+
+        <ImageView
+            style="@style/BackButtonImage"
+            android:id="@+id/iv_backArrow_driving"
+            android:onClick="iv_backArrow_driving"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White"/>
+
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/iv_edit"
+            android:layout_toEndOf="@+id/iv_backArrow_driving"
+            android:text="Driving license information">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:onClick="iv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:padding="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/edit2"
+            android:tint="@color/White" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hedder">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_146sdp"
+           >
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:id="@+id/iv_licence"
+    android:src="@drawable/driving_licence">
+
+</ImageView>
+
+        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/Relativ_camera"
+                android:visibility="gone"
+                android:layout_marginBottom="0dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera_green" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_20sdp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:backgroundTint="@color/White"
+                android:theme="@style/TextAppearence2.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/White">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:hint="LICENSE NUMBER"
+                android:id="@+id/Te_Licence_no"
+                android:enabled="false"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:text="123456"
+                android:backgroundTint="@color/White"
+                android:textColor="@color/White"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:backgroundTint="@color/White"
+                android:theme="@style/TextAppearence2.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/White"
+                android:layout_marginTop="@dimen/_5sdp"
+               >
+
+            <com.google.android.material.textfield.TextInputEditText
+              android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:hint="DATE OF BIRTH"
+                android:enabled="false"
+                android:id="@+id/Te_birthdate"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:text="30 Jan 1990"
+                android:backgroundTint="@color/White"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:backgroundTint="@color/White"
+                android:theme="@style/TextAppearence2.App.TextInputLayout"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/White"
+                android:layout_marginTop="@dimen/_5sdp"
+               >
+
+            <com.google.android.material.textfield.TextInputEditText
+                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:hint="ISSUED ON"
+                android:enabled="false"
+                android:id="@+id/te_issueon"
+                android:backgroundTint="@color/White"
+                android:text="15-02-1997"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:backgroundTint="@color/White"
+                android:theme="@style/TextAppearence2.App.TextInputLayout"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/White"
+                android:layout_marginTop="@dimen/_5sdp"
+               >
+            <com.google.android.material.textfield.TextInputEditText
+                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:hint="EXPIRED"
+                android:enabled="false"
+                android:id="@+id/te_expired"
+                android:backgroundTint="@color/White"
+                android:text="15-02-1999"
+                android:textColor="@color/White"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textColorHint="@color/White"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:backgroundTint="@color/White"
+                android:theme="@style/TextAppearence2.App.TextInputLayout"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/White"
+                android:layout_marginTop="@dimen/_5sdp"
+               >
+            <com.google.android.material.textfield.TextInputEditText
+                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:hint="NATIONALITY"
+                android:id="@+id/te_nationality"
+                android:enabled="false"
+                android:backgroundTint="@color/White"
+                android:text="Saudi"
+                android:textColor="@color/White"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textColorHint="@color/White"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:backgroundTint="@color/White"
+                android:theme="@style/TextAppearence2.App.TextInputLayout"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/White"
+                android:layout_marginTop="@dimen/_5sdp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10sdp"
+                android:hint="LICENSE TYPE"
+                android:id="@+id/te_licence_type"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:backgroundTint="@color/White"
+                android:enabled="false"
+                android:text="Four wheeler"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/LL_cancle_update_button"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/Button_cancle"
+                    android:onClick="Button_cancle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/et_border_bgradis2"
+                    android:text="CANCEL"
+                    android:textColor="@color/White"/>
+
+                <Button
+                    android:id="@+id/Button_update"
+                    android:onClick="Button_update"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                 android:textColor="@color/White"
+                    android:text="UPDATE"
+                    android:background="@drawable/btn_smallsiz">
+
+                </Button>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

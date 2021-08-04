@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        >
+        <ImageView
+            android:id="@+id/imageView_order"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ring" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_toEndOf="@+id/imageView_order"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_order_name"
+        style="@style/ScreenTextView1"
+        android:text="Eggonog Frappuccino"
+        android:textColor="@color/White"
+       android:textSize="@dimen/_13sdp"
+        android:layout_centerVertical="true"
+       >
+
+    </TextView>
+    <TextView
+        android:id="@+id/tv_ingrednt"
+        style="@style/ScreenTextView2"
+        android:text="560 cl, mixed with sugar"
+        android:textSize="@dimen/_6sdp"
+        android:textColor="@color/White"
+        android:visibility="gone"
+        android:layout_centerVertical="true">
+
+    </TextView>
+
+</LinearLayout>
+
+        <TextView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:text="1x"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_12sdp"
+            android:background="@drawable/radius_green_btn">
+
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

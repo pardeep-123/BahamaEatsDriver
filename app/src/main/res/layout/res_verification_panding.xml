@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_25sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/Relativ_welcomS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Card_welcom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPadding="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/Image_tree_icon"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/app_logo_black">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/Greenapp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="Verification Pending">
+
+                </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="@dimen/_7sdp"
+                    android:text="Once we'll verify">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="@dimen/_7sdp"
+                    android:text="We'll get back to you">
+
+                </TextView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Relativ_welcomS"
+        android:layout_marginTop="-15dp">
+
+        <TextView
+            android:id="@+id/tv_Done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:textSize="@dimen/_9sdp"
+            android:gravity="center"
+            android:textColor="@color/White"
+            android:background="@drawable/borderasset100">
+
+        </TextView>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/main_bg_shape"
+    android:orientation="vertical">
+
+    <TextView
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/open_with"/>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:padding="@dimen/_30sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_centerInParent="true"
+            android:id="@+id/iv_view"
+            android:background="@color/White"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_22sdp"/>
+        <ImageView
+            android:layout_toStartOf="@+id/iv_view"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:src="@drawable/message"
+            android:id="@+id/iv_messageUser"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"/>
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_toEndOf="@+id/iv_view"
+            android:src="@drawable/whatsapp"
+            android:id="@+id/iv_whatsAppUser"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"/>
+    </RelativeLayout>
+</LinearLayout>

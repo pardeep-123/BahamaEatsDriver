@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.Deliveries_jobhistory">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_jobhistory"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/deliveries" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:padding="@dimen/_25sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/et_border_bgradis">
+
+            <androidx.cardview.widget.CardView
+                app:cardBackgroundColor="#F4F4F4"
+                android:id="@+id/Card_job"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="5sp"
+                android:elevation="5dp"
+                app:cardElevation="@dimen/_7sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_38sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:fontFamily="@font/poppins_regular"
+                            android:id="@+id/tv_upcomming"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="@color/colorTextView_new"
+                            android:gravity="center"
+                            android:onClick="tv_upcomming"
+                            android:text="@string/current">
+
+                        </TextView>
+                        <View
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            android:layout_width="2px"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/colorTextView_new" />
+                        <TextView
+                            android:fontFamily="@font/poppins_regular"
+                            android:id="@+id/tv_past"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/colorTextView_new"
+                            android:onClick="tv_past"
+                            android:text="@string/past" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_marginStart="@dimen/_25sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:id="@+id/View_upcoming"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_weight="1"
+                            android:background="@color/Greenapp">
+
+                        </View>
+
+                        <View
+                            android:layout_marginStart="@dimen/_25sdp"
+                            android:layout_marginEnd="@dimen/_25sdp"
+                            android:id="@+id/View_past"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_weight="1"
+                            android:background="@color/Greenapp"
+                            android:visibility="invisible">
+
+                        </View>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Rv_jobhistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/Card_job"
+                android:visibility="gone" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/no_dataAvailable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/Card_job"
+                android:layout_centerInParent="true"
+                android:text="No data available" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

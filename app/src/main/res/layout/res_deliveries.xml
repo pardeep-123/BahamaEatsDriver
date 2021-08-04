@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/Relativ_hed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:id="@+id/Image_delivery"
+            android:layout_centerVertical="true"
+            android:src="@drawable/subway_circle"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/Image_delivery"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_delivery_name"
+                    style="@style/ScreenTextView2"
+                    android:layout_weight="70"
+                    android:text="Subway"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/Black"
+                    android:includeFontPadding="false">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/t_delivery_price"
+                    style="@style/ScreenTextView2"
+                    android:layout_weight="30"
+                    android:text="$50.3"
+                    android:gravity="end"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/Black"
+                    android:includeFontPadding="false">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ScreenTextView2"
+                    android:layout_weight="70"
+                    android:text="4:43 PM | 20 Jan"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/colorTextView"
+                    android:textSize="@dimen/_8sdp">
+
+                </TextView>
+
+                <TextView
+                    style="@style/ScreenTextView2"
+                    android:layout_weight="30"
+                    android:text="2Items"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/colorTextView"
+                    android:gravity="end"
+                    android:textSize="@dimen/_8sdp">
+
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/View_Delivery"
+        android:layout_width="match_parent"
+        android:layout_height="0.40dp"
+        android:layout_below="@+id/Relativ_hed"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:visibility="gone"
+        android:background="@color/colorTextView">
+
+    </View>
+
+</RelativeLayout>

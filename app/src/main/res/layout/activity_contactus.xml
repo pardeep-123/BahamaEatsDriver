@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.Navigation.AboutUs">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp">
+
+        <ImageView
+            android:contentDescription="@string/app_name"
+            android:id="@+id/iv_backArrow_contactus"
+            style="@style/BackButtonImage"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White" />
+
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/contact_us" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_have_a_problem"
+                        style="@style/ScreenTextView2"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:includeFontPadding="false"
+                        android:text="@string/having_problem_with_your_order"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_callSupport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_35sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginRight="@dimen/_35sdp"
+                        android:background="@drawable/border_green"
+                        android:padding="@dimen/_10sdp">
+
+                        <TextView
+                            style="@style/ScreenTextView2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:includeFontPadding="false"
+                            android:text="@string/call_support"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:contentDescription="@string/app_name"
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:src="@drawable/phone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_35sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@color/White" />
+
+                        <TextView
+                            style="@style/ScreenTextView2"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:includeFontPadding="false"
+                            android:text="@string/or"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@color/White" />
+                    </LinearLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_chatSupport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_35sdp"
+                        android:layout_marginRight="@dimen/_35sdp"
+                        android:background="@drawable/border_white"
+                        android:padding="@dimen/_10sdp">
+
+                        <TextView
+                            style="@style/ScreenTextView2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:includeFontPadding="false"
+                            android:text="@string/chat_with_team"
+                            android:textColor="@color/colorTextView"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:contentDescription="@string/app_name"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:src="@drawable/chat_icon" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:contentDescription="@string/app_name"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:src="@drawable/phone" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_ContactNumber"
+                                style="@style/ScreenTextView2"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/White"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="0.70dp"
+                                android:layout_below="@+id/tv_ContactNumber"
+                                android:layout_alignStart="@+id/tv_ContactNumber"
+                                android:layout_alignEnd="@+id/tv_ContactNumber"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginEnd="0dp"
+                                android:background="@color/White">
+
+                            </View>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/homelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:contentDescription="@string/app_name"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:src="@drawable/custmor_suport" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_Contact"
+                                style="@style/ScreenTextView2"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:includeFontPadding="false"
+                                android:text="@string/contact_support"
+                                android:textColor="@color/White"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/tv_Contact"
+                                android:layout_alignStart="@+id/tv_Contact"
+                                android:layout_alignEnd="@+id/tv_Contact"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginEnd="0dp"
+                                android:background="@color/White">
+
+                            </View>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:text="Get In Touch"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginRight="@dimen/_25sdp"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_20sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                style="@style/ScreenTextView1"
+                                android:text="@string/name"
+                                android:textColor="@color/White"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <EditText
+                                style="@style/EditextWithWhiteborder"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:inputType="textCapSentences"
+                                android:textColor="@color/White"
+                                android:textCursorDrawable="@drawable/color_cursor" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/ScreenTextView1"
+                                android:text="@string/email"
+                                android:textColor="@color/White"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <EditText
+                                style="@style/EditextWithWhiteborder"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/White"
+                                android:textCursorDrawable="@drawable/color_cursor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/ScreenTextView1"
+                                android:text="@string/phone"
+                                android:textColor="@color/White"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <EditText
+                                style="@style/EditextWithWhiteborder"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:textColor="@color/White"
+                                android:textCursorDrawable="@drawable/color_cursor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/ScreenTextView1"
+                                android:text="Message"
+                                android:textColor="@color/White"
+                                android:textSize="@dimen/_8sdp" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/et_border_bgradis2"
+                                android:gravity="top"
+                                android:inputType="textMultiLine"
+                                android:minHeight="@dimen/_80sdp"
+                                android:padding="@dimen/_2sdp"
+                                android:textColor="@color/White"
+                                android:textCursorDrawable="@drawable/color_cursor"
+                                android:textSize="@dimen/_11sdp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <Button
+
+                        android:id="@+id/Button_send"
+                        style="@style/CustomButton"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/send" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

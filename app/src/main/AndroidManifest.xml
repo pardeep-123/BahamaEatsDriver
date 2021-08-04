@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bahamaeatsdriver">
+
+    <permission
+        android:name="com.bahamaeatsdriver.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.truiton.mapfragment.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:name=".di.App"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+        <activity android:name=".activity.bank_details.BankDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.driver_documentation.UploadDocumentActivity"
+            android:screenOrientation="portrait" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".activity.driver_documentation.EditDocumentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.driver_documentation.AddDocumentationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CompleteRideDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.job_history_details.JobHistoryDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Id_Details.Id_details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Pofile.InsuranceAndVehicleInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Payment_Status"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Pofile.Edit_profile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".place_picker.LocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Pickup_By"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Schedule_time"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Licence_Detail.Edit_LicenceDetail_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Licence_Detail.LicenceDetail_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Id_Details.Edit_Id_Details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Banck_Details_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.driver_availability.DriverAvailability"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Schedule_time_between"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Support_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Ride_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Documentation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Delivery_By"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Order.Pickup_request_order"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Order.Boost_order"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Order.Orders_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Pickup_your_order"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Pofile.My_Profile_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Navigation.My_Wallet_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Deliveries_jobhistory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Notification_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Navigation.Refer_And_Earn"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.login_register.Identification_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Navigation.TermAnd_Conditions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Home_Page"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Otp.Otp_Fill_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Navigation.Contactus_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Navigation.Settings_Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.Navigation.AboutUs" />
+        <activity
+            android:name=".activity.Driver_details.Driving_License_Imformation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ForgotPassword.Fill_old_newPassword"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Licence_Detail.Fill_LicenseDetail_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.login_register.Select_country_mobileno"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UpdateContactNumberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.login_register.Registration_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Forgot_Password_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.login_register.Login_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <!-- android:name=".activity.Splesh_Screen" -->
+        <activity
+            android:name=".activity.Splesh_Screen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.bahamaeatsdriver.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".services.SensorService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="location"
+            android:stopWithTask="false" />
+
+        <receiver
+            android:name=".receiver.LocationReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+            <intent-filter>
+                <action android:name="restartservice" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

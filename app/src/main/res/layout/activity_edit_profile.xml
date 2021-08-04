@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.Pofile.Edit_profile">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_editprofile"
+            style="@style/BackButtonImage"
+            android:onClick="iv_backArrow_editprofile"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White" />
+
+        <TextView
+            style="@style/Hedder"
+            android:text="Edit Profile"></TextView>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hedder"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_edit_profile"
+                        android:layout_width="@dimen/_75sdp"
+                        android:layout_height="@dimen/_75sdp"
+                        android:layout_centerHorizontal="true"
+                        app:civ_border_color="@color/White"
+                        app:civ_border_width="@dimen/_3sdp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="0dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/editpencil" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_fullName"
+                style="@style/EditextField"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="@string/full_name"
+                android:inputType="textCapSentences">
+
+            </EditText>
+
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="@dimen/_45sdp"
+                 android:layout_marginTop="@dimen/_18sdp"
+                 android:layout_marginRight="@dimen/_45sdp"
+                 android:background="@drawable/et_border_bg"
+                 android:orientation="horizontal"
+                 android:padding="@dimen/_10sdp">
+
+                 <com.hbb20.CountryCodePicker
+                     android:id="@+id/tv_countryCode"
+                     style="@style/ScreenTextView1"
+                     app:ccpDialog_textColor="@color/colorTextView"
+                     app:ccp_showFlag="false"
+                     app:ccp_showNameCode="false"
+                     app:ccp_textSize="@dimen/_11sdp" />-->
+
+            <TextView
+                android:id="@+id/et_contactNumber"
+                style="@style/EditextField3"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:gravity="center"
+                android:hint="@string/mobile_number"
+                android:inputType="number"
+                android:maxLength="13" />
+            <!--            </LinearLayout>-->
+
+
+            <TextView
+                android:id="@+id/et_email"
+                style="@style/EditextField3"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="@string/email" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Black"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/et_country"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/White"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:textColorHint="@color/colorTextView"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_selectedCity"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft=".20dp"
+                        android:layout_weight="1"
+                        android:background="#F4F4F4"
+                        android:drawableRight="@drawable/arrowdown"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/Black"
+                        android:textColorHint="@color/colorTextView"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Black"
+
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/White"
+                        android:gravity="center"
+                        android:hint="Vehical Model"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:padding="@dimen/_10sdp"
+                        android:textColorHint="@color/colorTextView"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft=".20dp"
+                        android:layout_weight="1"
+                        android:background="#F4F4F4"
+                        android:drawableRight="@drawable/arrowdown"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Year"
+                        android:textColorHint="@color/colorTextView"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_update"
+                style="@style/CustomButton"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Update" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

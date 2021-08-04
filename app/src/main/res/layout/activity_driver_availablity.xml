@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/black"
+    tools:context=".activity.driver_availability.DriverAvailability">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_jobhistory"
+            style="@style/BackButtonImage"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            style="@style/Hedder"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/availability" />
+    </RelativeLayout>
+
+<!--
+    <ScrollView
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">-->
+    <RelativeLayout
+        android:layout_below="@+id/hedder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:padding="@dimen/_10sdp">
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_noDataAvailable"
+            style="@style/ScreenTextView3"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_120sdp"
+            android:text="@string/no_data_available"
+            android:textColor="@color/Black"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_above="@+id/tv_save"
+            android:layout_marginBottom="5dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/driver_availability_row_layout"
+            android:id="@+id/rv_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <!--            android:layout_below="@+id/rv_days"-->
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tv_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/green_border"
+            android:backgroundTint="@color/Black"
+            android:gravity="center"
+            android:hint="@string/save"
+            android:padding="12dp"
+            android:textColor="@color/White"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/_12sdp" />
+    </RelativeLayout>
+<!--    </ScrollView>-->
+</RelativeLayout>

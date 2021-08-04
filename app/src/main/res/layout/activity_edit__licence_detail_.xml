@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.login_register.Registration_Activity">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_licendedetail"
+            style="@style/BackButtonImage"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White" />
+
+        <TextView
+            android:id="@+id/Tv_L_hedder"
+            style="@style/Hedder"
+            android:text="License Details"/>
+
+        <ImageView
+            android:id="@+id/iv_Linc_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:padding="@dimen/_12sdp"
+            android:src="@drawable/edit2"
+            android:tint="@color/White" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/hedder"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_130sdp"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_front"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/iv_front_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="0dp"
+                        android:onClick="iv_front_image"
+                        android:src="@drawable/camera_green"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_130sdp"/>
+
+                    <ImageView
+                        android:id="@+id/iv_back_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="0dp"
+                        android:onClick="iv_back_image"
+                        android:src="@drawable/camera_green"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/ed_L_number"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/licensnumber"
+                android:inputType="text"
+                android:maxLength="16">
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/tv_licenceBirth"
+                style="@style/Textviewbackground1"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/dateofbirth"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Black"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/Tv_licence_issue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/White"
+                        android:drawableRight="@drawable/arrowdown"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:hint="@string/issued_on"
+                        android:inputType="text"
+                        android:padding="@dimen/_10sdp"
+                        android:textColorHint="@color/colorTextView"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:textColor="@color/Black"
+                        android:id="@+id/Tv_Licence_expire"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft=".20dp"
+                        android:layout_weight="1"
+                        android:background="#F4F4F4"
+                        android:drawableRight="@drawable/arrowdown"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:hint="Expiry Date"
+                        android:padding="@dimen/_10sdp"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:id="@+id/Ed_l_natiolaty"
+                style="@style/EditextField4"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/nationality"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/Ed_l_Licencetype"
+                style="@style/EditextField3"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/license_type"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:id="@+id/LL_cancle_update_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/Button_L_cancle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_border_identification"
+                    android:onClick="Button_L_cancle"
+                    android:text="CANCEL"
+                    android:textColor="@color/White" />
+
+                <Button
+                    android:id="@+id/btn_update"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_smallsiz"
+                    android:text="UPDATE"
+                    android:textColor="@color/White">
+
+                </Button>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

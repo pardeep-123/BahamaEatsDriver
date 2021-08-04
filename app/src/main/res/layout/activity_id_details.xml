@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.login_register.Registration_Activity">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_backArrow_iddetail"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White" />
+
+        <TextView
+            style="@style/Hedder"
+            android:text="ID Details" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Black"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/Black"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_firstName"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="49.90"
+                            android:background="@color/White"
+                            android:gravity="center"
+                            android:hint="@string/first_name"
+                            android:inputType="textCapSentences"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/Black"
+                            android:textColorHint="@color/colorTextView"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <View
+                            android:id="@+id/divider2"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_weight=".20"
+                            android:background="@color/colorTextView" />
+
+                        <EditText
+                            android:id="@+id/et_lastName"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="49.90"
+                            android:background="@color/White"
+                            android:gravity="center"
+                            android:hint="@string/last_name"
+                            android:inputType="textCapSentences"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/Black"
+                            android:textColorHint="@color/colorTextView"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <EditText
+                android:id="@+id/et_idNumber"
+                style="@style/EditextField"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="@string/id_number"
+                android:inputType="text"
+                android:maxLength="16" />
+
+            <TextView
+                android:id="@+id/Tv_idbirthdate"
+                style="@style/Textviewbackground"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="@string/dateofbirth" />
+
+            <TextView
+                android:id="@+id/tv_id_issudate"
+                style="@style/Textviewbackground"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="Date of Issue" />
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/et_address"
+                style="@style/EditextField9"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:autofillHints="@string/address"
+                android:hint="@string/address"
+                android:inputType="text"
+                android:singleLine="true" />
+
+
+            <Button
+                android:id="@+id/btn_continue"
+                style="@style/CustomButton"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:text="@string/confirm" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

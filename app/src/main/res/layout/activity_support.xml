@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.Support_Activity">
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp"
+        android:id="@+id/hedder">
+
+        <ImageView
+            style="@style/BackButtonImage"
+            android:src="@drawable/backbtn"
+            android:id="@+id/iv_backArrow_setting"
+            android:tint="@color/White"/>
+
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:text="Support"></TextView>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_below="@id/hedder"
+        android:padding="@dimen/_20sdp"
+        android:layout_weight="50">
+
+
+        <TextView
+            style="@style/ScreenTextView2"
+            android:text="Having problem with your order?"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:textStyle="bold">
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_40sdp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="BHMAETS12"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
+                    android:textColor="@color/White"
+                    android:background="@drawable/invitebutton">
+                </TextView>
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/clicle_phone_litbackground">
+
+                </ImageView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.60dp"
+                    android:layout_weight="46"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/White">
+
+                </View>
+                <TextView
+                    style="@style/ScreenTextView1"
+                    android:layout_weight="8"
+                    android:textColor="@color/White"
+                    android:gravity="center"
+                    android:text="or">
+
+                </TextView>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0.60dp"
+                    android:layout_weight="46"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/White">
+
+                </View>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_30sdp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Chat with team"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
+                    android:textColor="@color/colorTextView"
+                    android:background="@drawable/invite_white_button">
+                </TextView>
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/circle_message">
+
+                </ImageView>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

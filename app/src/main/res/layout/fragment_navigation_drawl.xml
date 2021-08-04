@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:clickable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="32"
+
+            android:padding="@dimen/_10sdp"
+            android:id="@+id/toplayout"
+            android:background="@drawable/nav_background">
+
+            <RelativeLayout
+                android:id="@+id/Relativ_profile"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
+                    android:id="@+id/iv_Profile_image">
+
+                </com.mikhaellopez.circularimageview.CircularImageView>
+
+                <TextView
+                    android:id="@+id/tv_driverName"
+                    style="@style/ScreenTextView2"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_22sdp"
+                    android:textStyle="bold">
+
+                </TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_processing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/Relativ_profile"
+                android:visibility="gone"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="50dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/progress25">
+                            </ImageView>
+                        </RelativeLayout>
+
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:paddingTop="2dp"
+                        android:text="Acceptance"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:text="Rate"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="50dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/progress45">
+                            </ImageView>
+                            <TextView
+                                style="@style/ScreenTextView1"
+                                android:paddingTop="2dp"
+                                android:text="45"
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/White"
+                                android:textSize="15sp" />
+
+                        </RelativeLayout>
+
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:paddingTop="2dp"
+                        android:text="Completion"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:text="of order"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="50dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/progress60">
+                            </ImageView>
+                        </RelativeLayout>
+
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:paddingTop="2dp"
+                        android:text="on Time"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:text="Delivery"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    android:gravity="center">
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="50dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/progress60">
+                            </ImageView>
+                        </RelativeLayout>
+
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:paddingTop="2dp"
+                        android:text="Average"
+                        android:includeFontPadding="false"
+                        android:gravity="center"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+                    <TextView
+                       style="@style/ScreenTextView1"
+                        android:text="Rating"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/White"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="63"
+                android:background="@color/Black"
+                android:paddingLeft="5dp"
+                android:orientation="vertical" >
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:layout_below="@+id/hedder">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/homelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageView
+                       style="@style/NavIcon"
+                        android:src="@drawable/navhome"
+                       />
+
+                    <TextView
+                        android:text="Home"
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_paymentstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navwallat" />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Earnings" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:id="@+id/ll_wallet"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navwallat" />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="@string/wallet" />
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:id="@+id/LL_deliveries"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navdelivery" />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="@string/deliveries" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:id="@+id/LL_support"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navphone"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Contact Us" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="visible"
+                    android:id="@+id/LL_TandC"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/tandcond"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Terms and Conditions" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/LL_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navsetting"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Settings" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_Documents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navdocument"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Documents" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_refer_earn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navrefer"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Refer/Invite Friends" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/LL_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navlogout"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="Logout" />
+                </LinearLayout>
+            </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="39.50">
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/white_small_box">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:id="@+id/Relative_offlineN"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="1dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:src="@drawable/offline_car_btn2">
+                    </ImageView>
+
+                    <TextView
+                        style="@style/ScreenTextView1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:text="Offline"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_6sdp">
+
+                    </TextView>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone"
+                    android:id="@+id/Relative_OnlineN"
+                    android:layout_marginEnd="1dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:src="@drawable/online_car_btn">
+                    </ImageView>
+
+                    <TextView
+                        style="@style/ScreenTextView1"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:text="Online"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_6sdp">
+
+                    </TextView>
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:paddingLeft="5dp">
+        </FrameLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

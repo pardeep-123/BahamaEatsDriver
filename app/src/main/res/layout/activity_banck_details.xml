@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.login_register.Registration_Activity">>
+
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:id="@+id/hedder">
+
+        <ImageView
+            style="@style/BackButtonImage"
+            android:id="@+id/iv_backArrow_licendedetail"
+            android:src="@drawable/backbtn"
+            android:tint="@color/White"/>
+
+        <TextView
+            style="@style/Hedder"
+            android:text="Bank Details">
+        </TextView>
+        <ImageView
+            android:id="@+id/iv_edit_banck"
+            android:onClick="iv_edit_banck"
+            style="@style/BackButtonImage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/edit"
+            android:tint="@color/White" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:orientation="vertical"
+           >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center"
+                android:background="@drawable/et_border_bg"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                android:hint="@string/banck_name"
+                android:textColorHint="@color/colorTextView"
+                android:enabled="false"
+                android:padding="@dimen/_10sdp"
+                android:drawableRight="@drawable/arrowdown"
+                >
+            </TextView>
+            <EditText
+                style="@style/EditextField"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="Account Number"
+                android:inputType="number"
+                android:maxLength="16">
+            </EditText>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_18sdp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Black"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/Black"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="@string/first_name"
+                            android:padding="@dimen/_10sdp"
+                            android:background="@color/White"
+                            android:inputType="textCapSentences"
+                            android:textSize="@dimen/_11sdp"
+                            android:gravity="center"
+                            android:textColorHint="@color/colorTextView">
+                        </EditText>
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="@dimen/_10sdp"
+                            android:hint="@string/last_name"
+                            android:gravity="center"
+                            android:background="#F4F4F4"
+                            android:inputType="textCapSentences"
+                            android:textSize="@dimen/_11sdp"
+                            android:textColorHint="@color/colorTextView"
+
+                            >
+                        </EditText>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <EditText
+                style="@style/EditextField"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:hint="@string/branch_type"
+                android:inputType="text">
+            </EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:layout_marginRight="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/attachments"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="Upload your Banck Statements" />
+
+                    <TextView
+                        style="@style/ScreenTextView1"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_8sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="PNG,JPEG or PDF" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                style="@style/CustomButton"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:id="@+id/button_banck"
+                android:text="@string/update">
+            </Button>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

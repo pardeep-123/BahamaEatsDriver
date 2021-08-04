@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:clickable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toplayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="32"
+            android:background="@drawable/nav_background">
+
+            <RelativeLayout
+                android:id="@+id/hedder"
+                style="@style/Heddersiz">
+
+                <ImageView
+                    android:id="@+id/iv_backArrow_profile"
+                    style="@style/BackButtonImage"
+                    android:onClick="iv_backArrow_profile"
+                    android:src="@drawable/backbtn"
+                    android:tint="@color/White" />
+
+                <TextView
+                    style="@style/HedderSmallsiz"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:gravity="center"
+                    android:text="My Profile"></TextView>
+
+                <ImageView
+                    android:id="@+id/iv_editprofile"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:onClick="iv_editprofile"
+                    android:padding="@dimen/_12sdp"
+                    android:src="@drawable/edit"
+                    android:tint="@color/White" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="63"
+            android:background="@drawable/black"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"></LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/Relativ_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:padding="@dimen/_20sdp">
+
+            <RelativeLayout
+                android:id="@+id/R"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp">
+
+                <RelativeLayout
+                    android:id="@+id/R_profile"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/iv_profileImage"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        app:civ_border_color="@color/White"
+                        app:civ_border_width="@dimen/_3sdp">
+
+                    </com.mikhaellopez.circularimageview.CircularImageView>
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/editpencil">
+
+                        </ImageView>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_toEndOf="@+id/R_profile"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/tv_username"
+                        style="@style/ScreenTextView2"
+                        android:layout_centerVertical="true"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_25sdp"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <!--                        android:text="30th-Dec-2019"
+                    -->
+                    <TextView
+                        android:id="@+id/tv_dateOfJoin"
+                        style="@style/ScreenTextView1"
+                        android:layout_below="@+id/tv_Username"
+                        android:textColor="@color/White" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Card_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/R"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:contentPadding="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/_10sdp">
+
+                            <RelativeLayout
+                                android:id="@+id/Relativ_fistname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/cprofile" />
+
+
+                                <TextView
+                                    android:id="@+id/tv_fullName"
+                                    style="@style/ScreenTextView1"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_toEndOf="@+id/imageView3">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/Relativ_fistname"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@color/Litgray">
+
+                            </View>
+                        </RelativeLayout>
+
+
+                        <!--       <RelativeLayout
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="@dimen/_5sdp"
+                                   android:layout_marginLeft="@dimen/_10sdp"
+                                   android:gravity="center_vertical"
+                                   android:padding="@dimen/_10sdp">
+
+                                   <RelativeLayout
+                                       android:id="@+id/Relativ_lastname"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content">
+
+                                       <ImageView
+                                           android:id="@+id/imageViewprofil"
+                                           android:layout_width="25dp"
+                                           android:layout_height="25dp"
+                                           android:layout_centerVertical="true"
+                                           android:src="@drawable/cprofile" />
+
+
+                                       <TextView
+                                           style="@style/ScreenTextView1"
+                                           android:layout_centerVertical="true"
+                                           android:layout_marginStart="20dp"
+                                           android:layout_toEndOf="@+id/imageViewprofil"
+                                           android:text="Smith">
+
+                                       </TextView>
+                                   </RelativeLayout>
+
+                                   <View
+                                       android:layout_below="@+id/Relativ_lastname"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="1dp"
+                                       android:layout_marginTop="@dimen/_10sdp"
+                                       android:background="@color/Litgray">
+
+                                   </View>
+                               </RelativeLayout>-->
+                    </LinearLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ccall" />
+
+                        <TextView
+                            android:id="@+id/tv_countryCode"
+                            style="@style/ScreenTextView1"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_toEndOf="@+id/imageView4"
+                            android:drawablePadding="@dimen/_10sdp">
+                            <!--                            android:drawableRight="@drawable/arrowdown"
+                            -->
+                        </TextView>
+
+
+                        <TextView
+                            android:id="@+id/tv_ContactNumber"
+                            style="@style/ScreenTextView1"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="40dp"
+                            android:layout_toEndOf="@+id/tv_countryCode">
+
+                        </TextView>
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Litgray">
+
+                    </View>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp">
+
+                            <ImageView
+                                android:id="@+id/imageView5"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/cemail" />
+
+
+                            <TextView
+                                android:id="@+id/tv_email"
+                                style="@style/ScreenTextView1"
+                                android:layout_marginStart="20dp"
+                                android:layout_toEndOf="@+id/imageView5" />
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/Card_lincencinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Card_setting"
+            android:layout_margin="@dimen/_20sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:contentPadding="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/Relativ_info_licens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="Relativ_info_licens"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/arrow1"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/arrow_right" />
+
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_toStartOf="@+id/arrow1"
+                        android:text="Driving License Information">
+
+                    </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/Relativ_insurance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="Relativ_insurance"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/arrow2"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/arrow_right" />
+
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_toStartOf="@+id/arrow2"
+                        android:text="Id Card Information">
+
+                    </TextView>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/Relativ_documents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="Relativ_documentation"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/arrow3"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/arrow_right" />
+
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_toStartOf="@+id/arrow3"
+                        android:text="Documentation">
+
+                    </TextView>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView
+            >
+
+
+    </LinearLayout>
+
+</RelativeLayout>

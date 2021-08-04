@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "954311854878",
+    "firebase_url": "https://bahamaeatsdriver-51bce.firebaseio.com",
+    "project_id": "bahamaeatsdriver-51bce",
+    "storage_bucket": "bahamaeatsdriver-51bce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954311854878:android:aac270ac5b5e292ebcd70f",
+        "android_client_info": {
+          "package_name": "com.bahamaeatsdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954311854878-b8tda673gst9fhb9n6a05sg710rgo6f8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bahamaeatsdriver",
+            "certificate_hash": "c88d5faf5305128fa1b27445f3af85d02d28eaf0"
+          }
+        },
+        {
+          "client_id": "954311854878-cfrungjjgar288rmlneh87jrsdtup4ro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYI3UmQRSKHy5GqGb7eMAwyskwHwqzqKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954311854878-cfrungjjgar288rmlneh87jrsdtup4ro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

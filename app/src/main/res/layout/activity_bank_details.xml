@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black"
+    tools:context=".activity.bank_details.BankDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            style="@style/BackButtonImage"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            android:id="@+id/Tv_L_hedder"
+            style="@style/Hedder"
+            android:text="@string/bank_details" />
+
+        <ImageView
+            android:id="@+id/iv_editBankDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="0dp"
+            android:padding="@dimen/_12sdp"
+            android:src="@drawable/edit2"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hedder"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_verified"
+                android:layout_gravity="center_horizontal"
+                style="@style/ScreenTextView2"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_11sdp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/et_beneficiaryName"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/beneficiary_name"
+                android:inputType="text">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/et_bankName"
+                style="@style/EditextField4"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/bank_name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/et_bankBranch"
+                style="@style/EditextField4"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/branch_name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/et_accountNumber"
+                style="@style/EditextField4"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/account_number"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/et_confirmAccountNumber"
+                style="@style/EditextField4"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:enabled="false"
+                android:hint="@string/confirm_account_number"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/et_accountType"
+                style="@style/EditextField3"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:drawableEnd="@drawable/ccp_down_arrow"
+                android:hint="@string/account_type" />
+
+            <Button
+
+                android:visibility="gone"
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_45sdp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_smallsiz"
+                android:text="@string/submit"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

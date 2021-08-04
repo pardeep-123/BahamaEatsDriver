@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    app:contentPadding="@dimen/_10sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_userName"
+                style="@style/ScreenTextView1"
+                android:layout_weight="70"
+                android:text="Allen Chandler"
+                android:textColor="@color/Black">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/ScreenTextView1"
+                android:layout_weight="30"
+                android:gravity="end"
+                android:text="3-March-2020"
+                android:textColor="@color/Black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text= "Order Number-123456"
+                android:id="@+id/tv_orderNumber"
+                style="@style/ScreenTextView1"
+                android:textColor="@color/Black">
+
+            </TextView>
+        </LinearLayout>
+        <TextView
+            android:text="Tip- $1"
+            android:id="@+id/tv_tip"
+            style="@style/ScreenTextView1"
+            android:gravity="end"
+            android:textColor="@color/Black"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Delivery Fee- $1"
+                android:id="@+id/tv_deliveryFee"
+                style="@style/ScreenTextView1"
+                android:gravity="end"
+                android:textColor="@color/Black"/>
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:id="@+id/tv_status"
+                style="@style/ScreenTextView1"
+                android:layout_weight="30"
+                android:gravity="end"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="70"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ScreenTextView2"
+                    android:text="Ride Status:"
+                    android:textColor="@color/Black">
+
+                </TextView>
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_totalAmount"
+                    style="@style/ScreenTextView1"
+                    android:layout_weight="70"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textColor="@color/Black">
+
+                </TextView>
+
+            </LinearLayout>
+
+           <!-- <TextView
+                android:id="@+id/tv_status"
+                style="@style/ScreenTextView1"
+                android:layout_weight="30"
+                android:gravity="end"/>
+-->
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

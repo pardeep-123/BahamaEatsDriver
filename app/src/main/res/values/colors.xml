@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="red">#EF3022</color>
+    <color name="red_new">#D7EF2323</color>
+
+    <color name="White">#FFFFFF</color>
+    <color name="Black">#000000</color>
+    <color name="offBalck">#A4000000</color>
+    <color name="Greenapp">#78B071</color>
+    <color name="GreenLight">#ADD3A9</color>
+    <color name="Litgray">#D3D3D3</color>
+    <color name="LLgray">#777777</color>
+    <color name="YelloStar">#FAC917</color>
+    <color name="colorTextView">#808080</color>
+    <color name="colorTextView_new">#7D7D7D</color>
+    <color name="progress_bar">#B1B1B1</color>
+    <color name="Red">#C91111</color>
+    <color name="Red_new">#CA1011</color>
+    <color name="colorRed">#D7EF2323</color>
+    <color name="Background">#FAFAFA</color>
+</resources>
