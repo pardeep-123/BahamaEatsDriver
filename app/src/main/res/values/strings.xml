@@ -287,5 +287,6 @@
     <string name="vehical_model">Vehicle Model</string>
     <string name="vehical_make">Vehicle Make</string>
     <string name="vehical_color">Vehicle Color</string>
+    <string name="add_ons_new">Add ons</string>
 
 </resources>

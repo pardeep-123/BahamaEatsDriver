@@ -241,10 +241,11 @@
                             </RelativeLayout>
 
                             <View
+
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="@color/Litgray"
-                                android:visibility="visible" />
+                                android:visibility="gone" />
 
                             <RelativeLayout
                                 android:id="@+id/Relativ_bankDetails"
@@ -252,7 +253,7 @@
                                 android:layout_height="wrap_content"
                                 android:onClick="goToBackDetails"
                                 android:padding="@dimen/_10sdp"
-                                android:visibility="visible">
+                                android:visibility="gone">
 
 
                                 <RelativeLayout

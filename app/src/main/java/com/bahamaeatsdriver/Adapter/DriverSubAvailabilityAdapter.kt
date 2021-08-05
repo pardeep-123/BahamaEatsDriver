@@ -25,6 +25,7 @@ class DriverSubAvailabilityAdapter(var context: Context, val availableSlotsList:
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
         myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).toUpperCase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).toUpperCase(Locale.ROOT)
         myViewHolder.itemView.tv_end_date.text = sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).toUpperCase(Locale.ROOT)

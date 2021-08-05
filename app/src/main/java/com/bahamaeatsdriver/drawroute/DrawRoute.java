@@ -71,7 +71,7 @@ public class DrawRoute extends AsyncTask<String, Void, String> {
             }
 
             data = sb.toString();
-            Log.d("getJsonRoutePoint", data.toString());
+            Log.d("getJsonRoutePoint", data);
             br.close();
 
         } catch (Exception e) {

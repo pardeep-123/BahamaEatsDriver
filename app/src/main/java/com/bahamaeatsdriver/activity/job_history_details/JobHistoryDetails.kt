@@ -63,6 +63,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onChanged(liveData: RestObservable?) {
         when (liveData!!.status) {
             Status.SUCCESS -> {

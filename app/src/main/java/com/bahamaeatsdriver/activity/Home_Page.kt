@@ -846,9 +846,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         } else if (currentRideData.order.paymentMethod.equals("4")) {
             dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Kanoo"
         } else if (currentRideData.order.paymentMethod.equals("5")) {
-            dialogOrderDeatail.tv_paymentMode.text = "Atlantic"
+            dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Atlantic"
         } else if (currentRideData.order.paymentMethod.equals("7")) {
-            dialogOrderDeatail.tv_paymentMode.text = getString(R.string.be_wallet)
+            dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: "+getString(R.string.be_wallet)
         }
 
         val listAddOnList = ArrayList<AddOnsCustomModel>()
@@ -857,9 +857,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             for (j in 0 until currentRideData.order.orderDetails.get(i).categories.size) {
                 for (k in 0 until currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.size) {
                     val addOnMOdel = AddOnsCustomModel(currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).addon, currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).price, currentRideData.order.orderDetails.get(i).quantity)
-//                    addOnMOdel.addon = currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).addon
-//                    addOnMOdel.price = currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).price
-//                    addOnMOdel.quantity = currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).quantity
                     listAddOnList.add(count, addOnMOdel)
                     count++
                 }
@@ -1046,17 +1043,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                          * paymentMethod-4 for kanoo
                          * paymentMethod-5 for Atlantic*/
                         if (currentRideData!!.order.paymentMethod.equals("1")) {
-                            tv_currentOrderPaymentMode.text = "Suncash"
+                            tv_currentOrderPaymentMode.text = "Payment Mode: Suncash"
                         } else if (currentRideData!!.order.paymentMethod.equals("2")) {
-                            tv_currentOrderPaymentMode.text = "Paypal"
+                            tv_currentOrderPaymentMode.text = "Payment Mode: Paypal"
                         } else if (currentRideData!!.order.paymentMethod.equals("4")) {
-                            tv_currentOrderPaymentMode.text = "Kanoo"
+                            tv_currentOrderPaymentMode.text = "Payment Mode: Kanoo"
                         } else if (currentRideData!!.order.paymentMethod.equals("5")) {
-                            tv_currentOrderPaymentMode.text = "Atlantic"
+                            tv_currentOrderPaymentMode.text = "Payment Mode: Atlantic"
                         } else if (currentRideData!!.order.paymentMethod.equals("6")) {
-                            tv_currentOrderPaymentMode.text = "IsLand Pay"
+                            tv_currentOrderPaymentMode.text = "Payment Mode: IsLand Pay"
                         } else if (currentRideData!!.order.paymentMethod.equals("7")) {
-                            tv_currentOrderPaymentMode.text = getString(R.string.be_wallet)
+                            tv_currentOrderPaymentMode.text = "Payment Mode: "+getString(R.string.be_wallet)
                         }
                         tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
                         //When new job is available for accept/reject
@@ -1155,17 +1152,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                      * paymentMethod-7 for be_wallet
                      */
                     if (changeRideStatus!!.order.paymentMethod == 1) {
-                        tv_currentOrderPaymentMode.text = "Suncash"
+                        tv_currentOrderPaymentMode.text = "Payment Mode: Suncash"
                     } else if (changeRideStatus!!.order.paymentMethod == 2) {
-                        tv_currentOrderPaymentMode.text = "Paypal"
+                        tv_currentOrderPaymentMode.text = "Payment Mode: Paypal"
                     } else if (changeRideStatus!!.order.paymentMethod == 4) {
-                        tv_currentOrderPaymentMode.text = "Kanoo"
+                        tv_currentOrderPaymentMode.text = "Payment Mode: Kanoo"
                     } else if (changeRideStatus!!.order.paymentMethod == 5) {
-                        tv_currentOrderPaymentMode.text = "Atlantic"
+                        tv_currentOrderPaymentMode.text = "Payment Mode: Atlantic"
                     } else if (changeRideStatus!!.order.paymentMethod == 6) {
-                        tv_currentOrderPaymentMode.text = "IsLand Pay"
+                        tv_currentOrderPaymentMode.text = "Payment Mode: IsLand Pay"
                     } else if (changeRideStatus!!.order.paymentMethod == 7) {
-                        tv_currentOrderPaymentMode.text = getString(R.string.be_wallet)
+                        tv_currentOrderPaymentMode.text ="Payment Mode: "+ getString(R.string.be_wallet)
                     }
                     tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
                     val houseNumber = changeRideStatus!!.userAddress.completeAddress

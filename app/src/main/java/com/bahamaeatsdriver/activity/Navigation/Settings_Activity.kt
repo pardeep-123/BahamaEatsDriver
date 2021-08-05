@@ -11,7 +11,6 @@ import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
-import com.bahamaeatsdriver.activity.Documentation
 import com.bahamaeatsdriver.activity.ForgotPassword.Fill_old_newPassword
 import com.bahamaeatsdriver.activity.bank_details.BankDetailsActivity
 import com.bahamaeatsdriver.activity.driver_availability.DriverAvailability
@@ -47,14 +46,10 @@ class Settings_Activity : AppCompatActivity(), Observer<RestObservable> {
             iv_on_notification!!.setVisibility(View.VISIBLE)
         }
         iv_on_notification?.setOnClickListener {
-//            Iv_offnotification!!.setVisibility(View.VISIBLE)
-//            iv_on_notification!!.setVisibility(View.GONE)
             updateNotificationStatusApiCall("0")
 
         }
         Iv_offnotification?.setOnClickListener {
-//            Iv_offnotification!!.setVisibility(View.GONE)
-//            iv_on_notification!!.setVisibility(View.VISIBLE)
             updateNotificationStatusApiCall("1")
         }
 
@@ -81,10 +76,13 @@ class Settings_Activity : AppCompatActivity(), Observer<RestObservable> {
     fun Relativ_Aboutus(view: View?) {
         startActivity(Intent(this@Settings_Activity, AboutUs::class.java))
     }
+
     fun Relativ_availability(view: View?) {
         startActivity(Intent(this@Settings_Activity, DriverAvailability::class.java))
 
-    }  fun goToBackDetails(view: View?) {
+    }
+
+    fun goToBackDetails(view: View?) {
         startActivity(Intent(this@Settings_Activity, BankDetailsActivity::class.java))
     }
 

@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class DriverAvailabilityAdapter(var context: Context, val daysList: ArrayList<Bo
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, pos: Int) {
         myViewHolder.itemView.tv_delivery_name.text = "Every "+daysList[pos].dayName
         val adp=DriverSubAvailabilityAdapter(context,daysList[pos].availableSlotList,listener,pos)

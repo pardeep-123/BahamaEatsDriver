@@ -14,6 +14,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -82,53 +83,56 @@ class Payment_Status : AppCompatActivity(), Observer<RestObservable> {
         tv_week = findViewById(R.id.tv_week)
         tv_months = findViewById(R.id.tv_months)
         callFilterByDate("", "", type)
+        updateViewAsPerType(type)
         LL_Day?.setOnClickListener {
 
             try {
-                tv_day!!.setTypeface(Typeface.DEFAULT_BOLD)
+               /* tv_day!!.setTypeface(Typeface.DEFAULT_BOLD)
                 tv_week!!.setTypeface(null, Typeface.NORMAL)
                 tv_months!!.setTypeface(null, Typeface.NORMAL)
                 tv_day?.setTextColor(resources.getColor(R.color.Black))
                 tv_week?.setTextColor(resources.getColor(R.color.colorTextView))
-                tv_months?.setTextColor(resources.getColor(R.color.colorTextView))
+                tv_months?.setTextColor(resources.getColor(R.color.colorTextView))*/
                 type = "0"
                 callFilterByDate("", "", type)
                 /*  if (dayEarning != null) {
                       updateDeliveryAmount(1, dayEarning, monthEarning, weeklyEarning)
                   }*/
+                updateViewAsPerType(type)
             } catch (e: Exception) {
             }
         }
         LL_week?.setOnClickListener {
             try {
-                tv_day!!.setTypeface(null, Typeface.NORMAL)
+                /*tv_day!!.setTypeface(null, Typeface.NORMAL)
                 tv_week!!.setTypeface(Typeface.DEFAULT_BOLD)
                 tv_months!!.setTypeface(null, Typeface.NORMAL)
                 tv_day?.setTextColor(resources.getColor(R.color.colorTextView))
                 tv_week?.setTextColor(resources.getColor(R.color.Black))
-                tv_months?.setTextColor(resources.getColor(R.color.colorTextView))
+                tv_months?.setTextColor(resources.getColor(R.color.colorTextView))*/
                 /*  if (weeklyEarning != null) {
                       updateDeliveryAmount(3, dayEarning, monthEarning, weeklyEarning)
                   }*/
                 type = "1"
                 callFilterByDate("", "", type)
-//                updateViewAsPerType(type)
+                updateViewAsPerType(type)
             } catch (e: Exception) {
             }
         }
         LL_months?.setOnClickListener {
             try {
-                tv_day!!.setTypeface(null, Typeface.NORMAL)
+                /*tv_day!!.setTypeface(null, Typeface.NORMAL)
                 tv_week!!.setTypeface(null, Typeface.NORMAL)
                 tv_months!!.setTypeface(Typeface.DEFAULT_BOLD)
                 tv_day?.setTextColor(resources.getColor(R.color.colorTextView))
                 tv_week?.setTextColor(resources.getColor(R.color.colorTextView))
-                tv_months?.setTextColor(resources.getColor(R.color.Black))
+                tv_months?.setTextColor(resources.getColor(R.color.Black))*/
                 /* if (monthEarning != null) {
                      updateDeliveryAmount(2, dayEarning, monthEarning, weeklyEarning)
                  }*/
                 type = "2"
                 callFilterByDate("", "", type)
+                updateViewAsPerType(type)
             } catch (e: Exception) {
             }
         }
@@ -146,6 +150,7 @@ class Payment_Status : AppCompatActivity(), Observer<RestObservable> {
             activityReachDialog.tv_end_date.hint = "Select end date"
             type = "0"
             callFilterByDate("", "", type)
+            updateViewAsPerType(type)
             isFilterApplied = 0
             tv_filterClear.visibility = View.GONE
             LL_days.visibility = View.VISIBLE
@@ -164,50 +169,68 @@ class Payment_Status : AppCompatActivity(), Observer<RestObservable> {
         activityReachDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
+    private fun updateViewAsPerType(type: String) {
+        if (type.equals("0")){
+            tv_day?.setTextColor(resources.getColor(R.color.White))
+            tv_week?.setTextColor(resources.getColor(R.color.Black))
+            tv_months?.setTextColor(resources.getColor(R.color.Black))
+            LL_Day!!.setBackgroundResource(R.drawable.green_bg)
+            LL_week!!.setBackgroundResource(R.drawable.white_bg)
+            LL_months!!.setBackgroundResource(R.drawable.white_bg)
+        }else  if (type.equals("1")){
+
+            tv_day?.setTextColor(resources.getColor(R.color.Black))
+            tv_week?.setTextColor(resources.getColor(R.color.White))
+            tv_months?.setTextColor(resources.getColor(R.color.Black))
+            LL_Day!!.setBackgroundResource(R.drawable.white_bg)
+            LL_week!!.setBackgroundResource(R.drawable.green_bg)
+            LL_months!!.setBackgroundResource(R.drawable.white_bg)
+        }else  if (type.equals("2")){
+
+            tv_day?.setTextColor(resources.getColor(R.color.Black))
+            tv_week?.setTextColor(resources.getColor(R.color.Black))
+            tv_months?.setTextColor(resources.getColor(R.color.White))
+            LL_Day!!.setBackgroundResource(R.drawable.white_bg)
+            LL_week!!.setBackgroundResource(R.drawable.white_bg)
+            LL_months!!.setBackgroundResource(R.drawable.green_bg)
+        }
+
+    }
+
     private fun getDateMonth() {
         val c1 = Calendar.getInstance()
         //first day of week
         c1[Calendar.DAY_OF_WEEK] = 1
-        val year1 = c1[Calendar.YEAR]
-        val month1 = c1[Calendar.MONTH] + 1
-        val day1 = c1[Calendar.DAY_OF_MONTH]
-        val dateFormat1: DateFormat = SimpleDateFormat("MMM")
-        val date1 = Date()
-//        val startDate = day1 + "/" + month1 + "/" + year1
-//        val startDate =day1.toString()+"/" + month1 + "/" + year1
-        val startDate =day1.toString()+" " +dateFormat1.format(date1)
         //last day of week
         c1[Calendar.DAY_OF_WEEK] = 7
-
-        val year7 = c1[Calendar.YEAR]
-        val month7 = c1[Calendar.MONTH] + 1
-        val day7 = c1[Calendar.DAY_OF_MONTH]
-//        val endDate = day7.toString() + "/" + month7 + "/" + year7
-        val endDate = day7.toString()+" " +dateFormat1.format(date1)
-        val weekDates =startDate+" - "+endDate
-
         val sdf = SimpleDateFormat("EEEE")
         val d = Date()
         val dayOfTheWeek = sdf.format(d)
-        tv_currentWeek.text =weekDates
         val dateFormat: DateFormat = SimpleDateFormat("MMMM")
         val date = Date()
+        /**/
+       val calendar = Calendar.getInstance()
+        Log.v("Current Week", java.lang.String.valueOf(calendar.get(Calendar.WEEK_OF_YEAR)))
+        val current_week: Int = calendar.get(Calendar.WEEK_OF_YEAR)
+        val week_start_day: Int = calendar.getFirstDayOfWeek() // this will get the starting day os week in integer format i-e 1 if monday
+        // get the starting and ending date
+        // Set the calendar to sunday of the current week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        System.out.println("Current week = " + Calendar.DAY_OF_WEEK)
+        // Print dates of the current week starting on Sunday
+//        val df: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val df: DateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
+        var startDate1 = ""
+        var endDate1 = ""
+        startDate1 = df.format(calendar.getTime())
+        calendar.add(Calendar.DATE, 6)
+        endDate1 = df.format(calendar.getTime())
+        println("Start Date = $startDate1")
+        println("End Date = $endDate1")
+        tv_currentWeek.text =startDate1+"-"+endDate1
         tv_currentMonth.text = dateFormat.format(date)
-//        tv_currentDate.text  = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         tv_currentDate.text  = dayOfTheWeek
     }
-
-    /*private fun updateViewAsPerType(type: String) {
-        if (type.equals("0")){
-
-        }else  if (type.equals("1")){
-
-        }else  if (type.equals("2")){
-
-        }
-
-    }*/
-
 
     fun calenderDateToTimeStamp(
         str_date: String?,
@@ -216,15 +239,12 @@ class Payment_Status : AppCompatActivity(), Observer<RestObservable> {
         var time_stamp = java.lang.Long.valueOf(0)
         try {
             val formatter = SimpleDateFormat(date_formate)
-            //SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
             val date: Date = formatter.parse(str_date)
             time_stamp = date.time
             time_stamp = time_stamp / 1000
         } catch (ex: java.lang.Exception) {
             ex.printStackTrace()
         }
-
-        //
         return time_stamp
     }
 
@@ -371,6 +391,7 @@ class Payment_Status : AppCompatActivity(), Observer<RestObservable> {
                     activityReachDialog.tv_end_date.hint = "Select end date"
                     type = "0"
                     callFilterByDate("", "", type)
+                    updateViewAsPerType(type)
                     LL_days.visibility = View.VISIBLE
                     ll_rootDates.visibility = View.VISIBLE
                     tv_filterClear.visibility = View.GONE

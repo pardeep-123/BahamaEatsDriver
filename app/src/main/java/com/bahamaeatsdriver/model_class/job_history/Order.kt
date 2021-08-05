@@ -11,7 +11,7 @@ data class Order(
     val isDelivery: Int,
     val latitude: String,
     val longitude: String,
-    val netAmount: String,
+    val netAmount: Double,
     val orderDate: String,
     val orderDetails: List<OrderDetail>,
     val orderRating: String,
