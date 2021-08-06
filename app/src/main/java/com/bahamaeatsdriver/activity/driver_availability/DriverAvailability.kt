@@ -19,8 +19,6 @@ import com.bahamaeatsdriver.model_class.slots.AvailableSlot
 import com.bahamaeatsdriver.model_class.slots.Body
 import com.bahamaeatsdriver.model_class.slots.DriverSlots
 import com.bahamaeatsdriver.repository.BaseViewModel
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_driver_availablity.*
 import org.json.JSONArray
 import org.json.JSONObject

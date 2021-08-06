@@ -15,9 +15,9 @@
         <ImageView
             android:id="@+id/iv_backArrow_setting"
             style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
             android:onClick="iv_backArrow_setting"
-            android:src="@drawable/backbtn"
-            android:contentDescription="@string/app_name" />
+            android:src="@drawable/backbtn" />
 
         <TextView
             style="@style/HedderSmallsiz"
@@ -52,13 +52,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:textAllCaps="true"
                         android:id="@+id/tv_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_40sdp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/account_settings"
+                        android:textAllCaps="true"
                         android:textColor="@color/LLgray">
 
                     </TextView>
@@ -84,11 +84,11 @@
                                 android:padding="@dimen/_10sdp">
 
                                 <ImageView
-                                    android:contentDescription="@string/app_name"
                                     android:id="@+id/imageView3"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_centerVertical="true"
+                                    android:contentDescription="@string/app_name"
                                     android:src="@drawable/bel" />
 
                                 <ImageView
@@ -125,7 +125,7 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/Litgray"/>
+                                android:background="@color/Litgray" />
 
 
                             <RelativeLayout
@@ -153,12 +153,12 @@
                                 </TextView>
 
                                 <ImageView
-                                    android:contentDescription="@string/app_name"
                                     android:layout_width="@dimen/_8sdp"
                                     android:layout_height="@dimen/_8sdp"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerInParent="true"
                                     android:layout_marginEnd="0dp"
+                                    android:contentDescription="@string/app_name"
                                     android:src="@drawable/arrow_right">
 
                                 </ImageView>
@@ -169,7 +169,7 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/Litgray"/>
+                                android:background="@color/Litgray" />
 
                             <RelativeLayout
                                 android:id="@+id/Relativ_documents"
@@ -236,7 +236,7 @@
                                         style="@style/ScreenTextView1"
                                         android:layout_marginStart="50dp"
                                         android:layout_toEndOf="@+id/imageView6"
-                                        android:text="@string/availability"/>
+                                        android:text="@string/availability" />
                                 </RelativeLayout>
                             </RelativeLayout>
 
@@ -274,7 +274,7 @@
                                         style="@style/ScreenTextView1"
                                         android:layout_marginStart="50dp"
                                         android:layout_toEndOf="@+id/imageView7"
-                                        android:text="@string/bank_details"/>
+                                        android:text="@string/bank_details" />
                                 </RelativeLayout>
                             </RelativeLayout>
 
@@ -354,7 +354,7 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/Litgray"/>
+                                android:background="@color/Litgray" />
 
 
                             <RelativeLayout
@@ -391,7 +391,7 @@
                                 android:layout_height="4dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/_30sdp"
-                                android:background="@color/LLgray"/>
+                                android:background="@color/LLgray" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
