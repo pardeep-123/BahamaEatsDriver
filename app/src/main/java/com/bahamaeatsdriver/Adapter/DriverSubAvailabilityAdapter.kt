@@ -16,7 +16,7 @@ import java.util.*
 
 class DriverSubAvailabilityAdapter(var context: Context, val availableSlotsList: ArrayList<AvailableSlot>, val listener: OnDriverAvailabilitySelection,  val daysPostion: Int) : RecyclerView.Adapter<DriverSubAvailabilityAdapter.MyViewHolder>() {
     @SuppressLint("SimpleDateFormat")
-    private val sdf = SimpleDateFormat("hh:mm")
+    private val sdf = SimpleDateFormat("HH:mm")
     @SuppressLint("SimpleDateFormat")
     private val sdfs = SimpleDateFormat("hh:mm a")
 

@@ -245,7 +245,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="@color/Litgray"
-                                android:visibility="gone" />
+                                android:visibility="visible" />
 
                             <RelativeLayout
                                 android:id="@+id/Relativ_bankDetails"
@@ -253,7 +253,7 @@
                                 android:layout_height="wrap_content"
                                 android:onClick="goToBackDetails"
                                 android:padding="@dimen/_10sdp"
-                                android:visibility="gone">
+                                android:visibility="visible">
 
 
                                 <RelativeLayout
