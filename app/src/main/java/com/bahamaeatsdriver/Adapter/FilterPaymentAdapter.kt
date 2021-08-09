@@ -30,7 +30,10 @@ class FilterPaymentAdapter(var context: Payment_Status, val paymentsList: ArrayL
 
         if (paymentsList.get(i).order != null) {
             myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList.get(i).order.id
-//            myViewHolder.itemView.tv_totalAmount.text = "$ " + roundOffDecimal(paymentsList.get(i).order.netAmount.toDouble())
+            if (paymentsList.get(i).order.tip!=0.0) myViewHolder.itemView.tv_tip.visibility else myViewHolder.itemView.tv_tip.visibility=View.GONE
+            if (paymentsList.get(i).order.deliveryFee!=0.0) myViewHolder.itemView.tv_deliveryFee.visibility else myViewHolder.itemView.tv_deliveryFee.visibility=View.GONE
+            myViewHolder.itemView.tv_tip.text = "Tip : $" + paymentsList.get(i).order.tip
+            myViewHolder.itemView.tv_deliveryFee.text = "Delivery Fee : $" + paymentsList.get(i).order.deliveryFee
         }
 
         myViewHolder.itemView.tv_date.text = CommonMethods.parseDateToddMMyyyy(paymentsList.get(i).createdAt, Constants.ORDER_DATE_FORMAT)

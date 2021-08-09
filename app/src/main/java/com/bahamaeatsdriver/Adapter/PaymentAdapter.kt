@@ -23,14 +23,9 @@ class PaymentAdapter(var context: Context, val paymentsList: ArrayList<Order>) :
     }
 
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
-            /*if (i == 1) {
-                myViewHolder.tv_status.text = "Paid"
-                myViewHolder.tv_status.setTextColor(Color.parseColor("#5fb709"))
-            }*/
+
         if(paymentsList.get(i).user!=null)
             myViewHolder.itemView.tv_userName.text = paymentsList.get(i).user.firstName+" "+paymentsList.get(i).user.lastName
-
-
 
         if(paymentsList.get(i).order!=null){
             myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList.get(i).order.id
@@ -75,15 +70,8 @@ class PaymentAdapter(var context: Context, val paymentsList: ArrayList<Order>) :
     override fun getItemCount(): Int {
         return paymentsList.size
     }
-    fun roundOffDecimal(number: Double): kotlin.String {
-//        val df = DecimalFormat("#.##")
-        val df = DecimalFormat(".00")
-//        df.roundingMode = RoundingMode.FLOOR
-        return df.format(number).toString()
-    }
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tv_status: TextView
-
         init {
             tv_status = itemView.findViewById(R.id.tv_status)
         }
