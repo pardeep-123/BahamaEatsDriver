@@ -15,12 +15,11 @@
             android:padding="@dimen/_8sdp"
             android:id="@+id/iv_backArrow_registor"
             android:layout_centerVertical="true"
-            android:src="@drawable/cross"
-            android:tint="@color/White"/>
+            android:src="@drawable/cross"/>
 
         <TextView
             style="@style/Hedder"
-            android:text="Wed, January, 10">
+            android:text="@string/wed_january_10">
         </TextView>
     </RelativeLayout>
 
@@ -33,7 +32,7 @@
         <TextView
             style="@style/ScreenTextView2"
             android:textSize="@dimen/_8sdp"
-            android:text="Schedule a time between the available slot from 9:30am to 12:30am"
+            android:text="@string/schedule_a_time_between_the_available_slot_from_9_30am_to_12_30am"
             android:gravity="center"
             android:textColor="@color/White">
         </TextView>
@@ -59,7 +58,7 @@
                 <TextView
                   style="@style/S_TextViewMatchparent"
                     android:layout_weight="1"
-                    android:text="Jan 20, 10:30AM"
+                    android:text="@string/jan_20_10_30am"
                     android:gravity="end">
                 </TextView>
                <ImageView
@@ -67,7 +66,7 @@
                    android:layout_height="@dimen/_10sdp"
                    android:padding="@dimen/_2sdp"
                    android:layout_gravity="center_vertical"
-                   android:layout_marginLeft="@dimen/_5sdp"
+                   android:layout_marginStart="@dimen/_5sdp"
                    android:src="@drawable/gray_arrow_down">
 
                </ImageView>
@@ -94,7 +93,7 @@
                 <TextView
                   style="@style/S_TextViewMatchparent"
                     android:layout_weight="1"
-                    android:text="Jan 20, 10:30AM"
+                    android:text="@string/jan_20_10_30am"
                     android:gravity="end">
                 </TextView>
                <ImageView
@@ -102,7 +101,7 @@
                    android:layout_height="@dimen/_10sdp"
                    android:padding="@dimen/_2sdp"
                    android:layout_gravity="center_vertical"
-                   android:layout_marginLeft="@dimen/_5sdp"
+                   android:layout_marginStart="@dimen/_5sdp"
                    android:src="@drawable/gray_arrow_down">
 
                </ImageView>

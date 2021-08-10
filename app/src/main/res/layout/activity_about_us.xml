@@ -14,8 +14,7 @@
             style="@style/BackButtonImage"
             android:id="@+id/iv_backArrowabout"
             android:onClick="iv_backArrowabout"
-            android:src="@drawable/backbtn"
-            android:tint="@color/White"/>
+            android:src="@drawable/backbtn"/>
 
         <TextView
             style="@style/HedderSmallsiz"
@@ -23,7 +22,7 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            android:text="@string/about_us"></TextView>
+            android:text="@string/about_us"/>
 
     </RelativeLayout>
     <RelativeLayout

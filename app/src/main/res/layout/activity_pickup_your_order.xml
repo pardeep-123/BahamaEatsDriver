@@ -8,8 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.Pickup_your_order">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/hedder"

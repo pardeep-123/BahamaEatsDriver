@@ -119,9 +119,6 @@
             android:name=".activity.Order.Orders_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Pickup_your_order"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.Pofile.My_Profile_Activity"
             android:screenOrientation="portrait" />
         <activity

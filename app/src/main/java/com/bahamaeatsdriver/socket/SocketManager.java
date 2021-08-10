@@ -25,6 +25,7 @@ public class SocketManager {
     //listener
     public static final String CONNECT_USER_LISTENER = "connectListener";
     public static final String UPDATE_LOCATION_LISTENER = "receiveLatLng";
+    public static final String TAKE_ORDER_STATUS = "receiveLatLng";
 
     public void initializeSocket() {
         mSocket = getSocket();
@@ -148,6 +149,18 @@ public class SocketManager {
         }
     }
 
+
+    public void getDriverTakeOrderStatus() {
+        if (!mSocket.connected()) {
+            mSocket.connect();
+            mSocket.off(UPDATE_LOCATION_LISTENER);
+            mSocket.on(TAKE_ORDER_STATUS, onGetDriverTakeOrderStatusListener);
+        } else {
+            mSocket.off(UPDATE_LOCATION_LISTENER);
+            mSocket.on(TAKE_ORDER_STATUS, onGetDriverTakeOrderStatusListener);
+        }
+    }
+
     private Emitter.Listener onSaveVendorLocListener = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -155,6 +168,17 @@ public class SocketManager {
 
             for (Observer observer : observerList) {
                 observer.onResponse(UPDATE_LOCATION_LISTENER, args);
+            }
+        }
+    };
+
+    private Emitter.Listener onGetDriverTakeOrderStatusListener = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.i("Socket", "onSaveChatListener");
+
+            for (Observer observer : observerList) {
+                observer.onResponse(TAKE_ORDER_STATUS, args);
             }
         }
     };

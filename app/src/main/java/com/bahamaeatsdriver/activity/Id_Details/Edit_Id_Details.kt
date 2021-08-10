@@ -36,14 +36,14 @@ import java.util.*
 import javax.inject.Inject
 
 class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickListener {
-    lateinit var dialog: Dialog
-    var Type_image: String? = null
+    private lateinit var dialog: Dialog
+    private var Type_image: String? = null
     private var backImage = ""
     private var frontImage = ""
     private var image_path = ""
     private var onClickFrom = ""
     private var idDetailsData: Body? = null
-    var LOCATION_REQUEST = 1002
+    private var LOCATION_REQUEST = 1002
 
     @Inject
     lateinit var validator: Validator
@@ -173,12 +173,12 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
             val month = calendar[Calendar.MONTH]
             val day = calendar[Calendar.DAY_OF_MONTH]
             if (datetype.equalsIgnoreCase("birthdate")) {
-                dpd = DatePickerDialog(activity!!, this, year - 18, month, day)
+                dpd = DatePickerDialog(requireActivity(), this, year - 18, month, day)
                 calendar[year - 18, month] = day
                 val value = calendar.timeInMillis
                 dpd.datePicker.maxDate = value
             } else if (datetype.equalsIgnoreCase("Issuedate")) {
-                dpd = DatePickerDialog(activity!!, this, year, month, day)
+                dpd = DatePickerDialog(requireActivity(), this, year, month, day)
                 calendar[year, month] = day
                 val value = calendar.timeInMillis
                 dpd.datePicker.maxDate = value

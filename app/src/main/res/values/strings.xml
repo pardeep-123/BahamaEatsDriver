@@ -288,5 +288,8 @@
     <string name="vehical_make">Vehicle Make</string>
     <string name="vehical_color">Vehicle Color</string>
     <string name="add_ons_new">Add ons</string>
+    <string name="jan_20_10_30am">Jan 20, 10:30AM</string>
+    <string name="schedule_a_time_between_the_available_slot_from_9_30am_to_12_30am">Schedule a time between the available slot from 9:30am to 12:30am</string>
+    <string name="wed_january_10">Wed, January, 10</string>
 
 </resources>

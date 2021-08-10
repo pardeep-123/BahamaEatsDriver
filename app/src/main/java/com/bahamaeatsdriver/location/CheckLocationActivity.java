@@ -49,10 +49,7 @@ abstract public class CheckLocationActivity extends ImagePicker implements
     protected Location mCurrentLocation;
     protected LocationRequest mLocationRequest;
     protected LocationSettingsRequest mLocationSettingsRequest;
-    //private Activity mContext;
-    private int REQUEST_PERMISSIONS_LOCATION = 2;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
-
     PermissionListener permissionlistener;
     Activity activity;
     SensorService mSensorService;
@@ -69,20 +66,16 @@ abstract public class CheckLocationActivity extends ImagePicker implements
                     if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                             checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         requestPermissionForCameraGallery();
-                        //   return false;
                     } else {
                         initialize();
-                        //  return true;
                     }
                 } else {
                     initialize();
-                    // return true;
                 }
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                // tedPermission();
             }
         };
 
@@ -92,13 +85,7 @@ abstract public class CheckLocationActivity extends ImagePicker implements
 
 
     public void requestPermissionForCameraGallery() {
-      /*  requestPermissions(
-                new String[] {
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, PERMISSION_REQUEST_CODE_FOR_SCANNER
-        );*/
-        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION}, 14758);
+        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 14758);
     }
 
 
@@ -126,15 +113,11 @@ abstract public class CheckLocationActivity extends ImagePicker implements
 
 
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Toast.makeText(mContext, "Permission Granted", Toast.LENGTH_SHORT).show()
-                    // main logic
                     initialize();
                 } else {
-                    /* Toast.makeText(activity!!, "Permission Denied", Toast.LENGTH_SHORT).show()*/
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                                 ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                 requestPermissionForCameraGallery();
                             }
@@ -200,8 +183,6 @@ abstract public class CheckLocationActivity extends ImagePicker implements
         mLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT);
         mLocationRequest.setInterval(INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-         /*  mLocationRequest.setInterval(5000);
-        mLocationRequest.setFastestInterval(10000 / 2);*/
     }
 
     protected void buildLocationSettingsRequest() {
@@ -224,12 +205,7 @@ abstract public class CheckLocationActivity extends ImagePicker implements
     public void stopLocationUpdate() {
         if (mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this
-            ).setResultCallback(new ResultCallback<Status>() {
-                @Override
-                public void onResult(Status status) {
-
-                }
-            });
+            ).setResultCallback(status -> { });
         }
     }
 
@@ -276,12 +252,8 @@ abstract public class CheckLocationActivity extends ImagePicker implements
             }
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             if (mCurrentLocation != null) {
-                //AppController.mInstance.setString(UtilJava.CURRENT_LAT, String.valueOf(mCurrentLocation.getLatitude()));
-                //  AppController.mInstance.setString(UtilJava.CURRENT_LONG, String.valueOf(mCurrentLocation.getLongitude()));
-                //  Log.e("current","lat "+AppController.mInstance.getString(UtilJava.CURRENT_LAT));
                 onLocationGet(String.valueOf(mCurrentLocation.getLatitude()), String.valueOf(mCurrentLocation.getLongitude()));
             }
-
         }
     }
 
@@ -322,11 +294,8 @@ abstract public class CheckLocationActivity extends ImagePicker implements
         }
         if (mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this
-            ).setResultCallback(new ResultCallback<Status>() {
-                @Override
-                public void onResult(Status status) {
+            ).setResultCallback(status -> {
 
-                }
             });
         }
 
@@ -337,7 +306,6 @@ abstract public class CheckLocationActivity extends ImagePicker implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            // Check for the integer request code originally supplied to startResolutionForResult().
             case REQUEST_CHECK_SETTINGS:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
@@ -356,7 +324,6 @@ abstract public class CheckLocationActivity extends ImagePicker implements
     private void startStep3(Activity activity) {
         LocationMonitoringService locationMonitoringService;
         Intent i, mServiceIntent;
-
         locationMonitoringService = new LocationMonitoringService(activity);
         i = new Intent(activity, locationMonitoringService.getClass());
         //And it will be keep running until you close the entire application from task manager.
@@ -365,7 +332,6 @@ abstract public class CheckLocationActivity extends ImagePicker implements
         mServiceIntent = new Intent(activity, mSensorService.getClass());
 
         if (!isMyServiceRunning(activity, mSensorService.getClass())) {
-            // startService(mServiceIntent);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 activity.startForegroundService(mServiceIntent);
             } else {

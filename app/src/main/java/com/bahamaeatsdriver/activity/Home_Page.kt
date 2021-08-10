@@ -20,13 +20,11 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.provider.Telephony
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -71,6 +69,7 @@ import com.bahamaeatsdriver.model_class.upload_receipt.UploadReceiptResponse
 import com.bahamaeatsdriver.repository.BaseViewModel
 import com.bahamaeatsdriver.services.LocationMonitoringService
 import com.bahamaeatsdriver.services.SensorService
+import com.bahamaeatsdriver.socket.SocketManager
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -90,6 +89,7 @@ import kotlinx.android.synthetic.main.order_details_dailog.tv_paymentMode
 import kotlinx.android.synthetic.main.res_pickup_request.*
 import org.joda.time.Duration
 import org.joda.time.format.DateTimeFormat
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DecimalFormat
@@ -99,7 +99,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 
-class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListener/*, SocketManager.SocketInterface*/, Observer<RestObservable> {
+class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListener, SocketManager.Observer, Observer<RestObservable> {
 
     private var Button_accept: TextView? = null
     private var Button_regect: TextView? = null
@@ -296,16 +296,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             currentRideApiCall()
             driverDetails = getprefObject(Constants.DRIVER_DETAILS)
             loginDiverId = driverDetails.body.id.toString()
-            /***
-             * Show Driver available information over views
-             */
-           /* if (driverDetails.body.takeOrderStatus == 0) {
-                Relative_offline.visibility = View.VISIBLE
-                Relative_Online.visibility = View.GONE
-            } else {
-                Relative_Online.visibility = View.VISIBLE
-                Relative_offline.visibility = View.GONE
-            }*/
             if (driverDetails.body.image.contains("http")) {
                 Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
             } else {
@@ -354,9 +344,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         if (loadMapOf == 0) {
             if (googleMap != null) {
                 googleMap!!.clear()
-                if (mLatitute.isNotEmpty()) {
+                if (mLatitute.isNotEmpty())
                     driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble(), R.drawable.car_marker, "You")
-                }
             }
         } else {
             if (googleMap != null) {
@@ -509,9 +498,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun onClick(view: View?) {
         val itemid = view!!.id
         when (itemid) {
-            /* R.id.rl_rootLayoutNew -> {
-
-             }*/
             R.id.Button_Starttrip -> {
                 /****
                  * cancel the ride here with change ride status
@@ -682,15 +668,15 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             R.id.LL_support -> {
                 temp = 1
-                startActivity(Intent(this, Contactus_Activity::class.java))
+                launchActivity<Contactus_Activity>()
             }
             R.id.LL_TandC -> {
                 temp = 1
-                startActivity(Intent(this, TermAnd_Conditions::class.java))
+                launchActivity<TermAnd_Conditions>()
             }
             R.id.LL_settings -> {
                 temp = 1
-                startActivity(Intent(this, Settings_Activity::class.java))
+                launchActivity<Settings_Activity>()
             }
             R.id.Relativ_profile -> {
                 temp = 1
@@ -701,31 +687,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 builder!!.setMessage(getString(R.string.logout)).setTitle(getString(R.string.logout))
                 builder!!.setMessage(getString(R.string.logout_alert))
                         .setCancelable(false)
-                        .setPositiveButton(getString(R.string.yes)) { dialog, id ->
-                            viewModel.logoutApi(this, true)
-                            viewModel.getlogoutResposne().observe(this, this)
-                        }
-                        .setNegativeButton(getString(R.string.no)) { dialog, id ->
-                            dialog.cancel()
-                        }
-                val alert = builder!!.create()
-                alert.show()
+                        .setPositiveButton(getString(R.string.yes)) { dialog, id -> viewModel.logoutApi(this, true)
+                            viewModel . getlogoutResposne ().observe(this, this) }
+                        .setNegativeButton(getString(R.string.no)) { dialog, id -> dialog.cancel() }
+                        builder!!.create().show()
             }
         }
-    }
-
-    fun getDefaultSmsAppPackageName(@NonNull context: Context): String? {
-        val defaultSmsPackageName: String
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(context)
-            return defaultSmsPackageName
-        } else {
-            val intent = Intent(Intent.ACTION_VIEW)
-                    .addCategory(Intent.CATEGORY_DEFAULT).setType("vnd.android-dir/mms-sms")
-            val resolveInfos = context.packageManager.queryIntentActivities(intent, 0)
-            if (resolveInfos != null && !resolveInfos.isEmpty()) return resolveInfos[0].activityInfo.packageName
-        }
-        return null
     }
 
     private fun changeRideStatusMethod(rideRequestId: String, rideStatus: String) {
@@ -767,19 +734,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         dialogOrderDeatail.tv_userAddress.text = finalAddress
         dialogOrderDeatail.tv_ContactNumber.text = "P: " + currentRideData.user.countryCodePhone
         dialogOrderDeatail.tv_userEmail.text = "Email: " + currentRideData.user.email
-        if (currentRideData.order.preparationTime.isNotEmpty()){
-        if (currentRideData.rideStatus == 2) {
-            dialogOrderDeatail.tv_preprationTime.visibility=View.GONE
-        }
-        else if (currentRideData.rideStatus == 1 && currentRideData.response == 0||currentRideData.response == 1) {
-            dialogOrderDeatail.tv_preprationTime.visibility=View.VISIBLE
-        }else if (currentRideData.rideStatus == 1 && currentRideData.response == 1) {
-            dialogOrderDeatail.tv_preprationTime.visibility=View.VISIBLE
-        }
-        else{
-            dialogOrderDeatail.tv_preprationTime.visibility=View.GONE
-        }
-        dialogOrderDeatail.tv_preprationTime.text = "Prepration time: " + currentRideData.order.preparationTime+" mins"
+        if (currentRideData.order.preparationTime.isNotEmpty()) {
+            if (currentRideData.rideStatus == 2) {
+                dialogOrderDeatail.tv_preprationTime.visibility = View.GONE
+            } else if (currentRideData.rideStatus == 1 && currentRideData.response == 0 || currentRideData.response == 1) {
+                dialogOrderDeatail.tv_preprationTime.visibility = View.VISIBLE
+            } else if (currentRideData.rideStatus == 1 && currentRideData.response == 1) {
+                dialogOrderDeatail.tv_preprationTime.visibility = View.VISIBLE
+            } else {
+                dialogOrderDeatail.tv_preprationTime.visibility = View.GONE
+            }
+            dialogOrderDeatail.tv_preprationTime.text = "Prepration time: " + currentRideData.order.preparationTime + " mins"
 
         }
         dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.id
@@ -848,7 +813,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         } else if (currentRideData.order.paymentMethod.equals("5")) {
             dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Atlantic"
         } else if (currentRideData.order.paymentMethod.equals("7")) {
-            dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: "+getString(R.string.be_wallet)
+            dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
         }
 
         val listAddOnList = ArrayList<AddOnsCustomModel>()
@@ -871,9 +836,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialogOrderDeatail.ll_addOnsLabel.visibility = View.GONE
         }
 
-        dialogOrderDeatail.btn_ok.setOnClickListener({
-            dialogOrderDeatail.dismiss()
-        })
+        dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
         dialogOrderDeatail.show()
     }
 
@@ -887,7 +850,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     }
 
     fun showViewsWhenRideIsAccepted() {
-
         card_pikup.visibility = View.VISIBLE
         rl_bottomOptionsRoot.visibility = View.GONE
         layoutCurrentJob.visibility = View.VISIBLE
@@ -896,15 +858,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         Button_imhear.visibility = View.GONE
         Button_COMPLETEtrip.visibility = View.GONE
         Button_Starttrip.visibility = View.VISIBLE
-        /*Relative_Online.visibility = View.VISIBLE
-        Relative_offline.visibility = View.GONE*/
-        if (checkDriverTakeOrderStatus == 0) {
-            Relative_Online.visibility = View.GONE
-            Relative_offline.visibility = View.VISIBLE
-        } else {
-            Relative_Online.visibility = View.VISIBLE
-            Relative_offline.visibility = View.GONE
-        }
+        updateDriverTakeOrderView(checkDriverTakeOrderStatus)
     }
 
     @SuppressLint("SetTextI18n")
@@ -912,18 +866,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         card_pikup.visibility = View.VISIBLE
         rl_bottomOptionsRoot.visibility = View.GONE
         layoutCurrentJob.visibility = View.VISIBLE
-        /* Relative_offline.visibility = View.GONE
-         Relative_Online.visibility = View.VISIBLE*/
         /***
          * Show Driver available information
          */
-        if (checkDriverTakeOrderStatus== 0) {
-            Relative_Online.visibility = View.GONE
-            Relative_offline.visibility = View.VISIBLE
-        } else {
-            Relative_Online.visibility = View.VISIBLE
-            Relative_offline.visibility = View.GONE
-        }
+        updateDriverTakeOrderView(checkDriverTakeOrderStatus)
         relativ_livlocation.visibility = View.GONE
         Relativ_currentloc.visibility = View.GONE
         Button_imhear.visibility = View.VISIBLE
@@ -942,13 +888,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         /***
          * Show Driver available information
          */
-        if (checkDriverTakeOrderStatus== 0) {
-            Relative_Online.visibility = View.GONE
-            Relative_offline.visibility = View.VISIBLE
-        } else {
-            Relative_Online.visibility = View.VISIBLE
-            Relative_offline.visibility = View.GONE
-        }
+        updateDriverTakeOrderView(checkDriverTakeOrderStatus)
     }
 
     @SuppressLint("SetTextI18n")
@@ -956,14 +896,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is GetTakeDriverOrderStatus) {
-                    checkDriverTakeOrderStatus=liveData.data.body.takeOrderStatus
-                    if (checkDriverTakeOrderStatus == 0) {
-                        Relative_offline.visibility = View.VISIBLE
-                        Relative_Online.visibility = View.GONE
-                    } else {
-                        Relative_Online.visibility = View.VISIBLE
-                        Relative_offline.visibility = View.GONE
-                    }
+                    checkDriverTakeOrderStatus = liveData.data.body.takeOrderStatus
+                    updateDriverTakeOrderView(checkDriverTakeOrderStatus)
                 }
                 if (liveData.data is UploadReceiptResponse) {
                     isReceiptUpload = 1
@@ -1053,7 +987,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         } else if (currentRideData!!.order.paymentMethod.equals("6")) {
                             tv_currentOrderPaymentMode.text = "Payment Mode: IsLand Pay"
                         } else if (currentRideData!!.order.paymentMethod.equals("7")) {
-                            tv_currentOrderPaymentMode.text = "Payment Mode: "+getString(R.string.be_wallet)
+                            tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
                         }
                         tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
                         //When new job is available for accept/reject
@@ -1136,8 +1070,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                      */
                     otherUserId = liveData.data.body.userId.toString()
                     changeRideStatus = liveData.data.body
-                    currentRideData!!.response=changeRideStatus!!.response
-                    currentRideData!!.rideStatus=changeRideStatus!!.rideStatus
+                    currentRideData!!.response = changeRideStatus!!.response
+                    currentRideData!!.rideStatus = changeRideStatus!!.rideStatus
 
                     Glide.with(this).load(changeRideStatus!!.user.photo).placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                     tv_currentOrderUsename.text = changeRideStatus!!.user.username
@@ -1162,7 +1096,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     } else if (changeRideStatus!!.order.paymentMethod == 6) {
                         tv_currentOrderPaymentMode.text = "Payment Mode: IsLand Pay"
                     } else if (changeRideStatus!!.order.paymentMethod == 7) {
-                        tv_currentOrderPaymentMode.text ="Payment Mode: "+ getString(R.string.be_wallet)
+                        tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
                     }
                     tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
                     val houseNumber = changeRideStatus!!.userAddress.completeAddress
@@ -1218,16 +1152,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 }
                 //Response change driver online/offline status
                 if (liveData.data is UpdateDriverTakeOrderStatus) {
-                    checkDriverTakeOrderStatus=liveData.data.body.takeOrderStatus
+                    checkDriverTakeOrderStatus = liveData.data.body.takeOrderStatus
                     driverDetails.body.takeOrderStatus = liveData.data.body.takeOrderStatus
                     savePrefObject(Constants.DRIVER_DETAILS, driverDetails)
-                    if (checkDriverTakeOrderStatus== 0) {
-                        Relative_Online.visibility = View.GONE
-                        Relative_offline.visibility = View.VISIBLE
-                    } else {
-                        Relative_Online.visibility = View.VISIBLE
-                        Relative_offline.visibility = View.GONE
-                    }
+                    updateDriverTakeOrderView(checkDriverTakeOrderStatus)
+
                 }
             }
 
@@ -1460,11 +1389,30 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         return rad * 180.0 / Math.PI
     }
 
-    /*  override fun onDestroy() {
-          if (::mSensorService.isInitialized) {
-              stopService(mServiceIntent)
-          }
-          super.onDestroy()
-      }*/
+    override fun onError(event: String?, vararg args: Any?) {
+        Log.d("onError: ", args.toString())
+    }
+
+    override fun onResponse(event: String?, vararg args: Any?) {
+        try {
+            val data = args[0] as JSONObject
+            Log.d("onResponse: ", data.toString())
+            val jsonData = JSONObject(data.toString())
+            checkDriverTakeOrderStatus = jsonData.getString("status").toInt()
+            updateDriverTakeOrderView(checkDriverTakeOrderStatus)
+
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun updateDriverTakeOrderView(takeOrderStatus:Int){
+        if (takeOrderStatus == 0) {
+            Relative_Online.visibility = View.GONE
+            Relative_offline.visibility = View.VISIBLE
+        } else {
+            Relative_Online.visibility = View.VISIBLE
+            Relative_offline.visibility = View.GONE
+        }
+    }
 
 }
