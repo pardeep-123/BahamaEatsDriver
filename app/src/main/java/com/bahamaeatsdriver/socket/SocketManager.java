@@ -25,7 +25,7 @@ public class SocketManager {
     //listener
     public static final String CONNECT_USER_LISTENER = "connectListener";
     public static final String UPDATE_LOCATION_LISTENER = "receiveLatLng";
-    public static final String TAKE_ORDER_STATUS = "receiveLatLng";
+    public static final String TAKE_ORDER_STATUS = "driver_offline";
 
     public void initializeSocket() {
         mSocket = getSocket();

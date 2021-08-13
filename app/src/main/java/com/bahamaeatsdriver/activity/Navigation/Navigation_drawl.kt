@@ -12,12 +12,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Documentation
 import com.bahamaeatsdriver.activity.Home_Page
-import com.bahamaeatsdriver.activity.login_register.Login_Activity
 import com.bahamaeatsdriver.activity.Payment_Status
 import com.bahamaeatsdriver.activity.Pofile.My_Profile_Activity
-import com.bahamaeatsdriver.R
+import com.bahamaeatsdriver.activity.login_register.Login_Activity
 
 /**
  * A simple [Fragment] subclass.
@@ -67,11 +67,11 @@ class Navigation_drawl : Fragment() {
         ll_wallet = views!!.findViewById(R.id.ll_wallet)
         homelayout = views!!.findViewById(R.id.homelayout)
         Relativ_profile = views!!.findViewById(R.id.Relativ_profile)
-        Relative_Online = views!!.findViewById(R.id.Relative_Online)
-        Relative_offline = views!!.findViewById(R.id.Relative_offline)
+//        Relative_Online = views!!.findViewById(R.id.Relative_Online)
+//        Relative_offline = views!!.findViewById(R.id.Relative_offline)
         LL_TandC = views!!.findViewById(R.id.LL_TandC)
         LL_paymentstatus = views!!.findViewById(R.id.LL_paymentstatus)
-        builder = AlertDialog.Builder(activity!!)
+        builder = AlertDialog.Builder(requireActivity())
 
 
 //       Relative_offline!!.setOnClickListener(View.OnClickListener {

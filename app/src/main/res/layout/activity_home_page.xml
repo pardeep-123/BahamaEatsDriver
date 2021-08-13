@@ -40,7 +40,7 @@
 
             <RelativeLayout
                 android:visibility="gone"
-                android:id="@+id/Relative_offline"
+                android:id="@+id/rl_offline"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_alignParentEnd="true"
@@ -65,7 +65,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/Relative_Online"
+                android:id="@+id/rl_online"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_alignParentEnd="true"

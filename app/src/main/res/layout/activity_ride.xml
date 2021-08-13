@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
  android:background="@color/Background"
     tools:context=".activity.Ride_Activity">
-    <RelativeLayout
+  <!--  <RelativeLayout
         style="@style/Heddersiz"
         android:padding="@dimen/_6sdp"
         android:background="@color/Black"
@@ -318,5 +318,5 @@
     </RelativeLayout>
 
 
-</RelativeLayout>
+</RelativeLayout>-->
 </RelativeLayout>

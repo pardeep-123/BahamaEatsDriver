@@ -489,7 +489,7 @@
 
                     </TextView>
                 </RelativeLayout>
-                <RelativeLayout
+              <!--  <RelativeLayout
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_55sdp"
                     android:layout_alignParentEnd="true"
@@ -514,7 +514,7 @@
                         android:textSize="@dimen/_6sdp">
 
                     </TextView>
-                </RelativeLayout>
+                </RelativeLayout>-->
             </RelativeLayout>
 
         </RelativeLayout>
