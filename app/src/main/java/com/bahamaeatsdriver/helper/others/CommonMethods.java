@@ -71,13 +71,6 @@ public class CommonMethods {
         return android.util.Patterns.PHONE.matcher(phone).matches();
     }
 
-    // show the credit card type
-   /* public static Bitmap returnCardType(String card_number, Context context) {
-        CreditCard card = new CreditCard(card_number, 0, 0, null, null, null);
-        return card.getCardType().imageBitmap(context);
-    }*/
-
-
     public static String getDate(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
@@ -92,13 +85,6 @@ public class CommonMethods {
     public static boolean checkStringNull(String string) {
         return string == null || string.equals("null") || string.isEmpty();
     }
-
-
-//    public static void showSnackBar(View view, String message) {
-//        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
-//        snackbar.show();
-//    }
-
 
     public static String utcLongToNormal(long date, String format) {
 
@@ -271,29 +257,8 @@ public class CommonMethods {
         return string_date;
     }
 
-    public static void AlertErrorMessage(Activity activity, String message) {
-        Alerter.create(activity)
-                .setText(message)
-                .setBackgroundColorInt(Color.RED) // or setBackgroundColorInt(Color.CYAN)
-                .setDuration(2000)
-                .hideIcon() // Optional - Removes white tint
-                .setContentGravity(Gravity.CENTER)
-                .show();
-    }
-
-    public static void AlertSuccessMessage(Activity activity, String message) {
-        Alerter.create(activity)
-                .setText(message)
-                .setBackgroundColorInt(Color.GREEN) // or setBackgroundColorInt(Color.CYAN)
-                .setDuration(2000)
-                .hideIcon() // Optional - Removes white tint
-                .setContentGravity(Gravity.CENTER)
-                .show();
-    }
 
     public static File writeSendFileToExternalDirectory(Bitmap bitmap, String file_name, String path, String message_type) {
-
-
         File file = null;
 // if image
         if (message_type.equals("1")) {
@@ -689,12 +654,6 @@ public class CommonMethods {
         return utcDate.toUpperCase();
     }
 
-
-    /**
-     * change the default language of application
-     *
-     * @param code : code of language that you want to use.
-     */
 /*
     public static void changeLanguage(String code) {
         Locale locale = new Locale(code);

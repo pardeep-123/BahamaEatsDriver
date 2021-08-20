@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -18,30 +19,30 @@ class FoodQuantiytAdapter(var context: Context, val orderDetails: List<OrderDeta
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, position: Int) {
         var addOnName=""
         var addOnPrice=""
-
-        myViewHolder.itemView.tv_price.text = "$"+orderDetails.get(position).price
-        myViewHolder.itemView.tv_quantity.text = orderDetails.get(position).quantity.toString()+"x"
-        myViewHolder.itemView.tv_itemName.text = orderDetails.get(position).itemName
-        myViewHolder.itemView.tv_desciption.text = orderDetails.get(position).itemDescription
+        myViewHolder.itemView.tv_price.text = "$"+ orderDetails[position].price
+        myViewHolder.itemView.tv_quantity.text = orderDetails[position].quantity.toString()+"x"
+        myViewHolder.itemView.tv_itemName.text = orderDetails[position].itemName
+        myViewHolder.itemView.tv_desciption.text = orderDetails[position].itemDescription
         val listAddOnList=ArrayList<AddOnArray>()
         var count = 0
-        for (i in 0 until orderDetails.get(position).categories.size){
-            for (j in 0 until orderDetails.get(position).categories.get(i).addOnArray.size) {
-                  val addOnMOdel = AddOnArray(orderDetails.get(position).categories.get(i).addOnArray.get(j).addon,
-                      orderDetails.get(position).categories.get(position).addOnArray.get(j).price,
-                      orderDetails.get(position).quantity)
-//                      orderDetails.get(position).categories.get(position).addOnArray.get(j).quantity)
+        for (i in orderDetails[position].categories.indices){
+            for (j in 0 until orderDetails[position].categories[i].addOnArray.size) {
+                  val addOnMOdel = AddOnArray(
+                      orderDetails[position].categories[i].addOnArray[j].addon,
+                      orderDetails[position].categories[position].addOnArray[j].price,
+                      orderDetails[position].quantity)
                      listAddOnList.add(count, addOnMOdel)
                       count++
                 if (addOnName.isEmpty()) {
-                    addOnName = orderDetails.get(position).categories.get(i).addOnArray.get(j).addon
-                    addOnPrice =orderDetails.get(position).categories.get(i).addOnArray.get(j).price
+                    addOnName = orderDetails[position].categories[i].addOnArray[j].addon
+                    addOnPrice = orderDetails[position].categories[i].addOnArray[j].price
                 } else {
-                    addOnPrice =addOnPrice+ ","+orderDetails.get(position).categories.get(i).addOnArray.get(j).price
-                    addOnName = addOnName + "," + orderDetails.get(position).categories.get(i).addOnArray.get(j).addon
+                    addOnPrice =addOnPrice+ ","+ orderDetails[position].categories[i].addOnArray[j].price
+                    addOnName = addOnName + "," + orderDetails[position].categories[i].addOnArray[j].addon
                 }
             }
             }
@@ -60,8 +61,6 @@ class FoodQuantiytAdapter(var context: Context, val orderDetails: List<OrderDeta
         return orderDetails.size
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

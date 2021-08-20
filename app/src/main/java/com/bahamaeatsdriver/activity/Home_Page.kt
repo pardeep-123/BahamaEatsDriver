@@ -1335,16 +1335,19 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 }
 
                 override fun onFinish() {
-                    Log.e("timerStatus", "stop")
-                    progressbarCircle.setProgress(0)
-                    tv_Countprogress.setText("00")
-                    if (dialog != null && dialog.isShowing)
-                        dialog.dismiss()
-                    if (countDownTimer != null) {
-                        countDownTimer!!.cancel()
+                    try {
+                        Log.e("timerStatus", "stop")
+                        progressbarCircle.setProgress(0)
+                        tv_Countprogress.setText("00")
+                        if (dialog != null && dialog.isShowing)
+                            dialog.dismiss()
+                        if (countDownTimer != null) {
+                            countDownTimer!!.cancel()
+                        }
+                        clearAllFromMmMapSetDriverMaker()
+                        showViewsWhenCurrentRideIsAvailable()
+                    } catch (e: Exception) {
                     }
-                    clearAllFromMmMapSetDriverMaker()
-                    showViewsWhenCurrentRideIsAvailable()
 //                    respondRideStatusRequest(REJECT_RIDE_STATUS, rideId)
                 }
             }.start()
