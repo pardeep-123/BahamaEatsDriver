@@ -36,7 +36,6 @@ import java.util.*
 import javax.inject.Inject
 
 class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickListener {
-    private lateinit var dialog: Dialog
     private var Type_image: String? = null
     private var backImage = ""
     private var frontImage = ""

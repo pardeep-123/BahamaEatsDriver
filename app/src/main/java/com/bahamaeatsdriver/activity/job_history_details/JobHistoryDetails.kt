@@ -97,7 +97,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                      * */
                     if (liveData.data.body.order.paymentMethod.equals("1")) {
                         tv_paymentMode.text = "Payment method: Suncash"
-                    } else if (liveData.data.body.order.paymentMethod.equals("2")) {
+                    } else if (liveData.data.body.order.paymentMethod == "2") {
                         tv_paymentMode.text = "Payment method: Paypal"
                     } else if (liveData.data.body.order.paymentMethod.equals("4")) {
                         tv_paymentMode.text = "Payment method: Kanoo"
@@ -324,7 +324,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
         gmap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding))
     }
 
-    private fun decodePoly(encoded: String): List<LatLng>? {
+    private fun decodePoly(encoded: String): List<LatLng> {
         val poly: MutableList<LatLng> = java.util.ArrayList()
         var index = 0
         val len = encoded.length

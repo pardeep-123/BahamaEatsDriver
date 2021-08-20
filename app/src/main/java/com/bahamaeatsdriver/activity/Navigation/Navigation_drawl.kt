@@ -23,24 +23,24 @@ import com.bahamaeatsdriver.activity.login_register.Login_Activity
  * A simple [Fragment] subclass.
  */
 class Navigation_drawl : Fragment() {
-    var views: View? = null
+    private var views: View? = null
     private var drawer_layout: DrawerLayout? = null
     private var mUserLearnedDrawer = false
     private var mDrawerToggle: ActionBarDrawerToggle? = null
-    var LL_deliveries: LinearLayout? = null
-    var homelayout: LinearLayout? = null
-    var LL_paymentstatus: LinearLayout? = null
-    var LL_support: LinearLayout? = null
-    var LL_settings: LinearLayout? = null
-    var ll_refer_earn: LinearLayout? = null
-    var LL_logout: LinearLayout? = null
-    var ll_Documents: LinearLayout? = null
-    var ll_wallet: LinearLayout? = null
-    var LL_TandC: LinearLayout? = null
+    private var LL_deliveries: LinearLayout? = null
+    private var homelayout: LinearLayout? = null
+    private var LL_paymentstatus: LinearLayout? = null
+    private var LL_support: LinearLayout? = null
+    private var LL_settings: LinearLayout? = null
+    private var ll_refer_earn: LinearLayout? = null
+    private var LL_logout: LinearLayout? = null
+    private var ll_Documents: LinearLayout? = null
+    private var ll_wallet: LinearLayout? = null
+    private var LL_TandC: LinearLayout? = null
     private val mFromSavedInstanceState = false
-    var temp = 0
-    var Relativ_profile: RelativeLayout? = null
-    var instanceiNterface: closeDrawer? = null
+    private var temp = 0
+    private var Relativ_profile: RelativeLayout? = null
+    private var instanceiNterface: closeDrawer? = null
 
     interface closeDrawer {
         fun close()

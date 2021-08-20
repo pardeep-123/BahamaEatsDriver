@@ -6,20 +6,21 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bahamaeatsdriver.R
 import com.google.android.material.textfield.TextInputEditText
 
 class Driving_License_Imformation : AppCompatActivity() {
-    var iv_licence: ImageView? = null
-    var iv_edit: ImageView? = null
-    var Relativ_camera: RelativeLayout? = null
-    var ButtonsLayout: LinearLayout? = null
-    var te_licence_type: TextInputEditText? = null
-    var Te_birthdate: TextInputEditText? = null
-    var Te_Licence_no: TextInputEditText? = null
-    var te_nationality: TextInputEditText? = null
-    var te_issueon: TextInputEditText? = null
-    var te_expired: TextInputEditText? = null
+   private var iv_licence: ImageView? = null
+    private var iv_edit: ImageView? = null
+    private var Relativ_camera: RelativeLayout? = null
+    private var ButtonsLayout: LinearLayout? = null
+    private var te_licence_type: TextInputEditText? = null
+    private var Te_birthdate: TextInputEditText? = null
+    private var Te_Licence_no: TextInputEditText? = null
+    private var te_nationality: TextInputEditText? = null
+    private var te_issueon: TextInputEditText? = null
+    private var te_expired: TextInputEditText? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driving_license_imformation)
@@ -36,7 +37,7 @@ class Driving_License_Imformation : AppCompatActivity() {
         Relativ_camera!!.visibility = View.VISIBLE
         iv_edit!!.visibility = View.GONE
         ButtonsLayout!!.visibility = View.VISIBLE
-        iv_licence!!.setImageDrawable(resources.getDrawable(R.drawable.licence))
+        iv_licence!!.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.licence))
     }
 
     fun iv_backArrow_driving(view: View?) {

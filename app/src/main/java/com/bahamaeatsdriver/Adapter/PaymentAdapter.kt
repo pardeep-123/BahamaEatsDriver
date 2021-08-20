@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ class PaymentAdapter(var context: Context, val paymentsList: ArrayList<Order>) :
         return MyViewHolder(inflater)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
 
         if(paymentsList.get(i).user!=null)

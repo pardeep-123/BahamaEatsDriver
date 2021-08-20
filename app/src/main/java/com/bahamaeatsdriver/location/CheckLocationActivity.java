@@ -51,8 +51,8 @@ abstract public class CheckLocationActivity extends ImagePicker implements
     protected LocationSettingsRequest mLocationSettingsRequest;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
     PermissionListener permissionlistener;
-    Activity activity;
-    SensorService mSensorService;
+    private Activity activity;
+    private SensorService mSensorService;
 
     private static final long INTERVAL = 1000 * 60 * 1; //1 minute
     private static final long FASTEST_INTERVAL = 1000 * 60 * 1; // 1 minute

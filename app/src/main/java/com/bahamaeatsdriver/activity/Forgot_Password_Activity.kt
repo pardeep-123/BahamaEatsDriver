@@ -22,10 +22,9 @@ class Forgot_Password_Activity : AppCompatActivity(), Observer<RestObservable> {
     @Inject
     lateinit var validator: Validator
 
-    private val viewModel: BaseViewModel
-            by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
+    private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
 
-    var dialog: Dialog? = null
+    private var dialog: Dialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)

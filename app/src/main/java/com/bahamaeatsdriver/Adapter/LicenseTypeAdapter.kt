@@ -29,8 +29,6 @@ class LicenseTypeAdapter(var context: Context, val licenseType: ArrayList<Licens
         return licenseType.size
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

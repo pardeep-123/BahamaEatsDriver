@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bahamaeatsdriver.R
 
 class My_Wallet_Activity : AppCompatActivity() {
-    var Tv_Depost: TextView? = null
-    var Tv_statistics: TextView? = null
-    var LL_mainlayout_statistic: LinearLayout? = null
-    var LL_mainlayout_deposit: LinearLayout? = null
+    private var Tv_Depost: TextView? = null
+    private var Tv_statistics: TextView? = null
+    private var LL_mainlayout_statistic: LinearLayout? = null
+    private var LL_mainlayout_deposit: LinearLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_wallet)

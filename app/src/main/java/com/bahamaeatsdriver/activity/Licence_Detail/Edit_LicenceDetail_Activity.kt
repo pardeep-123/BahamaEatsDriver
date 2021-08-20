@@ -40,19 +40,11 @@ import java.util.*
 import javax.inject.Inject
 
 class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observer<RestObservable>, OnLicenseTypeSelection {
-    lateinit var dialog: Dialog
-    private var mImageUri: Uri? = null
-    var Type_image: String? = null
-    private var encodedImage: String? = null
-    private var pictureFilePath: String? = null
-    private var kk: String? = null
+    private var Type_image: String? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
     private var image_path = ""
-
-
     private var backImage = ""
     private var frontImage = ""
-    private var from = 0
     private var licenseDetails: Body? = null
 
     @Inject

@@ -3,7 +3,6 @@ package com.bahamaeatsdriver.activity.driver_documentation
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
@@ -14,7 +13,6 @@ import com.bahamaeatsdriver.model_class.add_update_police_record.AddUpdatePolice
 import com.bahamaeatsdriver.repository.BaseViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_upload_document.*
-import kotlinx.android.synthetic.main.res_jobhistory.view.*
 
 class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
 
@@ -41,7 +39,7 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
         setContentView(R.layout.activity_upload_document)
         if (intent.getIntExtra("from", 0) != 0) {
             type = intent.getIntExtra("from", 0)
-            if (intent.getStringExtra("image") != null && !intent.getStringExtra("image")!!.isEmpty()) {
+            if (intent.getStringExtra("image") != null && intent.getStringExtra("image")!!.isNotEmpty()) {
                 image_path = intent.getStringExtra("image")!!
                 Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_rectangle).into(Image_identification)
             }

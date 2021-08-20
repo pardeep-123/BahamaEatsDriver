@@ -36,10 +36,8 @@ class Id_details : AppCompatActivity(), View.OnClickListener, Observer<RestObser
 
     private var backImage: String? = null
     private var frontImage: String? = null
-
-    var dialog: Dialog? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-    var LOCATION_REQUEST = 1001
+    private var LOCATION_REQUEST = 1001
 
     @Inject
     lateinit var validator: Validator
@@ -74,19 +72,19 @@ class Id_details : AppCompatActivity(), View.OnClickListener, Observer<RestObser
 
     @SuppressLint("ValidFragment")
     class DatePickerFragment_static : DialogFragment(), OnDateSetListener {
-        lateinit var dpd: DatePickerDialog
+        private lateinit var dpd: DatePickerDialog
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             val calendar = Calendar.getInstance()
             val year = calendar[Calendar.YEAR]
             val month = calendar[Calendar.MONTH]
             val day = calendar[Calendar.DAY_OF_MONTH]
             if (datetype.equalsIgnoreCase("birthdate")) {
-                dpd = DatePickerDialog(activity!!, this, year - 18, month, day)
+                dpd = DatePickerDialog(requireActivity(), this, year - 18, month, day)
                 calendar[year - 18, month] = day
                 val value = calendar.timeInMillis
                 dpd.datePicker.maxDate = value
             } else if (datetype.equalsIgnoreCase("Issuedate")) {
-                dpd = DatePickerDialog(activity!!, this, year, month, day)
+                dpd = DatePickerDialog(requireActivity(), this, year, month, day)
                 calendar[year, month] = day
                 val value = calendar.timeInMillis
                 dpd.datePicker.minDate = value
@@ -115,7 +113,7 @@ class Id_details : AppCompatActivity(), View.OnClickListener, Observer<RestObser
         var datetype = ""
     }
 
-    fun openLocationActivity() {
+    private fun openLocationActivity() {
         val intent = Intent(this, LocationActivity::class.java)
         startActivityForResult(intent, LOCATION_REQUEST)
     }
@@ -126,19 +124,12 @@ class Id_details : AppCompatActivity(), View.OnClickListener, Observer<RestObser
             if (requestCode == LOCATION_REQUEST) {
                 val locaddress = data!!.getStringExtra("address")
                 et_address.text = locaddress
-                val latitude = data.getStringExtra("latitude")
-                val longitude = data.getStringExtra("longitude")
-                /*if (latitude != null) {
-                    Completed_Address(latitude.toDouble(), longitude.toDouble());
-                }*/
-
             }
         }
     }
 
     override fun onClick(p0: View?) {
-        val v1 = p0!!.id
-        when (v1) {
+        when (p0!!.id) {
             R.id.et_address -> {
                 openLocationActivity()
             }

@@ -22,9 +22,8 @@ import com.bahamaeatsdriver.model_class.notification_status_change.UpdateNotific
 import com.bahamaeatsdriver.repository.BaseViewModel
 
 class Settings_Activity : AppCompatActivity(), Observer<RestObservable> {
-    var Iv_offnotification: ImageView? = null
-    var iv_on_notification: ImageView? = null
-
+    private var Iv_offnotification: ImageView? = null
+    private var iv_on_notification: ImageView? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
     private lateinit var driverDetails: LoginResponse
 

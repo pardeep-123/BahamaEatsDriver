@@ -51,7 +51,7 @@ class BankDetailsActivity : AppCompatActivity(), View.OnClickListener, Observer<
         viewModel.getBankDetailsResposne().observe(this, this)
     }
 
-    fun enableEditableViews(value: Boolean) {
+    private fun enableEditableViews(value: Boolean) {
         //value-true means to make editable view
         et_beneficiaryName.isEnabled = value
         et_bankName.isEnabled = value
@@ -110,9 +110,9 @@ class BankDetailsActivity : AppCompatActivity(), View.OnClickListener, Observer<
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.select_licence_type_dialog, null)
         popupWindow = PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        popupWindow!!.setOutsideTouchable(true)
+        popupWindow!!.isOutsideTouchable = true
         val adapter = LicenseTypeAdapter(this, licenseTypeList, this)
-        customView!!.rv_licenseType.setAdapter(adapter)
+        customView!!.rv_licenseType.adapter = adapter
         popupWindow!!.showAsDropDown(etLicensetype)
     }
 

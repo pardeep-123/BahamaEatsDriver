@@ -34,12 +34,6 @@ class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHi
         viewModel.getJobHistoryResposne().observe(this, this)
     }
 
-    override fun onResume() {
-        super.onResume()
-//        viewModel.jobHistoryApi(this, true)
-//        viewModel.getJobHistoryResposne().observe(this, this)
-    }
-
     fun tv_upcomming(view: View?) {
         tv_upcomming!!.setTextColor(resources.getColor(R.color.Black))
         tv_past!!.setTextColor(resources.getColor(R.color.colorTextView_new))

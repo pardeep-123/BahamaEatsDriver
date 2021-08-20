@@ -57,7 +57,7 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
         val hour = c[Calendar.HOUR_OF_DAY]
         val minute = c[Calendar.MINUTE]
 
-        mTimePicker = TimePickerDialog(this, { timePicker, selectedHour, selectedMinute ->
+        mTimePicker = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
             val time = "$selectedHour:$selectedMinute"
             val fmt = SimpleDateFormat("HH:mm")
             var date: Date? = null
@@ -125,7 +125,7 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
     override fun OnDriverAvailabilitySelection(item: AvailableSlot, slotpos: Int, dayPos: Int) {
         if (!daysList[dayPos].availableSlotList[slotpos].isSelected) {
             daysList[dayPos].availableSlotList[slotpos].isSelected = true
-            println(dayPos.toString() + "  dayPos" + slotpos + "  slotpos")
+            println("$dayPos  dayPos$slotpos  slotpos")
         } else {
             daysList[dayPos].availableSlotList[slotpos].isSelected = false
         }
@@ -142,10 +142,10 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
                         if (driverAddedSlotsData.isNotEmpty()){
                             for (i in 0 until daysList.size){
                                 for (j in 0 until daysList[i].availableSlotList.size){
-                                    for (k in 0 until driverAddedSlotsData.size){
+                                    for (k in driverAddedSlotsData.indices){
                                         if (driverAddedSlotsData[k].day==daysList[i].id.toInt()){
-                                            for (l in 0 until driverAddedSlotsData[k].data.size){
-                                                if (driverAddedSlotsData[k].data[l].id==daysList[i].availableSlotList[j].id){
+                                            for (element in driverAddedSlotsData[k].data){
+                                                if (element.id==daysList[i].availableSlotList[j].id){
                                                     daysList[i].availableSlotList[j].isSelected=true
                                                 }
                                             }

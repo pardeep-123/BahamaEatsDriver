@@ -51,9 +51,6 @@ class Fill_LicenseDetail_Activity : AppCompatActivity(), View.OnClickListener, O
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
     private var isOpenDot = false
     private var popupWindow: PopupWindow? = null
-    private var vehicalMake=""
-    private var  vehicalModel=""
-    private var  vehicalColor=""
 
     @Inject
     lateinit var validator: Validator

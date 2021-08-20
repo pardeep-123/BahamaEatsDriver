@@ -231,7 +231,7 @@ class AddDocumentationActivity : AppCompatActivity(), Observer<RestObservable> {
                         tv_isApprrovedDriver.visibility = View.GONE
                     }
                     //Check driver car Insurance is added or not
-                    if (!liveData.data.body.carInsurance.isEmpty()) {
+                    if (liveData.data.body.carInsurance.isNotEmpty()) {
                         isAddedCarInsurace = "1"
                         iv_editCarInsurance.visibility = View.VISIBLE
                         carInsuranceImage = liveData.data.body.carInsurance
@@ -262,7 +262,7 @@ class AddDocumentationActivity : AppCompatActivity(), Observer<RestObservable> {
                         ll_deleteCarDocument.isClickable = true
                     }
                     //Check driver police record is added or not
-                    if (!liveData.data.body.policeRecord.isEmpty()) {
+                    if (liveData.data.body.policeRecord.isNotEmpty()) {
                         isAddedPoliceRecord = "1"
                         iv_editPoliceRecord.visibility = View.VISIBLE
                         policeRecordImage = liveData.data.body.policeRecord

@@ -17,9 +17,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_edit__licence_detail_.*
 
 class LicenceDetail_Activity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {
-    lateinit var dialog: Dialog
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-
     private var licenseDetails: Body? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

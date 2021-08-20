@@ -11,7 +11,6 @@ import com.bahamaeatsdriver.R
 import java.util.*
 
 class ScheduleAvailableAdapter(var context: Context, var start: ArrayList<String>, var end: ArrayList<String>) : RecyclerView.Adapter<ScheduleAvailableAdapter.MyViewHolder>() {
-    private var inflater: LayoutInflater? = null
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context).inflate(R.layout.res_schedule, viewGroup, false)
         return MyViewHolder(inflater)
