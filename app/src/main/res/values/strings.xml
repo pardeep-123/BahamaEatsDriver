@@ -115,7 +115,7 @@
     <string name="or">or</string>
     <string name="chat_with_team">Chat with team</string>
     <string name="delivery_details">Delivery Details</string>
-    <string name="order_id">Order Id</string>
+    <string name="order_id">Order ID</string>
     <string name="place_an_order">Place  On Order</string>
     <string name="add_ons">Add ons:</string>
     <string name="total">Total =</string>
@@ -177,6 +177,7 @@
     <string name="tax">Tax</string>
     <string name="ok">Ok</string>
     <string name="items">Items</string>
+    <string name="order_items">Order Items</string>
     <string name="quantity">Qty</string>
     <string name="price">Price</string>
     <string name="delivery_charges">Delivery Charges</string>
@@ -291,5 +292,11 @@
     <string name="jan_20_10_30am">Jan 20, 10:30AM</string>
     <string name="schedule_a_time_between_the_available_slot_from_9_30am_to_12_30am">Schedule a time between the available slot from 9:30am to 12:30am</string>
     <string name="wed_january_10">Wed, January, 10</string>
+    <string name="subway">Subway</string>
+    <string name="pickup_from">Pickup from:</string>
+    <string name="drop_off_to">Drop off to:</string>
+    <string name="_10_30_am">10:30 AM</string>
+    <string name="_111">111</string>
+    <string name="note_select_the_main_market_street_in_l_7_and_more_left_to_the_md_mall_the_order_will_be_picked">Note: Select the main market street in L-7 and more left to the MD- Mall. The order will be picked.</string>
 
 </resources>

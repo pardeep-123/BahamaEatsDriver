@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/tv_itemName"
                 style="@style/ScreenTextView2"
-                android:textColor="@color/offBalck"
+                android:textColor="@color/White"
                 android:textSize="@dimen/_12sdp" />
         </RelativeLayout>
         <!--<TextView
@@ -60,7 +60,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="end"
-            android:textColor="@color/offBalck" />
+            android:textColor="@color/White" />
     </LinearLayout>
 
     <View
@@ -68,5 +68,5 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/_7sdp"
-        android:background="@color/Litgray" />
+        android:background="@color/White" />
 </LinearLayout>

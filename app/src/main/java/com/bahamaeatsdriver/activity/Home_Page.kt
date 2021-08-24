@@ -84,7 +84,7 @@ import kotlinx.android.synthetic.main.current_job_layout.*
 import kotlinx.android.synthetic.main.fragment_navigation_drawl.*
 import kotlinx.android.synthetic.main.messenger_popup_layout.*
 import kotlinx.android.synthetic.main.notification_on_alert.*
-import kotlinx.android.synthetic.main.order_details_dailog.*
+import kotlinx.android.synthetic.main.order_details_dailog_new.*
 import kotlinx.android.synthetic.main.order_details_dailog.tv_paymentMode
 import kotlinx.android.synthetic.main.res_pickup_request.*
 import org.joda.time.Duration
@@ -731,22 +731,20 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     fun showOrderDetailsPopUp(currentRideData: Body) {
         dialogOrderDeatail = Dialog(this@Home_Page)
         dialogOrderDeatail.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-        dialogOrderDeatail.setContentView(R.layout.order_details_dailog)
+        dialogOrderDeatail.setContentView(R.layout.order_details_dailog_new)
         dialogOrderDeatail.setCancelable(false)
         /***
          * Set data over Views
          */
         val adapterItemQuantity = OrderDetailsQuantiytAdapter(this, currentRideData.order.orderDetails)
         dialogOrderDeatail.rv_orderItems.setAdapter(adapterItemQuantity)
-        dialogOrderDeatail.tv_orderPlaceDate.text = CommonMethods.parseDateToddMMyyyy(currentRideData.order.createdAt, Constants.ORDER_DATE_FORMAT)
-        dialogOrderDeatail.tv_user_Name.text = currentRideData.user.firstName + " " + currentRideData.user.lastName
-        dialogOrderDeatail.tv_taxLabel.text = "Tax(" + currentRideData.order.taxPercentage + "%)"
         val houseNumber = currentRideData.userAddress.completeAddress
         val streetName = if (currentRideData.userAddress.streetName.isNotEmpty()) "/" + currentRideData.userAddress.streetName else ""
         val landmark = if (currentRideData.userAddress.deliveryInstructions.isNotEmpty()) "\n" + currentRideData.userAddress.deliveryInstructions else ""
         val userAddres = if (currentRideData.userAddress.address.isNotEmpty()) "\n" + currentRideData.userAddress.address else ""
         val finalAddress = houseNumber + streetName + landmark + userAddres
         dialogOrderDeatail.tv_userAddress.text = finalAddress
+        dialogOrderDeatail.tv_pickUpFrom.text = currentRideData.restaurant.address+" "+ currentRideData.restaurant.address
         dialogOrderDeatail.tv_ContactNumber.text = "P: " + currentRideData.user.countryCodePhone
         dialogOrderDeatail.tv_userEmail.text = "Email: " + currentRideData.user.email
         if (currentRideData.order.preparationTime.isNotEmpty()) {
@@ -761,56 +759,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             dialogOrderDeatail.tv_preprationTime.text = "Prepration time: " + currentRideData.order.preparationTime + " mins"
         }
-        dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.id
-
-        if (currentRideData.order.tax.isNotEmpty() && currentRideData.order.tax != "0") {
-            dialogOrderDeatail.ll_taxRoot.visibility = View.VISIBLE
-            dialogOrderDeatail.ll_taxRootView.visibility = View.VISIBLE
-        } else {
-            dialogOrderDeatail.ll_taxRoot.visibility = View.GONE
-            dialogOrderDeatail.ll_taxRootView.visibility = View.GONE
-        }
-        dialogOrderDeatail.tv_tax.text = "$ " + currentRideData.order.tax
-
-        if (currentRideData.order.serviceFee != 0.0) {
-            dialogOrderDeatail.ll_serviceRoot.visibility = View.VISIBLE
-            dialogOrderDeatail.ll_serviceRootView.visibility = View.VISIBLE
-        } else {
-            dialogOrderDeatail.ll_serviceRoot.visibility = View.GONE
-            dialogOrderDeatail.ll_serviceRootView.visibility = View.GONE
-        }
-        dialogOrderDeatail.tv_serviceFee.text = "$ " + currentRideData.order.serviceFee
+        dialogOrderDeatail.tv_orderId.text = currentRideData.order.id.toString()
 
         dialogOrderDeatail.tv_orderPrice.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
 
         dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
 
-        if (currentRideData.order.promoDiscount.isNotEmpty() && currentRideData.order.promoDiscount != "0.0") {
-            dialogOrderDeatail.ll_promoRoot.visibility = View.VISIBLE
-            dialogOrderDeatail.ll_promoRootView.visibility = View.VISIBLE
-        } else {
-            dialogOrderDeatail.ll_promoRoot.visibility = View.GONE
-            dialogOrderDeatail.ll_promoRootView.visibility = View.GONE
-        }
-        dialogOrderDeatail.tv_promoDiscount.text = "- " + currentRideData.order.promoDiscount
-
-        if (currentRideData.order.cartFee.isNotEmpty() && currentRideData.order.cartFee != "0") {
-            dialogOrderDeatail.ll_cartFeeRoot.visibility = View.VISIBLE
-            dialogOrderDeatail.ll_cartFeeRootView.visibility = View.VISIBLE
-        } else {
-            dialogOrderDeatail.ll_cartFeeRoot.visibility = View.GONE
-            dialogOrderDeatail.ll_cartFeeRootView.visibility = View.GONE
-        }
-        dialogOrderDeatail.tv_cartFee.text = "- " + currentRideData.order.cartFee
-
-        if (currentRideData.order.tip.isNotEmpty() && currentRideData.order.tip != "0.0" && currentRideData.order.tip != "0") {
-            dialogOrderDeatail.ll_tipRoot.visibility = View.VISIBLE
-            dialogOrderDeatail.ll_tipRootView.visibility = View.VISIBLE
-        } else {
-            dialogOrderDeatail.ll_tipRoot.visibility = View.GONE
-            dialogOrderDeatail.ll_tipRootView.visibility = View.GONE
-        }
-        dialogOrderDeatail.tv_tip.text = "$ " + currentRideData.order.tip
         /** paymentMethod-1 for suncash
          * paymentMethod-2 for paypal
          * paymentMethod-4 for kanoo
@@ -850,7 +804,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialogOrderDeatail.ll_addOnsLabel.visibility = View.GONE
         }
 
-        dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
+//        dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
         dialogOrderDeatail.show()
     }
 
