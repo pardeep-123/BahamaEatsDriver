@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ class OrderDetailsAddOnsQuantiytAdapter(var context: Context, val listAddOnList:
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
         if(listAddOnList.get(i).price.isNotEmpty())
         myViewHolder.itemView.tv_price.text = "$"+roundOffDecimalNew(listAddOnList.get(i).price.toFloat()*listAddOnList.get(i).quantity)

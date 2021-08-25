@@ -738,15 +738,27 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
          */
         val adapterItemQuantity = OrderDetailsQuantiytAdapter(this, currentRideData.order.orderDetails)
         dialogOrderDeatail.rv_orderItems.setAdapter(adapterItemQuantity)
+
         val houseNumber = currentRideData.userAddress.completeAddress
         val streetName = if (currentRideData.userAddress.streetName.isNotEmpty()) "/" + currentRideData.userAddress.streetName else ""
         val landmark = if (currentRideData.userAddress.deliveryInstructions.isNotEmpty()) "\n" + currentRideData.userAddress.deliveryInstructions else ""
         val userAddres = if (currentRideData.userAddress.address.isNotEmpty()) "\n" + currentRideData.userAddress.address else ""
         val finalAddress = houseNumber + streetName + landmark + userAddres
+        dialogOrderDeatail.tv_userName.text = currentRideData.user.firstName + " " + currentRideData.user.lastName
         dialogOrderDeatail.tv_userAddress.text = finalAddress
-        dialogOrderDeatail.tv_pickUpFrom.text = currentRideData.restaurant.address+" "+ currentRideData.restaurant.address
+        dialogOrderDeatail.tv_pickUpFrom.text = currentRideData.restaurant.address
         dialogOrderDeatail.tv_ContactNumber.text = "P: " + currentRideData.user.countryCodePhone
         dialogOrderDeatail.tv_userEmail.text = "Email: " + currentRideData.user.email
+        dialogOrderDeatail.tv_orderPlaceDate.text = CommonMethods.parseDateToddMMyyyy(currentRideData.order.createdAt, Constants.ORDER_DATE_FORMAT)
+        dialogOrderDeatail.tv_pickUpFromTime.text = CommonMethods.convertTimeToTimestamp(currentRideData.pickuptime.toLong())
+        dialogOrderDeatail.tv_dropOffTime.text = CommonMethods.convertTimeToTimestamp(currentRideData.dropofftime.toLong())
+
+        if (currentRideData.userAddress.deliveryInstructions.isNotEmpty()) {
+            dialogOrderDeatail.tv_specialRequest.visibility=View.VISIBLE
+            dialogOrderDeatail.tv_specialRequest.text="Note: "+currentRideData.userAddress.deliveryInstructions
+        }else
+            dialogOrderDeatail.tv_specialRequest.visibility=View.GONE
+
         if (currentRideData.order.preparationTime.isNotEmpty()) {
             if (currentRideData.rideStatus == 2) {
                 dialogOrderDeatail.tv_preprationTime.visibility = View.GONE
@@ -759,7 +771,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             dialogOrderDeatail.tv_preprationTime.text = "Prepration time: " + currentRideData.order.preparationTime + " mins"
         }
-        dialogOrderDeatail.tv_orderId.text = currentRideData.order.id.toString()
+        dialogOrderDeatail.tv_orderId.text = "#"+currentRideData.order.id.toString()
 
         dialogOrderDeatail.tv_orderPrice.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
 
@@ -786,10 +798,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
         val listAddOnList = ArrayList<AddOnsCustomModel>()
         var count = 0
-        for (i in 0 until currentRideData.order.orderDetails.size) {
-            for (j in 0 until currentRideData.order.orderDetails.get(i).categories.size) {
-                for (k in 0 until currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.size) {
-                    val addOnMOdel = AddOnsCustomModel(currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).addon, currentRideData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).price, currentRideData.order.orderDetails.get(i).quantity)
+        for (i in currentRideData.order.orderDetails.indices) {
+            for (j in 0 until currentRideData.order.orderDetails[i].categories.size) {
+                for (k in 0 until currentRideData.order.orderDetails[i].categories[j].addOnArray.size) {
+                    val addOnMOdel = AddOnsCustomModel(currentRideData.order.orderDetails[i].categories[j].addOnArray[k].addon, currentRideData.order.orderDetails[i].categories[j].addOnArray[k].price, currentRideData.order.orderDetails[i].quantity)
                     listAddOnList.add(count, addOnMOdel)
                     count++
                 }
@@ -804,7 +816,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialogOrderDeatail.ll_addOnsLabel.visibility = View.GONE
         }
 
-//        dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
+        dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
         dialogOrderDeatail.show()
     }
 
@@ -887,7 +899,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                          *  response :0=>Pending 1=>Accepted 2=>Rejected
                          */
                         if (liveData.data.body.response == 1) {
-
                             type = 1
                             latRestaurantAcceptJob = liveData.data.body.restaurant.latitude
                             longRestaurantAcceptJob = liveData.data.body.restaurant.longitude

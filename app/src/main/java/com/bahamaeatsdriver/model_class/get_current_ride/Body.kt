@@ -10,6 +10,12 @@ data class Body(
     val completedAt: Any,
     @SerializedName("createdAt")
     val createdAt: String,
+
+    @SerializedName("pickuptime")
+    val pickuptime: String,
+    @SerializedName("dropofftime")
+    val dropofftime: String,
+
     @SerializedName("currentLat")
     val currentLat: String,
     @SerializedName("currentLong")

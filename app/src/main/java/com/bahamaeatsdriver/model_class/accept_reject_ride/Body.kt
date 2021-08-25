@@ -4,6 +4,8 @@ data class Body(
     val addressId: String,
     val completedAt: String,
     val createdAt: String,
+    val pickuptime: String,
+    val dropofftime: String,
     val currentLat: String,
     val currentLong: String,
     val driver: Driver,
