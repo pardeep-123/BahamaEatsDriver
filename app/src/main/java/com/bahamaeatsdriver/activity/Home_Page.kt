@@ -746,7 +746,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         val finalAddress = houseNumber + streetName + landmark + userAddres
         dialogOrderDeatail.tv_userName.text = currentRideData.user.firstName + " " + currentRideData.user.lastName
         dialogOrderDeatail.tv_userAddress.text = finalAddress
-        dialogOrderDeatail.tv_pickUpFrom.text = currentRideData.restaurant.address
+        dialogOrderDeatail.tv_pickUpFrom.text = currentRideData.restaurant.name
+        dialogOrderDeatail.tv_restaurantAddress.text = currentRideData.restaurant.address
         dialogOrderDeatail.tv_ContactNumber.text = "P: " + currentRideData.user.countryCodePhone
         dialogOrderDeatail.tv_userEmail.text = "Email: " + currentRideData.user.email
         dialogOrderDeatail.tv_orderPlaceDate.text = CommonMethods.parseDateToddMMyyyy(currentRideData.order.createdAt, Constants.ORDER_DATE_FORMAT)
