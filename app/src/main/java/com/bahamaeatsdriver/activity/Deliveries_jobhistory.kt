@@ -3,6 +3,7 @@ package com.bahamaeatsdriver.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,8 +36,8 @@ class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHi
     }
 
     fun tv_upcomming(view: View?) {
-        tv_upcomming!!.setTextColor(resources.getColor(R.color.Black))
-        tv_past!!.setTextColor(resources.getColor(R.color.colorTextView_new))
+        tv_upcomming!!.setTextColor(ContextCompat.getColor(this,R.color.Black))
+        tv_past!!.setTextColor(ContextCompat.getColor(this,R.color.colorTextView_new))
         View_upcoming!!.visibility = View.VISIBLE
         View_past!!.visibility = View.INVISIBLE
 
@@ -53,11 +54,11 @@ class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHi
     }
 
     fun tv_past(view: View?) {
-        tv_upcomming!!.setTextColor(resources.getColor(R.color.colorTextView_new))
-        tv_past!!.setTextColor(resources.getColor(R.color.Black))
+        tv_upcomming!!.setTextColor(ContextCompat.getColor(this,R.color.colorTextView_new))
+        tv_past!!.setTextColor(ContextCompat.getColor(this,R.color.Black))
         View_upcoming!!.visibility = View.INVISIBLE
         View_past!!.visibility = View.VISIBLE
-        if (pastJobHistory != null && pastJobHistory!!.size > 0) {
+        if (pastJobHistory != null && pastJobHistory!!.isNotEmpty()) {
             Rv_jobhistory.visibility = View.VISIBLE
             no_dataAvailable.visibility = View.GONE
             setAdapter("past", pastJobHistory!!, upComingJobHistory!!)
@@ -69,8 +70,7 @@ class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHi
 
 
     override fun onClick(view: View?) {
-        val itemid = view!!.id
-        when (itemid) {
+        when (view!!.id) {
             R.id.iv_backArrow_jobhistory -> {
                 finish()
             }
@@ -114,8 +114,8 @@ class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHi
                         Rv_jobhistory.visibility = View.GONE
                         no_dataAvailable.visibility = View.VISIBLE
                     }
-                    tv_upcomming!!.setTextColor(resources.getColor(R.color.Black))
-                    tv_past!!.setTextColor(resources.getColor(R.color.colorTextView_new))
+                    tv_upcomming!!.setTextColor(ContextCompat.getColor(this,R.color.Black))
+                    tv_past!!.setTextColor(ContextCompat.getColor(this,R.color.colorTextView_new))
                     View_upcoming!!.visibility = View.VISIBLE
                     View_past!!.visibility = View.INVISIBLE
                 }

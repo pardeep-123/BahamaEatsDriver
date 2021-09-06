@@ -1,6 +1,5 @@
 package com.bahamaeatsdriver.activity.Licence_Detail
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -40,8 +39,7 @@ class LicenceDetail_Activity : AppCompatActivity(), View.OnClickListener, Observ
 
 
     override fun onClick(p0: View?) {
-        val Itemid = p0!!.id
-        when (Itemid) {
+        when (p0!!.id) {
             R.id.iv_Linc_edit -> {
                 if (licenseDetails != null) {
                     launchActivity<Edit_LicenceDetail_Activity>()
@@ -65,10 +63,10 @@ class LicenceDetail_Activity : AppCompatActivity(), View.OnClickListener, Observ
                     Glide.with(this).load(liveData.data.body.frontPhoto).placeholder(R.drawable.placeholder_rectangle).into(iv_front)
                     Glide.with(this).load(liveData.data.body.backPhoto).placeholder(R.drawable.placeholder_rectangle).into(iv_back)
                     ed_L_number.setText(liveData.data.body.licenseNo)
-                    Tv_licence_issue.setText(liveData.data.body.issueDate)
-                    Tv_Licence_expire.setText(liveData.data.body.expiryDate)
+                    Tv_licence_issue.text = liveData.data.body.issueDate
+                    Tv_Licence_expire.text = liveData.data.body.expiryDate
                     Ed_l_natiolaty.setText(liveData.data.body.nationality)
-                    Ed_l_Licencetype.setText(liveData.data.body.licenseType)
+                    Ed_l_Licencetype.text = liveData.data.body.licenseType
                     tv_licenceBirth.text = liveData.data.body.dob
                 }
             }

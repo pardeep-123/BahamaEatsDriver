@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -80,19 +79,19 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
         tv_Licence_expire = findViewById(R.id.Tv_Licence_expire)
         tv_licence_birth = findViewById(R.id.tv_licenceBirth)
 
-        if (intent.getStringExtra("from") != null && intent.getStringExtra("from")!!.equals("1")) {
+        if (intent.getStringExtra("from") != null && intent.getStringExtra("from")!! == "1") {
             if (intent.getSerializableExtra("licenseDetails") != null) {
                 licenseDetails = intent.getSerializableExtra("licenseDetails") as Body?
                 ed_L_number.setText(licenseDetails!!.licenseNo)
-                tv_licence_issue.setText(licenseDetails!!.issueDate)
-                tv_Licence_expire.setText(licenseDetails!!.expiryDate)
+                tv_licence_issue.text = licenseDetails!!.issueDate
+                tv_Licence_expire.text = licenseDetails!!.expiryDate
                 Ed_l_natiolaty.setText(licenseDetails!!.nationality)
-                Ed_l_Licencetype.setText(licenseDetails!!.licenseType)
+                Ed_l_Licencetype.text = licenseDetails!!.licenseType
                 tv_licence_birth.text = licenseDetails!!.dob
                 Glide.with(this).load(licenseDetails!!.frontPhoto).placeholder(R.drawable.placeholder_rectangle).into(iv_front)
                 Glide.with(this).load(licenseDetails!!.backPhoto).placeholder(R.drawable.placeholder_rectangle).into(iv_back)
             }
-        } else if (intent.getStringExtra("from") != null && intent.getStringExtra("from")!!.equals("2")) {
+        } else if (intent.getStringExtra("from") != null && intent.getStringExtra("from")!! == "2") {
             viewModel.getDriverLicenseDetailsApi(this, true)
             viewModel.getDriverLicenseDetailsResposne().observe(this, this)
 
@@ -116,13 +115,11 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
         tv_Licence_expire.setOnClickListener(this)
         Ed_l_Licencetype.setOnClickListener(this)
         btn_update.setOnClickListener(this)
-        Tv_L_hedder.setText("EDIT License Details")
-        if (Tv_licence_issue.text.toString().trim().isEmpty()) {
+        Tv_L_hedder.text = "EDIT License Details"
+        if (Tv_licence_issue.text.toString().trim().isEmpty())
             isIssueDateSelected = false
-        } else {
+         else
             isIssueDateSelected = true
-        }
-
     }
 
 
@@ -133,16 +130,12 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
 
     fun iv_front_image(view: View?) {
         Type_image = "Front"
-//        image()
         checkPermissionCamera(false, "", "")
-
     }
 
     fun iv_back_image(view: View?) {
         Type_image = "Back"
-//        image()
         checkPermissionCamera(false, "", "")
-
     }
 
     @SuppressLint("ValidFragment")
@@ -157,21 +150,21 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
             if (datetype == "birthdate") {
                 //below 18 yers   dpd.getDatePicker().setMaxDate(System.currentTimeMillis() - 568025136000L);
 //                dpd.datePicker.maxDate = System.currentTimeMillis()
-                dpd = DatePickerDialog(activity!!, this, year, month, day)
+                dpd = DatePickerDialog(requireActivity(), this, year, month, day)
                 calendar[year - 18, month] = day
                 val value = calendar.timeInMillis
                 dpd.datePicker.maxDate = value
             } else if (datetype == "Issuedate") {
-                dpd = DatePickerDialog(activity!!, this, year, month, day)
+                dpd = DatePickerDialog(requireActivity(), this, year, month, day)
                 calendar[year, month] = day
                 val value = calendar.timeInMillis
                 dpd.datePicker.maxDate = value
             } else if (datetype == "expiredate") {
                 if (year_ == 0) {
-                    dpd = DatePickerDialog(activity!!, this, year, month, day)
+                    dpd = DatePickerDialog(requireActivity(), this, year, month, day)
                     calendar[year, month] = day
                 } else {
-                    dpd = DatePickerDialog(activity!!, this, year_, monthOfYear_, dayOfMonth_)
+                    dpd = DatePickerDialog(requireActivity(), this, year_, monthOfYear_, dayOfMonth_)
                     calendar[year_, monthOfYear_] = dayOfMonth_
                 }
                 val value = calendar.timeInMillis
@@ -187,7 +180,7 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
             val Date = cal.time
             Log.e("date", "asa  " + cal.time)
             if (datetype == "birthdate") {
-                tv_licence_birth!!.text = SimpleDateFormat(Constants.LICENSE_DATE_FORMAT).format(Date)
+                tv_licence_birth.text = SimpleDateFormat(Constants.LICENSE_DATE_FORMAT).format(Date)
             } else if (datetype == "Issuedate") {
                 isIssueDateSelected = true
                 year_ = year + 1
@@ -195,7 +188,7 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
                 dayOfMonth_ = dayOfMonth
                 tv_licence_issue.text = SimpleDateFormat(Constants.LICENSE_DATE_FORMAT).format(Date)
             } else if (datetype == "expiredate") {
-                tv_Licence_expire!!.text = SimpleDateFormat(Constants.LICENSE_DATE_FORMAT).format(Date)
+                tv_Licence_expire.text = SimpleDateFormat(Constants.LICENSE_DATE_FORMAT).format(Date)
             }
         }
     }
@@ -212,8 +205,7 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
     }
 
     override fun onClick(p0: View?) {
-        val Itemid = p0!!.id
-        when (Itemid) {
+        when (p0!!.id) {
             R.id.Tv_licence_issue -> {
                 datetype = "Issuedate"
                 val fragment: DialogFragment = DatePickerFragment_static()
@@ -247,7 +239,9 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
                 val naitionality = Ed_l_natiolaty.text.toString().trim()
                 val licenseType = Ed_l_Licencetype.text.toString().trim()
                 if (validator.editLicenseValid(this, licenseType, licenseNumber, dob, isuueOn, expiryDate, naitionality)) {
-                    viewModel.editLicenseApi(this, licenseDetails!!.id.toString(), licenseType, licenseNumber, dob, isuueOn, expiryDate, naitionality, frontImage!!, backImage!!, true)
+                    viewModel.editLicenseApi(this, licenseDetails!!.id.toString(), licenseType, licenseNumber, dob, isuueOn, expiryDate, naitionality,
+                        frontImage,
+                        backImage, true)
                     viewModel.getEditLicenseResponse().observe(this, this)
                 }
             }
@@ -269,9 +263,9 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.select_licence_type_dialog, null)
         popupWindow = PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        popupWindow!!.setOutsideTouchable(true)
+        popupWindow!!.isOutsideTouchable = true
         val adapter = LicenseTypeAdapter(this, licenseTypeList, this)
-        customView!!.rv_licenseType.setAdapter(adapter)
+        customView!!.rv_licenseType.adapter = adapter
         popupWindow!!.showAsDropDown(edLLicencetype)
     }
 
@@ -287,10 +281,10 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
                 if (liveData.data is GetDriverLicense) {
                     licenseDetails=liveData.data.body
                     ed_L_number.setText(licenseDetails!!.licenseNo)
-                    tv_licence_issue.setText(licenseDetails!!.issueDate)
-                    tv_Licence_expire.setText(licenseDetails!!.expiryDate)
+                    tv_licence_issue.text = licenseDetails!!.issueDate
+                    tv_Licence_expire.text = licenseDetails!!.expiryDate
                     Ed_l_natiolaty.setText(licenseDetails!!.nationality)
-                    Ed_l_Licencetype.setText(licenseDetails!!.licenseType)
+                    Ed_l_Licencetype.text = licenseDetails!!.licenseType
                     tv_licence_birth.text = licenseDetails!!.dob
                     Glide.with(this).load(licenseDetails!!.frontPhoto).placeholder(R.drawable.placeholder_rectangle).into(iv_front)
                     Glide.with(this).load(licenseDetails!!.backPhoto).placeholder(R.drawable.placeholder_rectangle).into(iv_back)

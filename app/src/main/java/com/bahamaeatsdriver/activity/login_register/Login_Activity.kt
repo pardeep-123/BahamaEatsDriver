@@ -44,8 +44,7 @@ class Login_Activity : AppCompatActivity(), View.OnClickListener, Observer<RestO
     }
 
     override fun onClick(view: View?) {
-        val itemid = view!!.id
-        when (itemid) {
+        when (view!!.id) {
             R.id.Tv_signup -> {
                 launchActivity<Select_country_mobileno>()
             }

@@ -100,9 +100,7 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
                     tv_email!!.text = liveData.data.body.email
                     tv_countryCode!!.text = liveData.data.body.countryCode
                     tv_ContactNumber!!.text = liveData.data.body.contactNo
-//                    tv_fullName!!.text = liveData.data.body.fullName
-//                    tv_Username!!.text = liveData.data.body.fullName
-                    if (! liveData.data.body.fullName.isEmpty()){
+                    if (liveData.data.body.fullName.isNotEmpty()){
                         tv_fullName!!.text = driverDetails.body.fullName
                         tv_Username!!.text = driverDetails.body.fullName
                     }

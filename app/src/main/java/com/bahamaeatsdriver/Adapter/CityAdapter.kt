@@ -18,10 +18,10 @@ class CityAdapter(var context: Context, val cityList: List<Body>,val listener: O
     }
 
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
-        myViewHolder.itemView.tv_cityName.text =cityList.get(i).name
+        myViewHolder.itemView.tv_cityName.text = cityList[i].name
 
         myViewHolder.itemView.tv_cityName.setOnClickListener{
-            listener.onCitySelect(cityList.get(i).name,i)
+            listener.onCitySelect(cityList[i].name,i)
         }
     }
 
@@ -29,8 +29,6 @@ class CityAdapter(var context: Context, val cityList: List<Body>,val listener: O
         return cityList.size
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

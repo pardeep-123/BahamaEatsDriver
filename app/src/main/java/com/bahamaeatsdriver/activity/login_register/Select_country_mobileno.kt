@@ -54,14 +54,14 @@ class Select_country_mobileno : AppCompatActivity(), View.OnClickListener, Obser
             }
             R.id.ccPicker -> {
                 val picker = CountryPicker.newInstance("Select Country") // dialog title
-                picker.setListener { name, code, dialCode, flagDrawableResID ->
+                picker.setListener { name, _, dialCode, flagDrawableResID ->
                     if (dialCode.contains("+")) {
                         val cccode = dialCode.replace("+", "")
                         countrCode = cccode
-                        ccPicker.text = name + " (" + dialCode+")"
+                        ccPicker.text = "$name ($dialCode)"
                         picker.dismiss()
                     } else {
-                        ccPicker.text = name +  " (" + dialCode+")"
+                        ccPicker.text = "$name ($dialCode)"
                         countrCode = dialCode
                     }
 

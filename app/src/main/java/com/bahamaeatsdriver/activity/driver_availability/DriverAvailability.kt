@@ -68,7 +68,7 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
             }
             val fmtOut = SimpleDateFormat("hh:mm aa")
             val formattedTime: String = fmtOut.format(date)
-            tv_startDate.setText(formattedTime)
+            tv_startDate.text = formattedTime
         }, hour, minute, false) //No 24 hour time
 
         mTimePicker.setTitle("Select Time")
@@ -145,9 +145,8 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
                                     for (k in driverAddedSlotsData.indices){
                                         if (driverAddedSlotsData[k].day==daysList[i].id.toInt()){
                                             for (element in driverAddedSlotsData[k].data){
-                                                if (element.id==daysList[i].availableSlotList[j].id){
+                                                if (element.id==daysList[i].availableSlotList[j].id)
                                                     daysList[i].availableSlotList[j].isSelected=true
-                                                }
                                             }
                                         }
                                     }

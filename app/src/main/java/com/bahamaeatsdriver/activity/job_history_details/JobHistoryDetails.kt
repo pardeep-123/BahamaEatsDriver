@@ -95,17 +95,17 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                      * paymentMethod-6 for IsLand Pay
                      * paymentMethod-7 for BE Wallet
                      * */
-                    if (liveData.data.body.order.paymentMethod.equals("1")) {
+                    if (liveData.data.body.order.paymentMethod == "1") {
                         tv_paymentMode.text = "Payment method: Suncash"
                     } else if (liveData.data.body.order.paymentMethod == "2") {
                         tv_paymentMode.text = "Payment method: Paypal"
-                    } else if (liveData.data.body.order.paymentMethod.equals("4")) {
+                    } else if (liveData.data.body.order.paymentMethod == "4") {
                         tv_paymentMode.text = "Payment method: Kanoo"
-                    } else if (liveData.data.body.order.paymentMethod.equals("5")) {
+                    } else if (liveData.data.body.order.paymentMethod == "5") {
                         tv_paymentMode.text = "Payment method: Atlantic"
-                    } else if (liveData.data.body.order.paymentMethod.equals("6")) {
+                    } else if (liveData.data.body.order.paymentMethod == "6") {
                         tv_paymentMode.text = "Payment method: IsLand Pay"
-                    }else if (liveData.data.body.order.paymentMethod.equals("7")) {
+                    }else if (liveData.data.body.order.paymentMethod == "7") {
                         tv_paymentMode.text = "Payment method: "+getString(R.string.be_wallet)
                     }
                     tv_vatPercentage.text = "VAT(" + liveData.data.body.order.taxPercentage + "%) "
@@ -117,7 +117,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         view_serviceFee.visibility=View.GONE
                         ll_serviceFee.visibility=View.GONE
                     }
-                    tv_serviceFees.text = "$" + serviceFee
+                    tv_serviceFees.text = "$$serviceFee"
 
                     val deliveryFee=liveData.data.body.order.deliveryFee
                     if (deliveryFee!=0.0){
@@ -127,14 +127,14 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         view_deliveryFee.visibility=View.GONE
                         ll_deliveryRoot.visibility=View.GONE
                     }
-                    tv_deliveryCharges.text = "$" + deliveryFee
+                    tv_deliveryCharges.text = "$$deliveryFee"
 
 
                      val taxFee=liveData.data.body.order.tax
                     if (taxFee!=0.0){
                         view_vat.visibility=View.VISIBLE
                         ll_vatRoot.visibility=View.VISIBLE
-                        tv_vat.text = "$" + taxFee
+                        tv_vat.text = "$$taxFee"
                     }else{
                         view_vat.visibility=View.GONE
                         ll_vatRoot.visibility=View.GONE
@@ -146,7 +146,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     if (promoDiscount!=0.0){
                         view_promo.visibility=View.VISIBLE
                         ll_Promo.visibility=View.VISIBLE
-                        tv_promo.text = "$" + promoDiscount
+                        tv_promo.text = "$$promoDiscount"
                     }else{
                         view_promo.visibility=View.GONE
                         ll_Promo.visibility=View.GONE
@@ -158,7 +158,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     if (tip!=0.0){
                         view_tip.visibility=View.VISIBLE
                         ll_tip.visibility=View.VISIBLE
-                        tv_tip.text = "$" + tip
+                        tv_tip.text = "$$tip"
                     }else{
                         view_tip.visibility=View.GONE
                         ll_tip.visibility=View.GONE
@@ -166,7 +166,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     }
 
                     val adapter = FoodQuantiytAdapter(this, liveData.data.body.order.orderDetails)
-                    rv_quantity!!.setAdapter(adapter)
+                    rv_quantity!!.adapter = adapter
                     mapp.onCreate(null)
                     mapp.onResume()
                     mapp.getMapAsync(this@JobHistoryDetails)
@@ -187,7 +187,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
         gmap!!.setMinZoomPreference(1F)
         if (gmap != null) {
             gmap!!.clear()
-            if (!latUser.isEmpty() && !latRestaurant.isEmpty()) {
+            if (latUser.isNotEmpty() && latRestaurant.isNotEmpty()) {
                 /*val lstLatLngRoute = ArrayList<LatLng>()
                 lstLatLngRoute.add(0, LatLng(latUser.toDouble(), longUser.toDouble()))
                 lstLatLngRoute.add(1, LatLng(latRestaurant.toDouble(), longRestaurant.toDouble()))
@@ -267,7 +267,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                 .build()
         apiInterface = retrofit.create(RestApiInterface::class.java)
         apiInterface.getDirections("driving", "less_driving", pickuplatlng.latitude.toString() + "," + pickuplatlng.longitude, dropofflatlng.latitude.toString() + "," + dropofflatlng.longitude, resources.getString(R.string.google_maps_key)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            val routeList: List<Route> = it.getRoutes()
+            val routeList: List<Route> = it.routes
             Log.e("DGsdsgdgsgd", "" + routeList.size)
             for (route in routeList) {
                 val polyLine = route.overviewPolyline.points

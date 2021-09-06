@@ -5,8 +5,6 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.content.Intent
-import android.location.Address
-import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -52,10 +50,12 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
         if (Type_image == "Front") {
-            Glide.with(this).load(imagePath).placeholder(R.drawable.app_logo_black).into(iv_frontID!!)
+            Glide.with(this).load(imagePath).placeholder(R.drawable.app_logo_black)
+                .into(iv_frontID!!)
             frontImage = image_path
         } else {
-            Glide.with(this).load(imagePath).placeholder(R.drawable.app_logo_black).into(iv_backID!!)
+            Glide.with(this).load(imagePath).placeholder(R.drawable.app_logo_black)
+                .into(iv_backID!!)
             backImage = image_path
         }
     }
@@ -101,18 +101,18 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
             finish()
         } else if (onClickFrom.equalsIgnoreCase("Edit")) {
             onClickFrom = ""
-            tv_id_hedder!!.setText("ID DETAILS")
-            iv_edit_id!!.setVisibility(View.VISIBLE)
-            iv_front_imageID!!.setVisibility(View.GONE)
-            iv_back_imageID!!.setVisibility(View.GONE)
-            LL_cancle_update_button!!.setVisibility(View.GONE)
-            ed_idfirstname!!.setEnabled(false)
-            Ed_id_lastname!!.setEnabled(false)
-            Ed_id_number!!.setEnabled(false)
-            tv_issue_date.setEnabled(false)
-            tv_dob.setEnabled(false)
-            ed_id_address!!.setEnabled(false)
-            ed_id_address!!.isClickable=false
+            tv_id_hedder!!.text = "ID DETAILS"
+            iv_edit_id!!.visibility = View.VISIBLE
+            iv_front_imageID!!.visibility = View.GONE
+            iv_back_imageID!!.visibility = View.GONE
+            LL_cancle_update_button!!.visibility = View.GONE
+            ed_idfirstname!!.isEnabled = false
+            Ed_id_lastname!!.isEnabled = false
+            Ed_id_number!!.isEnabled = false
+            tv_issue_date.isEnabled = false
+            tv_dob.isEnabled = false
+            ed_id_address!!.isEnabled = false
+            ed_id_address!!.isClickable = false
         } else {
             finish()
         }
@@ -125,8 +125,29 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
         val dob = tv_dob.text.toString().trim()
         val issueDate = tv_issue_date.text.toString().trim()
         val addresss = ed_id_address.text.toString().trim()
-        if (validator.addIdCardDetailsValid(this, firstName, lastName, idCardNumber, dob, issueDate, addresss)) {
-            viewModel.updateIdCardApi(this, idDetailsRespone.body.id.toString(), idCardNumber, firstName, lastName, dob, issueDate, addresss, frontImage, backImage, true)
+        if (validator.addIdCardDetailsValid(
+                this,
+                firstName,
+                lastName,
+                idCardNumber,
+                dob,
+                issueDate,
+                addresss
+            )
+        ) {
+            viewModel.updateIdCardApi(
+                this,
+                idDetailsRespone.body.id.toString(),
+                idCardNumber,
+                firstName,
+                lastName,
+                dob,
+                issueDate,
+                addresss,
+                frontImage,
+                backImage,
+                true
+            )
             viewModel.getUpdateIdCardResponse().observe(this, this)
         }
     }
@@ -136,17 +157,17 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
             finish()
         } else if (onClickFrom.equalsIgnoreCase("Edit")) {
             onClickFrom = ""
-            tv_id_hedder!!.setText("ID DETAILS")
-            iv_edit_id!!.setVisibility(View.VISIBLE)
-            iv_front_imageID!!.setVisibility(View.GONE)
-            iv_back_imageID!!.setVisibility(View.GONE)
-            LL_cancle_update_button!!.setVisibility(View.GONE)
-            ed_idfirstname!!.setEnabled(false)
-            Ed_id_lastname!!.setEnabled(false)
-            Ed_id_number!!.setEnabled(false)
-            tv_issue_date.setEnabled(false)
-            tv_dob.setEnabled(false)
-            ed_id_address!!.setEnabled(false)
+            tv_id_hedder!!.text = "ID DETAILS"
+            iv_edit_id!!.visibility = View.VISIBLE
+            iv_front_imageID!!.visibility = View.GONE
+            iv_back_imageID!!.visibility = View.GONE
+            LL_cancle_update_button!!.visibility = View.GONE
+            ed_idfirstname!!.isEnabled = false
+            Ed_id_lastname!!.isEnabled = false
+            Ed_id_number!!.isEnabled = false
+            tv_issue_date.isEnabled = false
+            tv_dob.isEnabled = false
+            ed_id_address!!.isEnabled = false
             ed_id_address.isClickable = false
         } else {
             finish()
@@ -208,22 +229,21 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
     }
 
     override fun onClick(p0: View?) {
-        val v1 = p0!!.id
-        when (v1) {
+        when (p0!!.id) {
             R.id.iv_edit_id -> {
                 if (idDetailsData != null && idDetailsData!!.id != 0) {
                     onClickFrom = "Edit"
-                    tv_id_hedder!!.setText("EDIT ID DETAILS")
-                    iv_edit_id!!.setVisibility(View.GONE)
-                    iv_front_imageID!!.setVisibility(View.VISIBLE)
-                    iv_back_imageID!!.setVisibility(View.VISIBLE)
-                    LL_cancle_update_button!!.setVisibility(View.VISIBLE)
-                    ed_idfirstname!!.setEnabled(true)
-                    Ed_id_lastname!!.setEnabled(true)
-                    Ed_id_number!!.setEnabled(true)
-                    tv_dob.setEnabled(true)
-                    tv_issue_date.setEnabled(true)
-                    ed_id_address!!.setEnabled(true)
+                    tv_id_hedder!!.text = "EDIT ID DETAILS"
+                    iv_edit_id!!.visibility = View.GONE
+                    iv_front_imageID!!.visibility = View.VISIBLE
+                    iv_back_imageID!!.visibility = View.VISIBLE
+                    LL_cancle_update_button!!.visibility = View.VISIBLE
+                    ed_idfirstname!!.isEnabled = true
+                    Ed_id_lastname!!.isEnabled = true
+                    Ed_id_number!!.isEnabled = true
+                    tv_dob.isEnabled = true
+                    tv_issue_date.isEnabled = true
+                    ed_id_address!!.isEnabled = true
                     ed_id_address!!.isClickable = true
                 }
             }
@@ -244,17 +264,17 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
             Status.SUCCESS -> {
                 if (liveData.data is UpdateIdDetailsResponse) {
                     onClickFrom = ""
-                    tv_id_hedder!!.setText("ID DETAILS")
-                    iv_edit_id!!.setVisibility(View.VISIBLE)
-                    iv_front_imageID!!.setVisibility(View.GONE)
-                    iv_back_imageID!!.setVisibility(View.GONE)
-                    LL_cancle_update_button!!.setVisibility(View.GONE)
-                    ed_idfirstname!!.setEnabled(false)
-                    Ed_id_lastname!!.setEnabled(false)
-                    Ed_id_number!!.setEnabled(false)
-                    tv_issue_date.setEnabled(false)
-                    tv_dob.setEnabled(false)
-                    ed_id_address!!.setEnabled(false)
+                    tv_id_hedder!!.text = "ID DETAILS"
+                    iv_edit_id!!.visibility = View.VISIBLE
+                    iv_front_imageID!!.visibility = View.GONE
+                    iv_back_imageID!!.visibility = View.GONE
+                    LL_cancle_update_button!!.visibility = View.GONE
+                    ed_idfirstname!!.isEnabled = false
+                    Ed_id_lastname!!.isEnabled = false
+                    Ed_id_number!!.isEnabled = false
+                    tv_issue_date.isEnabled = false
+                    tv_dob.isEnabled = false
+                    ed_id_address!!.isEnabled = false
                     ed_id_address!!.isClickable = false
                 }
                 if (liveData.data is GetIdDetailsRespone) {
@@ -262,29 +282,31 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
                         if (onClickFrom.equalsIgnoreCase("Edit")) {
                             Log.e("GetIdDetailsRespone", "data fill on set on resume in edit case")
                         } else {
-                            ll_details.setEnabled(true)
+                            ll_details.isEnabled = true
                             rl_rootAddIdDestils.visibility = View.GONE
                             idDetailsData = liveData.data.body
                             idDetailsRespone = liveData.data
                             ed_idfirstname.setText(liveData.data.body.firstName)
                             Ed_id_lastname.setText(liveData.data.body.lastName)
                             Ed_id_number.setText(liveData.data.body.idNumber)
-                            tv_issue_date.setText(liveData.data.body.issueDate)
-                            tv_dob.setText(liveData.data.body.dob)
-                            ed_id_address.setText(liveData.data.body.address)
-                            Glide.with(this).load(liveData.data.body.frontPhoto).placeholder(R.drawable.placeholder_circle).into(iv_frontID!!)
-                            Glide.with(this).load(liveData.data.body.backPhoto).placeholder(R.drawable.placeholder_circle).into(iv_backID!!)
+                            tv_issue_date.text = liveData.data.body.issueDate
+                            tv_dob.text = liveData.data.body.dob
+                            ed_id_address.text = liveData.data.body.address
+                            Glide.with(this).load(liveData.data.body.frontPhoto)
+                                .placeholder(R.drawable.placeholder_circle).into(iv_frontID!!)
+                            Glide.with(this).load(liveData.data.body.backPhoto)
+                                .placeholder(R.drawable.placeholder_circle).into(iv_backID!!)
                         }
 
                     } else {
-                        ll_details.setEnabled(false)
+                        ll_details.isEnabled = false
                         rl_rootAddIdDestils.visibility = View.VISIBLE
-                        ed_idfirstname.setHint("")
-                        Ed_id_lastname.setHint("")
-                        Ed_id_number.setHint("")
-                        tv_issue_date.setHint("")
-                        tv_dob.setHint("")
-                        ed_id_address.setHint("")
+                        ed_idfirstname.hint = ""
+                        Ed_id_lastname.hint = ""
+                        Ed_id_number.hint = ""
+                        tv_issue_date.hint = ""
+                        tv_dob.hint = ""
+                        ed_id_address.hint = ""
                     }
                 }
             }
@@ -300,17 +322,17 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
             finish()
         } else if (onClickFrom.equalsIgnoreCase("Edit")) {
             onClickFrom = ""
-            tv_id_hedder!!.setText("ID DETAILS")
-            iv_edit_id!!.setVisibility(View.VISIBLE)
-            iv_front_imageID!!.setVisibility(View.GONE)
-            iv_back_imageID!!.setVisibility(View.GONE)
-            LL_cancle_update_button!!.setVisibility(View.GONE)
-            ed_idfirstname!!.setEnabled(false)
-            Ed_id_lastname!!.setEnabled(false)
-            Ed_id_number!!.setEnabled(false)
-            tv_issue_date.setEnabled(false)
-            tv_dob.setEnabled(false)
-            ed_id_address!!.setEnabled(false)
+            tv_id_hedder!!.text = "ID DETAILS"
+            iv_edit_id!!.visibility = View.VISIBLE
+            iv_front_imageID!!.visibility = View.GONE
+            iv_back_imageID!!.visibility = View.GONE
+            LL_cancle_update_button!!.visibility = View.GONE
+            ed_idfirstname!!.isEnabled = false
+            Ed_id_lastname!!.isEnabled = false
+            Ed_id_number!!.isEnabled = false
+            tv_issue_date.isEnabled = false
+            tv_dob.isEnabled = false
+            ed_id_address!!.isEnabled = false
             ed_id_address!!.isClickable = false
         } else {
             finish()
@@ -330,30 +352,7 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
                 ed_id_address.text = locaddress
                 val latitude = data.getStringExtra("latitude")
                 val longitude = data.getStringExtra("longitude")
-               /* if (latitude != null) {
-                    Completed_Address(latitude.toDouble(), longitude.toDouble());
-                }*/
-
             }
         }
     }
-
-    fun Completed_Address(center_lat: Double, center_lang: Double) {
-        val geocoder: Geocoder
-        val addresses: List<Address>?
-        geocoder = Geocoder(this, Locale.getDefault())
-        try {
-            addresses = geocoder.getFromLocation(center_lat, center_lang, 1)
-            if (addresses != null && addresses.size > 0) {
-//                et_country.text = addresses[0].getCountryName()
-//                et_state.text = addresses[0].getAdminArea()
-//                et_city.text = addresses[0].getSubAdminArea()
-//                et_zipCode.text = addresses[0].getPostalCode()
-
-            } else {
-            }
-        } catch (e: java.lang.Exception) {
-        }
-    }
-
 }

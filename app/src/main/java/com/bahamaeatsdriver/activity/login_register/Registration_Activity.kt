@@ -218,7 +218,7 @@ class Registration_Activity : ImagePicker(), View.OnClickListener, OnCitySelecti
     //    File imgFile = new File(pictureFilePath);
     fun convertimage(bit: Bitmap): String {
         val bout = ByteArrayOutputStream()
-        bit!!.compress(Bitmap.CompressFormat.JPEG, 70, bout)
+        bit.compress(Bitmap.CompressFormat.JPEG, 70, bout)
         val imagearray = bout.toByteArray()
         encodedImage = Base64.encodeToString(imagearray, Base64.DEFAULT)
         return encodedImage!!
@@ -363,9 +363,9 @@ class Registration_Activity : ImagePicker(), View.OnClickListener, OnCitySelecti
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.custom_city_dialog, null)
         popupWindow = PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        popupWindow!!.setOutsideTouchable(true)
+        popupWindow!!.isOutsideTouchable = true
         val adapter = CityAdapter(this, body, this)
-        customView!!.rv_cities.setAdapter(adapter)
+        customView!!.rv_cities.adapter = adapter
         popupWindow!!.showAsDropDown(ivSort)
 
 

@@ -69,7 +69,7 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     override fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String) {
         updatedCountry_Code = updatedCountryCode
         contact_Number = contactNumber
-        et_contactNumber.setText(updatedCountryCode + contactNumber)
+        et_contactNumber.text = updatedCountryCode + contactNumber
     }
 
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
@@ -91,14 +91,14 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
             profileDetails = (intent.getSerializableExtra("profileDetails") as DriverProfileDetailsResposne?)!!
             Glide.with(this).load(profileDetails!!.body.image).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)
 //            et_fullName.setText(profileDetails!!.body.fullName)
-            if (!profileDetails!!.body.fullName.isEmpty())
+            if (profileDetails!!.body.fullName.isNotEmpty())
                 et_fullName.setText(profileDetails!!.body.fullName)
             else
                 et_fullName.setText(profileDetails!!.body.firstName + " " + profileDetails!!.body.lastName)
-            et_contactNumber.setText(profileDetails!!.body.countryCodePhone)
-            et_email.setText(profileDetails!!.body.email)
+            et_contactNumber.text = profileDetails!!.body.countryCodePhone
+            et_email.text = profileDetails!!.body.email
             et_country.text = getString(R.string.countryName)
-            tv_selectedCity.setText(profileDetails!!.body.city)
+            tv_selectedCity.text = profileDetails!!.body.city
             updatedCountry_Code = profileDetails!!.body.countryCode
             contact_Number = profileDetails!!.body.contactNo
         }
@@ -242,12 +242,9 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     }
 
     override fun onClick(p0: View?) {
-        val itemid = p0!!.id
-        when (itemid) {
+        when (p0!!.id) {
             R.id.iv_edit_profile -> {
-//                image()
                 checkPermissionCamera(false, "1", "")
-
             }
 
             R.id.tv_selectedCity -> {
@@ -259,10 +256,6 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
                 finish()
             }
             R.id.et_contactNumber -> {
-                /* launchActivity<UpdateContactNumberActivity>()
-                 {
-                 }*/
-
                 val initData = Intent(this, UpdateContactNumberActivity::class.java)
                 startActivityForResult(initData, pickPhoneNumberResultCode)
             }
@@ -271,7 +264,6 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
              */
             R.id.btn_update -> {
                 val fullname = et_fullName.text.toString().trim()
-//                contact_Number = et_contactNumber.text.toString().trim()
                 val email = et_email.text.toString().trim()
 //                et_fullName.text.toString().trim()
                 val country = et_country.text.toString().trim()
@@ -330,9 +322,9 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.custom_city_dialog, null)
         popupWindow = PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        popupWindow!!.setOutsideTouchable(true)
+        popupWindow!!.isOutsideTouchable = true
         val adapter = CityAdapter(this, body, this)
-        customView!!.rv_cities.setAdapter(adapter)
+        customView!!.rv_cities.adapter = adapter
         popupWindow!!.showAsDropDown(ivSort)
 
     }

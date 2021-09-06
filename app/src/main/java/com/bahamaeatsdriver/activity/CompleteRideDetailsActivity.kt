@@ -12,7 +12,9 @@ import com.bahamaeatsdriver.model_class.add_on_list.AddOnsCustomModel
 import com.bahamaeatsdriver.model_class.change_ride_status.Body
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_complete_ride_details.*
+import java.lang.Math.*
 import java.text.DecimalFormat
+import kotlin.math.sin
 
 class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
@@ -22,7 +24,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
         if (intent.getSerializableExtra("data") != null) {
             val orderData = intent.getSerializableExtra("data") as Body
             Helper.showErrorAlertWithoutTitle(this, "Ride completed successfully.")
-            if (!orderData.restaurant.latitude.isEmpty() && !orderData.restaurant.longitude.isEmpty() && orderData.userAddress.latitude != 0.0 && orderData.userAddress.longitude != 0.0) {
+            if (orderData.restaurant.latitude.isNotEmpty() && orderData.restaurant.longitude.isNotEmpty() && orderData.userAddress.latitude != 0.0 && orderData.userAddress.longitude != 0.0) {
                 val restaurantToUser = distance(
                     orderData.restaurant.latitude.toDouble(),
                     orderData.restaurant.longitude.toDouble(),
@@ -31,7 +33,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 )
                 val finalDistanceNew: String =
                     java.lang.String.valueOf(DecimalFormat("##").format(restaurantToUser))
-                tv_totalDistance.text = finalDistanceNew + " mi"
+                tv_totalDistance.text = "$finalDistanceNew mi"
             }
             /**
              * paymentMethod-1 for suncash
@@ -41,32 +43,35 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
              * paymentMethod-6 for IsLand Pay
              * paymentMethod-7 for be_wallet
              */
-            if (orderData.order.paymentMethod == 1) {
-                tv_paymentMode.text = "Payment Mode: Suncash"
-            } else if (orderData.order.paymentMethod == 2) {
-                tv_paymentMode.text = "Payment Mode: Paypal"
-            } else if (orderData.order.paymentMethod == 4) {
-                tv_paymentMode.text = "Payment Mode: Kanoo"
-            } else if (orderData.order.paymentMethod == 5) {
-                tv_paymentMode.text = "Payment Mode: Atlantic"
-            } else if (orderData.order.paymentMethod == 6) {
-                tv_paymentMode.text = "Payment Mode: IsLand Pay"
-            } else if (orderData.order.paymentMethod == 7) {
-                tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
+            when (orderData.order.paymentMethod) {
+                1 -> {
+                    tv_paymentMode.text = "Payment Mode: Suncash"
+                }
+                2 -> {
+                    tv_paymentMode.text = "Payment Mode: Paypal"
+                }
+                4 -> {
+                    tv_paymentMode.text = "Payment Mode: Kanoo"
+                }
+                5 -> {
+                    tv_paymentMode.text = "Payment Mode: Atlantic"
+                }
+                6 -> {
+                    tv_paymentMode.text = "Payment Mode: IsLand Pay"
+                }
+                7 -> {
+                    tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
+                }
             }
             tv_totalAmount.text =
                 "$" + Helper.roundOffDecimalNew(orderData.order.netAmount.toFloat())
             tv_restaurantName.text = orderData.restaurant.address
             val houseNumber = orderData.userAddress.completeAddress
-            val streetName =
-                if (!orderData.userAddress.streetName.isEmpty()) "/" + orderData.userAddress.streetName else ""
-            val landmark =
-                if (!orderData.userAddress.deliveryInstructions.isEmpty()) "\n" + orderData.userAddress.deliveryInstructions else ""
-            val userAddres =
-                if (!orderData.userAddress.address.isEmpty()) "\n" + orderData.userAddress.address else ""
+            val streetName = if (orderData.userAddress.streetName.isNotEmpty()) "/" + orderData.userAddress.streetName else ""
+            val landmark = if (orderData.userAddress.deliveryInstructions.isNotEmpty()) "\n" + orderData.userAddress.deliveryInstructions else ""
+            val userAddres = if (orderData.userAddress.address.isNotEmpty()) "\n" + orderData.userAddress.address else ""
             val finalAddress = houseNumber + streetName + landmark + userAddres
             tv_userOrderAddress.text = finalAddress
-
             tv_deliveryAmount.text = "$" + orderData.order.deliveryFee
             if (orderData.order.deliveryFee != 0.0) {
                 ll_deliverChargesRoot.visibility = View.VISIBLE
@@ -123,16 +128,16 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 .placeholder(R.drawable.placeholder_rectangle).into(iv_restaurantImage)
             val adapterItemQuantity =
                 OrderDetailsQuantiytAfterOrderCompleteAdapter(this, orderData.order.orderDetails)
-            rv_orderItems.setAdapter(adapterItemQuantity)
+            rv_orderItems.adapter = adapterItemQuantity
             val listAddOnList = ArrayList<AddOnsCustomModel>()
             var count = 0
-            for (i in 0 until orderData.order.orderDetails.size) {
-                for (j in 0 until orderData.order.orderDetails.get(i).categories.size) {
-                    for (k in 0 until orderData.order.orderDetails.get(i).categories.get(j).addOnArray.size) {
+            for (i in orderData.order.orderDetails.indices) {
+                for (j in orderData.order.orderDetails[i].categories.indices) {
+                    for (k in 0 until orderData.order.orderDetails[i].categories[j].addOnArray.size) {
                         val addOnMOdel = AddOnsCustomModel(
-                            orderData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).addon,
-                            orderData.order.orderDetails.get(i).categories.get(j).addOnArray.get(k).price,
-                            orderData.order.orderDetails.get(i).quantity
+                            orderData.order.orderDetails[i].categories[j].addOnArray[k].addon,
+                            orderData.order.orderDetails[i].categories[j].addOnArray[k].price,
+                            orderData.order.orderDetails[i].quantity
                         )
                         listAddOnList.add(count, addOnMOdel)
                         count++
@@ -140,7 +145,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
 
-            if (listAddOnList != null && !listAddOnList.isEmpty()) {
+            if (listAddOnList != null && listAddOnList.isNotEmpty()) {
                 ll_addOnsLabel.visibility = View.VISIBLE
                 val adapterItemAddOnsQuantity1 = OrderDetailsAddOnsQuantiytAdapter(this, listAddOnList)
                 rv_orderAddOnsItems.adapter = adapterItemAddOnsQuantity1
@@ -153,8 +158,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        val itemId = v!!.id
-        when (itemId) {
+        when (v!!.id) {
             R.id.btn_done -> {
                 finish()
             }
@@ -163,22 +167,22 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun distance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
         val theta = lon1 - lon2
-        var dist = (Math.sin(deg2rad(lat1))
-                * Math.sin(deg2rad(lat2))
-                + (Math.cos(deg2rad(lat1))
-                * Math.cos(deg2rad(lat2))
-                * Math.cos(deg2rad(theta))))
-        dist = Math.acos(dist)
+        var dist = (sin(deg2rad(lat1))
+                * sin(deg2rad(lat2))
+                + (kotlin.math.cos(deg2rad(lat1))
+                * kotlin.math.cos(deg2rad(lat2))
+                * kotlin.math.cos(deg2rad(theta))))
+        dist = kotlin.math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
         return dist
     }
 
     private fun deg2rad(deg: Double): Double {
-        return deg * Math.PI / 180.0
+        return deg * PI / 180.0
     }
 
     private fun rad2deg(rad: Double): Double {
-        return rad * 180.0 / Math.PI
+        return rad * 180.0 / PI
     }
 }

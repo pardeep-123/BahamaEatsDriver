@@ -185,8 +185,7 @@ class Fill_LicenseDetail_Activity : AppCompatActivity(), View.OnClickListener, O
     }
 
     override fun onClick(p0: View?) {
-        val itemid = p0!!.id
-        when (itemid) {
+        when (p0!!.id) {
             R.id.btn_Licenceconfirm -> {
                 if (TypeofActivity.equals("From_profile")) {
                     finish()
@@ -251,9 +250,9 @@ class Fill_LicenseDetail_Activity : AppCompatActivity(), View.OnClickListener, O
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.select_licence_type_dialog, null)
         popupWindow = PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        popupWindow!!.setOutsideTouchable(true)
+        popupWindow!!.isOutsideTouchable = true
         val adapter = LicenseTypeAdapter(this, licenseTypeList, this)
-        customView!!.rv_licenseType.setAdapter(adapter)
+        customView!!.rv_licenseType.adapter = adapter
         popupWindow!!.showAsDropDown(etLicensetype)
     }
 

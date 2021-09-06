@@ -54,13 +54,13 @@ class Identification_Activity : ImagePicker(), View.OnClickListener {
         } catch (e: Exception) {
         }
 
-        if (TypeofActivity.equals("Idproof")) {
-            Tv_hedder.setText("ADD ID Details")
+        if (TypeofActivity == "Idproof") {
+            Tv_hedder.text = "ADD ID Details"
             Tv_upload.text=getString(R.string.upload_front_and_back_id_proof)
-        } else if (TypeofActivity.equals("Licence")) {
-            Tv_hedder.setText("ADD License Details")
+        } else if (TypeofActivity == "Licence") {
+            Tv_hedder.text = "ADD License Details"
             Tv_upload.text=getString(R.string.upload_front_and_back_id_driver)
-        }else if (TypeofActivity.equals("Normal")) {
+        }else if (TypeofActivity == "Normal") {
             Tv_upload.text=getString(R.string.upload_front_and_back_id_driver)
         }
 
@@ -78,8 +78,7 @@ class Identification_Activity : ImagePicker(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        val itemid = view!!.id
-        when (itemid) {
+        when (view!!.id) {
             R.id.LL_UserCamera -> {
                 Type_image = if (temp % 2 == 0) {
                     "Front"
@@ -112,27 +111,31 @@ class Identification_Activity : ImagePicker(), View.OnClickListener {
                 finish()
             }
             R.id.btn_continue -> {
-                if (TypeofActivity == "Idproof") {
-                    val intent = Intent(this@Identification_Activity, Id_details::class.java)
-                    intent.putExtra("type", "Idproof")
-                    intent.putExtra("frontImage", image_pathFront)
-                    intent.putExtra("backImage", image_pathBack)
-                    startActivity(intent)
-                    finish()
-                } else if (TypeofActivity == "Licence") {
-                    val intent = Intent(this@Identification_Activity, Fill_LicenseDetail_Activity::class.java)
-                    intent.putExtra("type", "Licence")
-                    intent.putExtra("frontImage", image_pathFront)
-                    intent.putExtra("backImage", image_pathBack)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    val intent = Intent(this@Identification_Activity, Fill_LicenseDetail_Activity::class.java)
-                    intent.putExtra("type", "Normal")
-                    intent.putExtra("frontImage", image_pathFront)
-                    intent.putExtra("backImage", image_pathBack)
-                    intent.putExtra("token", token)
-                    startActivity(intent)
+                when (TypeofActivity) {
+                    "Idproof" -> {
+                        val intent = Intent(this@Identification_Activity, Id_details::class.java)
+                        intent.putExtra("type", "Idproof")
+                        intent.putExtra("frontImage", image_pathFront)
+                        intent.putExtra("backImage", image_pathBack)
+                        startActivity(intent)
+                        finish()
+                    }
+                    "Licence" -> {
+                        val intent = Intent(this@Identification_Activity, Fill_LicenseDetail_Activity::class.java)
+                        intent.putExtra("type", "Licence")
+                        intent.putExtra("frontImage", image_pathFront)
+                        intent.putExtra("backImage", image_pathBack)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else -> {
+                        val intent = Intent(this@Identification_Activity, Fill_LicenseDetail_Activity::class.java)
+                        intent.putExtra("type", "Normal")
+                        intent.putExtra("frontImage", image_pathFront)
+                        intent.putExtra("backImage", image_pathBack)
+                        intent.putExtra("token", token)
+                        startActivity(intent)
+                    }
                 }
             }
         }
