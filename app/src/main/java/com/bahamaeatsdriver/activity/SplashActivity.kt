@@ -11,8 +11,8 @@ import com.bahamaeatsdriver.helper.extensions.getPrefrence
 import com.bahamaeatsdriver.helper.extensions.launchActivity
 
 
-//class Splesh_Screen : CheckPlayStoreVersion() {
-class Splesh_Screen : AppCompatActivity() {
+class SplashActivity : CheckPlayStoreVersion() {
+//class SplashActivity : AppCompatActivity() {
     var handler: Handler? = null
     val a: String? = null
     var token = ""
@@ -20,8 +20,7 @@ class Splesh_Screen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splesh__screen)
         // Initialize the Update Manager with the Activity and the Update Mode
-
-        if (getPrefrence(Constants.TOKEN, "") != null && !getPrefrence(Constants.TOKEN, "").isEmpty()) {
+        /*if (getPrefrence(Constants.TOKEN, "") != null && !getPrefrence(Constants.TOKEN, "").isEmpty()) {
             token = getPrefrence(Constants.TOKEN, "")
         }
         Handler().postDelayed({
@@ -32,8 +31,8 @@ class Splesh_Screen : AppCompatActivity() {
                 launchActivity<Login_Activity>()
                 finish()
             }
-        }, 2000)
+        }, 2000)*/
 
-//        GetVersionCode().execute()
+        GetVersionCode().execute()
     }
 }

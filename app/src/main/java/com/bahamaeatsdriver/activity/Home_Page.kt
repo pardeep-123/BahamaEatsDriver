@@ -174,7 +174,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             if (googleMap != null) {
                 if (mLatitute.isNotEmpty()) {
                     if (driverMarker == null)
-                        driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble(), R.drawable.car_marker, "You")
+                        driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble())
                 } else {
                     checkPermissionLocation(this)
                 }
@@ -361,7 +361,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             if (googleMap != null) {
                 googleMap!!.clear()
                 if (mLatitute.isNotEmpty())
-                    driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble(), R.drawable.car_marker, "You")
+                    driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble())
             }
         } else {
             if (googleMap != null) {
@@ -393,8 +393,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         return googleMap!!.addMarker(MarkerOptions().position(LatLng(latitude, longitude)).anchor(0.5f, 0.5f).title(title).icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap)))
     }
 
-    private fun setMarkerdate(LATITUDE: Double, LONGITUDE: Double, markar: Int, title: String): Marker? {
-        val mMarker: Marker? = createMarker(LATITUDE, LONGITUDE, markar, title)
+    private fun setMarkerdate(LATITUDE: Double, LONGITUDE: Double): Marker? {
+        val mMarker: Marker? = createMarker(LATITUDE, LONGITUDE, R.drawable.car_marker, "You")
         //first maker camera focuse
         val latLng = LatLng(LATITUDE, LONGITUDE)
         val cameraPosition = CameraPosition.fromLatLngZoom(latLng, 15.0f)
@@ -417,13 +417,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         Log.e("DGSdgsdsg", "pickuplatlng==>" + pickuplatlng.longitude)
         Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.latitude)
         Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.longitude)
-
         val apiInterface: RestApiInterface
-        val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://maps.googleapis.com/")
-                .build()
+        val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).baseUrl("https://maps.googleapis.com/").build()
         apiInterface = retrofit.create(RestApiInterface::class.java)
         apiInterface.getDirections("driving", "less_driving", pickuplatlng.latitude.toString() + "," + pickuplatlng.longitude, dropofflatlng.latitude.toString() + "," + dropofflatlng.longitude, resources.getString(R.string.google_maps_key)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
             val routeList: List<Route> = it.routes
@@ -674,7 +669,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
             R.id.LL_paymentstatus -> {
                 temp = 1
-                startActivity(Intent(this, Payment_Status::class.java))
+                startActivity(Intent(this, PaymentStatsActivity::class.java))
             }
             R.id.homelayout -> {
                 temp = 0
@@ -1189,7 +1184,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         otherUserId = ""
         if (googleMap != null) {
             googleMap!!.clear()
-            driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble(), R.drawable.car_marker, "You")
+            driverMarker = setMarkerdate(mLatitute.toDouble(), mLongitute.toDouble())
         }
     }
 

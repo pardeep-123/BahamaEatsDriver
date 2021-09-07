@@ -32,15 +32,7 @@ class Forgot_Password_Activity : AppCompatActivity(), Observer<RestObservable> {
     }
 
     fun Button_subbmit(view: View?) {
-        /* dialog = Dialog(this@Forgot_Password_Activity)
-         dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-         dialog!!.setContentView(R.layout.res_welcome_screen)
-         dialog!!.setCancelable(true)
-         val tv_procced = dialog!!.findViewById<TextView>(R.id.tv_procced)
-         tv_procced.setOnClickListener { finish() }
-         dialog!!.show()*/
-
-        val email = et_email.text.toString().trim()
+         val email = et_email.text.toString().trim()
         if (validator.emailValid(this, email)) {
             viewModel.forgotPasswordApi(this, email, true)
             viewModel.getforgotPasswordResponse().observe(this, this)

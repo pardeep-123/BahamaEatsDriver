@@ -31,8 +31,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                     orderData.userAddress.latitude,
                     orderData.userAddress.longitude
                 )
-                val finalDistanceNew: String =
-                    java.lang.String.valueOf(DecimalFormat("##").format(restaurantToUser))
+                val finalDistanceNew: String = java.lang.String.valueOf(DecimalFormat("##").format(restaurantToUser))
                 tv_totalDistance.text = "$finalDistanceNew mi"
             }
             /**

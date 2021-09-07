@@ -37,7 +37,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class Payment_Status : AppCompatActivity(), Observer<RestObservable> {
+class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private var Recycler_view: RecyclerView? = null
     private var LL_Day: LinearLayout? = null

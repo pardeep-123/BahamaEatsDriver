@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/black"
-    tools:context=".activity.Payment_Status">
+    tools:context=".activity.PaymentStatsActivity">
 
     <RelativeLayout
         android:id="@+id/hedder"

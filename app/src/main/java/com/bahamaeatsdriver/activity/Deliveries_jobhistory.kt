@@ -101,11 +101,8 @@ class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHi
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is JobHistoryResponse) {
-//                    if (!liveData.data.body.pastJobHistory.isEmpty()) {
                     pastJobHistory = liveData.data.body.pastJobHistory
                     upComingJobHistory = liveData.data.body.upComingJobHistory
-
-//                    }
                     if (liveData.data.body.upComingJobHistory.id != 0) {
                         Rv_jobhistory.visibility = View.VISIBLE
                         no_dataAvailable.visibility = View.GONE

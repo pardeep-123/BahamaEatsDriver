@@ -54,7 +54,6 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
         tv_dateOfJoin = findViewById(R.id.tv_dateOfJoin)
         tv_Username = findViewById(R.id.tv_username)
         iv_Profile_image = findViewById(R.id.iv_profileImage)
-
     }
 
     override fun onResume() {

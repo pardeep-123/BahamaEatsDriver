@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Documentation
 import com.bahamaeatsdriver.activity.Home_Page
-import com.bahamaeatsdriver.activity.Payment_Status
+import com.bahamaeatsdriver.activity.PaymentStatsActivity
 import com.bahamaeatsdriver.activity.Pofile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 
@@ -87,7 +87,7 @@ class Navigation_drawl : Fragment() {
         })
         LL_paymentstatus!!.setOnClickListener(View.OnClickListener {
             temp = 1
-            startActivity(Intent(activity, Payment_Status::class.java))
+            startActivity(Intent(activity, PaymentStatsActivity::class.java))
         })
         homelayout!!.setOnClickListener(View.OnClickListener {
             if (temp == 0) {

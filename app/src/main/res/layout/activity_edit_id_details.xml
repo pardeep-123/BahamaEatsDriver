@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/black"
     android:orientation="vertical"
-    tools:context=".activity.login_register.Registration_Activity">
+    tools:context=".activity.Id_Details.Edit_Id_Details">
 
     <RelativeLayout
         android:id="@+id/hedder"
@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/tv_id_hedder"
             style="@style/Hedder"
-            android:text="ID Details" />
+            android:text="@string/id_details" />
 
         <ImageView
             android:id="@+id/iv_edit_id"
@@ -31,7 +31,6 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="0dp"
-            android:layout_marginRight="@dimen/_5sdp"
             android:padding="@dimen/_12sdp"
             android:src="@drawable/edit2"
             android:tint="@color/White" />
@@ -49,7 +48,7 @@
         <LinearLayout
             android:id="@+id/ll_details"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:enabled="false"
             android:gravity="center"
             android:orientation="vertical">
@@ -65,7 +64,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_130sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_weight="1">
 
                     <ImageView
@@ -90,7 +89,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_130sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1">
 
                     <ImageView
@@ -178,7 +177,7 @@
                 style="@style/EditextField"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:enabled="false"
-                android:hint="ID Number"
+                android:hint="@string/id_number"
                 android:inputType="text"
                 android:maxLength="16" />
 
@@ -200,14 +199,14 @@
                 android:inputType="date" />
 
             <TextView
-                android:ellipsize="end"
                 android:id="@+id/ed_id_address"
                 style="@style/EditextField9"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:autofillHints="@string/address"
-                android:hint="@string/address"
-                android:enabled="false"
                 android:clickable="false"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:hint="@string/address"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine" />
 
@@ -226,22 +225,22 @@
                     android:id="@+id/Button_id_cancle"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_weight="1"
                     android:background="@drawable/white_border_identification"
                     android:onClick="Button_id_cancle"
-                    android:text="CANCEL"
+                    android:text="@string/cancel"
                     android:textColor="@color/White" />
 
                 <Button
                     android:id="@+id/Button_update"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_smallsiz"
                     android:onClick="Button_update"
-                    android:text="UPDATE"
+                    android:text="@string/update"
                     android:textColor="@color/White">
 
                 </Button>
@@ -251,28 +250,28 @@
     </ScrollView>
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/rl_rootAddIdDestils"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/hedder"
-        android:background="#D3403C3C">
+        android:background="#D3403C3C"
+        android:visibility="gone">
 
         <TextView
-            android:visibility="gone"
             style="@style/Hedder"
             android:layout_above="@+id/btn_moveToAddIdDeatils"
             android:layout_margin="@dimen/_20sdp"
             android:gravity="center"
             android:text="@string/add_id_details_message"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btn_moveToAddIdDeatils"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_15sdp"
             android:layout_weight="1"
             android:background="@drawable/btn_smallsiz"
             android:text="@string/add"

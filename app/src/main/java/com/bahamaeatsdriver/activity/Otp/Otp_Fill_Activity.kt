@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.activity.Otp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
@@ -28,7 +30,8 @@ import kotlinx.android.synthetic.main.toolbar_layout.*
 import javax.inject.Inject
 
 
-class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener, Observer<RestObservable> {
+class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener,
+    Observer<RestObservable> {
 
     @Inject
     lateinit var validator: Validator
@@ -64,23 +67,31 @@ class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener
 
     private fun startTimer() {
         val countDownTimer = object : CountDownTimer(60000, 1000) {
+            @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 ll_remaining_time.visibility = View.VISIBLE
                 tv_Remaining_time.visibility = View.VISIBLE
                 tv_validateCodeLabel.visibility = View.VISIBLE
                 Log.d("Otp_Fill_Activity", "millisUntilFinished $millisUntilFinished")
-                tv_Remaining_time.text =""+ millisUntilFinished / 1000
-//                tv_Remaining_time.text =  "00:"+millisUntilFinished / 1000
-
+                tv_Remaining_time.text = "" + millisUntilFinished / 1000
                 tv_resend_otp.isClickable = false
                 tv_resend_otp.isClickable = false
-                tv_resend_otp.setTextColor(getResources().getColor(R.color.colorTextView));
+                tv_resend_otp.setTextColor(
+                    ContextCompat.getColor(
+                        this@Otp_Fill_Activity,
+                        R.color.colorTextView
+                    )
+                )
             }
 
             override fun onFinish() {
                 tv_resend_otp.isClickable = true
-                tv_resend_otp.setTextColor(getResources().getColor(R.color.White));
-//                tv_Remaining_time.text = getString(R.string.validate_code_in)
+                tv_resend_otp.setTextColor(
+                    ContextCompat.getColor(
+                        this@Otp_Fill_Activity,
+                        R.color.White
+                    )
+                )
                 ll_remaining_time.visibility = View.INVISIBLE
                 tv_Remaining_time.visibility = View.INVISIBLE
                 tv_validateCodeLabel.visibility = View.INVISIBLE
@@ -97,6 +108,7 @@ class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun afterTextChanged(editable: Editable) {
         if (editable.length == 1) {
             btn_ValidateOtp!!.text = "DONE"
@@ -111,7 +123,7 @@ class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener
             if (editTextthree.length() == 1) {
                 editTextfour.requestFocus()
             }
-        } else if (editable.length == 0) {
+        } else if (editable.isEmpty()) {
             btn_ValidateOtp!!.text = "DONE"
             if (editTextfour.length() == 0) {
                 editTextthree.requestFocus()
@@ -129,8 +141,7 @@ class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener
      * OnLick to go back
      */
     override fun onClick(view: View?) {
-        val itemid = view!!.id
-        when (itemid) {
+        when (view!!.id) {
             R.id.iv_backArrow -> {
                 finish()
             }
@@ -139,17 +150,30 @@ class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener
                 viewModel.getresendApiResponse().observe(this, this)
             }
             R.id.btn_ValidateOtp -> {
-                val otp: String = editTextone.getText().toString() + editTexttwo.getText().toString() + editTextthree.getText().toString() + editTextfour.getText().toString()
+                val otp: String =
+                    editTextone.text.toString() + editTexttwo.text.toString() + editTextthree.text.toString() + editTextfour.text.toString()
                 if (!validator.isNotNull(otp)) {
                     Helper.showErrorAlert(this, "Enter OTP first")
                 } else if (otp.length < 4) {
                     Helper.showErrorAlert(this, "Enter 4 digit OTP")
                 } else {
-                    if (!from.isEmpty() && from.equals("UpdateContactNumberActivity")) {
-                        viewModel.updatedPhoneVerifyOtpResponsneApi(this@Otp_Fill_Activity, countryCode, phone, otp, true)
+                    if (from.isNotEmpty() && from == "UpdateContactNumberActivity") {
+                        viewModel.updatedPhoneVerifyOtpResponsneApi(
+                            this@Otp_Fill_Activity,
+                            countryCode,
+                            phone,
+                            otp,
+                            true
+                        )
                         viewModel.getUpdatedPhoneVerifyOtp().observe(this, this)
                     } else {
-                        viewModel.verifyOtprApi(this@Otp_Fill_Activity, countryCode, phone, otp, true)
+                        viewModel.verifyOtprApi(
+                            this@Otp_Fill_Activity,
+                            countryCode,
+                            phone,
+                            otp,
+                            true
+                        )
                         viewModel.getverifyOtp().observe(this, this)
                     }
                 }
@@ -160,6 +184,7 @@ class Otp_Fill_Activity : AppCompatActivity(), TextWatcher, View.OnClickListener
     /**
      * When get success and response call 200 OK "onChanged" will call
      */
+    @SuppressLint("SetTextI18n")
     override fun onChanged(liveData: RestObservable?) {
         when (liveData!!.status) {
             Status.SUCCESS -> {
