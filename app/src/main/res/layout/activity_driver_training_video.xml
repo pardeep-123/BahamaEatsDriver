@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:context=".activity.DriverTrainingVideoActivity">
+
+    <RelativeLayout
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp">
+
+        <ImageView
+            android:id="@+id/iv_backBtn"
+            style="@style/BackButtonImage"
+            android:src="@drawable/backbtn" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp" />
+
+        <TextView
+            android:id="@+id/tv_noDataFound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableEnd="@drawable/ic_video_icon"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text="@string/no_video_available"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone" />
+        <!--        <com.google.android.youtube.player.YouTubeThumbnailView
+                    android:visibility="gone"
+                    android:id="@+id/video_thumbnail_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="15dp"
+                    android:background="@android:color/darker_gray"
+                    android:scaleType="centerCrop" />-->
+
+
+    </RelativeLayout>
+</LinearLayout>

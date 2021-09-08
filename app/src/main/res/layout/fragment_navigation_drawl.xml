@@ -377,6 +377,25 @@
                         android:textSize="@dimen/_11sdp"
                         android:text="Settings" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_trainingVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/navtraining"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="@string/training" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_Documents"

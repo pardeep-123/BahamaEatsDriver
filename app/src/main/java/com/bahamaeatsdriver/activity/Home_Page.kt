@@ -64,6 +64,7 @@ import com.bahamaeatsdriver.model_class.i_am_here.IAmHereResponse
 import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
 import com.bahamaeatsdriver.model_class.map_poliline.Route
+import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksResponse
 import com.bahamaeatsdriver.model_class.update_driver_online_status.UpdateDriverTakeOrderStatus
 import com.bahamaeatsdriver.model_class.update_latitudeLongitude.UpdateDriverLatLongResponse
 import com.bahamaeatsdriver.model_class.upload_receipt.UploadReceiptResponse
@@ -102,7 +103,8 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 
-class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListener, SocketManager.Observer, Observer<RestObservable> {
+class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListener,
+    SocketManager.Observer, Observer<RestObservable> {
 
     private lateinit var socketManager: SocketManager
 
@@ -146,6 +148,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var isReceiptUpload = 0
     private lateinit var relativeOnline: RelativeLayout
     private lateinit var relativeOffline: RelativeLayout
+    private var videoUrl = ""
 
     companion object {
         var loginDiverId = ""
@@ -191,10 +194,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     }
 
 
-    private  fun updateDriverOnlineOfflineStatus(isTakeOrderStatus: String){
+    private fun updateDriverOnlineOfflineStatus(isTakeOrderStatus: String) {
         viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
         viewModel.updateDriverOnlineStatusResposne().observe(this, this)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
@@ -219,6 +223,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         LL_support.setOnClickListener(this)
         LL_TandC.setOnClickListener(this)
         LL_settings.setOnClickListener(this)
+        ll_trainingVideo.setOnClickListener(this)
         LL_logout.setOnClickListener(this)
         Relativ_profile.setOnClickListener(this)
         Button_Starttrip.setOnClickListener(this)
@@ -232,10 +237,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         ll_call.setOnClickListener(this)
         tv_currentOrderDetails.setOnClickListener(this)
 
-        relativeOnline.setOnClickListener{
+        relativeOnline.setOnClickListener {
             updateDriverOnlineOfflineStatus("0")
         }
-        relativeOffline.setOnClickListener{
+        relativeOffline.setOnClickListener {
             updateDriverOnlineOfflineStatus("1")
         }
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -258,7 +263,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         }
 
                     } else {
-                        Toast.makeText(context, "Please check your internet connection", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Please check your internet connection",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
@@ -277,7 +286,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         //And it will be keep running until you close the entire application from task manager.
         //This method will executed only once.
         mSensorService = SensorService(activity)
-     val   mServiceIntent = Intent(activity, SensorService::class.java)
+        val mServiceIntent = Intent(activity, SensorService::class.java)
         if (!isMyServiceRunning(activity, SensorService::class.java)) {
             // startService(mServiceIntent);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -310,18 +319,23 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             return
         } else {
             //Get driver details
+//            viewModel.getTrainingVideoLinksApi(this, false)
+//            viewModel.getTrainingVideoLinksResponse().observe(this, this)
             currentRideApiCall()
             driverDetails = getprefObject(Constants.DRIVER_DETAILS)
             loginDiverId = driverDetails.body.id.toString()
             if (driverDetails.body.image.contains("http")) {
-                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage)
+                    .into(iv_Profile_image)
             } else {
-                Glide.with(this).load(IMAGE_URL + driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(IMAGE_URL + driverDetails.body.image)
+                    .placeholder(R.drawable.profileimage).into(iv_Profile_image)
             }
             if (driverDetails.body.fullName.isNotEmpty())
                 tv_driverName.text = driverDetails.body.fullName
             else
-                tv_driverName.text = driverDetails.body.firstName + " " + driverDetails.body.lastName
+                tv_driverName.text =
+                    driverDetails.body.firstName + " " + driverDetails.body.lastName
             checkNotificationsPermissionIsEnable()
         }
     }
@@ -340,7 +354,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 notificationOnDialog = Dialog(this, R.style.Theme_Dialog)
                 notificationOnDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 notificationOnDialog.setContentView(R.layout.notification_on_alert)
-                notificationOnDialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+                notificationOnDialog.window!!.setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+                )
                 notificationOnDialog.setCancelable(false)
                 notificationOnDialog.setCanceledOnTouchOutside(false)
                 notificationOnDialog.window!!.setGravity(Gravity.CENTER)
@@ -369,7 +386,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 if (latRestaurant.isNotEmpty() && longRestaurant.isNotEmpty()) {
                     val sydney = LatLng(latRestaurant.toDouble(), longRestaurant.toDouble())
                     val cameraPosition = CameraPosition.Builder().target(sydney).zoom(12f).build()
-                    googleMap!!.addMarker(MarkerOptions().position(sydney).title("Restaurant").icon(BitmapDescriptorFactory.defaultMarker()))
+                    googleMap!!.addMarker(
+                        MarkerOptions().position(sydney).title("Restaurant")
+                            .icon(BitmapDescriptorFactory.defaultMarker())
+                    )
                     googleMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
                     loadMapOf = 0
                 }
@@ -381,16 +401,32 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         googleMap!!.uiSettings.isZoomControlsEnabled = true
     }
 
-    private fun createDestinationMarker(latitude: Double, longitude: Double, iconResID: Int, title: String?): Marker? {
+    private fun createDestinationMarker(
+        latitude: Double,
+        longitude: Double,
+        iconResID: Int,
+        title: String?
+    ): Marker? {
         var resizeBitmap = BitmapFactory.decodeResource(resources, iconResID)
         resizeBitmap = Bitmap.createScaledBitmap(resizeBitmap!!, 60, 50, true)
-        return googleMap!!.addMarker(MarkerOptions().position(LatLng(latitude, longitude)).anchor(0.5f, 0.5f).title(title).icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap)))
+        return googleMap!!.addMarker(
+            MarkerOptions().position(LatLng(latitude, longitude)).anchor(0.5f, 0.5f).title(title)
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap))
+        )
     }
 
-    protected fun createMarker(latitude: Double, longitude: Double, iconResID: Int, title: String?): Marker? {
+    protected fun createMarker(
+        latitude: Double,
+        longitude: Double,
+        iconResID: Int,
+        title: String?
+    ): Marker? {
         var resizeBitmap = BitmapFactory.decodeResource(resources, iconResID)
         resizeBitmap = Bitmap.createScaledBitmap(resizeBitmap!!, 50, 40, true)
-        return googleMap!!.addMarker(MarkerOptions().position(LatLng(latitude, longitude)).anchor(0.5f, 0.5f).title(title).icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap)))
+        return googleMap!!.addMarker(
+            MarkerOptions().position(LatLng(latitude, longitude)).anchor(0.5f, 0.5f).title(title)
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap))
+        )
     }
 
     private fun setMarkerdate(LATITUDE: Double, LONGITUDE: Double): Marker? {
@@ -418,9 +454,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.latitude)
         Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.longitude)
         val apiInterface: RestApiInterface
-        val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).baseUrl("https://maps.googleapis.com/").build()
+        val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .baseUrl("https://maps.googleapis.com/").build()
         apiInterface = retrofit.create(RestApiInterface::class.java)
-        apiInterface.getDirections("driving", "less_driving", pickuplatlng.latitude.toString() + "," + pickuplatlng.longitude, dropofflatlng.latitude.toString() + "," + dropofflatlng.longitude, resources.getString(R.string.google_maps_key)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+        apiInterface.getDirections(
+            "driving",
+            "less_driving",
+            pickuplatlng.latitude.toString() + "," + pickuplatlng.longitude,
+            dropofflatlng.latitude.toString() + "," + dropofflatlng.longitude,
+            resources.getString(R.string.google_maps_key)
+        ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
             val routeList: List<Route> = it.routes
             Log.e("DGsdsgdgsgd", "" + routeList.size)
             for (route in routeList) {
@@ -443,7 +487,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dropMarker!!.remove()
             dropMarker = null
         }
-        dropMarker = googleMap!!.addMarker(MarkerOptions().position(LatLng(finishlat!!.toDouble(), finishlong!!.toDouble())).title(dropTitle).icon(BitmapDescriptorFactory.fromResource(R.drawable.source)))
+        dropMarker = googleMap!!.addMarker(
+            MarkerOptions().position(
+                LatLng(
+                    finishlat!!.toDouble(),
+                    finishlong!!.toDouble()
+                )
+            ).title(dropTitle).icon(BitmapDescriptorFactory.fromResource(R.drawable.source))
+        )
     }
 
     private fun drawPolyLineAndAnimateCar() {
@@ -498,8 +549,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             } while (b >= 0x20)
             val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
             lng += dlng
-            val p = LatLng(lat.toDouble() / 1E5,
-                    lng.toDouble() / 1E5)
+            val p = LatLng(
+                lat.toDouble() / 1E5,
+                lng.toDouble() / 1E5
+            )
             poly.add(p)
         }
         return poly
@@ -513,15 +566,22 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                  */
                 if (rideRequestId.isNotEmpty()) {
                     if (isResuarantBePaymentAvailable.isNotEmpty() && isResuarantBePaymentAvailable == "1") {
-                        if (isReceiptUpload == 1) changeRideStatusMethod(rideRequestId, Constants.START_RIDE)
+                        if (isReceiptUpload == 1) changeRideStatusMethod(
+                            rideRequestId,
+                            Constants.START_RIDE
+                        )
                         else
-                            Helper.showErrorAlert(this, "Please upload order receipt before start ride")
+                            Helper.showErrorAlert(
+                                this,
+                                "Please upload order receipt before start ride"
+                            )
                     } else
                         changeRideStatusMethod(rideRequestId, Constants.START_RIDE)
                 }
             }
             R.id.iv_whatsApp -> {
-                val number = currentRideData!!.user.countryCode + currentRideData!!.user.countryCodePhone
+                val number =
+                    currentRideData!!.user.countryCode + currentRideData!!.user.countryCodePhone
                 val url = "https://api.whatsapp.com/send?phone=$number"
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse(url)
@@ -537,7 +597,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 val openMessengerDailog = Dialog(this)
                 openMessengerDailog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 openMessengerDailog.setContentView(R.layout.messenger_popup_layout)
-                openMessengerDailog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+                openMessengerDailog.window!!.setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+                )
                 openMessengerDailog.setCancelable(true)
                 openMessengerDailog.setCanceledOnTouchOutside(true)
                 openMessengerDailog.window!!.setGravity(Gravity.BOTTOM)
@@ -595,7 +658,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                  * cancel the ride here with change ride status
                  */
                 if (rideRequestId.isNotEmpty()) {
-                    viewModel.changeRideStatusApi(this, rideRequestId, Constants.COMPLETE_RIDE, true)
+                    viewModel.changeRideStatusApi(
+                        this,
+                        rideRequestId,
+                        Constants.COMPLETE_RIDE,
+                        true
+                    )
                     viewModel.getChangeRideStatusResposne().observe(this, this)
                 }
             }
@@ -620,16 +688,21 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 viewModel.updateDriverOnlineStatusResposneApi(this, "1", true)
                 viewModel.updateDriverOnlineStatusResposne().observe(this, this)
             }*/
-           /* R.id.Relative_Online -> {
-                viewModel.updateDriverOnlineStatusResposneApi(this, "0", true)
-                viewModel.updateDriverOnlineStatusResposne().observe(this, this)
-            }*/
+            /* R.id.Relative_Online -> {
+                 viewModel.updateDriverOnlineStatusResposneApi(this, "0", true)
+                 viewModel.updateDriverOnlineStatusResposne().observe(this, this)
+             }*/
             R.id.relativ_livlocation -> {
                 if (mLatitute.isNotEmpty() && mLatitute != "0.0") {
                     if (googleMap != null) {
                         val sydney = LatLng(mLatitute.toDouble(), mLongitute.toDouble())
-                        val cameraPosition = CameraPosition.Builder().target(sydney).zoom(12f).build()
-                        googleMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+                        val cameraPosition =
+                            CameraPosition.Builder().target(sydney).zoom(12f).build()
+                        googleMap!!.animateCamera(
+                            CameraUpdateFactory.newCameraPosition(
+                                cameraPosition
+                            )
+                        )
                     }
                 } else {
                     checkPermissionLocation(this)
@@ -638,7 +711,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             R.id.Relativ_currentloc -> {
                 if (mLatitute.isNotEmpty() && mLatitute != "0.0") {
-                    val location = CameraUpdateFactory.newLatLngZoom(LatLng(mLatitute.toDouble(), mLongitute.toDouble()), 15f)
+                    val location = CameraUpdateFactory.newLatLngZoom(
+                        LatLng(
+                            mLatitute.toDouble(),
+                            mLongitute.toDouble()
+                        ), 15f
+                    )
                     googleMap!!.animateCamera(location)
                 } else {
                     checkPermissionLocation(this)
@@ -651,17 +729,21 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             R.id.Relativ_moveToMapApp -> {
                 if (isGoogleMapsInstalled()) {
                     if (finishlat != null && finishlong != null && finishlat != 0.0 && finishlong != 0.0) {
-                        val uri = "http://maps.google.com/maps?saddr=$mLatitute,$mLongitute&daddr=$finishlat,$finishlong"
+                        val uri =
+                            "http://maps.google.com/maps?saddr=$mLatitute,$mLongitute&daddr=$finishlat,$finishlong"
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
                         startActivity(intent)
                     }
                 } else
-                    Helper.showErrorAlert(this, "Unable to find google map. Please intsall the google map")
+                    Helper.showErrorAlert(
+                        this,
+                        "Unable to find google map. Please intsall the google map"
+                    )
             }
-           /* R.id.Relative_OnlineN -> {
-                Relative_offlineN!!.setVisibility(View.VISIBLE)
-                Relative_OnlineN!!.setVisibility(View.GONE)
-            }*/
+            /* R.id.Relative_OnlineN -> {
+                 Relative_offlineN!!.setVisibility(View.VISIBLE)
+                 Relative_OnlineN!!.setVisibility(View.GONE)
+             }*/
             R.id.LL_deliveries -> {
                 temp = 1
                 startActivity(Intent(this, Deliveries_jobhistory::class.java))
@@ -687,20 +769,29 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 temp = 1
                 launchActivity<Settings_Activity>()
             }
+            R.id.ll_trainingVideo -> {
+                temp = 1
+                viewModel.getTrainingVideoLinksApi(this, true)
+                viewModel.getTrainingVideoLinksResponse().observe(this, this)
+               /* launchActivity<DriverTrainingVideoActivity>() {
+                    putExtra("videoUrl", videoUrl)
+                }*/
+            }
             R.id.Relativ_profile -> {
                 temp = 1
                 launchActivity<My_Profile_Activity>()
             }
             R.id.LL_logout -> {
                 temp = 1
-                builder!!.setMessage(getString(R.string.logout)).setTitle(getString(R.string.logout))
+                builder!!.setMessage(getString(R.string.logout))
+                    .setTitle(getString(R.string.logout))
                 builder!!.setMessage(getString(R.string.logout_alert))
-                        .setCancelable(false)
-                        .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                            viewModel.logoutApi(this, true)
-                            viewModel.getlogoutResposne().observe(this, this)
-                        }
-                        .setNegativeButton(getString(R.string.no)) { dialog, _ -> dialog.cancel() }
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                        viewModel.logoutApi(this, true)
+                        viewModel.getlogoutResposne().observe(this, this)
+                    }
+                    .setNegativeButton(getString(R.string.no)) { dialog, _ -> dialog.cancel() }
                 builder!!.create().show()
             }
         }
@@ -713,7 +804,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
     private fun isGoogleMapsInstalled(): Boolean {
         return try {
-            val info: ApplicationInfo = packageManager.getApplicationInfo("com.google.android.apps.maps", 0)
+            val info: ApplicationInfo =
+                packageManager.getApplicationInfo("com.google.android.apps.maps", 0)
             true
         } catch (e: PackageManager.NameNotFoundException) {
             false
@@ -732,29 +824,40 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         /***
          * Set data over Views
          */
-        val adapterItemQuantity = OrderDetailsQuantiytAdapter(this, currentRideData.order.orderDetails)
+        val adapterItemQuantity =
+            OrderDetailsQuantiytAdapter(this, currentRideData.order.orderDetails)
         dialogOrderDeatail.rv_orderItems.adapter = adapterItemQuantity
 
         val houseNumber = currentRideData.userAddress.completeAddress
-        val streetName = if (currentRideData.userAddress.streetName.isNotEmpty()) "/" + currentRideData.userAddress.streetName else ""
-        val landmark = if (currentRideData.userAddress.deliveryInstructions.isNotEmpty()) "\n" + currentRideData.userAddress.deliveryInstructions else ""
-        val userAddres = if (currentRideData.userAddress.address.isNotEmpty()) "\n" + currentRideData.userAddress.address else ""
+        val streetName =
+            if (currentRideData.userAddress.streetName.isNotEmpty()) "/" + currentRideData.userAddress.streetName else ""
+        val landmark =
+            if (currentRideData.userAddress.deliveryInstructions.isNotEmpty()) "\n" + currentRideData.userAddress.deliveryInstructions else ""
+        val userAddres =
+            if (currentRideData.userAddress.address.isNotEmpty()) "\n" + currentRideData.userAddress.address else ""
         val finalAddress = houseNumber + streetName + landmark + userAddres
-        dialogOrderDeatail.tv_userName.text = currentRideData.user.firstName + " " + currentRideData.user.lastName
+        dialogOrderDeatail.tv_userName.text =
+            currentRideData.user.firstName + " " + currentRideData.user.lastName
         dialogOrderDeatail.tv_userAddress.text = finalAddress
         dialogOrderDeatail.tv_pickUpFrom.text = currentRideData.restaurant.name
         dialogOrderDeatail.tv_restaurantAddress.text = currentRideData.restaurant.address
         dialogOrderDeatail.tv_ContactNumber.text = "P: " + currentRideData.user.countryCodePhone
         dialogOrderDeatail.tv_userEmail.text = "Email: " + currentRideData.user.email
-        dialogOrderDeatail.tv_orderPlaceDate.text = CommonMethods.parseDateToddMMyyyy(currentRideData.order.createdAt, Constants.ORDER_DATE_FORMAT)
-        dialogOrderDeatail.tv_pickUpFromTime.text = CommonMethods.convertTimeToTimestamp(currentRideData.pickuptime.toLong())
-        dialogOrderDeatail.tv_dropOffTime.text = CommonMethods.convertTimeToTimestamp(currentRideData.dropofftime.toLong())
+        dialogOrderDeatail.tv_orderPlaceDate.text = CommonMethods.parseDateToddMMyyyy(
+            currentRideData.order.createdAt,
+            Constants.ORDER_DATE_FORMAT
+        )
+        dialogOrderDeatail.tv_pickUpFromTime.text =
+            CommonMethods.convertTimeToTimestamp(currentRideData.pickuptime.toLong())
+        dialogOrderDeatail.tv_dropOffTime.text =
+            CommonMethods.convertTimeToTimestamp(currentRideData.dropofftime.toLong())
 
         if (currentRideData.userAddress.deliveryInstructions.isNotEmpty()) {
-            dialogOrderDeatail.tv_specialRequest.visibility=View.VISIBLE
-            dialogOrderDeatail.tv_specialRequest.text="Note: "+currentRideData.userAddress.deliveryInstructions
-        }else
-            dialogOrderDeatail.tv_specialRequest.visibility=View.GONE
+            dialogOrderDeatail.tv_specialRequest.visibility = View.VISIBLE
+            dialogOrderDeatail.tv_specialRequest.text =
+                "Note: " + currentRideData.userAddress.deliveryInstructions
+        } else
+            dialogOrderDeatail.tv_specialRequest.visibility = View.GONE
 
         if (currentRideData.order.preparationTime.isNotEmpty()) {
             if (currentRideData.rideStatus == 2) {
@@ -766,13 +869,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             } else {
                 dialogOrderDeatail.tv_preprationTime.visibility = View.GONE
             }
-            dialogOrderDeatail.tv_preprationTime.text = "Prepration time: " + currentRideData.order.preparationTime + " mins"
+            dialogOrderDeatail.tv_preprationTime.text =
+                "Prepration time: " + currentRideData.order.preparationTime + " mins"
         }
-        dialogOrderDeatail.tv_orderId.text = "#"+currentRideData.order.id.toString()
+        dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.id.toString()
 
-        dialogOrderDeatail.tv_orderPrice.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
+        dialogOrderDeatail.tv_orderPrice.text =
+            "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
 
-        dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
+        dialogOrderDeatail.tv_totalAmountWithAll.text =
+            "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
 
         /** paymentMethod-1 for suncash
          * paymentMethod-2 for paypal
@@ -795,7 +901,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Atlantic"
             }
             "7" -> {
-                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
+                dialogOrderDeatail.tv_paymentMode.text =
+                    "Payment Mode: " + getString(R.string.be_wallet)
             }
         }
 
@@ -804,7 +911,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         for (i in currentRideData.order.orderDetails.indices) {
             for (j in currentRideData.order.orderDetails[i].categories.indices) {
                 for (k in currentRideData.order.orderDetails[i].categories[j].addOnArray.indices) {
-                    val addOnMOdel = AddOnsCustomModel(currentRideData.order.orderDetails[i].categories[j].addOnArray[k].addon, currentRideData.order.orderDetails[i].categories[j].addOnArray[k].price, currentRideData.order.orderDetails[i].quantity)
+                    val addOnMOdel = AddOnsCustomModel(
+                        currentRideData.order.orderDetails[i].categories[j].addOnArray[k].addon,
+                        currentRideData.order.orderDetails[i].categories[j].addOnArray[k].price,
+                        currentRideData.order.orderDetails[i].quantity
+                    )
                     listAddOnList.add(count, addOnMOdel)
                     count++
                 }
@@ -872,6 +983,15 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun onChanged(liveData: RestObservable?) {
         when (liveData!!.status) {
             Status.SUCCESS -> {
+                if (liveData.data is TrainingVideoLinksResponse) {
+
+                    if (liveData.data.body.isNotEmpty()) {
+                        videoUrl=liveData.data.body[0].link
+                    }
+                    launchActivity<DriverTrainingVideoActivity>() {
+                        putExtra("videoUrl", videoUrl)
+                    }
+                }
                 if (liveData.data is GetTakeDriverOrderStatus) {
                     updateDriverTakeOrderView(liveData.data.body.takeOrderStatus)
                 }
@@ -883,7 +1003,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 if (liveData.data is UpdateDriverLatLongResponse) {
                     Log.e("updateDriverLatLng", "success" + liveData.data.message)
                     if (finishlat != null && finishlong != null && finishlat != 0.0 && finishlong != 0.0) {
-                        drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Restaurant")
+                        drawpoliline(
+                            LatLng(startlat!!, startlong!!),
+                            LatLng(finishlat!!, finishlong!!),
+                            "Restaurant"
+                        )
                         if (dropMarker == null)
                             setDropMaker("Restaurant")
                     }
@@ -905,7 +1029,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             type = 1
                             latRestaurantAcceptJob = liveData.data.body.restaurant.latitude
                             longRestaurantAcceptJob = liveData.data.body.restaurant.longitude
-                            Log.e("AcceptJob:..mLatitute: ", mLatitute + "mLongitute: " + mLongitute + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
+                            Log.e(
+                                "AcceptJob:..mLatitute: ",
+                                mLatitute + "mLongitute: " + mLongitute + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
+                            )
                             anyActiveJobAvailable = 1
                             Helper.showSuccessAlert(this, liveData.data.message)
                             launchActivity<Home_Page>()
@@ -943,7 +1070,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         otherUserId = liveData.data.body.userId.toString()
                         rideRequestId = currentRideData!!.id.toString()
                         isResuarantBePaymentAvailable = currentRideData!!.restaurant.isBe
-                        Glide.with(this).load(currentRideData!!.user.photo).placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
+                        Glide.with(this).load(currentRideData!!.user.photo)
+                            .placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                         tv_currentOrderUsename.text = currentRideData!!.user.username
                         tv_currentOrderId.text = "Order ID: #" + currentRideData!!.order.id
 
@@ -968,10 +1096,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 tv_currentOrderPaymentMode.text = "Payment Mode: IsLand Pay"
                             }
                             "7" -> {
-                                tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
+                                tv_currentOrderPaymentMode.text =
+                                    "Payment Mode: " + getString(R.string.be_wallet)
                             }
                         }
-                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
+                        tv_currentOrderTotal.text =
+                            "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
                         //When new job is available for accept/reject
                         if (currentRideData!!.rideStatus == 1 && currentRideData!!.response == 0) {
                             finishlat = currentRideData!!.restaurant.latitude
@@ -984,12 +1114,20 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             finishlat = currentRideData!!.restaurant.latitude
                             finishlong = currentRideData!!.restaurant.longitude
                             if (startlat != null && startlat != 0.0 && startlong != null && startlong != 0.0) {
-                                drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Restaurant")
+                                drawpoliline(
+                                    LatLng(startlat!!, startlong!!),
+                                    LatLng(finishlat!!, finishlong!!),
+                                    "Restaurant"
+                                )
                                 setDropMaker("Restaurant")
                             }
                             tv_adress.text = currentRideData!!.restaurant.address
                             showViewsWhenRideIsAccepted()
-                            showHildeUploadReceiptView(currentRideData!!.order.receiptUpload, currentRideData!!.restaurant.isBe, "")
+                            showHildeUploadReceiptView(
+                                currentRideData!!.order.receiptUpload,
+                                currentRideData!!.restaurant.isBe,
+                                ""
+                            )
                         }
                         //when ride is accepted by the driver
                         else if (currentRideData!!.rideStatus == 2) {
@@ -997,9 +1135,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             finishlong = currentRideData!!.userAddress.longitude
 
                             val houseNumber = currentRideData!!.userAddress.completeAddress
-                            val streetName = if (currentRideData!!.userAddress.streetName.isNotEmpty()) "/" + currentRideData!!.userAddress.streetName else ""
-                            val landmark = if (currentRideData!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + currentRideData!!.userAddress.deliveryInstructions else ""
-                            val userAddres = if (currentRideData!!.userAddress.address.isNotEmpty()) "\n" + currentRideData!!.userAddress.address else ""
+                            val streetName =
+                                if (currentRideData!!.userAddress.streetName.isNotEmpty()) "/" + currentRideData!!.userAddress.streetName else ""
+                            val landmark =
+                                if (currentRideData!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + currentRideData!!.userAddress.deliveryInstructions else ""
+                            val userAddres =
+                                if (currentRideData!!.userAddress.address.isNotEmpty()) "\n" + currentRideData!!.userAddress.address else ""
                             val finalAddress = houseNumber + streetName + landmark + userAddres
                             tv_adress.text = finalAddress
                             showViewsWhenRideIsStared()
@@ -1007,9 +1148,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             Iv_search.visibility = View.GONE
                             if (dropMarker != null)
                                 dropMarker!!.remove()
-                            drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Deliver to")
+                            drawpoliline(
+                                LatLng(startlat!!, startlong!!),
+                                LatLng(finishlat!!, finishlong!!),
+                                "Deliver to"
+                            )
                             setDropMaker("Deliver to")
-                            Log.e("GetCur:..mLatitute: ", currentRideData!!.fromLat + "mLongitute: " + currentRideData!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
+                            Log.e(
+                                "GetCur:..mLatitute: ",
+                                currentRideData!!.fromLat + "mLongitute: " + currentRideData!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
+                            )
                             startStep3(this)
                         } else if (currentRideData!!.rideStatus == 3) {
                             clearAllFromMmMapSetDriverMaker()
@@ -1034,7 +1182,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     launchActivity<Login_Activity>()
                     finishAffinity()
                     clearPrefrences()
-                    val nm = getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+                    val nm =
+                        getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
                     nm.cancelAll()
                 }
                 //Response to send message to user that I am reached to user location
@@ -1055,7 +1204,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     currentRideData!!.response = changeRideStatus!!.response
                     currentRideData!!.rideStatus = changeRideStatus!!.rideStatus
 
-                    Glide.with(this).load(changeRideStatus!!.user.photo).placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
+                    Glide.with(this).load(changeRideStatus!!.user.photo)
+                        .placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                     tv_currentOrderUsename.text = changeRideStatus!!.user.username
                     tv_currentOrderId.text = "Order ID: #" + changeRideStatus!!.order.id
 //                    tv_currentOrderPaymentMode.text = "Online"
@@ -1084,14 +1234,19 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             tv_currentOrderPaymentMode.text = "Payment Mode: IsLand Pay"
                         }
                         7 -> {
-                            tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
+                            tv_currentOrderPaymentMode.text =
+                                "Payment Mode: " + getString(R.string.be_wallet)
                         }
                     }
-                    tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
+                    tv_currentOrderTotal.text =
+                        "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
                     val houseNumber = changeRideStatus!!.userAddress.completeAddress
-                    val streetName = if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
-                    val landmark = if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
-                    val userAddres = if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
+                    val streetName =
+                        if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
+                    val landmark =
+                        if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
+                    val userAddres =
+                        if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                     val finalAddress = houseNumber + streetName + landmark + userAddres
                     tv_adress.text = finalAddress
                     //rideStatus=2 when  driver click to start ride
@@ -1101,9 +1256,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         finishlat = changeRideStatus!!.userAddress.latitude
                         finishlong = changeRideStatus!!.userAddress.longitude
                         val houseNumber = changeRideStatus!!.userAddress.completeAddress
-                        val streetName = if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
-                        val landmark = if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
-                        val userAddres = if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
+                        val streetName =
+                            if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
+                        val landmark =
+                            if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
+                        val userAddres =
+                            if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                         val finalAddress = houseNumber + streetName + landmark + userAddres
                         tv_adress.text = finalAddress
                         showViewsWhenRideIsStared()
@@ -1113,9 +1271,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             dropMarker!!.remove()
                             dropMarker = null
                         }
-                        drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Deliver to")
+                        drawpoliline(
+                            LatLng(startlat!!, startlong!!),
+                            LatLng(finishlat!!, finishlong!!),
+                            "Deliver to"
+                        )
                         setDropMaker("Deliver to")
-                        Log.e("GetCur:..mLatitute: ", changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
+                        Log.e(
+                            "GetCur:..mLatitute: ",
+                            changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
+                        )
                         startStep3(this)
                     } else if (liveData.data.body.rideStatus == 3) {
                         anyActiveJobAvailable = 0
@@ -1154,7 +1319,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         }
     }
 
-    private fun showHildeUploadReceiptView(receiptUpload: String, bePaymentAvailable: String, from: String) {
+    private fun showHildeUploadReceiptView(
+        receiptUpload: String,
+        bePaymentAvailable: String,
+        from: String
+    ) {
         /**
          * from isEmpty=== use method called when ride is accepted
          */
@@ -1227,7 +1396,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Log.e("openNewJobDailog:", "else:  " + "Already showing")
             dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.window!!.setGravity(Gravity.CENTER)
-            dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+            dialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
             dialog.setContentView(R.layout.res_pickup_request)
             dialog.setCancelable(false)
             Button_accept = dialog.findViewById(R.id.Button_accept)
@@ -1236,29 +1408,54 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             /***
              * Be Card Payment View
              */
-            if (body.restaurant.isBe == "0") dialog.tv_useBeCardForPayment.visibility = View.GONE else dialog.tv_useBeCardForPayment.visibility = View.VISIBLE
+            if (body.restaurant.isBe == "0") dialog.tv_useBeCardForPayment.visibility =
+                View.GONE else dialog.tv_useBeCardForPayment.visibility = View.VISIBLE
             latRestaurant = body.restaurant.latitude.toString()
             longRestaurant = body.restaurant.longitude.toString()
             dialog.tv_restaurantName.text = body.restaurant.address
             val houseNumber = body.userAddress.completeAddress
-            val streetName = if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
-            val landmark = if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
-            val userAddres = if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
+            val streetName =
+                if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
+            val landmark =
+                if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
+            val userAddres =
+                if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
             val finalAddress = houseNumber + streetName + landmark + userAddres
             dialog.tv_userOrderAddress.text = finalAddress
-            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+            dialog.tv_totalAmount.text =
+                "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {
-                    val value1: String = java.lang.String.valueOf(DecimalFormat("##").format(distance(body.restaurant.latitude, body.restaurant.longitude, body.userAddress.latitude, body.userAddress.longitude)))
+                    val value1: String = java.lang.String.valueOf(
+                        DecimalFormat("##").format(
+                            distance(
+                                body.restaurant.latitude,
+                                body.restaurant.longitude,
+                                body.userAddress.latitude,
+                                body.userAddress.longitude
+                            )
+                        )
+                    )
                     dialog.tv_minDeliverDistance.text = value1 + " mi"
                 }
                 if (mLatitute.isNotEmpty() && body.userAddress.latitude != 0.0) {
                     //Distance from Driver location to restaurant +and+ restaurant to user order delivery Address
-                    val distancefromDriverToRestaurant = distance(mLatitute.toDouble(), mLongitute.toDouble(), body.restaurant.latitude, body.restaurant.longitude)
-                    val restaurantToUser = distance(body.restaurant.latitude, body.restaurant.longitude, body.userAddress.latitude, body.userAddress.longitude)
+                    val distancefromDriverToRestaurant = distance(
+                        mLatitute.toDouble(),
+                        mLongitute.toDouble(),
+                        body.restaurant.latitude,
+                        body.restaurant.longitude
+                    )
+                    val restaurantToUser = distance(
+                        body.restaurant.latitude,
+                        body.restaurant.longitude,
+                        body.userAddress.latitude,
+                        body.userAddress.longitude
+                    )
                     val finalDistance = distancefromDriverToRestaurant + restaurantToUser
-                    val finalDistanceNew: String = java.lang.String.valueOf(DecimalFormat("##").format(finalDistance))
+                    val finalDistanceNew: String =
+                        java.lang.String.valueOf(DecimalFormat("##").format(finalDistance))
                     dialog.tv_totalDistance.text = "$finalDistanceNew mi"
                 }
             } catch (e: Exception) {
@@ -1266,13 +1463,15 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Button_accept?.setOnClickListener {
                 //response :1 to accept the job
                 respondRideStatusRequest(ACCEPT_RIDE_STATUS, body.id)
-                val nm = getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+                val nm =
+                    getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
                 nm.cancelAll()
             }
             Button_regect?.setOnClickListener {
                 //response :2 to reject the job
                 respondRideStatusRequest(REJECT_RIDE_STATUS, body.id)
-                val nm = getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+                val nm =
+                    getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
                 nm.cancelAll()
             }
             btn_orderDetails?.setOnClickListener {
@@ -1280,7 +1479,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     showOrderDetailsPopUp(currentRideData!!)
                 }
             }
-            dateCheckMonth(timePrint(body.createdAt), getCurrentDate(), dialog.tv_countProgress, dialog.progressBarCircle, body.id)
+            dateCheckMonth(
+                timePrint(body.createdAt),
+                getCurrentDate(),
+                dialog.tv_countProgress,
+                dialog.progressBarCircle,
+                body.id
+            )
             dialog.show()
         }
 
@@ -1301,7 +1506,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         return df.format(c)
     }
 
-    private fun dateCheckMonth(startD: String, endDate: String, tv_Countprogress: TextView, progressbarCircle: ProgressBar, rideId: Int): String {
+    private fun dateCheckMonth(
+        startD: String,
+        endDate: String,
+        tv_Countprogress: TextView,
+        progressbarCircle: ProgressBar,
+        rideId: Int
+    ): String {
         var status = "0"
         try {
             val formatter = DateTimeFormat.forPattern("yyyy-MM-dd hh:mm:ss")
@@ -1311,7 +1522,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             val second = duration.standardSeconds
             val countDownTimer = object : CountDownTimer(90 * 1000 - second * 1000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    Log.e("timerStatus", "inprogress" + "==" + "" + (millisUntilFinished / 1000).toInt())
+                    Log.e(
+                        "timerStatus",
+                        "inprogress" + "==" + "" + (millisUntilFinished / 1000).toInt()
+                    )
                     tv_Countprogress.text = (millisUntilFinished / 1000).toInt().toString()
                     progressbarCircle.progress = (millisUntilFinished / 1000).toInt()
                 }
@@ -1388,20 +1602,20 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             val data = args[0] as JSONObject
             Log.d("onResponse: ", data.toString())
             val jsonData = JSONObject(data.toString())
-            val statusOrder=jsonData.getInt("is_online")
-          /*  runOnUiThread {  if (statusOrder==1)
-            {
-                rl_online.visibility=View.VISIBLE
-                rl_offline.visibility=View.GONE
-                Log.d("is_online--1: ", statusOrder.toString())
-            }
-            else
-            {
-                rl_online.visibility=View.GONE
-                rl_offline.visibility=View.VISIBLE
-                Log.d("is_online:--0:", statusOrder.toString())
-            }
-            }*/
+            val statusOrder = jsonData.getInt("is_online")
+            /*  runOnUiThread {  if (statusOrder==1)
+              {
+                  rl_online.visibility=View.VISIBLE
+                  rl_offline.visibility=View.GONE
+                  Log.d("is_online--1: ", statusOrder.toString())
+              }
+              else
+              {
+                  rl_online.visibility=View.GONE
+                  rl_offline.visibility=View.VISIBLE
+                  Log.d("is_online:--0:", statusOrder.toString())
+              }
+              }*/
             updateDriverTakeOrderView(jsonData.getInt("is_online"))
         } catch (e: Exception) {
             Log.d("Exception: ", e.toString())

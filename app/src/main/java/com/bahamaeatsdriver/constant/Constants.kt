@@ -64,6 +64,7 @@ class Constants {
         const val FILTER_EARNINGS = "earningsDataBasedOnDates"
         const val ADD_UPDATE_BANK = "addupdatebank"
         const val GET_BANK_DETAILS = "getbankdetail"
+        const val GET_TRAINING_LINKS = "getTrainingLinks"
 
         /**
          * New api's

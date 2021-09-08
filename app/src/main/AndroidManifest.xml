@@ -7,6 +7,12 @@
         android:name="com.bahamaeatsdriver.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.truiton.mapfragment.permission.MAPS_RECEIVE" />
@@ -35,11 +41,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-
-        <activity android:name=".activity.bank_details.BankDetailsActivity"
+        <activity
+            android:name=".activity.DriverTrainingVideoActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.driver_documentation.UploadDocumentActivity"
+        <activity
+            android:name=".activity.bank_details.BankDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.driver_documentation.UploadDocumentActivity"
             android:screenOrientation="portrait" />
 
         <uses-library
@@ -189,6 +198,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -230,6 +240,7 @@
                 <action android:name="restartservice" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

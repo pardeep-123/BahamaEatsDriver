@@ -40,6 +40,7 @@ import com.bahamaeatsdriver.model_class.resend_otp.ResendOtpResponse
 import com.bahamaeatsdriver.model_class.signup.SignUpResponse
 import com.bahamaeatsdriver.model_class.slots.DriverSlots
 import com.bahamaeatsdriver.model_class.terms_and_conditions.TermsAndConditionResponse
+import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksResponse
 import com.bahamaeatsdriver.model_class.update_driver_online_status.UpdateDriverTakeOrderStatus
 import com.bahamaeatsdriver.model_class.update_id_details.UpdateIdDetailsResponse
 import com.bahamaeatsdriver.model_class.update_latitudeLongitude.UpdateDriverLatLongResponse
@@ -60,8 +61,12 @@ interface RestApiInterface {
     @FormUrlEncoded
     @PUT(Constants.LOGIN)
     fun LOGIN(
-            @Header(Constants.SECURITY_KEY) key: String, @Field(Constants.EMAIL) email: String, @Field(Constants.PASSWORD) password: String,
-            @Field(Constants.DEVICE_TYPE) deviceType: String, @Field(Constants.DEVICE_TOKEN) deviceToken: String): Observable<LoginResponse>
+        @Header(Constants.SECURITY_KEY) key: String,
+        @Field(Constants.EMAIL) email: String,
+        @Field(Constants.PASSWORD) password: String,
+        @Field(Constants.DEVICE_TYPE) deviceType: String,
+        @Field(Constants.DEVICE_TOKEN) deviceToken: String
+    ): Observable<LoginResponse>
 
     @FormUrlEncoded
     @PUT(Constants.FORGOT_PASSWORD)
@@ -69,23 +74,40 @@ interface RestApiInterface {
 
     @FormUrlEncoded
     @POST(Constants.VERIFY_OTP)
-    fun VERIFY_OTP(@Field(Constants.COUNTRY_CODE) countryCode: String, @Field(Constants.PHONE) phone: String, @Field(Constants.OTP) otp: String): Observable<VerifyOtpResponse>
+    fun VERIFY_OTP(
+        @Field(Constants.COUNTRY_CODE) countryCode: String,
+        @Field(Constants.PHONE) phone: String,
+        @Field(Constants.OTP) otp: String
+    ): Observable<VerifyOtpResponse>
 
     @FormUrlEncoded
     @POST(Constants.UPDATE_PHONE_VERIFY_OTP)
-    fun UPDATE_PHONE_VERIFY_OTP(@Field(Constants.COUNTRY_CODE) countryCode: String, @Field(Constants.PHONE) phone: String, @Field(Constants.OTP) otp: String): Observable<UpdatePhoneVerifyOtpResponse>
+    fun UPDATE_PHONE_VERIFY_OTP(
+        @Field(Constants.COUNTRY_CODE) countryCode: String,
+        @Field(Constants.PHONE) phone: String,
+        @Field(Constants.OTP) otp: String
+    ): Observable<UpdatePhoneVerifyOtpResponse>
 
     @FormUrlEncoded
     @POST(Constants.GET_OTP)
-    fun GET_OTP(@Field(Constants.COUNTRY_CODE) countryCode: String, @Field(Constants.PHONE) phone: String): Observable<GetOtpResponse>
+    fun GET_OTP(
+        @Field(Constants.COUNTRY_CODE) countryCode: String,
+        @Field(Constants.PHONE) phone: String
+    ): Observable<GetOtpResponse>
 
     @FormUrlEncoded
     @POST(Constants.UPDATE_PHONE_NUMBER)
-    fun UPDATE_PHONE_NUMBER(@Field(Constants.COUNTRY_CODE) countryCode: String, @Field(Constants.PHONE) phone: String): Observable<UpdatePhoneNumberResponse>
+    fun UPDATE_PHONE_NUMBER(
+        @Field(Constants.COUNTRY_CODE) countryCode: String,
+        @Field(Constants.PHONE) phone: String
+    ): Observable<UpdatePhoneNumberResponse>
 
     @FormUrlEncoded
     @POST(Constants.RESEND_OTP)
-    fun RESEND_OTP(@Field(Constants.COUNTRY_CODE) countryCode: String, @Field(Constants.PHONE) phone: String): Observable<ResendOtpResponse>
+    fun RESEND_OTP(
+        @Field(Constants.COUNTRY_CODE) countryCode: String,
+        @Field(Constants.PHONE) phone: String
+    ): Observable<ResendOtpResponse>
 
     @NonNull
     @GET("getCity/{input}")
@@ -94,6 +116,7 @@ interface RestApiInterface {
     @NonNull
     @GET(Constants.TERMS_AND_CONDITIONS)
     fun TermsAndCondition(): Observable<TermsAndConditionResponse>
+
     @NonNull
     @GET(Constants.GET_DRIVER_TAKE_ORDER_STATUS)
     fun GET_DRIVER_TAKE_ORDER_STATUS(): Observable<GetTakeDriverOrderStatus>
@@ -101,74 +124,80 @@ interface RestApiInterface {
     @Multipart
     @PUT(Constants.SIGN_UP)
     fun SIGNUP(
-            @Part photo: MultipartBody.Part?,
-            @Header(Constants.SECURITY_KEY) security_key: String,
-            @Part(Constants.FULL_NAME) fullName: RequestBody,
-            @Part(Constants.EMAIL) email: RequestBody,
-            @Part(Constants.PASSWORD) password: RequestBody,
-            @Part(Constants.PHONE) phone: RequestBody,
-            @Part(Constants.CITY) city: RequestBody,
-            @Part(Constants.COUNTRY) country: RequestBody,
-            @Part(Constants.LOGIN_TYPE) loginType: RequestBody,
-            @Part(Constants.DEVICE_TYPE) deviceType: RequestBody,
-            @Part(Constants.DEVICE_TOKEN) deviceToken: RequestBody): Observable<SignUpResponse>
+        @Part photo: MultipartBody.Part?,
+        @Header(Constants.SECURITY_KEY) security_key: String,
+        @Part(Constants.FULL_NAME) fullName: RequestBody,
+        @Part(Constants.EMAIL) email: RequestBody,
+        @Part(Constants.PASSWORD) password: RequestBody,
+        @Part(Constants.PHONE) phone: RequestBody,
+        @Part(Constants.CITY) city: RequestBody,
+        @Part(Constants.COUNTRY) country: RequestBody,
+        @Part(Constants.LOGIN_TYPE) loginType: RequestBody,
+        @Part(Constants.DEVICE_TYPE) deviceType: RequestBody,
+        @Part(Constants.DEVICE_TOKEN) deviceToken: RequestBody
+    ): Observable<SignUpResponse>
 
     @Multipart
     @PUT(Constants.EDIT_DRIVER_PROFILE)
     fun EDIT_DRIVER_PROFILE(
-            @Part photo: MultipartBody.Part?,
-            @Part(Constants.COUNTRY_CODE) countryCode: RequestBody,
-            @Part(Constants.PHONE) phone: RequestBody,
-            @Part(Constants.LATITUDE) latitude: RequestBody,
-            @Part(Constants.LONGITUDE) longitude: RequestBody,
+        @Part photo: MultipartBody.Part?,
+        @Part(Constants.COUNTRY_CODE) countryCode: RequestBody,
+        @Part(Constants.PHONE) phone: RequestBody,
+        @Part(Constants.LATITUDE) latitude: RequestBody,
+        @Part(Constants.LONGITUDE) longitude: RequestBody,
 //            @Part(Constants.ADDRESS) address: RequestBody,
-            @Part(Constants.CITY) city: RequestBody,
-            @Part(Constants.COUNTRY) country: RequestBody,
-            @Part(Constants.FULL_NAME) fullName: RequestBody): Observable<EditDriverProfileResponse>
+        @Part(Constants.CITY) city: RequestBody,
+        @Part(Constants.COUNTRY) country: RequestBody,
+        @Part(Constants.FULL_NAME) fullName: RequestBody
+    ): Observable<EditDriverProfileResponse>
 
     @Multipart
     @POST(Constants.ADD_LICENSE)
     fun ADD_LICENSE(
-            @Part frontPhoto: MultipartBody.Part?,
-            @Part backPhoto: MultipartBody.Part?,
-            @Header("Authorization") Authorization: String,
-            @Part(Constants.LICENSE_TYPE) licenseType: RequestBody,
-            @Part(Constants.LICENSE_NO) licenseNo: RequestBody,
-            @Part(Constants.DOB) dob: RequestBody,
-            @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
-            @Part(Constants.EXPIRY_DATE) expiryDate: RequestBody,
-            @Part(Constants.NATIONALITY) nationality: RequestBody): Observable<AddLicenseDetails>
+        @Part frontPhoto: MultipartBody.Part?,
+        @Part backPhoto: MultipartBody.Part?,
+        @Header("Authorization") Authorization: String,
+        @Part(Constants.LICENSE_TYPE) licenseType: RequestBody,
+        @Part(Constants.LICENSE_NO) licenseNo: RequestBody,
+        @Part(Constants.DOB) dob: RequestBody,
+        @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
+        @Part(Constants.EXPIRY_DATE) expiryDate: RequestBody,
+        @Part(Constants.NATIONALITY) nationality: RequestBody
+    ): Observable<AddLicenseDetails>
 
     @Multipart
     @POST(Constants.ADD_ID_CARD_DETAILS)
     fun ADD_ID_CARD_DETAILS(
-            @Part frontPhoto: MultipartBody.Part?,
-            @Part backPhoto: MultipartBody.Part?,
-            @Part(Constants.FIRST_NAME) firstName: RequestBody,
-            @Part(Constants.LAST_NAME) lastName: RequestBody,
-            @Part(Constants.ID_NUMBER) idNumber: RequestBody,
-            @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
-            @Part(Constants.DOB) dob: RequestBody,
-            @Part(Constants.ADDRESS) address: RequestBody): Observable<AddIdDetailsResponse>
+        @Part frontPhoto: MultipartBody.Part?,
+        @Part backPhoto: MultipartBody.Part?,
+        @Part(Constants.FIRST_NAME) firstName: RequestBody,
+        @Part(Constants.LAST_NAME) lastName: RequestBody,
+        @Part(Constants.ID_NUMBER) idNumber: RequestBody,
+        @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
+        @Part(Constants.DOB) dob: RequestBody,
+        @Part(Constants.ADDRESS) address: RequestBody
+    ): Observable<AddIdDetailsResponse>
 
     @Multipart
     @PUT(Constants.UPDATE_ID_CARD)
     fun UPDATE_ID_CARD(
-            @Part frontPhoto: MultipartBody.Part?,
-            @Part backPhoto: MultipartBody.Part?,
-            @Part(Constants.CARD_ID) id: RequestBody,
-            @Part(Constants.FIRST_NAME) firstName: RequestBody,
-            @Part(Constants.LAST_NAME) lastName: RequestBody,
-            @Part(Constants.ID_NUMBER) idNumber: RequestBody,
-            @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
-            @Part(Constants.DOB) dob: RequestBody,
-            @Part(Constants.ADDRESS) address: RequestBody): Observable<UpdateIdDetailsResponse>
+        @Part frontPhoto: MultipartBody.Part?,
+        @Part backPhoto: MultipartBody.Part?,
+        @Part(Constants.CARD_ID) id: RequestBody,
+        @Part(Constants.FIRST_NAME) firstName: RequestBody,
+        @Part(Constants.LAST_NAME) lastName: RequestBody,
+        @Part(Constants.ID_NUMBER) idNumber: RequestBody,
+        @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
+        @Part(Constants.DOB) dob: RequestBody,
+        @Part(Constants.ADDRESS) address: RequestBody
+    ): Observable<UpdateIdDetailsResponse>
 
     @Multipart
     @POST(Constants.UPLOAD_RECEIPT)
     fun UPLOAD_RECEIPT(
-            @Part receiptUpload: MultipartBody.Part?,
-            @Part(Constants.ORDER_ID) orderId: RequestBody): Observable<UploadReceiptResponse>
+        @Part receiptUpload: MultipartBody.Part?,
+        @Part(Constants.ORDER_ID) orderId: RequestBody
+    ): Observable<UploadReceiptResponse>
 
     @GET(Constants.GET_ID_CARD_DEATILS)
     fun GET_ID_CARD_DEATILS(): Observable<GetIdDetailsRespone>
@@ -187,7 +216,8 @@ interface RestApiInterface {
     @Multipart
     @PUT(Constants.ADD_UPDATE_POLICE_RECORD)
     fun ADD_UPDATE_POLICE_RECORD(
-            @Part policeRecord: MultipartBody.Part?): Observable<AddUpdatePoliceRecord>
+        @Part policeRecord: MultipartBody.Part?
+    ): Observable<AddUpdatePoliceRecord>
 
     @DELETE(Constants.DELETE_POLICE_RECORD)
     fun DELETE_POLICE_RECORD(): Observable<DeletePoliceRecordResponse>
@@ -207,15 +237,16 @@ interface RestApiInterface {
     @Multipart
     @PUT(Constants.UPDATE_LICENSE)
     fun UPDATE_LICENSE(
-            @Part frontPhoto: MultipartBody.Part?,
-            @Part backPhoto: MultipartBody.Part?,
-            @Part(Constants.LICENSE_ID) licenseId: RequestBody,
-            @Part(Constants.LICENSE_TYPE) licenseType: RequestBody,
-            @Part(Constants.LICENSE_NO) licenseNo: RequestBody,
-            @Part(Constants.DOB) dob: RequestBody,
-            @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
-            @Part(Constants.EXPIRY_DATE) expiryDate: RequestBody,
-            @Part(Constants.NATIONALITY) nationality: RequestBody): Observable<UpdateLicenseDetails>
+        @Part frontPhoto: MultipartBody.Part?,
+        @Part backPhoto: MultipartBody.Part?,
+        @Part(Constants.LICENSE_ID) licenseId: RequestBody,
+        @Part(Constants.LICENSE_TYPE) licenseType: RequestBody,
+        @Part(Constants.LICENSE_NO) licenseNo: RequestBody,
+        @Part(Constants.DOB) dob: RequestBody,
+        @Part(Constants.ISSUE_DATE) issueDate: RequestBody,
+        @Part(Constants.EXPIRY_DATE) expiryDate: RequestBody,
+        @Part(Constants.NATIONALITY) nationality: RequestBody
+    ): Observable<UpdateLicenseDetails>
 
     @PUT(Constants.LOGOUT)
     fun LOGOUT(): Observable<LogoutResponse>
@@ -232,23 +263,30 @@ interface RestApiInterface {
 
     @FormUrlEncoded
     @POST(Constants.FILTER_EARNINGS)
-    fun FILTER_EARNINGS(@Field(Constants.fromDate) fromDate: String,
-                        @Field(Constants.toDate) toDate: String): Observable<DriverTipsAndEarning>
+    fun FILTER_EARNINGS(
+        @Field(Constants.fromDate) fromDate: String,
+        @Field(Constants.toDate) toDate: String
+    ): Observable<DriverTipsAndEarning>
+
     @FormUrlEncoded
     @POST(Constants.ADD_UPDATE_BANK)
     fun ADD_UPDATE_BANK(
-            @Field(Constants.ACCOUNT_HOLDER_NAME) account_holder_name: String,
-            @Field(Constants.ACCOUNT_NUMBER) account_number: String,
-            @Field(Constants.BANK_NAME) bank_name: String,
-            @Field(Constants.BRANCH_NAME) branch_name: String,
-            @Field(Constants.ACCOUNT_TYPE) account_type: String,
-            @Field(Constants.ID) id: String
+        @Field(Constants.ACCOUNT_HOLDER_NAME) account_holder_name: String,
+        @Field(Constants.ACCOUNT_NUMBER) account_number: String,
+        @Field(Constants.BANK_NAME) bank_name: String,
+        @Field(Constants.BRANCH_NAME) branch_name: String,
+        @Field(Constants.ACCOUNT_TYPE) account_type: String,
+        @Field(Constants.ID) id: String
     ): Observable<AddUpdateBankDetails>
 
     @GET(Constants.JOB_HISTORY)
     fun JOB_HISTORY(): Observable<JobHistoryResponse>
- @GET(Constants.GET_BANK_DETAILS)
+
+    @GET(Constants.GET_BANK_DETAILS)
     fun GET_BANK_DETAILS(): Observable<GetBankDetails>
+
+    @GET(Constants.GET_TRAINING_LINKS)
+    fun GET_TRAINING_LINKS(): Observable<TrainingVideoLinksResponse>
 
     @FormUrlEncoded
     @POST(Constants.JOB_HISTORY_DETAILS)
@@ -256,11 +294,17 @@ interface RestApiInterface {
 
     @FormUrlEncoded
     @PUT(Constants.CHANGE_PASSWORD)
-    fun CHANGE_PASSWORD(@Field(Constants.CURRENT_PASSWORD) currentPassword: String, @Field(Constants.NEW_PASSWORD) newPassword: String): Observable<ChangePasswordResponse>
+    fun CHANGE_PASSWORD(
+        @Field(Constants.CURRENT_PASSWORD) currentPassword: String,
+        @Field(Constants.NEW_PASSWORD) newPassword: String
+    ): Observable<ChangePasswordResponse>
 
     @FormUrlEncoded
     @PUT(Constants.UDPATE_DRIVER_LAT_LONG)
-    fun UDPATE_DRIVER_LAT_LONG(@Field(Constants.LATITUDE) latitude: String, @Field(Constants.LONGITUDE) longitude: String): Observable<UpdateDriverLatLongResponse>
+    fun UDPATE_DRIVER_LAT_LONG(
+        @Field(Constants.LATITUDE) latitude: String,
+        @Field(Constants.LONGITUDE) longitude: String
+    ): Observable<UpdateDriverLatLongResponse>
 
     @FormUrlEncoded
     @PUT(Constants.UPDATE_NOTIFICATION_STATUS)
@@ -284,15 +328,24 @@ interface RestApiInterface {
     //    reposne:  // 1=>Accept 2=>Reject
     @FormUrlEncoded
     @PUT(Constants.RESPOND_RIDE_REQUEST)
-    fun RESPOND_RIDE_REQUEST(@Field(Constants.RIDE_REQUEST_ID) rideRequestId: String, @Field(Constants.RESPOSE) reposne: String): Observable<AcceptRejectRideRequest>
+    fun RESPOND_RIDE_REQUEST(
+        @Field(Constants.RIDE_REQUEST_ID) rideRequestId: String,
+        @Field(Constants.RESPOSE) reposne: String
+    ): Observable<AcceptRejectRideRequest>
 
     //rideStatus:  2=>Start 3=>Complete 4=>Cancel
     @FormUrlEncoded
     @PUT(Constants.CHANGE_RIDE_STATUS)
-    fun CHANGE_RIDE_STATUS(@Field(Constants.RIDE_REQUEST_ID) rideRequestId: String, @Field(Constants.RIDE_STATUS) rideStatus: String): Observable<ChangeRideStatusResponse>
+    fun CHANGE_RIDE_STATUS(
+        @Field(Constants.RIDE_REQUEST_ID) rideRequestId: String,
+        @Field(Constants.RIDE_STATUS) rideStatus: String
+    ): Observable<ChangeRideStatusResponse>
 
     @GET(Constants.DRIVER_PROFILE_DETAILS)
-    fun DRIVER_PROFILE_DETAILS(@Header(Constants.USER_ID) user_id: String, @Header(Constants.SECURITY_KEY) key: String): Observable<DriverProfileDetailsResposne>
+    fun DRIVER_PROFILE_DETAILS(
+        @Header(Constants.USER_ID) user_id: String,
+        @Header(Constants.SECURITY_KEY) key: String
+    ): Observable<DriverProfileDetailsResposne>
 
     @GET(Constants.GET_LICENSE)
     fun GET_LICENSE_DETAILS(): Observable<GetDriverLicense>
@@ -301,10 +354,12 @@ interface RestApiInterface {
     fun GET_CURRENT_RIDE(/*@Field(Constants.RIDE_STATUS) rideStatus: String*/): Observable<GetCurrentRideResponse>
 
     @GET("maps/api/directions/json")
-    fun getDirections(@Query("mode") mmode: String?,
-                      @Query("transit_routing_preference") routingPreference: String?,
-                      @Query("origin") morigin: String?,
-                      @Query("destination") mdestination: String?,
-                      @Query("key") apiKey: String?): Observable<Result>
+    fun getDirections(
+        @Query("mode") mmode: String?,
+        @Query("transit_routing_preference") routingPreference: String?,
+        @Query("origin") morigin: String?,
+        @Query("destination") mdestination: String?,
+        @Query("key") apiKey: String?
+    ): Observable<Result>
 
 }
