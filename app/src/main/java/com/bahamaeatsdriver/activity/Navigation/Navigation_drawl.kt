@@ -54,8 +54,10 @@ class Navigation_drawl : Fragment() {
     var builder: AlertDialog.Builder? = null
     var Relative_Online: RelativeLayout? = null
     var Relative_offline: RelativeLayout? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         views = inflater.inflate(R.layout.fragment_navigation_drawl, container, false)
         LL_deliveries = views!!.findViewById(R.id.LL_deliveries)
@@ -67,63 +69,58 @@ class Navigation_drawl : Fragment() {
         ll_wallet = views!!.findViewById(R.id.ll_wallet)
         homelayout = views!!.findViewById(R.id.homelayout)
         Relativ_profile = views!!.findViewById(R.id.Relativ_profile)
-//        Relative_Online = views!!.findViewById(R.id.Relative_Online)
-//        Relative_offline = views!!.findViewById(R.id.Relative_offline)
         LL_TandC = views!!.findViewById(R.id.LL_TandC)
         LL_paymentstatus = views!!.findViewById(R.id.LL_paymentstatus)
         builder = AlertDialog.Builder(requireActivity())
+        LL_deliveries!!.setOnClickListener {
 
-
-//       Relative_offline!!.setOnClickListener(View.OnClickListener {
-//            Relative_Online!!.setVisibility(View.VISIBLE)
-//            Relative_offline!!.setVisibility(View.GONE)
-//        })
-//        Relative_Online!!.setOnClickListener(View.OnClickListener {
-//            Relative_Online!!.setVisibility(View.GONE)
-//            Relative_offline!!.setVisibility(View.VISIBLE)
-//        })
-        LL_deliveries!!.setOnClickListener(View.OnClickListener {
-
-        })
-        LL_paymentstatus!!.setOnClickListener(View.OnClickListener {
+        }
+        LL_paymentstatus!!.setOnClickListener {
             temp = 1
             startActivity(Intent(activity, PaymentStatsActivity::class.java))
-        })
-        homelayout!!.setOnClickListener(View.OnClickListener {
+        }
+        homelayout!!.setOnClickListener {
             if (temp == 0) {
                 instanceiNterface!!.close()
             } else {
                 temp = 0
                 startActivity(Intent(activity, Home_Page::class.java))
             }
-        })
-        LL_support!!.setOnClickListener(View.OnClickListener {
+        }
+        LL_support!!.setOnClickListener {
             temp = 1
             startActivity(Intent(activity, Contactus_Activity::class.java))
-        })
-        LL_TandC!!.setOnClickListener(View.OnClickListener {
+        }
+        LL_TandC!!.setOnClickListener {
             temp = 1
             startActivity(Intent(activity, TermAnd_Conditions::class.java))
-        })
-        LL_settings!!.setOnClickListener(View.OnClickListener {
+        }
+        LL_settings!!.setOnClickListener {
             temp = 1
             startActivity(Intent(activity, Settings_Activity::class.java))
-        })
-        ll_refer_earn!!.setOnClickListener(View.OnClickListener {
+        }
+        ll_refer_earn!!.setOnClickListener {
             temp = 1
             startActivity(Intent(activity, Refer_And_Earn::class.java))
-        })
+        }
         LL_logout!!.setOnClickListener(View.OnClickListener {
             temp = 1
             builder!!.setMessage("Logout").setTitle("Logout")
 
             //Setting message manually and performing action on button click
             builder!!.setMessage("Are you sure you want to logout?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes") { dialog, id -> startActivity(Intent(activity, Login_Activity::class.java)) }
-                    .setNegativeButton("No") { dialog, id -> //  Action for 'NO' Button
-                        dialog.cancel()
-                    }
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    startActivity(
+                        Intent(
+                            activity,
+                            Login_Activity::class.java
+                        )
+                    )
+                }
+                .setNegativeButton("No") { dialog, id -> //  Action for 'NO' Button
+                    dialog.cancel()
+                }
             //Creating dialog box
             val alert = builder!!.create()
             //Setting the title manually
@@ -178,15 +175,25 @@ class Navigation_drawl : Fragment() {
     companion object {
         const val PREF_FILE_NAME = "testpref"
         const val KEY_USER_LEARNED_DRAWER = "user_learned_drawer"
-        fun saveToPreferences(context: Context?, preferencesName: String?, preferencesValue: String?) {
-            val sharedPreferences = context!!.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        fun saveToPreferences(
+            context: Context?,
+            preferencesName: String?,
+            preferencesValue: String?
+        ) {
+            val sharedPreferences =
+                context!!.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString(preferencesName, preferencesValue)
             editor.commit()
         }
 
-        fun readFromPreference(context: Context, preferencesName: String?, defaultValue: String?): String? {
-            val sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        fun readFromPreference(
+            context: Context,
+            preferencesName: String?,
+            defaultValue: String?
+        ): String? {
+            val sharedPreferences =
+                context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getString(preferencesName, defaultValue)
         }
     }

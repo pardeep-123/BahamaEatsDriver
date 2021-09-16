@@ -209,7 +209,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                 gmap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding))
                 gmap!!.uiSettings!!.isZoomGesturesEnabled = false*/
 
-                val origin = LatLng(latUser.toDouble(), longUser.toDouble())
+                /*val origin = LatLng(latUser.toDouble(), longUser.toDouble())
                 val destination = LatLng(latRestaurant.toDouble(), longRestaurant.toDouble())
                 DrawRouteMaps.getInstance(this).draw(origin, destination, gmap)
                 DrawMarker.getInstance(this)
@@ -229,7 +229,9 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         200,
                         5
                     )
-                )
+                )*/
+                val cameraPosition = CameraPosition.Builder().target(LatLng(latUser.toDouble(), longUser.toDouble())).zoom(12f).build()
+                gmap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
                 gmap!!.uiSettings.isZoomGesturesEnabled = false
 
             }

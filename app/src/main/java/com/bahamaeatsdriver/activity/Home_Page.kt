@@ -1414,16 +1414,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             longRestaurant = body.restaurant.longitude.toString()
             dialog.tv_restaurantName.text = body.restaurant.address
             val houseNumber = body.userAddress.completeAddress
-            val streetName =
-                if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
-            val landmark =
-                if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
-            val userAddres =
-                if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
+            val streetName = if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
+            val landmark = if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
+            val userAddres = if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
             val finalAddress = houseNumber + streetName + landmark + userAddres
             dialog.tv_userOrderAddress.text = finalAddress
-            dialog.tv_totalAmount.text =
-                "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {
