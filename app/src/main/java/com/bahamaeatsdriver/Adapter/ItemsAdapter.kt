@@ -1,7 +1,6 @@
 package com.bahamaeatsdriver.Adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Point
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bahamaeats.constant.Constants.Companion.RESTAURANT_BASE_URL
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Deliveries_jobhistory
-import com.bahamaeatsdriver.drawroute.DrawMarker
-import com.bahamaeatsdriver.drawroute.DrawRouteMaps
 import com.bahamaeatsdriver.helper.others.CommonMethods
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.model_class.job_history.PastJobHistory
@@ -126,16 +123,18 @@ class ItemsAdapter(
                 gmap!!.clear()
                 val origin = LatLng(latUser.toDouble(), longUser.toDouble())
                 val destination = LatLng(latRestaurant.toDouble(), longRestaurant.toDouble())
-                DrawRouteMaps.getInstance(context).draw(origin, destination, gmap)
+               /* DrawRouteMaps.getInstance(context).draw(origin, destination, gmap)
                 val bounds = LatLngBounds.Builder().include(origin).include(destination).build()
                 val displaySize = Point()
                 context.windowManager.defaultDisplay.getSize(displaySize)
-                gmap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, displaySize.x, 180, 5))
+                gmap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, displaySize.x, 180, 5))*/
+
+                val cameraPosition = CameraPosition.Builder().target(origin).zoom(12f).build()
+//                gmap!!.addMarker(MarkerOptions().position(origin).icon(BitmapDescriptorFactory.fromResource(R.drawable.source)))
+                gmap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
                 gmap!!.uiSettings.isZoomGesturesEnabled = false
-                DrawMarker.getInstance(context)
-                    .draw(gmap, origin, R.drawable.source, "Origin Location")
-                DrawMarker.getInstance(context)
-                    .draw(gmap, destination, R.drawable.destination, "Destination Location")
+//                DrawMarker.getInstance(context).draw(gmap, origin, R.drawable.source, "Origin Location")
+//                DrawMarker.getInstance(context).draw(gmap, destination, R.drawable.destination, "Destination Location")
             }
         } catch (e: Exception) {
         }
