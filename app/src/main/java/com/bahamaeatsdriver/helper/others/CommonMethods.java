@@ -123,6 +123,15 @@ public class CommonMethods {
         return time_stamp;
     }
 
+    public static String convertToNewFormat3(String dateStr) throws ParseException {
+        TimeZone utc = TimeZone.getTimeZone("UTC");
+        SimpleDateFormat sourceFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat destFormat = new SimpleDateFormat("dd-MM-yyyy, hh:mm a");
+        sourceFormat.setTimeZone(utc);
+        Date convertedDate = sourceFormat.parse(dateStr);
+        return destFormat.format(convertedDate);
+    }
+
     public static String convertTimeStampToDa(long timestamp) {
         Calendar calendar = Calendar.getInstance();
 

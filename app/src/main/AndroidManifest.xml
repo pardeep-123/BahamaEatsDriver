@@ -41,6 +41,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
+        <activity android:name=".activity.notification_listing.NotificationActivity"></activity>
         <activity
             android:name=".activity.DriverTrainingVideoActivity"
             android:screenOrientation="portrait" />
@@ -240,7 +241,6 @@
                 <action android:name="restartservice" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

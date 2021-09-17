@@ -12,6 +12,7 @@ import com.bahamaeatsdriver.model_class.change_password.ChangePasswordResponse
 import com.bahamaeatsdriver.model_class.change_ride_status.ChangeRideStatusResponse
 import com.bahamaeatsdriver.model_class.delete_car_insurance.DeleteCarInsuranceResponse
 import com.bahamaeatsdriver.model_class.delete_id_card_image.DeleteIdDetailsResponse
+import com.bahamaeatsdriver.model_class.delete_notifications.DeleteNotificationResponse
 import com.bahamaeatsdriver.model_class.delete_police_record.DeletePoliceRecordResponse
 import com.bahamaeatsdriver.model_class.driver_added_slots.DriverAddedSlotList
 import com.bahamaeatsdriver.model_class.driver_documentation_details.DriverDocumentaionResponse
@@ -34,6 +35,7 @@ import com.bahamaeatsdriver.model_class.job_history_details.JobHistoryyDetailsRe
 import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
 import com.bahamaeatsdriver.model_class.map_poliline.Result
+import com.bahamaeatsdriver.model_class.notification_listing.NotificationListingResponse
 import com.bahamaeatsdriver.model_class.notification_status_change.UpdateNotificationStatus
 import com.bahamaeatsdriver.model_class.profile_details.DriverProfileDetailsResposne
 import com.bahamaeatsdriver.model_class.resend_otp.ResendOtpResponse
@@ -353,6 +355,27 @@ interface RestApiInterface {
     @GET(Constants.GET_CURRENT_RIDE)
     fun GET_CURRENT_RIDE(/*@Field(Constants.RIDE_STATUS) rideStatus: String*/): Observable<GetCurrentRideResponse>
 
+
+
+
+    @NonNull
+    @POST(Constants.DELETE_ALL_USER_NOTIFICATIONS)
+    fun DELETE_ALL_USER_NOTIFICATIONS(): Observable<GetCurrentRideResponse>
+
+    @NonNull
+    @FormUrlEncoded
+    @POST(Constants.DELETE_USER_NOTIFICATIONS)
+    fun DELETE_USER_NOTIFICATIONS(@Field(Constants.NOTIFICATION_ID) notificationId: String): Observable<DeleteNotificationResponse>
+
+    @NonNull
+    @GET(Constants.GET_NOTIFICATIONS)
+    fun GET_NOTIFICATIONS(): Observable<NotificationListingResponse>
+
+    @NonNull
+    @FormUrlEncoded
+    @POST(Constants.READ_NOTIFICATIONS)
+    fun READ_NOTIFICATIONS(@Field(Constants.NOTIFICATION_ID) notificationId: String): Observable<GetCurrentRideResponse>
+
     @GET("maps/api/directions/json")
     fun getDirections(
         @Query("mode") mmode: String?,
@@ -361,5 +384,7 @@ interface RestApiInterface {
         @Query("destination") mdestination: String?,
         @Query("key") apiKey: String?
     ): Observable<Result>
+
+
 
 }

@@ -6,15 +6,15 @@ package com.bahamaeats.constant
 class Constants {
     companion object {
         //Live server urls
-//         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
-//        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
-//        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
-//        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
-        //Local server urls
-        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
-        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
-        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
+        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
+        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
         const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
+        //Local server urls
+//        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
+//        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
+//        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+//        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
 
         const val SECURITY_KEY = "security_key"
         const val SECURITY_KEY_CODE = "BahamaEats"
@@ -65,6 +65,13 @@ class Constants {
         const val ADD_UPDATE_BANK = "addupdatebank"
         const val GET_BANK_DETAILS = "getbankdetail"
         const val GET_TRAINING_LINKS = "getTrainingLinks"
+
+
+        const val DELETE_USER_NOTIFICATIONS = "deleteDriverNotifications"
+        const val DELETE_ALL_USER_NOTIFICATIONS = "deleteAllUserNotifications"
+        const val READ_NOTIFICATIONS = "readNotification"
+        const val GET_NOTIFICATIONS = "getDriverNotifications"
+        const val NOTIFICATION_ID = "notificationId"
 
         /**
          * New api's

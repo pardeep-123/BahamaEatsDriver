@@ -2383,6 +2383,192 @@ class BaseViewModel : ViewModel() {
                 })
         }
     }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     *Get user notifications
+     * */
+    private var getNotificationsResposne: MutableLiveData<RestObservable> = MutableLiveData()
+    fun getNotificationsResposne(): LiveData<RestObservable> {
+        return getNotificationsResposne
+    }
+
+    @SuppressLint("CheckResult")
+    fun getNotificationsListApi(
+        activity: Activity,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.GET_NOTIFICATIONS()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    getNotificationsResposne.value = RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { getNotificationsResposne.value = RestObservable.success(it) },
+                    {
+                        getNotificationsResposne.value = RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getNotificationsListApi(
+                            activity,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     *readNotification
+     * */
+    private var getReadNotificationResponse: MutableLiveData<RestObservable> = MutableLiveData()
+    fun getReadNotificationResponse(): LiveData<RestObservable> {
+        return getReadNotificationResponse
+    }
+
+    @SuppressLint("CheckResult")
+    fun getReadNotificationApi(
+        activity: Activity,
+        notificationId: String,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.READ_NOTIFICATIONS(notificationId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    getReadNotificationResponse.value =
+                        RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { getReadNotificationResponse.value = RestObservable.success(it) },
+                    {
+                        getReadNotificationResponse.value =
+                            RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getReadNotificationApi(
+                            activity, notificationId,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     *Delete all user notifications
+     * */
+    private var deleteAllNotificationsResposne: MutableLiveData<RestObservable> = MutableLiveData()
+    fun deleteAllNotificationsResposne(): LiveData<RestObservable> {
+        return deleteAllNotificationsResposne
+    }
+
+    @SuppressLint("CheckResult")
+    fun deleteAllNotificationsApi(
+        activity: Activity,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.DELETE_ALL_USER_NOTIFICATIONS()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    deleteAllNotificationsResposne.value =
+                        RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { deleteAllNotificationsResposne.value = RestObservable.success(it) },
+                    {
+                        deleteAllNotificationsResposne.value = RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        deleteAllNotificationsApi(
+                            activity,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     *Delete user notification
+     * */
+    private var deleteUserNotificationResponse: MutableLiveData<RestObservable> = MutableLiveData()
+
+    fun deleteUserNotificationResponse(): LiveData<RestObservable> {
+        return deleteUserNotificationResponse
+    }
+
+    @SuppressLint("CheckResult")
+    fun deleteUserNotificationApi(
+        activity: Activity,
+        notificationId: String,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.DELETE_USER_NOTIFICATIONS(notificationId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    deleteUserNotificationResponse.value =
+                        RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { deleteUserNotificationResponse.value = RestObservable.success(it) },
+                    {
+                        deleteUserNotificationResponse.value =
+                            RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        deleteUserNotificationApi(
+                            activity, notificationId,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
+
+
 }
 
 

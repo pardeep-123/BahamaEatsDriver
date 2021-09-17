@@ -46,6 +46,7 @@ import com.bahamaeatsdriver.activity.Navigation.Settings_Activity
 import com.bahamaeatsdriver.activity.Navigation.TermAnd_Conditions
 import com.bahamaeatsdriver.activity.Pofile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
+import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.clearPrefrences
 import com.bahamaeatsdriver.helper.extensions.getprefObject
@@ -221,6 +222,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         LL_paymentstatus.setOnClickListener(this)
         homelayout.setOnClickListener(this)
         LL_support.setOnClickListener(this)
+        LL_notification.setOnClickListener(this)
         LL_TandC.setOnClickListener(this)
         LL_settings.setOnClickListener(this)
         ll_trainingVideo.setOnClickListener(this)
@@ -314,7 +316,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun onResume() {
         super.onResume()
         getDriverTakeStatusApicall()
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             checkPermissionLocation(this)
             return
         } else {
@@ -761,6 +770,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 temp = 1
                 launchActivity<Contactus_Activity>()
             }
+            R.id.LL_notification -> {
+                temp = 1
+                launchActivity<NotificationActivity>()
+            }
             R.id.LL_TandC -> {
                 temp = 1
                 launchActivity<TermAnd_Conditions>()
@@ -773,9 +786,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 temp = 1
                 viewModel.getTrainingVideoLinksApi(this, true)
                 viewModel.getTrainingVideoLinksResponse().observe(this, this)
-               /* launchActivity<DriverTrainingVideoActivity>() {
-                    putExtra("videoUrl", videoUrl)
-                }*/
+                /* launchActivity<DriverTrainingVideoActivity>() {
+                     putExtra("videoUrl", videoUrl)
+                 }*/
             }
             R.id.Relativ_profile -> {
                 temp = 1
@@ -986,7 +999,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 if (liveData.data is TrainingVideoLinksResponse) {
 
                     if (liveData.data.body.isNotEmpty()) {
-                        videoUrl=liveData.data.body[0].link
+                        videoUrl = liveData.data.body[0].link
                     }
                     launchActivity<DriverTrainingVideoActivity>() {
                         putExtra("videoUrl", videoUrl)
@@ -1414,12 +1427,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             longRestaurant = body.restaurant.longitude.toString()
             dialog.tv_restaurantName.text = body.restaurant.address
             val houseNumber = body.userAddress.completeAddress
-            val streetName = if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
-            val landmark = if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
-            val userAddres = if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
+            val streetName =
+                if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
+            val landmark =
+                if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
+            val userAddres =
+                if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
             val finalAddress = houseNumber + streetName + landmark + userAddres
             dialog.tv_userOrderAddress.text = finalAddress
-            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+            dialog.tv_totalAmount.text =
+                "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {

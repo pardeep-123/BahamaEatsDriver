@@ -17,13 +17,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.bahamaeats.constant.Constants
 import com.bahamaeatsdriver.R
-import com.bahamaeatsdriver.activity.Deliveries_jobhistory
 import com.bahamaeatsdriver.activity.Home_Page
 import com.bahamaeatsdriver.helper.extensions.saveTokenPrefrence
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.json.JSONObject
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "MyFirebaseMsgService"
@@ -55,9 +53,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         CHANNEL_ID = applicationContext.packageName
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationChannel = NotificationChannel(
-                    CHANNEL_ID,
-                    CHANNEL_ONE_NAME,
-                    NotificationManager.IMPORTANCE_HIGH
+                CHANNEL_ID,
+                CHANNEL_ONE_NAME,
+                NotificationManager.IMPORTANCE_HIGH
             )
             notificationChannel!!.description = ""
             notificationChannel!!.enableLights(true)
@@ -69,13 +67,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationChannel!!.enableVibration(true)
         }
         Log.e("data", "==" + remoteMessage.data)
-        val json = JSONObject(remoteMessage.data.get("body"))
+//        val json = JSONObject(remoteMessage.data.get("body"))
         if (remoteMessage.data.get("notification_code") != null) {
 
             val notification_code = remoteMessage.data.get("notification_code")
             val message = remoteMessage.data.get("message")
             val title = remoteMessage.data.get("title")
             if (notification_code.equals("3")) {
+                sendMessagePush(notification_code!!, message!!, title!!)
+            } else if (notification_code.equals("10")) {
                 sendMessagePush(notification_code!!, message!!, title!!)
             }
         } /*else if (json.getString("code") != null) {
@@ -87,30 +87,35 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private fun sendMessagePush(type: String, message: String, title: String) {
+        var notificationHeader = ""
         /***
          * notification_code == 8
         Then show simle notification message
         notification_code == 3. the getRideDetails api hit krni ride id notification ch ayegi(Accpet reject vali screen)
          */
+        if (type == "10")
+            notificationHeader = title
+        else
+            notificationHeader = getString(R.string.app_name)
 
-       val  intent = Intent(this, Home_Page::class.java)
+
+        val intent = Intent(this, Home_Page::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        val pendingIntent = PendingIntent.getActivity(this, i, intent,0)
+        val pendingIntent = PendingIntent.getActivity(this, i, intent, 0)
         val icon1 = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
-                .setSmallIcon(getNotificationIcon()).setLargeIcon(icon1)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(message))
-                .setColor(ContextCompat.getColor(applicationContext, R.color.White))
-                .setContentTitle(getString(R.string.app_name))
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setContentText(message)
-                .setTicker("Notification test")
-                .setAutoCancel(true)
+            .setSmallIcon(getNotificationIcon()).setLargeIcon(icon1)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            .setColor(ContextCompat.getColor(applicationContext, R.color.White))
+            .setContentTitle(notificationHeader)
+            .setDefaults(Notification.DEFAULT_ALL)
+            .setContentText(message)
+            .setTicker("Notification test")
+            .setAutoCancel(true)
         notificationBuilder.setVibrate(longArrayOf(100, 200, 300, 400, 500))
         notificationBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-        notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setSound(defaultSoundUri).setContentIntent(pendingIntent)
+        notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH).setSound(defaultSoundUri).setContentIntent(pendingIntent)
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -134,7 +139,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun getManager(): NotificationManager? {
         if (notificationManager == null) {
             notificationManager =
-                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         }
         return notificationManager
     }

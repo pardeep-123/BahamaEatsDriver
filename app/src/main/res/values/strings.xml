@@ -302,5 +302,10 @@
     <string name="id_details">ID Details</string>
     <string name="training">Training</string>
     <string name="no_video_available">No video available</string>
-    <!---->
+    <string name="notifications">Notifications</string>
+    <string name="no_notification_available">No notification available</string>
+    <string name="clear">Clear</string>
+    <string name="clear_notification_message">Are you sure want to clear notifications?</string>
+    <string name="clear_notification_alert">Are you sure want to delete notification</string>
+
 </resources>
