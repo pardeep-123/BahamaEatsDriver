@@ -6,8 +6,8 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="data" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="OkHttpClient" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -32,29 +32,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d82e4513-bfca-40f2-aedf-b1d768c2df04" name="Default Changelist" comment="Map polyline removed from  job listing and history page">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/YouTubeAndroidPlayerApi.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/1d0274d2f457c244abdf0d6640b2e2d1.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/1d0274d2f457c244abdf0d6640b2e2d1/jetified-YouTubeAndroidPlayerApi/classes.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/69d8e2fab6b0bf3ad5c21c22f2016b23.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/69d8e2fab6b0bf3ad5c21c22f2016b23/jetified-YouTubeAndroidPlayerApi.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/794b56c975cb1917478341c768213477.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/aff169fa96ae24f803a711ef7f57b6fb.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YouTubeAndroidPlayerApi/build/.transforms/aff169fa96ae24f803a711ef7f57b6fb/jetified-YouTubeAndroidPlayerApi/classes.dex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/NotificationAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/notification_listing/NotificationActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/listeners/DeleteUserNotificationOnClickEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/delete_notifications/Body.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/delete_notifications/DeleteNotificationResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/notification_listing/Body.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/notification_listing/NotificationListingResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/alert_dialog_shape.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_notification_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_notification2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/clear_notification_alert.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_notification.xml" afterDir="false" />
+    <list default="true" id="d82e4513-bfca-40f2-aedf-b1d768c2df04" name="Default Changelist" comment="Notification task done">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_add_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_plus_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/upload_receipt_dialog_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -68,15 +49,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/PaymentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/PaymentAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/My_Wallet_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/My_Wallet_Activity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/fcm/MyFirebaseMessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/fcm/MyFirebaseMessagingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/CommonMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/CommonMethods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_navigation_drawl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_navigation_drawl.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +87,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -135,17 +122,17 @@
     <key name="android.template.-194776728">
       <recent name="com.bahamaeatsdriver.activity" />
     </key>
-    <key name="android.template.537474">
-      <recent name="com.bahamaeatsdriver.activity.notification_listing" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.bahamaeatsdriver.listeners" />
       <recent name="com.bahamaeatsdriver.Adapter" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver" />
+    <key name="android.template.537474">
+      <recent name="com.bahamaeatsdriver.activity.notification_listing" />
     </key>
   </component>
   <component name="RunManager">
@@ -353,10 +340,14 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="100" y="125" width="1166" height="506" key="AVDManager/0.27.1366.704@0.27.1366.704" timestamp="1629789024434" />
-    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog" timestamp="1631860547813">
+    <state x="266" y="136" width="824" height="484" key="AndroidCreateResourceFileDialog" timestamp="1632119740660">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1631860547813" />
+    <state x="266" y="136" width="824" height="484" key="AndroidCreateResourceFileDialog/0.27.1366.704@0.27.1366.704" timestamp="1632119740660" />
+    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog" timestamp="1632125175550">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1632125175550" />
     <state x="430" y="125" width="495" height="505" key="AndroidProcessChooserDialog" timestamp="1631873442249">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -369,50 +360,50 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="466" y="136" width="489" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1631085348964" />
-    <state width="1320" height="118" key="GridCell.Tab.0.bottom" timestamp="1631873550604">
+    <state width="1320" height="343" key="GridCell.Tab.0.bottom" timestamp="1632131978641">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1631873550604" />
-    <state width="1320" height="118" key="GridCell.Tab.0.center" timestamp="1631873550604">
+    <state width="1320" height="343" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1632131978641" />
+    <state width="1320" height="343" key="GridCell.Tab.0.center" timestamp="1632131978641">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1631873550604" />
-    <state width="1320" height="118" key="GridCell.Tab.0.left" timestamp="1631873550604">
+    <state width="1320" height="343" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1632131978641" />
+    <state width="1320" height="343" key="GridCell.Tab.0.left" timestamp="1632131978641">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1631873550604" />
-    <state width="1320" height="118" key="GridCell.Tab.0.right" timestamp="1631873550604">
+    <state width="1320" height="343" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1632131978641" />
+    <state width="1320" height="343" key="GridCell.Tab.0.right" timestamp="1632131978641">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1631873550604" />
-    <state width="1320" height="118" key="GridCell.Tab.1.bottom" timestamp="1631873550605">
+    <state width="1320" height="343" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1632131978641" />
+    <state width="1320" height="118" key="GridCell.Tab.1.bottom" timestamp="1631874392748">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1631873550605" />
-    <state width="1320" height="118" key="GridCell.Tab.1.center" timestamp="1631873550605">
+    <state width="1320" height="118" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1631874392748" />
+    <state width="1320" height="118" key="GridCell.Tab.1.center" timestamp="1631874392748">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1631873550605" />
-    <state width="1320" height="118" key="GridCell.Tab.1.left" timestamp="1631873550605">
+    <state width="1320" height="118" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1631874392748" />
+    <state width="1320" height="118" key="GridCell.Tab.1.left" timestamp="1631874392748">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1631873550605" />
-    <state width="1320" height="118" key="GridCell.Tab.1.right" timestamp="1631873550605">
+    <state width="1320" height="118" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1631874392748" />
+    <state width="1320" height="118" key="GridCell.Tab.1.right" timestamp="1631874392748">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="118" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1631873550605" />
+    <state width="1320" height="118" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1631874392748" />
     <state x="172" y="27" width="1012" height="704" key="SettingsEditor" timestamp="1631085311579">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="172" y="27" width="1012" height="704" key="SettingsEditor/0.27.1366.704@0.27.1366.704" timestamp="1631085311579" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1631797681702">
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1631874311388">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1631797681702" />
-    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1631860608908">
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1631874311388" />
+    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1632129524397">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1631860608908" />
+    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1632129524397" />
     <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1631873546074">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -425,9 +416,9 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="515" y="150" width="325" height="455" key="refactoring.ChangeSignatureDialog/0.27.1366.704@0.27.1366.704" timestamp="1631007276358" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1631873757142">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1632129711818">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1631873757142" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1632129711818" />
   </component>
 </project>

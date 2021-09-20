@@ -2068,6 +2068,8 @@ class BaseViewModel : ViewModel() {
         activity: Activity,
         receiptUpload: String,
         orderId: String,
+        receipt_number: String,
+        receipt_amount: String,
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
@@ -2095,7 +2097,9 @@ class BaseViewModel : ViewModel() {
             }
 
             val keyOrderId = orderId.toRequestBody("text/plain".toMediaTypeOrNull())
-            apiService.UPLOAD_RECEIPT(receiptFileBody, keyOrderId)
+            val keyReceiptNumber= receipt_number.toRequestBody("text/plain".toMediaTypeOrNull())
+            val keyReceiptAmount = receipt_amount.toRequestBody("text/plain".toMediaTypeOrNull())
+            apiService.UPLOAD_RECEIPT(receiptFileBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
@@ -2109,7 +2113,8 @@ class BaseViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        uploadReceiptApi(activity, receiptUpload, orderId, isDialogShow)
+                        uploadReceiptApi(activity, receiptUpload, orderId, receipt_number,
+                            receipt_amount, isDialogShow)
                     }
                 })
         }

@@ -307,5 +307,8 @@
     <string name="clear">Clear</string>
     <string name="clear_notification_message">Are you sure want to clear notifications?</string>
     <string name="clear_notification_alert">Are you sure want to delete notification</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="enter_receipt_number">Enter Receipt Number</string>
+    <string name="receipt_number">Receipt Number</string>
 
 </resources>

@@ -6,15 +6,15 @@ package com.bahamaeats.constant
 class Constants {
     companion object {
         //Live server urls
-         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
-        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
-        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
-        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
-        //Local server urls
-//        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
-//        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
-//        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+//         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
+//        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
+//        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
 //        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
+        //Local server urls
+        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
+        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
+        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
 
         const val SECURITY_KEY = "security_key"
         const val SECURITY_KEY_CODE = "BahamaEats"
@@ -93,6 +93,8 @@ class Constants {
         const val LONGITUDE = "longitude"
         const val ADDRESS = "address"
         const val ORDER_ID = "orderId"
+        const val RECEIPT_AMOUNT = "receipt_amount"
+        const val RECEIPT_NUMBER = "receipt_number"
         const val TOKEN = "token"
         const val FIRST_TIME_OPEN = "app_open_count"
 

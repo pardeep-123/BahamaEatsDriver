@@ -30,15 +30,15 @@ class PaymentAdapter(var context: Context, val paymentsList: ArrayList<Order>) :
             myViewHolder.itemView.tv_userName.text = paymentsList.get(i).user.firstName+" "+paymentsList.get(i).user.lastName
 
         if(paymentsList.get(i).order!=null){
-            myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList.get(i).order.id
+            myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList[i].order.id
             if (paymentsList.get(i).order.tip!=0.0) myViewHolder.itemView.tv_tip.visibility else myViewHolder.itemView.tv_tip.visibility=View.GONE
             if (paymentsList.get(i).order.deliveryFee!=0.0) myViewHolder.itemView.tv_deliveryFee.visibility else myViewHolder.itemView.tv_deliveryFee.visibility=View.GONE
             myViewHolder.itemView.tv_tip.text = "Tip : $" + paymentsList.get(i).order.tip
-            myViewHolder.itemView.tv_deliveryFee.text = "Delivery Fee : $" + paymentsList.get(i).order.deliveryFee
+            myViewHolder.itemView.tv_deliveryFee.text = "Delivery Fee : $" + paymentsList[i].order.deliveryFee
 //            myViewHolder.itemView.tv_totalAmount.text = "$" +  roundOffDecimal( paymentsList.get(i).order.netAmount.toDouble())
         }
 
-        myViewHolder.itemView.tv_date.text = CommonMethods.parseDateToddMMyyyy(paymentsList.get(i).createdAt, Constants.ORDER_DATE_FORMAT)
+        myViewHolder.itemView.tv_date.text = CommonMethods.parseDateToddMMyyyy(paymentsList[i].createdAt, Constants.ORDER_DATE_FORMAT)
         /**
          * orderType => 1.New,2.Accepted,3.Completed,4.Cancelled,5.In-progress,6.Ready For Pickup
         status: 1.New,2.Accepted,3.Completed,4.Cancelled,5.In-progress,6.Ready For Pickup

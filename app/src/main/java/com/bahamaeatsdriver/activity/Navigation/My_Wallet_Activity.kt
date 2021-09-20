@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bahamaeatsdriver.R
 
 class My_Wallet_Activity : AppCompatActivity() {
@@ -26,15 +27,15 @@ class My_Wallet_Activity : AppCompatActivity() {
     }
 
     fun Tv_statistics(view: View?) {
-        Tv_statistics!!.setBackgroundColor(resources.getColor(R.color.Greenapp))
-        Tv_Depost!!.setBackgroundColor(resources.getColor(R.color.Black))
+        Tv_statistics!!.setBackgroundColor(ContextCompat.getColor(this,R.color.Greenapp))
+        Tv_Depost!!.setBackgroundColor(ContextCompat.getColor(this,R.color.Black))
         LL_mainlayout_statistic!!.visibility = View.VISIBLE
         LL_mainlayout_deposit!!.visibility = View.GONE
     }
 
     fun Tv_Depost(view: View?) {
-        Tv_statistics!!.setBackgroundColor(resources.getColor(R.color.Black))
-        Tv_Depost!!.setBackgroundColor(resources.getColor(R.color.Greenapp))
+        Tv_statistics!!.setBackgroundColor(ContextCompat.getColor(this,R.color.Black))
+        Tv_Depost!!.setBackgroundColor(ContextCompat.getColor(this,R.color.Greenapp))
         LL_mainlayout_statistic!!.visibility = View.GONE
         LL_mainlayout_deposit!!.visibility = View.VISIBLE
     }

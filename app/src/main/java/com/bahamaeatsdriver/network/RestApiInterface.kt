@@ -198,7 +198,9 @@ interface RestApiInterface {
     @POST(Constants.UPLOAD_RECEIPT)
     fun UPLOAD_RECEIPT(
         @Part receiptUpload: MultipartBody.Part?,
-        @Part(Constants.ORDER_ID) orderId: RequestBody
+        @Part(Constants.ORDER_ID) orderId: RequestBody,
+        @Part(Constants.RECEIPT_NUMBER) receipt_number: RequestBody,
+        @Part(Constants.RECEIPT_AMOUNT) receipt_amount: RequestBody
     ): Observable<UploadReceiptResponse>
 
     @GET(Constants.GET_ID_CARD_DEATILS)

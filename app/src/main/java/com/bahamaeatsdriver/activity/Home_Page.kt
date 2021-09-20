@@ -83,12 +83,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.current_job_layout.*
+import kotlinx.android.synthetic.main.current_job_layout.tv_uploadReceipt
 import kotlinx.android.synthetic.main.fragment_navigation_drawl.*
 import kotlinx.android.synthetic.main.messenger_popup_layout.*
 import kotlinx.android.synthetic.main.notification_on_alert.*
 import kotlinx.android.synthetic.main.order_details_dailog.tv_paymentMode
 import kotlinx.android.synthetic.main.order_details_dailog_new.*
+import kotlinx.android.synthetic.main.order_details_dailog_new.btn_ok
 import kotlinx.android.synthetic.main.res_pickup_request.*
+import kotlinx.android.synthetic.main.res_pickup_request.tv_totalAmount
+import kotlinx.android.synthetic.main.upload_receipt_dialog_layout.*
 import org.joda.time.Duration
 import org.joda.time.format.DateTimeFormat
 import org.json.JSONObject
@@ -597,7 +601,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 startActivity(i)
             }
             R.id.tv_uploadReceipt -> {
-                checkPermissionCamera(false, "2", "")
+//                checkPermissionCamera(false, "2", "")
+                uploadReceiptForm()
             }
             R.id.iv_message -> {
                 val number = currentRideData!!.user.countryCodePhone
@@ -945,6 +950,36 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
         dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
         dialogOrderDeatail.show()
+    }
+
+    private fun uploadReceiptForm() {
+        val uploadReceiptDialog = Dialog(this@Home_Page)
+        uploadReceiptDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        uploadReceiptDialog.setContentView(R.layout.upload_receipt_dialog_layout)
+        uploadReceiptDialog.setCancelable(false)
+        uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
+        uploadReceiptDialog.iv_uploadReceipt.setOnClickListener {
+            checkPermissionCamera(false, "2", "")
+        }
+
+        uploadReceiptDialog.btn_ok.setOnClickListener {
+            if (et_receiptNumber.text.toString().trim().isEmpty()) {
+                Helper.showErrorAlert(this,"Please enter receipt number")
+            } else if (image_path.isEmpty()) {
+                Helper.showErrorAlert(this,"Please add receipt image")
+            }
+            viewModel.uploadReceiptApi(
+                this,
+                image_path,
+                currentRideData!!.orderId.toString(),
+                et_receiptNumber.text.toString().trim(),
+                et_totalAmount.text.toString().trim(),
+                true
+            )
+            viewModel.getUploadReceiptResponse().observe(this, this)
+            uploadReceiptDialog.dismiss()
+        }
+        uploadReceiptDialog.show()
     }
 
     @SuppressLint("RtlHardcoded")
@@ -1372,8 +1407,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
-        viewModel.uploadReceiptApi(this, image_path, currentRideData!!.orderId.toString(), true)
-        viewModel.getUploadReceiptResponse().observe(this, this)
+//        viewModel.uploadReceiptApi(this, image_path, currentRideData!!.orderId.toString(), true)
+//        viewModel.getUploadReceiptResponse().observe(this, this)
     }
 
     override fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String) {
@@ -1427,12 +1462,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             longRestaurant = body.restaurant.longitude.toString()
             dialog.tv_restaurantName.text = body.restaurant.address
             val houseNumber = body.userAddress.completeAddress
-            val streetName = if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
-            val landmark = if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
-            val userAddres = if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
+            val streetName =
+                if (body.userAddress.streetName.isNotEmpty()) "/" + body.userAddress.streetName else ""
+            val landmark =
+                if (body.userAddress.deliveryInstructions.isNotEmpty()) "\n" + body.userAddress.deliveryInstructions else ""
+            val userAddres =
+                if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
             val finalAddress = houseNumber + streetName + landmark + userAddres
             dialog.tv_userOrderAddress.text = finalAddress
-            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+            dialog.tv_totalAmount.text =
+                "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {
