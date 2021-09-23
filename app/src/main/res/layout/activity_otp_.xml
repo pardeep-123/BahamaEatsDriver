@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/black"
-    tools:context=".activity.Otp.Otp_Fill_Activity">
+    tools:context=".activity.verify_otp.VerifyOtpActivity">
 
     <RelativeLayout
         android:id="@+id/Relativ_otp"

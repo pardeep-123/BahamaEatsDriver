@@ -10,7 +10,7 @@ import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Id_Details.Edit_Id_Details
-import com.bahamaeatsdriver.activity.Licence_Detail.Edit_LicenceDetail_Activity
+import com.bahamaeatsdriver.activity.driver_licence_detail.Edit_LicenceDetail_Activity
 import com.bahamaeatsdriver.activity.login_register.Identification_Activity
 import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.model_class.delete_car_insurance.DeleteCarInsuranceResponse

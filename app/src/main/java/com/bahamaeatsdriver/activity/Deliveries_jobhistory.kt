@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_deliveries_jobhistory.*
 class Deliveries_jobhistory : AppCompatActivity(), View.OnClickListener, OnJobHistoryClick, Observer<RestObservable> {
 
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-
     private var pastJobHistory: List<PastJobHistory>? = null
     private var upComingJobHistory: UpComingJobHistory? = null
 

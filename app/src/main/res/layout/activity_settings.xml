@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/black"
-    tools:context=".activity.Navigation.Settings_Activity">
+    tools:context=".activity.Navigation.SettingsActivity">
 
     <RelativeLayout
         android:id="@+id/hedder"

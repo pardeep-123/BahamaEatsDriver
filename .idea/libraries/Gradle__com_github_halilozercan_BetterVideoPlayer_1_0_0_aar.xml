@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.halilozercan:BetterVideoPlayer:1.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d84240ea30e3a4d502e029e52ea81561/jetified-BetterVideoPlayer-1.0.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66bab538048286f4ac73d4f08c4cfb8e/jetified-BetterVideoPlayer-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d84240ea30e3a4d502e029e52ea81561/jetified-BetterVideoPlayer-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d84240ea30e3a4d502e029e52ea81561/jetified-BetterVideoPlayer-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d84240ea30e3a4d502e029e52ea81561/jetified-BetterVideoPlayer-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66bab538048286f4ac73d4f08c4cfb8e/jetified-BetterVideoPlayer-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66bab538048286f4ac73d4f08c4cfb8e/jetified-BetterVideoPlayer-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66bab538048286f4ac73d4f08c4cfb8e/jetified-BetterVideoPlayer-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.halilozercan/BetterVideoPlayer/1.0.0/1b084d4578940634e8327472d40c2221e29262e5/BetterVideoPlayer-1.0.0-javadoc.jar!/" />

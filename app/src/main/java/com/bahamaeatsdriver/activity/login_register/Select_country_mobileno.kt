@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
-import com.bahamaeatsdriver.activity.Otp.Otp_Fill_Activity
+import com.bahamaeatsdriver.activity.verify_otp.VerifyOtpActivity
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.others.Helper
@@ -89,7 +89,7 @@ class Select_country_mobileno : AppCompatActivity(), View.OnClickListener, Obser
                     } else {
                         Helper.showSuccessToast(this, liveData.data.message)
 //                        Helper.showSuccessToast(this, "OTP sent successfully")
-                        launchActivity<Otp_Fill_Activity>()
+                        launchActivity<VerifyOtpActivity>()
                         {
                             putExtra("countryCode", liveData.data.body.countryCode)
                             putExtra("phone", liveData.data.body.contactNo)

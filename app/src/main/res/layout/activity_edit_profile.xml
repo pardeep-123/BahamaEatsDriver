@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/black"
-    tools:context=".activity.Pofile.Edit_profile">
+    tools:context=".activity.driver_profile.Edit_profile">
 
     <RelativeLayout
         android:id="@+id/hedder"

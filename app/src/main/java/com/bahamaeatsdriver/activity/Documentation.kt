@@ -27,10 +27,6 @@ class Documentation : AppCompatActivity() {
     var iv_idcard: ImageView? = null
     var iv_addlicence_icon: ImageView? = null
     var iv_addid_icon: ImageView? = null
-    private val encodedImage: String? = null
-    private val pictureFilePath: String? = null
-    private val kk: String? = null
-    private val strIMg = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         documentationActivity = this

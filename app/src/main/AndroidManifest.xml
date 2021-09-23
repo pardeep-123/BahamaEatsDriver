@@ -72,13 +72,13 @@
             android:name=".activity.Id_Details.Id_details"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Pofile.InsuranceAndVehicleInfo"
+            android:name=".activity.driver_profile.InsuranceAndVehicleInfo"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.PaymentStatsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Pofile.Edit_profile"
+            android:name=".activity.driver_profile.Edit_profile"
             android:screenOrientation="portrait" />
         <activity
             android:name=".place_picker.LocationActivity"
@@ -90,10 +90,10 @@
             android:name=".activity.Schedule_time"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Licence_Detail.Edit_LicenceDetail_Activity"
+            android:name=".activity.driver_licence_detail.Edit_LicenceDetail_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Licence_Detail.LicenceDetail_Activity"
+            android:name=".activity.driver_licence_detail.LicenceDetail_Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Id_Details.Edit_Id_Details"
@@ -129,7 +129,7 @@
             android:name=".activity.Order.Orders_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Pofile.My_Profile_Activity"
+            android:name=".activity.driver_profile.My_Profile_Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Navigation.My_Wallet_Activity"
@@ -153,23 +153,23 @@
             android:name=".activity.Home_Page"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Otp.Otp_Fill_Activity"
+            android:name=".activity.verify_otp.VerifyOtpActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Navigation.Contactus_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Navigation.Settings_Activity"
+            android:name=".activity.Navigation.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.Navigation.AboutUs" />
         <activity
             android:name=".activity.Driver_details.Driving_License_Imformation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ForgotPassword.Fill_old_newPassword"
+            android:name=".activity.forgot_password.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Licence_Detail.Fill_LicenseDetail_Activity"
+            android:name=".activity.driver_licence_detail.Fill_LicenseDetail_Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.login_register.Select_country_mobileno"

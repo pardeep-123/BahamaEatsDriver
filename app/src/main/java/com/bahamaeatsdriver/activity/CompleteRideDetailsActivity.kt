@@ -41,6 +41,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
              * paymentMethod-5 for Atlantic
              * paymentMethod-6 for IsLand Pay
              * paymentMethod-7 for be_wallet
+             * paymentMethod-8 for Loyalty Bonus
              */
             when (orderData.order.paymentMethod) {
                 1 -> {
@@ -60,6 +61,9 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 7 -> {
                     tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
+                }
+                8 -> {
+                    tv_paymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus)
                 }
             }
             tv_totalAmount.text =

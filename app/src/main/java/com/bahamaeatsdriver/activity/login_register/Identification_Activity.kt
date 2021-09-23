@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Id_Details.Id_details
-import com.bahamaeatsdriver.activity.Licence_Detail.Fill_LicenseDetail_Activity
+import com.bahamaeatsdriver.activity.driver_licence_detail.Fill_LicenseDetail_Activity
 import com.bahamaeatsdriver.helper.others.ImagePicker
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_identification.*

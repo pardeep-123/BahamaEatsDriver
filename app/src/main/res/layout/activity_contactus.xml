@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,11 +13,11 @@
         android:background="@color/Greenapp">
 
         <ImageView
-            android:contentDescription="@string/app_name"
             android:id="@+id/iv_backArrow_contactus"
             style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/backbtn"
-            android:tint="@color/White" />
+            app:tint="@color/White" />
 
         <TextView
             style="@style/HedderSmallsiz"
@@ -80,12 +81,12 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <ImageView
-                            android:contentDescription="@string/app_name"
                             android:layout_width="@dimen/_12sdp"
                             android:layout_height="@dimen/_12sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_5sdp"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/phone" />
                     </RelativeLayout>
 
@@ -141,12 +142,12 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <ImageView
-                            android:contentDescription="@string/app_name"
                             android:layout_width="@dimen/_15sdp"
                             android:layout_height="@dimen/_15sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_5sdp"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/chat_icon" />
                     </RelativeLayout>
 
@@ -166,9 +167,9 @@
                         android:padding="10dp">
 
                         <ImageView
-                            android:contentDescription="@string/app_name"
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/phone" />
 
                         <RelativeLayout
@@ -207,9 +208,9 @@
                         android:padding="10dp">
 
                         <ImageView
-                            android:contentDescription="@string/app_name"
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
+                            android:contentDescription="@string/app_name"
                             android:src="@drawable/custmor_suport" />
 
                         <RelativeLayout
@@ -245,7 +246,7 @@
                         style="@style/ScreenTextView2"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_30sdp"
-                        android:text="Get In Touch"
+                        android:text="@string/get_in_touch"
                         android:textColor="@color/White"
                         android:textSize="@dimen/_12sdp" />
 
@@ -327,7 +328,7 @@
 
                             <TextView
                                 style="@style/ScreenTextView1"
-                                android:text="Message"
+                                android:text="@string/message"
                                 android:textColor="@color/White"
                                 android:textSize="@dimen/_8sdp" />
 

@@ -310,5 +310,7 @@
     <string name="total_amount">Total Amount</string>
     <string name="enter_receipt_number">Enter Receipt Number</string>
     <string name="receipt_number">Receipt Number</string>
+    <string name="loyalty_bonus">Loyalty Bonus</string>
+    <string name="get_in_touch">Get In Touch</string>
 
 </resources>

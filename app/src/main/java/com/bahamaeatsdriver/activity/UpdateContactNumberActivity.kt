@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
-import com.bahamaeatsdriver.activity.Otp.Otp_Fill_Activity
+import com.bahamaeatsdriver.activity.verify_otp.VerifyOtpActivity
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.Validator
@@ -66,7 +66,7 @@ class UpdateContactNumberActivity : AppCompatActivity(), View.OnClickListener, O
                               putExtra("phone", liveData.data.body.contactNo)
                               putExtra("from", "UpdateContactNumberActivity")
                           }*/
-                        val initData = Intent(this, Otp_Fill_Activity::class.java)
+                        val initData = Intent(this, VerifyOtpActivity::class.java)
                         initData.putExtra("countryCode", liveData.data.body.countryCode)
                         initData.putExtra("phone", liveData.data.body.contactNo)
                         initData.putExtra("from", "UpdateContactNumberActivity")

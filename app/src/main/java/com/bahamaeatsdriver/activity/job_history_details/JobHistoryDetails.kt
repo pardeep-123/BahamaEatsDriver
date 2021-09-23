@@ -1,28 +1,21 @@
 package com.bahamaeatsdriver.activity.job_history_details
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.Point
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.constant.Constants
-import com.bahamaeats.network.RestApiInterface
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.Adapter.FoodQuantiytAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
-import com.bahamaeatsdriver.drawroute.DrawMarker
-import com.bahamaeatsdriver.drawroute.DrawRouteMaps
 import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.others.CommonMethods.convertTimeStampToDa
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.model_class.job_history_details.JobHistoryyDetailsResponse
-import com.bahamaeatsdriver.model_class.map_poliline.Route
 import com.bahamaeatsdriver.repository.BaseViewModel
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -30,12 +23,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_job_history_details.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapReadyCallback {
@@ -49,14 +37,9 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_job_history_details)
-        iv_backArrow_payment.setOnClickListener {
-            finish()
-        }
-        tv_support.setOnClickListener {
-            launchActivity<Contactus_Activity>()
-        }
-        rl_root.setOnClickListener {
-        }
+        iv_backArrow_payment.setOnClickListener {finish()}
+        tv_support.setOnClickListener { launchActivity<Contactus_Activity>() }
+        rl_root.setOnClickListener {}
         if (intent.getStringExtra("jobId") != null) {
             viewModel.jobHistoryDetailsApi(this, intent.getStringExtra("jobId")!!, true)
             viewModel.getJobHistoryDetailsResponse().observe(this, this)
@@ -95,18 +78,14 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                      * paymentMethod-6 for IsLand Pay
                      * paymentMethod-7 for BE Wallet
                      * */
-                    if (liveData.data.body.order.paymentMethod == "1") {
-                        tv_paymentMode.text = "Payment method: Suncash"
-                    } else if (liveData.data.body.order.paymentMethod == "2") {
-                        tv_paymentMode.text = "Payment method: Paypal"
-                    } else if (liveData.data.body.order.paymentMethod == "4") {
-                        tv_paymentMode.text = "Payment method: Kanoo"
-                    } else if (liveData.data.body.order.paymentMethod == "5") {
-                        tv_paymentMode.text = "Payment method: Atlantic"
-                    } else if (liveData.data.body.order.paymentMethod == "6") {
-                        tv_paymentMode.text = "Payment method: IsLand Pay"
-                    }else if (liveData.data.body.order.paymentMethod == "7") {
-                        tv_paymentMode.text = "Payment method: "+getString(R.string.be_wallet)
+                    when (liveData.data.body.order.paymentMethod) {
+                        "1" -> { tv_paymentMode.text = "Payment method: Suncash" }
+                        "2" -> { tv_paymentMode.text = "Payment method: Paypal" }
+                        "4" -> { tv_paymentMode.text = "Payment method: Kanoo" }
+                        "5" -> { tv_paymentMode.text = "Payment method: Atlantic" }
+                        "6" -> { tv_paymentMode.text = "Payment method: IsLand Pay" }
+                        "7" -> { tv_paymentMode.text = "Payment method: "+getString(R.string.be_wallet) }
+                        "8" -> { tv_paymentMode.text = "Payment method: "+getString(R.string.loyalty_bonus) }
                     }
                     tv_vatPercentage.text = "VAT(" + liveData.data.body.order.taxPercentage + "%) "
                     val serviceFee=liveData.data.body.order.serviceFee
@@ -129,7 +108,6 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     }
                     tv_deliveryCharges.text = "$$deliveryFee"
 
-
                      val taxFee=liveData.data.body.order.tax
                     if (taxFee!=0.0){
                         view_vat.visibility=View.VISIBLE
@@ -140,8 +118,6 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         ll_vatRoot.visibility=View.GONE
                         tv_vat.text = "$" + Helper.roundOffDecimalNew(taxFee.toFloat())
                     }
-
-
                      val promoDiscount=liveData.data.body.order.promoDiscount
                     if (promoDiscount!=0.0){
                         view_promo.visibility=View.VISIBLE
@@ -152,9 +128,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         ll_Promo.visibility=View.GONE
                         tv_promo.text = "$" + Helper.roundOffDecimalNew(promoDiscount.toFloat())
                     }
-
-
-                     val tip=liveData.data.body.order.tip
+                    val tip=liveData.data.body.order.tip
                     if (tip!=0.0){
                         view_tip.visibility=View.VISIBLE
                         ll_tip.visibility=View.VISIBLE
@@ -164,7 +138,6 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         ll_tip.visibility=View.GONE
                         tv_tip.text = "$" + Helper.roundOffDecimalNew(tip.toFloat())
                     }
-
                     val adapter = FoodQuantiytAdapter(this, liveData.data.body.order.orderDetails)
                     rv_quantity!!.adapter = adapter
                     mapp.onCreate(null)
@@ -237,126 +210,4 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
             }
         }
     }
-
-    protected fun createMarker(latitude: Double, longitude: Double, markerIcon: Int): Marker? {
-        return gmap!!.addMarker(MarkerOptions()
-                .position(LatLng(latitude, longitude))
-                .anchor(0.5f, 0.5f)
-                .icon(BitmapDescriptorFactory.fromResource(markerIcon)))
-    }
-
-    // todo ------------------------------- Polyline --------------------------------- //
-    private var polyLineList: List<LatLng>? = null
-    var polylineOptions: PolylineOptions? = null
-    var blackPolyline: Polyline? = null
-    var greyPolyLine: Polyline? = null
-    var blackPolylineOptions: PolylineOptions? = null
-
-
-    @SuppressLint("CheckResult")
-    private fun drawpoliline(pickuplatlng: LatLng, dropofflatlng: LatLng) {
-        Log.e("DGSdgsdsg", "safsfa")
-        Log.e("DGSdgsdsg", "pickuplatlng==>" + pickuplatlng.latitude)
-        Log.e("DGSdgsdsg", "pickuplatlng==>" + pickuplatlng.longitude)
-        Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.latitude)
-        Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.longitude)
-
-        val apiInterface: RestApiInterface
-        val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://maps.googleapis.com/")
-                .build()
-        apiInterface = retrofit.create(RestApiInterface::class.java)
-        apiInterface.getDirections("driving", "less_driving", pickuplatlng.latitude.toString() + "," + pickuplatlng.longitude, dropofflatlng.latitude.toString() + "," + dropofflatlng.longitude, resources.getString(R.string.google_maps_key)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            val routeList: List<Route> = it.routes
-            Log.e("DGsdsgdgsgd", "" + routeList.size)
-            for (route in routeList) {
-                val polyLine = route.overviewPolyline.points
-                polyLineList = decodePoly(polyLine)
-                if (greyPolyLine != null) {
-                    greyPolyLine!!.remove()
-                }
-                if (blackPolyline != null) {
-                    blackPolyline!!.remove()
-                }
-                drawPolyLineAndAnimateCar(pickuplatlng, dropofflatlng)
-                createZoomRoute(pickuplatlng, dropofflatlng)
-            }
-        }
-    }
-
-    private fun drawPolyLineAndAnimateCar(pickuplatlng: LatLng, dropofflatlng: LatLng) {
-        runOnUiThread {
-            val builder = LatLngBounds.Builder()
-            for (latLng in polyLineList!!) {
-                builder.include(latLng)
-            }
-            polylineOptions = PolylineOptions()
-            polylineOptions!!.color(Color.BLACK)
-            polylineOptions!!.width(8f)
-            polylineOptions!!.startCap(SquareCap())
-            polylineOptions!!.endCap(SquareCap())
-            polylineOptions!!.jointType(JointType.ROUND)
-            polylineOptions!!.addAll(polyLineList)
-            greyPolyLine = gmap!!.addPolyline(polylineOptions)
-            blackPolylineOptions = PolylineOptions()
-            blackPolylineOptions!!.width(8f)
-            blackPolylineOptions!!.color(Color.BLACK)
-            blackPolylineOptions!!.startCap(SquareCap())
-            blackPolylineOptions!!.endCap(SquareCap())
-            blackPolylineOptions!!.jointType(JointType.ROUND)
-            blackPolyline = gmap!!.addPolyline(blackPolylineOptions)
-        }
-    }
-
-    fun createZoomRoute(driverLatLong: LatLng, dropLatLong: LatLng) {
-        val lstLatLngRoute: MutableList<LatLng> = java.util.ArrayList()
-        lstLatLngRoute.add(driverLatLong)
-        lstLatLngRoute.add(dropLatLong)
-        zoomRoute(lstLatLngRoute)
-    }
-
-    private fun zoomRoute(lstLatLngRoute: MutableList<LatLng>) {
-        if (gmap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty()) return
-        val boundsBuilder = LatLngBounds.Builder()
-        for (latLngPoint in lstLatLngRoute) boundsBuilder.include(latLngPoint)
-        val routePadding = 20
-        val latLngBounds = boundsBuilder.build()
-        gmap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding))
-    }
-
-    private fun decodePoly(encoded: String): List<LatLng> {
-        val poly: MutableList<LatLng> = java.util.ArrayList()
-        var index = 0
-        val len = encoded.length
-        var lat = 0
-        var lng = 0
-        while (index < len) {
-            var b: Int
-            var shift = 0
-            var result = 0
-            do {
-                b = encoded[index++].toInt() - 63
-                result = result or (b and 0x1f shl shift)
-                shift += 5
-            } while (b >= 0x20)
-            val dlat = if (result and 1 != 0) (result shr 1).inv() else result shr 1
-            lat += dlat
-            shift = 0
-            result = 0
-            do {
-                b = encoded[index++].toInt() - 63
-                result = result or (b and 0x1f shl shift)
-                shift += 5
-            } while (b >= 0x20)
-            val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
-            lng += dlng
-            val p = LatLng(lat.toDouble() / 1E5,
-                    lng.toDouble() / 1E5)
-            poly.add(p)
-        }
-        return poly
-    }
-
 }

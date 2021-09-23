@@ -10,7 +10,7 @@ import com.bahamaeats.listeners.OnNoInternetConnectionListener
 import com.bahamaeats.network.RestApiInterface
 import com.bahamaeats.network.RestObservable
 import com.bahamaeatsdriver.R
-import com.bahamaeatsdriver.activity.Otp.Otp_Fill_Activity
+import com.bahamaeatsdriver.activity.verify_otp.VerifyOtpActivity
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.getTokenPrefrence
 import com.bahamaeatsdriver.helper.others.Helper
@@ -131,7 +131,7 @@ class BaseViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun verifyOtprApi(
-        activity: Otp_Fill_Activity,
+        activity: VerifyOtpActivity,
         countryCode: String,
         phone: String,
         otp: String,
@@ -179,7 +179,7 @@ class BaseViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun updatedPhoneVerifyOtpResponsneApi(
-        activity: Otp_Fill_Activity,
+        activity: VerifyOtpActivity,
         countryCode: String,
         phone: String,
         otp: String,

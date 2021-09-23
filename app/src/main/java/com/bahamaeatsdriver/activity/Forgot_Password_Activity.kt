@@ -21,10 +21,8 @@ class Forgot_Password_Activity : AppCompatActivity(), Observer<RestObservable> {
 
     @Inject
     lateinit var validator: Validator
-
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
 
-    private var dialog: Dialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
@@ -43,16 +41,15 @@ class Forgot_Password_Activity : AppCompatActivity(), Observer<RestObservable> {
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is ForgotPasswordResponse) {
-                    if (liveData.data.code == 403) {
+                    if (liveData.data.code == 403)
                         Helper.showErrorAlert(this, liveData.data.message)
-                    } else {
+                     else {
                         Helper.showSuccessToast(this, liveData.data.message)
                         finish()
                     }
                 }
 
             }
-
             Status.ERROR -> {
 
             }

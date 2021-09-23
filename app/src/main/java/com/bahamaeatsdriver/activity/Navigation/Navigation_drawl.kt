@@ -16,7 +16,7 @@ import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Documentation
 import com.bahamaeatsdriver.activity.Home_Page
 import com.bahamaeatsdriver.activity.PaymentStatsActivity
-import com.bahamaeatsdriver.activity.Pofile.My_Profile_Activity
+import com.bahamaeatsdriver.activity.driver_profile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 
 /**
@@ -97,7 +97,7 @@ class Navigation_drawl : Fragment() {
         }
         LL_settings!!.setOnClickListener {
             temp = 1
-            startActivity(Intent(activity, Settings_Activity::class.java))
+            startActivity(Intent(activity, SettingsActivity::class.java))
         }
         ll_refer_earn!!.setOnClickListener {
             temp = 1
