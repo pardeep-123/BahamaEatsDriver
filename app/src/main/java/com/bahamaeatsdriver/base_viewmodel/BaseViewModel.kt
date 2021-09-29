@@ -14,6 +14,7 @@ import com.bahamaeatsdriver.activity.verify_otp.VerifyOtpActivity
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.getTokenPrefrence
 import com.bahamaeatsdriver.helper.others.Helper
+import com.bahamaeatsdriver.model_class.ImageVideoModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType
@@ -23,6 +24,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.util.ArrayList
 import javax.inject.Inject
 
 
@@ -2070,53 +2072,54 @@ class BaseViewModel : ViewModel() {
         orderId: String,
         receipt_number: String,
         receipt_amount: String,
+        arrayImageVideo: ArrayList<ImageVideoModel>,
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
-            var receiptUploadFile: File? = null
+            /*var receiptUploadFile: File? = null
             var receiptFileBody: MultipartBody.Part? = null
-            if (receiptUpload != "") {
+            if (receiptUpload != "") 
                 receiptUploadFile = File(receiptUpload)
-            }
-            if (receiptUploadFile != null && receiptUploadFile.exists() && !receiptUploadFile.equals(
-                    ""
-                )
-            ) {
+            
+            if (receiptUploadFile != null && receiptUploadFile.exists() && !receiptUploadFile.equals("")) {
                 val mediaType: MediaType?
-                if (receiptUpload.endsWith("png")) {
-                    mediaType = "image/png".toMediaTypeOrNull()
-                } else {
-                    mediaType = "image/jpeg".toMediaTypeOrNull()
-                }
+                if (receiptUpload.endsWith("png")) mediaType = "image/png".toMediaTypeOrNull()  else mediaType = "image/jpeg".toMediaTypeOrNull()
                 val requestBody: RequestBody = receiptUploadFile.asRequestBody(mediaType)
-                receiptFileBody = MultipartBody.Part.createFormData(
-                    "receiptUpload",
-                    receiptUploadFile.name,
-                    requestBody
-                )
-            }
+                receiptFileBody = MultipartBody.Part.createFormData("receiptUpload", receiptUploadFile.name, requestBody)
+            }*/
 
+            var photoMedia: File?
+            val photoaArrayBody: ArrayList<MultipartBody.Part?> = ArrayList()
+
+            for (i in 0 until arrayImageVideo.size) {
+                var mediaFileBody: MultipartBody.Part? = null
+
+                if (arrayImageVideo.get(i).getType().equals("0")) {
+                    if (arrayImageVideo.get(i).getImageVideoPath() != null) {
+
+                        photoMedia = File(arrayImageVideo.get(i).getImageVideoPath())
+                        if (photoMedia.exists()) {
+                            val requestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), photoMedia)
+                            mediaFileBody = MultipartBody.Part.createFormData("receiptUpload", photoMedia.name, requestBody)
+                        }
+                        photoaArrayBody.add(mediaFileBody!!)
+                    }
+                }
+            }
             val keyOrderId = orderId.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyReceiptNumber= receipt_number.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyReceiptAmount = receipt_amount.toRequestBody("text/plain".toMediaTypeOrNull())
-            apiService.UPLOAD_RECEIPT(receiptFileBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
+//            apiService.UPLOAD_RECEIPT(receiptFileBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
+            apiService.UPLOAD_RECEIPT(photoaArrayBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    uploadReceiptResponse.value = RestObservable.loading(activity, isDialogShow)
-                }
-                .subscribe({ uploadReceiptResponse.value = RestObservable.success(it) },
-                    { uploadReceiptResponse.value = RestObservable.error(activity, it) })
+                .doOnSubscribe { uploadReceiptResponse.value = RestObservable.loading(activity, isDialogShow) }
+                .subscribe({ uploadReceiptResponse.value = RestObservable.success(it) }, { uploadReceiptResponse.value = RestObservable.error(activity, it) })
         } else {
             Helper.showNoInternetAlert(
                 activity,
                 activity.getString(R.string.no_internet_connection),
-                object : OnNoInternetConnectionListener {
-                    override fun onRetryApi() {
-                        uploadReceiptApi(activity, receiptUpload, orderId, receipt_number,
-                            receipt_amount, isDialogShow)
-                    }
-                })
+                object : OnNoInternetConnectionListener { override fun onRetryApi() { uploadReceiptApi(activity, receiptUpload, orderId, receipt_number, receipt_amount,arrayImageVideo, isDialogShow) } })
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

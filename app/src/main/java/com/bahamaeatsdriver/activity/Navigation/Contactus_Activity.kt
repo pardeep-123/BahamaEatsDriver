@@ -22,8 +22,7 @@ class Contactus_Activity : AppCompatActivity(), View.OnClickListener {
 
 
     override fun onClick(v: View?) {
-        val id = v!!.id
-        when (id) {
+        when (v!!.id) {
             R.id.rl_callSupport -> {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", Constants.HELPLINE_NO, null))
                 startActivity(intent)

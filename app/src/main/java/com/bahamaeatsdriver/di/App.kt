@@ -2,7 +2,11 @@ package com.bahamaeatsdriver.di
 
 import android.app.Application
 import android.os.StrictMode
+import com.bahamaeatsdriver.helper.MediaLoader
 import com.bahamaeatsdriver.socket.SocketManager
+import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.AlbumConfig
+import java.util.*
 
 
 class App : Application(){
@@ -34,6 +38,12 @@ class App : Application(){
         val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
         initializeSocket()
+        Album.initialize(
+            AlbumConfig.newBuilder(this)
+                .setAlbumLoader(MediaLoader())
+                .setLocale(Locale.getDefault())
+                .build()
+        )
     }
 
     fun getmydicomponent(): Dicomponent {

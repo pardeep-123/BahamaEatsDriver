@@ -29,8 +29,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bahamaeats.constant.Constants
 import com.bahamaeats.constant.Constants.Companion.ACCEPT_RIDE_STATUS
 import com.bahamaeats.constant.Constants.Companion.IMAGE_URL
@@ -40,6 +42,7 @@ import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.Adapter.OrderDetailsAddOnsQuantiytAdapter
 import com.bahamaeatsdriver.Adapter.OrderDetailsQuantiytAdapter
+import com.bahamaeatsdriver.Adapter.PhotoAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.activity.Navigation.SettingsActivity
@@ -55,6 +58,7 @@ import com.bahamaeatsdriver.helper.others.CommonMethods
 import com.bahamaeatsdriver.helper.others.CommonMethods.convertToNewFormat5
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.location.CheckLocationActivity
+import com.bahamaeatsdriver.model_class.ImageVideoModel
 import com.bahamaeatsdriver.model_class.accept_reject_ride.AcceptRejectRideRequest
 import com.bahamaeatsdriver.model_class.add_on_list.AddOnsCustomModel
 import com.bahamaeatsdriver.model_class.change_ride_status.ChangeRideStatusResponse
@@ -79,6 +83,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.AlbumFile
+import com.yanzhenjie.album.api.widget.Widget
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home_page.*
@@ -111,7 +118,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     SocketManager.Observer, Observer<RestObservable> {
 
     private lateinit var socketManager: SocketManager
-
     private var btnAcceptRide: TextView? = null
     private var btnRejectRide: TextView? = null
     private var btnOrderDetail: TextView? = null
@@ -154,6 +160,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private lateinit var relativeOnline: RelativeLayout
     private lateinit var relativeOffline: RelativeLayout
     private var videoUrl = ""
+    private var mAlbumFiles = ArrayList<AlbumFile>()
+    private lateinit var photoAdapter: PhotoAdapter
+    private var arrayImageVideo = ArrayList<ImageVideoModel>()
 
     companion object {
         var loginDiverId = ""
@@ -251,7 +260,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment!!.getMapAsync { mapFragment!!.getMapAsync(this) }
         val timer = Timer()
-        timer.schedule(object : TimerTask() { override fun run() { isCall = "true" } }, 0, 30000)
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                isCall = "true"
+            }
+        }, 0, 30000)
         mBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 when (intent.action) {
@@ -261,7 +274,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 currentRideApiCall()
                         }
                     } else
-                        Toast.makeText(context, "Please check your internet connection", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Please check your internet connection",
+                            Toast.LENGTH_LONG
+                        ).show()
                 }
             }
         }
@@ -308,7 +325,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun onResume() {
         super.onResume()
         getDriverTakeStatusApicall()
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             checkPermissionLocation(this)
             return
         } else {
@@ -316,14 +340,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             driverDetails = getprefObject(Constants.DRIVER_DETAILS)
             loginDiverId = driverDetails.body.id.toString()
             if (driverDetails.body.image.contains("http"))
-                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage)
+                    .into(iv_Profile_image)
             else
-                Glide.with(this).load(IMAGE_URL + driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(IMAGE_URL + driverDetails.body.image)
+                    .placeholder(R.drawable.profileimage).into(iv_Profile_image)
 
             if (driverDetails.body.fullName.isNotEmpty())
                 tv_driverName.text = driverDetails.body.fullName
             else
-                tv_driverName.text = driverDetails.body.firstName + " " + driverDetails.body.lastName
+                tv_driverName.text =
+                    driverDetails.body.firstName + " " + driverDetails.body.lastName
             checkNotificationsPermissionIsEnable()
         }
     }
@@ -577,7 +604,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             R.id.tv_uploadReceipt -> {
 //                checkPermissionCamera(false, "2", "")
-                uploadReceiptForm()
+                uploadReceiptForm(this@Home_Page)
             }
             R.id.iv_message -> {
                 val number = currentRideData!!.user.countryCodePhone
@@ -882,12 +909,26 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
          * paymentMethod-8 for Loyalty Bonus
          * */
         when (currentRideData.order.paymentMethod) {
-            "1" -> { dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Suncash" }
-            "2" -> { dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Paypal" }
-            "4" -> { dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Kanoo" }
-            "5" -> { dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Atlantic" }
-            "7" -> { dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet) }
-            "8" -> { dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus) }
+            "1" -> {
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Suncash"
+            }
+            "2" -> {
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Paypal"
+            }
+            "4" -> {
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Kanoo"
+            }
+            "5" -> {
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Atlantic"
+            }
+            "7" -> {
+                dialogOrderDeatail.tv_paymentMode.text =
+                    "Payment Mode: " + getString(R.string.be_wallet)
+            }
+            "8" -> {
+                dialogOrderDeatail.tv_paymentMode.text =
+                    "Payment Mode: " + getString(R.string.loyalty_bonus)
+            }
         }
 
         val listAddOnList = ArrayList<AddOnsCustomModel>()
@@ -918,46 +959,80 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         dialogOrderDeatail.show()
     }
 
-    private fun uploadReceiptForm() {
-
+    private fun uploadReceiptForm(homePage: Home_Page) {
+        arrayImageVideo.clear()
         if (uploadReceiptDialog != null && uploadReceiptDialog.isShowing) {
             Log.e("uploadReceiptDialog:", "Already showing")
         } else {
+            photoAdapter = PhotoAdapter(homePage, arrayImageVideo)
+            uploadReceiptDialog.rvImageVideo.setLayoutManager(LinearLayoutManager(homePage, LinearLayoutManager.HORIZONTAL, false))
+            uploadReceiptDialog.rvImageVideo.setAdapter(photoAdapter)
             uploadReceiptDialog.setCancelable(false)
             uploadReceiptDialog.setCanceledOnTouchOutside(false)
             uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
             uploadReceiptDialog.show()
         }
         uploadReceiptDialog.iv_uploadReceipt.setOnClickListener {
-            checkPermissionCamera(false, "2", "")
+//            checkPermissionCamera(false, "2", "")
+            mAlbumFiles = ArrayList()
+            Album.image(homePage)
+                .multipleChoice()
+                .columnCount(4)
+                .selectCount(5)
+                .camera(true)
+                .checkedList(mAlbumFiles)
+                .afterFilterVisibility(true)
+                .checkedList(mAlbumFiles)
+                .widget(Widget.newDarkBuilder(homePage).title(getString(R.string.app_name))
+                    .statusBarColor(ContextCompat.getColor(this,R.color.White))
+                    .toolBarColor(ContextCompat.getColor(this,R.color.Greenapp))
+                    .build())
+                .onResult { result ->
+                    mAlbumFiles = result
+                    for (i in 0 until mAlbumFiles.size) {
+                        val imageVideoModel = ImageVideoModel()
+                        val type = mAlbumFiles[i].mediaType
+                        if (arrayImageVideo.size == 5) {
+                            Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
+                        } else {
+                            if (type == 1) {
+                                imageVideoModel.setType("0")
+                                imageVideoModel.setImageVideoPath(mAlbumFiles.get(i).path)
+                                imageVideoModel.setIsAdded("true")
+                                arrayImageVideo.add(imageVideoModel)
+                                Log.d("uploadReceiptForm: ",arrayImageVideo.size.toString())
+                            } } }
+                    photoAdapter.notifyDataSetChanged()
+                }
+                .onCancel {
+                }
+                .start()
+
         }
 
         uploadReceiptDialog.btn_ok.setOnClickListener {
             if (uploadReceiptDialog.et_receiptNumber.text.toString().trim().isEmpty()) {
-                Helper.showSuccessToast(this, "Please enter receipt number")
-            } else if (image_path.isEmpty()) {
-                Helper.showSuccessToast(this, "Please add receipt image")
+                Helper.showSuccessToast(homePage, "Please enter receipt number")
+            }
+//            else if (image_path.isEmpty()) {
+            else if (arrayImageVideo.isEmpty()) {
+                Helper.showSuccessToast(homePage, "Please add receipt image")
+            } else if (arrayImageVideo.isNotEmpty()&&arrayImageVideo.size>5) {
+                Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
             } else {
-                viewModel.uploadReceiptApi(
-                    this,
-                    image_path,
-                    currentRideData!!.orderId.toString(),
-                    uploadReceiptDialog.et_receiptNumber.text.toString().trim(),
-                    uploadReceiptDialog.et_totalAmount.text.toString().trim(),
-                    true
-                )
-                viewModel.getUploadReceiptResponse().observe(this, this)
+                Log.d( "uploadReceiptForm: ",arrayImageVideo.size.toString())
+                viewModel.uploadReceiptApi(homePage, image_path, currentRideData!!.orderId.toString(), uploadReceiptDialog.et_receiptNumber.text.toString().trim(), uploadReceiptDialog.et_totalAmount.text.toString().trim(),arrayImageVideo, true)
+                viewModel.getUploadReceiptResponse().observe(homePage, homePage)
             }
         }
     }
 
     @SuppressLint("RtlHardcoded")
-    fun openCloseDrawer() {
-        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+   private fun openCloseDrawer() {
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT))
             drawerLayout.closeDrawer(Gravity.LEFT)
-        } else {
+         else
             drawerLayout.openDrawer(Gravity.LEFT)
-        }
     }
 
     fun showViewsWhenRideIsAccepted() {
@@ -1236,7 +1311,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         .placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                     tv_currentOrderUsename.text = changeRideStatus!!.user.username
                     tv_currentOrderId.text = "Order ID: #" + changeRideStatus!!.order.id
-//                    tv_currentOrderPaymentMode.text = "Online"
                     /**
                      * paymentMethod-1 for suncash
                      * paymentMethod-2 for paypal
@@ -1289,12 +1363,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         finishlat = changeRideStatus!!.userAddress.latitude
                         finishlong = changeRideStatus!!.userAddress.longitude
                         val houseNumber = changeRideStatus!!.userAddress.completeAddress
-                        val streetName =
-                            if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
-                        val landmark =
-                            if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
-                        val userAddres =
-                            if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
+                        val streetName = if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
+                        val landmark = if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
+                        val userAddres = if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                         val finalAddress = houseNumber + streetName + landmark + userAddres
                         tv_adress.text = finalAddress
                         showViewsWhenRideIsStared()
@@ -1304,16 +1375,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             dropMarker!!.remove()
                             dropMarker = null
                         }
-                        drawpoliline(
-                            LatLng(startlat!!, startlong!!),
-                            LatLng(finishlat!!, finishlong!!),
-                            "Deliver to"
-                        )
+                        drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Deliver to")
                         setDropMaker("Deliver to")
-                        Log.e(
-                            "GetCur:..mLatitute: ",
-                            changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
-                        )
+                        Log.e("GetCur:..mLatitute: ", changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
                         startStep3(this)
                     } else if (liveData.data.body.rideStatus == 3) {
                         anyActiveJobAvailable = 0
@@ -1363,19 +1427,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         if (from.isEmpty()) {
             if (bePaymentAvailable == "1") {
                 tv_uploadReceipt.visibility = View.VISIBLE
-                if (receiptUpload.isEmpty()) {
-                    tv_uploadReceipt.text = getString(R.string.upload_receipt)
-                } else {
-                    tv_uploadReceipt.text = getString(R.string.uploaded_receipt)
-                }
+                if (receiptUpload.isEmpty()) tv_uploadReceipt.text = getString(R.string.upload_receipt) else tv_uploadReceipt.text = getString(R.string.uploaded_receipt)
             } else tv_uploadReceipt.visibility = View.GONE
         } else {
             if (bePaymentAvailable == "1") {
-                if (receiptUpload.isEmpty()) {
-                    tv_uploadReceipt.visibility = View.VISIBLE
-                } else {
-                    tv_uploadReceipt.visibility = View.GONE
-                }
+                if (receiptUpload.isEmpty()) tv_uploadReceipt.visibility = View.VISIBLE else tv_uploadReceipt.visibility = View.GONE
             }
         }
     }
@@ -1393,8 +1449,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
         if (uploadReceiptDialog != null && uploadReceiptDialog.isShowing) {
-            Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_circle)
-                .into(uploadReceiptDialog.iv_uploadReceipt)
+            Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_circle).into(uploadReceiptDialog.iv_uploadReceipt)
         }
 
     }
@@ -1630,20 +1685,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             val data = args[0] as JSONObject
             Log.d("onResponse: ", data.toString())
             val jsonData = JSONObject(data.toString())
-            val statusOrder = jsonData.getInt("is_online")
-            /*  runOnUiThread {  if (statusOrder==1)
-              {
-                  rl_online.visibility=View.VISIBLE
-                  rl_offline.visibility=View.GONE
-                  Log.d("is_online--1: ", statusOrder.toString())
-              }
-              else
-              {
-                  rl_online.visibility=View.GONE
-                  rl_offline.visibility=View.VISIBLE
-                  Log.d("is_online:--0:", statusOrder.toString())
-              }
-              }*/
             updateDriverTakeOrderView(jsonData.getInt("is_online"))
         } catch (e: Exception) {
             Log.d("Exception: ", e.toString())
