@@ -978,7 +978,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Album.image(homePage)
                 .multipleChoice()
                 .columnCount(4)
-                .selectCount(5)
+//                .selectCount(5)
+                .selectCount(1)
                 .camera(true)
                 .checkedList(mAlbumFiles)
                 .afterFilterVisibility(true)
@@ -992,8 +993,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     for (i in 0 until mAlbumFiles.size) {
                         val imageVideoModel = ImageVideoModel()
                         val type = mAlbumFiles[i].mediaType
-                        if (arrayImageVideo.size == 5) {
-                            Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
+//                        if (arrayImageVideo.size == 5) {
+                        if (arrayImageVideo.size == 1) {
+//                            Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
+                            Helper.showSuccessToast(homePage, "Maximum  upload limit is 1")
                         } else {
                             if (type == 1) {
                                 imageVideoModel.setType("0")
@@ -1017,11 +1020,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 //            else if (image_path.isEmpty()) {
             else if (arrayImageVideo.isEmpty()) {
                 Helper.showSuccessToast(homePage, "Please add receipt image")
-            } else if (arrayImageVideo.isNotEmpty()&&arrayImageVideo.size>5) {
-                Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
+//            } else if (arrayImageVideo.isNotEmpty()&&arrayImageVideo.size>5) {
+            } else if (arrayImageVideo.isNotEmpty()&&arrayImageVideo.size>1) {
+//                Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
+                Helper.showSuccessToast(homePage, "Maximum  upload limit is 1")
             } else {
                 Log.d( "uploadReceiptForm: ",arrayImageVideo.size.toString())
-                viewModel.uploadReceiptApi(homePage, image_path, currentRideData!!.orderId.toString(), uploadReceiptDialog.et_receiptNumber.text.toString().trim(), uploadReceiptDialog.et_totalAmount.text.toString().trim(),arrayImageVideo, true)
+//                viewModel.uploadReceiptApi(homePage, image_path, currentRideData!!.orderId.toString(), uploadReceiptDialog.et_receiptNumber.text.toString().trim(), uploadReceiptDialog.et_totalAmount.text.toString().trim(),arrayImageVideo, true)
+                viewModel.uploadReceiptApi(homePage, arrayImageVideo[0].imageVideoPath, currentRideData!!.orderId.toString(), uploadReceiptDialog.et_receiptNumber.text.toString().trim(), uploadReceiptDialog.et_totalAmount.text.toString().trim(),arrayImageVideo, true)
                 viewModel.getUploadReceiptResponse().observe(homePage, homePage)
             }
         }

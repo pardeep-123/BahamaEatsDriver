@@ -2076,7 +2076,7 @@ class BaseViewModel : ViewModel() {
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
-            /*var receiptUploadFile: File? = null
+            var receiptUploadFile: File? = null
             var receiptFileBody: MultipartBody.Part? = null
             if (receiptUpload != "") 
                 receiptUploadFile = File(receiptUpload)
@@ -2086,9 +2086,9 @@ class BaseViewModel : ViewModel() {
                 if (receiptUpload.endsWith("png")) mediaType = "image/png".toMediaTypeOrNull()  else mediaType = "image/jpeg".toMediaTypeOrNull()
                 val requestBody: RequestBody = receiptUploadFile.asRequestBody(mediaType)
                 receiptFileBody = MultipartBody.Part.createFormData("receiptUpload", receiptUploadFile.name, requestBody)
-            }*/
+            }
 
-            var photoMedia: File?
+           /* var photoMedia: File?
             val photoaArrayBody: ArrayList<MultipartBody.Part?> = ArrayList()
 
             for (i in 0 until arrayImageVideo.size) {
@@ -2105,12 +2105,12 @@ class BaseViewModel : ViewModel() {
                         photoaArrayBody.add(mediaFileBody!!)
                     }
                 }
-            }
+            }*/
             val keyOrderId = orderId.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyReceiptNumber= receipt_number.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyReceiptAmount = receipt_amount.toRequestBody("text/plain".toMediaTypeOrNull())
-//            apiService.UPLOAD_RECEIPT(receiptFileBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
-            apiService.UPLOAD_RECEIPT(photoaArrayBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
+            apiService.UPLOAD_RECEIPT(receiptFileBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
+//            apiService.UPLOAD_RECEIPT(photoaArrayBody, keyOrderId,keyReceiptNumber,keyReceiptAmount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { uploadReceiptResponse.value = RestObservable.loading(activity, isDialogShow) }
