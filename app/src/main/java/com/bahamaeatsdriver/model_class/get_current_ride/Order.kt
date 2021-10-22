@@ -85,5 +85,23 @@ data class Order(
     @SerializedName("updatedAt")
     val updatedAt: String,
     @SerializedName("userId")
-    val userId: Int
+    val userId: Int,
+
+    @SerializedName("deliveryFeePercentage")
+    val deliveryFeePercentage: String,
+
+    @SerializedName("tipsPercentage")
+    val tipsPercentage: String,
+
+    @SerializedName("userDeliveryFee")
+    val userDeliveryFee: String,
+
+    @SerializedName("driverNetAmount")
+    val driverNetAmount: String,
+
+    @SerializedName("driverTotalAmount")
+    val driverTotalAmount: String,
+
+    @SerializedName("userTip")
+    val userTip: String
 )

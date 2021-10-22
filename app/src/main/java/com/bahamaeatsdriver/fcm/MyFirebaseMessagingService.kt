@@ -22,6 +22,7 @@ import com.bahamaeatsdriver.helper.extensions.saveTokenPrefrence
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import org.json.JSONObject
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "MyFirebaseMsgService"
@@ -36,7 +37,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onNewToken(token)
         Log.d(TAG, "Refreshed token: $token")
         val tokenDevice = FirebaseInstanceId.getInstance().token
-        if (tokenDevice != null && !tokenDevice.isEmpty()) {
+        if (tokenDevice != null && tokenDevice.isNotEmpty()) {
             sendRegistrationToServer(tokenDevice)
         }
     }
@@ -52,11 +53,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         getManager()
         CHANNEL_ID = applicationContext.packageName
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_ONE_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            )
+            notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_ONE_NAME, NotificationManager.IMPORTANCE_HIGH)
             notificationChannel!!.description = ""
             notificationChannel!!.enableLights(true)
             notificationChannel!!.lightColor = Color.RED
@@ -67,31 +64,36 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationChannel!!.enableVibration(true)
         }
         Log.e("data", "==" + remoteMessage.data)
-//        val json = JSONObject(remoteMessage.data.get("body"))
-        if (remoteMessage.data.get("notification_code") != null) {
-
+        if (remoteMessage.data["notification_code"] != null) {
             val notification_code = remoteMessage.data.get("notification_code")
             val message = remoteMessage.data.get("message")
             val title = remoteMessage.data.get("title")
-            if (notification_code.equals("3")) {
+            if (notification_code.equals("3")) 
                 sendMessagePush(notification_code!!, message!!, title!!)
-            } else if (notification_code.equals("10")) {
+            else if (notification_code.equals("10")) 
+                sendMessagePush(notification_code!!, message!!, title!!)
+            else if (notification_code.equals("16")) {
+
+                var value= JSONObject(remoteMessage.data.get("body"))
+                var take_order_status=value.getString("take_order_status")
+                val i = Intent("msg") //action: "msg"
+                i.setPackage(packageName)
+                i.putExtra("type", notification_code)
+                i.putExtra("take_order_status", take_order_status)
+                applicationContext.sendBroadcast(i)
+            }else{
                 sendMessagePush(notification_code!!, message!!, title!!)
             }
-        } /*else if (json.getString("code") != null) {
-            val code = json.getString("code")
-            val message = json.getString("message")
-            sendMessagePush(code, message, getString(R.string.app_name))
-        }*/
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private fun sendMessagePush(type: String, message: String, title: String) {
-        var notificationHeader = ""
+        var notificationHeader: String
         /***
          * notification_code == 8
-        Then show simle notification message
-        notification_code == 3. the getRideDetails api hit krni ride id notification ch ayegi(Accpet reject vali screen)
+        Then show simple notification message
+        notification_code == 3. the getRideDetails api hit need to hit. Ride id will get in notification(Accpet reject vali screen)
          */
         if (type == "10")
             notificationHeader = title

@@ -72,9 +72,9 @@ class RestObservable(
                         activity.finish()
                         clearPrefrences()
                         Helper.showToast(activity, R.string.session_expired)
-                    } else {
+                    } else
                         Helper.showErrorAlert(activity, errorMessage)
-                    }
+
 
                     return RestObservable(Status.ERROR, null, errorMessage)
                 }

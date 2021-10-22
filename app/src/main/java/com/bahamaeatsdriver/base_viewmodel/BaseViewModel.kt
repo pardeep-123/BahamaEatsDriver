@@ -2244,10 +2244,11 @@ class BaseViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getDriverTakeStatusApi(
         activity: Activity,
+        dayId: String,
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
-            apiService.GET_DRIVER_TAKE_ORDER_STATUS()
+            apiService.GET_DRIVER_TAKE_ORDER_STATUS(dayId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
@@ -2267,7 +2268,7 @@ class BaseViewModel : ViewModel() {
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
                         getDriverTakeStatusApi(
-                            activity,
+                            activity,dayId,
                             isDialogShow
                         )
                     }

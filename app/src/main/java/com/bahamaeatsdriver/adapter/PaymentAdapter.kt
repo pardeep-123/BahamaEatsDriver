@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,7 +15,6 @@ import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.others.CommonMethods
 import com.bahamaeatsdriver.model_class.driver_payments.Order
 import kotlinx.android.synthetic.main.res_payment.view.*
-import java.text.DecimalFormat
 
 class PaymentAdapter(var context: Context, val paymentsList: ArrayList<Order>) : RecyclerView.Adapter<PaymentAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {

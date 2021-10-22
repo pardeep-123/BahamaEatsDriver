@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bahamaeatsdriver.R
+import com.bahamaeatsdriver.helper.others.Helper.roundOffDecimalNew
 import com.bahamaeatsdriver.model_class.job_history_details.AddOnArray
 import com.bahamaeatsdriver.model_class.job_history_details.OrderDetail
 import kotlinx.android.synthetic.main.food_quantity_layout.view.*
-import java.text.FieldPosition
 
 class FoodQuantiytAdapter(var context: Context, val orderDetails: List<OrderDetail>) : RecyclerView.Adapter<FoodQuantiytAdapter.MyViewHolder>() {
 
@@ -23,17 +23,17 @@ class FoodQuantiytAdapter(var context: Context, val orderDetails: List<OrderDeta
     override fun onBindViewHolder(myViewHolder: MyViewHolder, position: Int) {
         var addOnName=""
         var addOnPrice=""
-        myViewHolder.itemView.tv_price.text = "$"+ orderDetails[position].price
+        myViewHolder.itemView.tv_price.text = "$"+roundOffDecimalNew(orderDetails[position].price.toFloat()*orderDetails[position].quantity)
         myViewHolder.itemView.tv_quantity.text = orderDetails[position].quantity.toString()+"x"
         myViewHolder.itemView.tv_itemName.text = orderDetails[position].itemName
         myViewHolder.itemView.tv_desciption.text = orderDetails[position].itemDescription
         val listAddOnList=ArrayList<AddOnArray>()
         var count = 0
         for (i in orderDetails[position].categories.indices){
-            for (j in 0 until orderDetails[position].categories[i].addOnArray.size) {
+            for (j in orderDetails[position].categories[i].addOnArray.indices) {
                   val addOnMOdel = AddOnArray(
                       orderDetails[position].categories[i].addOnArray[j].addon,
-                      orderDetails[position].categories[position].addOnArray[j].price,
+                      orderDetails[position].categories[i].addOnArray[j].price,
                       orderDetails[position].quantity)
                      listAddOnList.add(count, addOnMOdel)
                       count++

@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.CityAdapter
+import com.bahamaeatsdriver.adapter.CityAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.TermAnd_Conditions
 import com.bahamaeatsdriver.di.App
@@ -43,6 +43,10 @@ class Registration_Activity : ImagePicker(), View.OnClickListener, OnCitySelecti
     lateinit var validator: Validator
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
 
+
+    override fun uploadSlotsCodeFuncation() {
+        //Not in use
+    }
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         this.imagePath = imagePath!!
         Glide.with(this).load(imagePath).into(iv_profileimage)

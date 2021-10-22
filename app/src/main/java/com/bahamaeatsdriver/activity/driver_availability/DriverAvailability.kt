@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.DriverAvailabilityAdapter
+import com.bahamaeatsdriver.adapter.DriverAvailabilityAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.listeners.OnDriverAvailabilitySelection
 import com.bahamaeatsdriver.model_class.add_driver_availability_slots.AddDriverAvailabilitySlots
@@ -28,7 +28,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAvailabilitySelection, Observer<RestObservable> {
+class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAvailabilitySelection,
+    Observer<RestObservable> {
 
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
     private var daysList = ArrayList<Body>()
@@ -89,30 +90,34 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
                 var slotIdMultiple = ""
                 var slotObject: JSONObject
                 for (i in 0 until daysList.size) {
-                     slotObject = JSONObject()
+                    slotObject = JSONObject()
                     for (j in 0 until daysList[i].availableSlotList.size) {
                         if (daysList[i].availableSlotList[j].isSelected) {
-                            isSlotSelected=true
+                            isSlotSelected = true
                             if (slotIdMultiple.isEmpty()) {
                                 slotIdMultiple = daysList[i].availableSlotList[j].id.toString()
                             } else {
-                                slotIdMultiple = slotIdMultiple + "," + daysList[i].availableSlotList[j].id.toString()
+                                slotIdMultiple =
+                                    slotIdMultiple + "," + daysList[i].availableSlotList[j].id.toString()
                             }
                         }
                     }
-                    if (slotIdMultiple.isNotEmpty()){
+                    if (slotIdMultiple.isNotEmpty()) {
                         slotObject.put("dayId", daysList[i].id)
                         slotObject.put("slotId", slotIdMultiple)
                         jsonArray.put(slotObject)
-                        slotIdMultiple=""
+                        slotIdMultiple = ""
                     }
                 }
                 if (isSlotSelected) {
-                    Log.d("addDriverAvailablity: ",jsonArray.toString() )
+                    Log.d("addDriverAvailablity: ", jsonArray.toString())
                     viewModel.addDriverAvailablitySlotsApi(this, jsonArray.toString(), true)
                     viewModel.addDriverAvailablitySlotsResponse().observe(this, this)
                 } else {
-                    com.bahamaeatsdriver.helper.others.Helper.showErrorAlert(this, "Please select any slot.")
+                    com.bahamaeatsdriver.helper.others.Helper.showErrorAlert(
+                        this,
+                        "Please select any slot."
+                    )
                 }
                 Log.d("", "onClick: ")
             }
@@ -137,16 +142,17 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is DriverAddedSlotList) {
-                    val driverAddedSlotsData=liveData.data.body
+                    val driverAddedSlotsData = liveData.data.body
                     try {
-                        if (driverAddedSlotsData.isNotEmpty()){
-                            for (i in 0 until daysList.size){
-                                for (j in 0 until daysList[i].availableSlotList.size){
-                                    for (k in driverAddedSlotsData.indices){
-                                        if (driverAddedSlotsData[k].day==daysList[i].id.toInt()){
-                                            for (element in driverAddedSlotsData[k].data){
-                                                if (element.id==daysList[i].availableSlotList[j].id)
-                                                    daysList[i].availableSlotList[j].isSelected=true
+                        if (driverAddedSlotsData.isNotEmpty()) {
+                            for (i in 0 until daysList.size) {
+                                for (j in 0 until daysList[i].availableSlotList.size) {
+                                    for (k in driverAddedSlotsData.indices) {
+                                        if (driverAddedSlotsData[k].day == daysList[i].id.toInt()) {
+                                            for (element in driverAddedSlotsData[k].data) {
+                                                if (element.id == daysList[i].availableSlotList[j].id)
+                                                    daysList[i].availableSlotList[j].isSelected =
+                                                        true
                                             }
                                         }
                                     }
@@ -159,6 +165,8 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
                 }
                 if (liveData.data is AddDriverAvailabilitySlots) {
                     com.bahamaeatsdriver.helper.others.Helper.showSuccessToast(this, liveData.data.message)
+//                    val returnIntent = Intent()
+//                    setResult(Activity.RESULT_OK, returnIntent)
                     finish()
                 }
                 if (liveData.data is DriverSlots) {
@@ -166,13 +174,13 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
                     adapterSlots = DriverAvailabilityAdapter(this, daysList, this)
                     rv_days.adapter = adapterSlots
                     if (daysList.isNotEmpty())
-                        tv_noDataAvailable.visibility=View.GONE
+                        tv_noDataAvailable.visibility = View.GONE
                     else
-                        tv_noDataAvailable.visibility=View.VISIBLE
+                        tv_noDataAvailable.visibility = View.VISIBLE
                     /**
                      * GetAdriveAddessSlots list
                      */
-                      getDriverAddedAvailableSlots()
+                    getDriverAddedAvailableSlots()
                 }
             }
         }

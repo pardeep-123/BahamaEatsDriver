@@ -30,6 +30,7 @@ abstract class ImagePicker : AppCompatActivity() {
 
     companion object {
         val pickPhoneNumberResultCode = 1
+        val uploadSlotcode = 101011
     }
 
     private val requestPermissionsCamera = 20
@@ -173,6 +174,26 @@ abstract class ImagePicker : AppCompatActivity() {
         )
     }
 
+    /*   /* @SuppressLint("SetTextI18n")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            LOCATION_REQUEST -> {
+                if (requestCode == LOCATION_REQUEST) {
+                    if ( data!=null&& data.getSerializableExtra("selectedaddress")!=null){
+                        val selectedAddress = data.getSerializableExtra("selectedaddress") as SelectAddressModel
+                        et_country.text = selectedAddress.getcountry()
+                        et_island.text = selectedAddress.state
+                        et_city.text = selectedAddress.city
+                        et_address.text = selectedAddress.address
+                        latitude = selectedAddress.latitude.toString()
+                        longitude = selectedAddress.longitude.toString()
+                    }
+                }
+            }
+        }
+    }*/*/
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val result = CropImage.getActivityResult(data)
@@ -181,6 +202,8 @@ abstract class ImagePicker : AppCompatActivity() {
             val phoneNumber = data!!.getStringExtra("phone")
             val updatedCountryCode = data.getStringExtra("updatedCountryCode")
             getUpdatedPhoneNoAfterVerify(phoneNumber!!, updatedCountryCode!!)
+        }else if (requestCode==uploadSlotcode){
+            uploadSlotsCodeFuncation()
         }
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
@@ -220,6 +243,7 @@ abstract class ImagePicker : AppCompatActivity() {
         }
     }
 
+    abstract fun uploadSlotsCodeFuncation()
     abstract fun selectedImage(imagePath: String?, thumbnailVideoPath: String)
     abstract fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String)
 }

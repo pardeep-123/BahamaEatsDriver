@@ -14,14 +14,15 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.FilterPaymentAdapter
-import com.bahamaeatsdriver.Adapter.PaymentAdapter
+import com.bahamaeatsdriver.adapter.FilterPaymentAdapter
+import com.bahamaeatsdriver.adapter.PaymentAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.model_class.driver_earnings.Day
@@ -157,37 +158,37 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         activityReachDialog = Dialog(this, R.style.Theme_Dialog)
         activityReachDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         activityReachDialog.setContentView(R.layout.dialog_filter)
-        activityReachDialog.getWindow()!!.setLayout(
+        activityReachDialog.window!!.setLayout(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
         activityReachDialog.setCancelable(true)
         activityReachDialog.setCanceledOnTouchOutside(false)
-        activityReachDialog.getWindow()!!.setGravity(Gravity.CENTER)
-        activityReachDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        activityReachDialog.window!!.setGravity(Gravity.CENTER)
+        activityReachDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun updateViewAsPerType(type: String) {
-        if (type.equals("0")){
-            tv_day?.setTextColor(resources.getColor(R.color.White))
-            tv_week?.setTextColor(resources.getColor(R.color.Black))
-            tv_months?.setTextColor(resources.getColor(R.color.Black))
+        if (type == "0"){
+            tv_day?.setTextColor(ContextCompat.getColor(this,R.color.White))
+            tv_week?.setTextColor(ContextCompat.getColor(this,R.color.Black))
+            tv_months?.setTextColor(ContextCompat.getColor(this,R.color.Black))
             LL_Day!!.setBackgroundResource(R.drawable.green_bg)
             LL_week!!.setBackgroundResource(R.drawable.white_bg)
             LL_months!!.setBackgroundResource(R.drawable.white_bg)
-        }else  if (type.equals("1")){
+        }else  if (type == "1"){
 
-            tv_day?.setTextColor(resources.getColor(R.color.Black))
-            tv_week?.setTextColor(resources.getColor(R.color.White))
-            tv_months?.setTextColor(resources.getColor(R.color.Black))
+            tv_day?.setTextColor(ContextCompat.getColor(this,R.color.Black))
+            tv_week?.setTextColor(ContextCompat.getColor(this,R.color.White))
+            tv_months?.setTextColor(ContextCompat.getColor(this,R.color.Black))
             LL_Day!!.setBackgroundResource(R.drawable.white_bg)
             LL_week!!.setBackgroundResource(R.drawable.green_bg)
             LL_months!!.setBackgroundResource(R.drawable.white_bg)
-        }else  if (type.equals("2")){
+        }else  if (type == "2"){
 
-            tv_day?.setTextColor(resources.getColor(R.color.Black))
-            tv_week?.setTextColor(resources.getColor(R.color.Black))
-            tv_months?.setTextColor(resources.getColor(R.color.White))
+            tv_day?.setTextColor(ContextCompat.getColor(this,R.color.Black))
+            tv_week?.setTextColor(ContextCompat.getColor(this,R.color.Black))
+            tv_months?.setTextColor(ContextCompat.getColor(this,R.color.White))
             LL_Day!!.setBackgroundResource(R.drawable.white_bg)
             LL_week!!.setBackgroundResource(R.drawable.white_bg)
             LL_months!!.setBackgroundResource(R.drawable.green_bg)
@@ -210,22 +211,22 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
        val calendar = Calendar.getInstance()
         Log.v("Current Week", java.lang.String.valueOf(calendar.get(Calendar.WEEK_OF_YEAR)))
         val current_week: Int = calendar.get(Calendar.WEEK_OF_YEAR)
-        val week_start_day: Int = calendar.getFirstDayOfWeek() // this will get the starting day os week in integer format i-e 1 if monday
+        val week_start_day: Int = calendar.firstDayOfWeek // this will get the starting day os week in integer format i-e 1 if monday
         // get the starting and ending date
         // Set the calendar to sunday of the current week
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        System.out.println("Current week = " + Calendar.DAY_OF_WEEK)
+        println("Current week = " + Calendar.DAY_OF_WEEK)
         // Print dates of the current week starting on Sunday
 //        val df: DateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val df: DateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
-        var startDate1 = ""
+        val startDate1: String
         var endDate1 = ""
-        startDate1 = df.format(calendar.getTime())
+        startDate1 = df.format(calendar.time)
         calendar.add(Calendar.DATE, 6)
-        endDate1 = df.format(calendar.getTime())
+        endDate1 = df.format(calendar.time)
         println("Start Date = $startDate1")
         println("End Date = $endDate1")
-        tv_currentWeek.text =startDate1+"-"+endDate1
+        tv_currentWeek.text = "$startDate1-$endDate1"
         tv_currentMonth.text = dateFormat.format(date)
         tv_currentDate.text  = dayOfTheWeek
     }
@@ -258,7 +259,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
 
         val mDatePicker = DatePickerDialog(
             this,
-            DatePickerDialog.OnDateSetListener { datepicker, selectedyear, selectedmonth, selectedday ->
+            { datepicker, selectedyear, selectedmonth, selectedday ->
                 if (selectedday.toString().length == 1)
                     dayStart = "0$selectedday"
                 else
@@ -271,7 +272,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                 yearStart = selectedyear.toString()
 
                 date_startTimestamp = calenderDateToTimeStamp(
-                    dayStart + "-" + monthStart + "-" + yearStart,
+                    "$dayStart-$monthStart-$yearStart",
                     "dd-MM-yyyy"
                 ).toString()
                 //date_filter=2021-03-25
@@ -281,9 +282,9 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                 Log.e("month", monthStart)
                 Log.e("year", selectedyear.toString())
                 Log.e("date_timestamp", date_startTimestamp)
-                select_start_date = dayStart + "/" + monthStart + "/" + selectedyear
+                select_start_date = "$dayStart/$monthStart/$selectedyear"
 
-                tv_startDate.setText(dayStart + "/" + monthStart + "/" + selectedyear)
+                tv_startDate.text = "$dayStart/$monthStart/$selectedyear"
                 isIssueDateSelected = true
 
             },
@@ -315,7 +316,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
 
         val mDatePicker = DatePickerDialog(
             this,
-            DatePickerDialog.OnDateSetListener { datepicker, selectedyear, selectedmonth, selectedday ->
+            { datepicker, selectedyear, selectedmonth, selectedday ->
                 if (selectedday.toString().length == 1)
                     dayEnd = "0$selectedday"
                 else
@@ -328,19 +329,19 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                 yearEnd = selectedyear.toString()
 
                 date_endDateTimestamp = calenderDateToTimeStamp(
-                    dayEnd + "-" + monthEnd + "-" + yearEnd,
+                    "$dayEnd-$monthEnd-$yearEnd",
                     "dd-MM-yyyy"
                 ).toString()
                 //date_filter=2021-03-25
 //            filterEndDate = yearEnd + "-" + monthEnd + "-" + dayEnd
-                filterEndDate = dayEnd + "/" + monthEnd + "/" + yearEnd
+                filterEndDate = "$dayEnd/$monthEnd/$yearEnd"
                 Log.e("day", dayEnd)
                 Log.e("month", monthEnd)
                 Log.e("year", selectedyear.toString())
                 Log.e("date_timestamp", date_endDateTimestamp)
                 select_end_date = dayEnd + "/" + monthEnd + "/" + selectedyear
 
-                tv_EndDate.setText(dayEnd + "/" + monthEnd + "/" + selectedyear)
+                tv_EndDate.text = "$dayEnd/$monthEnd/$selectedyear"
             },
             mYear,
             mMonth,
@@ -475,34 +476,34 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
          * Type=3 for weeklyEarning
          */
         if (type == 1) {
-            if (dayEarning.total_delivery_fee != null && !dayEarning.total_delivery_fee.isEmpty())
+            if (dayEarning.total_delivery_fee != null && dayEarning.total_delivery_fee.isNotEmpty())
                 tv_totalDelivery.text = "$ " + changeDoubleFormat(dayEarning.total_delivery_fee.toDouble())
             else
                 tv_totalDelivery.text = "$ " + dayEarning.total_delivery_fee
 
-            if (dayEarning.total_tip != null && !dayEarning.total_tip.isEmpty())
+            if (dayEarning.total_tip != null && dayEarning.total_tip.isNotEmpty())
                 tv_tipDelivery.text = "$ " + changeDoubleFormat(dayEarning.total_tip.toDouble())
             else
                 tv_tipDelivery.text = "$ " + dayEarning.total_tip
 
 
         } else if (type == 2) {
-            if (monthEarning.total_delivery_fee != null && !monthEarning.total_delivery_fee.isEmpty())
+            if (monthEarning.total_delivery_fee != null && monthEarning.total_delivery_fee.isNotEmpty())
                 tv_totalDelivery.text = "$ " + changeDoubleFormat(monthEarning.total_delivery_fee.toDouble())
             else
                 tv_totalDelivery.text = "$ " + monthEarning.total_delivery_fee.toDouble()
 
-            if (monthEarning.total_tip != null && !monthEarning.total_tip.isEmpty())
+            if (monthEarning.total_tip != null && monthEarning.total_tip.isNotEmpty())
                 tv_tipDelivery.text = "$ " + changeDoubleFormat(monthEarning.total_tip.toDouble())
             else
                 tv_tipDelivery.text = "$ " + changeDoubleFormat(monthEarning.total_tip.toDouble())
         } else if (type == 3) {
-            if (weeklyEarning.total_delivery_fee != null && !weeklyEarning.total_delivery_fee.isEmpty())
+            if (weeklyEarning.total_delivery_fee != null && weeklyEarning.total_delivery_fee.isNotEmpty())
                 tv_totalDelivery.text = "$ " + changeDoubleFormat(weeklyEarning.total_delivery_fee.toDouble())
             else
                 tv_totalDelivery.text = "$ " + weeklyEarning.total_delivery_fee
 
-            if (weeklyEarning.total_tip != null && !weeklyEarning.total_tip.isEmpty())
+            if (weeklyEarning.total_tip != null && weeklyEarning.total_tip.isNotEmpty())
                 tv_tipDelivery.text = "$ " + changeDoubleFormat(weeklyEarning.total_tip.toDouble())
             else
                 tv_tipDelivery.text = "$ " + weeklyEarning.total_tip
@@ -524,9 +525,9 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                         tv_noDataAvailable.visibility = View.GONE
                         Recycler_view!!.visibility = View.VISIBLE
                         val linearLayoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                        Recycler_view?.setLayoutManager(linearLayoutManager)
+                        Recycler_view?.layoutManager = linearLayoutManager
                         val adapterItems = PaymentAdapter(this, liveData.data.body.order)
-                        Recycler_view?.setAdapter(adapterItems)
+                        Recycler_view?.adapter = adapterItems
                     }
                 }
 
@@ -556,9 +557,9 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                         tv_noDataAvailable.visibility = View.GONE
                         Recycler_view!!.visibility = View.VISIBLE
                         val linearLayoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-                        Recycler_view?.setLayoutManager(linearLayoutManager)
+                        Recycler_view?.layoutManager = linearLayoutManager
                         val adapterItems = FilterPaymentAdapter(this, liveData.data.body.rideRequest)
-                        Recycler_view?.setAdapter(adapterItems)
+                        Recycler_view?.adapter = adapterItems
                     }
                 }
             }
@@ -572,7 +573,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    fun changeDoubleFormat(number: Double): String {
+    private fun changeDoubleFormat(number: Double): String {
         try {
             val df = String.format("%.2f", number)
             return df.format(number)

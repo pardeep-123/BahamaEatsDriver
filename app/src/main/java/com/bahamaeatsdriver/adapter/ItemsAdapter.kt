@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -50,22 +50,28 @@ class ItemsAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
         if (type == "past") {
-            latUser = pastJobHistory.get(i).currentLat
-            longUser = pastJobHistory.get(i).currentLong
-            latRestaurant = pastJobHistory.get(i).fromLat
-            longRestaurant = pastJobHistory.get(i).fromLong
+            latUser = pastJobHistory[i].currentLat
+            longUser = pastJobHistory[i].currentLong
+            latRestaurant = pastJobHistory[i].fromLat
+            longRestaurant = pastJobHistory[i].fromLong
 
-            myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(pastJobHistory.get(i).order.createdAt) + upComingJobHistory.vehicle
-            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(pastJobHistory.get(i).order.netAmount.toFloat())
-            myViewHolder.itemView.tv_restaurantName.text = pastJobHistory.get(i).restaurant.name
-            if (pastJobHistory.get(i).order.orderDetails.size == 1)
-                myViewHolder.itemView.tv_orders.text = pastJobHistory.get(i).order.orderDetails.size.toString() + " Item"
+            myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(pastJobHistory[i].order.createdAt) + upComingJobHistory.vehicle
+            if(pastJobHistory[i].order.driverNetAmount.isNotEmpty())
+            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(pastJobHistory[i].order.driverNetAmount.toFloat())
             else
-                myViewHolder.itemView.tv_orders.text = pastJobHistory.get(i).order.orderDetails.size.toString() + " Items"
-            Glide.with(context).load(RESTAURANT_BASE_URL + pastJobHistory.get(i).restaurant.image).placeholder(R.drawable.placeholder_circle).into(myViewHolder.itemView.iv_restaurantImage)
-            myViewHolder.itemView.ratingBar.rating = pastJobHistory.get(i).rating.toFloat()
-            myViewHolder.itemView.tv_Status.text = pastJobHistory.get(i).order.status.toString()
-            myViewHolder.itemView.setOnClickListener { onClickListener.onPastJobHistoryClick(i, pastJobHistory.get(i)) }
+            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(pastJobHistory[i].order.netAmount.toFloat())
+
+            myViewHolder.itemView.tv_restaurantName.text = pastJobHistory[i].restaurant.name
+            if (pastJobHistory[i].order.orderDetails.size == 1)
+                myViewHolder.itemView.tv_orders.text = pastJobHistory[i].order.orderDetails.size.toString() + " Item"
+            else
+                myViewHolder.itemView.tv_orders.text = pastJobHistory[i].order.orderDetails.size.toString() + " Items"
+            Glide.with(context).load(RESTAURANT_BASE_URL + pastJobHistory[i].restaurant.image).placeholder(R.drawable.placeholder_circle).into(myViewHolder.itemView.iv_restaurantImage)
+            myViewHolder.itemView.ratingBar.rating = pastJobHistory[i].rating.toFloat()
+            myViewHolder.itemView.tv_Status.text = pastJobHistory[i].order.status.toString()
+            myViewHolder.itemView.setOnClickListener { onClickListener.onPastJobHistoryClick(i,
+                pastJobHistory[i]
+            ) }
         } else {
             latUser = upComingJobHistory.currentLat
             longUser = upComingJobHistory.currentLong
@@ -73,7 +79,8 @@ class ItemsAdapter(
             longRestaurant = upComingJobHistory.fromLong
             Glide.with(context).load(RESTAURANT_BASE_URL + upComingJobHistory.restaurant.image).placeholder(R.drawable.placeholder_circle).into(myViewHolder.itemView.iv_restaurantImage)
             myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(upComingJobHistory.order.createdAt) + upComingJobHistory.vehicle
-            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(upComingJobHistory.order.netAmount.toFloat())
+//            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(upComingJobHistory.order.netAmount.toFloat())
+            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(upComingJobHistory.order.driverNetAmount.toFloat())
             myViewHolder.itemView.ratingBar.visibility = View.GONE
             myViewHolder.itemView.ratingBar.rating = upComingJobHistory.rating.toFloat()
             myViewHolder.itemView.tv_Status.text = upComingJobHistory.rideStatus.toString()
@@ -104,7 +111,7 @@ class ItemsAdapter(
             map = itemView.findViewById(R.id.mapView)
 
             if (map != null) {
-                map.onCreate(null);
+                map.onCreate(null)
                 map.onResume()
                 map.getMapAsync(this@ItemsAdapter)
             }

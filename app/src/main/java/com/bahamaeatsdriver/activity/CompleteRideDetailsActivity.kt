@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.bahamaeatsdriver.Adapter.OrderDetailsAddOnsQuantiytAdapter
-import com.bahamaeatsdriver.Adapter.OrderDetailsQuantiytAfterOrderCompleteAdapter
+import com.bahamaeatsdriver.adapter.OrderDetailsAddOnsQuantiytAdapter
+import com.bahamaeatsdriver.adapter.OrderDetailsQuantiytAfterOrderCompleteAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.model_class.add_on_list.AddOnsCustomModel
@@ -66,8 +66,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                     tv_paymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus)
                 }
             }
-            tv_totalAmount.text =
-                "$" + Helper.roundOffDecimalNew(orderData.order.netAmount.toFloat())
+            tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(orderData.order.netAmount.toFloat())
             tv_restaurantName.text = orderData.restaurant.address
             val houseNumber = orderData.userAddress.completeAddress
             val streetName = if (orderData.userAddress.streetName.isNotEmpty()) "/" + orderData.userAddress.streetName else ""
@@ -76,6 +75,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
             val finalAddress = houseNumber + streetName + landmark + userAddres
             tv_userOrderAddress.text = finalAddress
             tv_deliveryAmount.text = "$" + orderData.order.deliveryFee
+//            tv_deliveryAmount.text = "$" + orderData.order.userDeliveryFee
             if (orderData.order.deliveryFee != 0.0) {
                 ll_deliverChargesRoot.visibility = View.VISIBLE
                 ll_deliverChargesRootView.visibility = View.VISIBLE
@@ -125,12 +125,9 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 ll_promoRoot.visibility = View.GONE
                 ll_promoRootView.visibility = View.GONE
             }
-            tv_totalAmountWithAll.text =
-                "$" + Helper.roundOffDecimalNew(orderData.order.netAmount.toFloat())
-            Glide.with(this).load(orderData.restaurant.image)
-                .placeholder(R.drawable.placeholder_rectangle).into(iv_restaurantImage)
-            val adapterItemQuantity =
-                OrderDetailsQuantiytAfterOrderCompleteAdapter(this, orderData.order.orderDetails)
+            tv_totalAmountWithAll.text = "$" + Helper.roundOffDecimalNew(orderData.order.netAmount.toFloat())
+            Glide.with(this).load(orderData.restaurant.image).placeholder(R.drawable.placeholder_rectangle).into(iv_restaurantImage)
+            val adapterItemQuantity = OrderDetailsQuantiytAfterOrderCompleteAdapter(this, orderData.order.orderDetails)
             rv_orderItems.adapter = adapterItemQuantity
             val listAddOnList = ArrayList<AddOnsCustomModel>()
             var count = 0
@@ -177,7 +174,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 * kotlin.math.cos(deg2rad(theta))))
         dist = kotlin.math.acos(dist)
         dist = rad2deg(dist)
-        dist = dist * 60 * 1.1515
+        dist *= 60 * 1.1515
         return dist
     }
 

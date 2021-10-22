@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bahamaeatsdriver.R
+import com.bahamaeatsdriver.helper.others.Helper.roundOffDecimalNew
 import com.bahamaeatsdriver.model_class.job_history_details.AddOnArray
 import kotlinx.android.synthetic.main.history_page_addons_layout.view.*
 
@@ -27,7 +28,8 @@ class OrderDetailsAddOnAdapter(val mContext: Context, val addonsList: ArrayList<
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.tv_addOnName.text=addonsList.get(position).addon
         holder.itemView.tv_addOnquantity.text=addonsList.get(position).quantity.toString()+"x"
-        holder.itemView.tv_addOnPrice.text="$"+addonsList.get(position).price
+        holder.itemView.tv_addOnPrice.text="$"+roundOffDecimalNew(addonsList[position].price.toFloat()*addonsList[position].quantity).toString()
+//        holder.itemView.tv_addOnPrice.text="$"+addonsList.get(position).price
     }
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

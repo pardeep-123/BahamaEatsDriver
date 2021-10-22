@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -18,10 +18,10 @@ class LicenseTypeAdapter(var context: Context, val licenseType: ArrayList<Licens
     }
 
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
-        myViewHolder.itemView.tv_type.text = licenseType.get(i).licenseType
+        myViewHolder.itemView.tv_type.text = licenseType[i].licenseType
 
         myViewHolder.itemView.setOnClickListener {
-            listener.OnTypeSelection(licenseType.get(i).licenseType, i)
+            listener.OnTypeSelection(licenseType[i].licenseType, i)
         }
     }
 

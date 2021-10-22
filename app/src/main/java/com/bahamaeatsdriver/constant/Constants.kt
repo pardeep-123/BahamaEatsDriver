@@ -6,15 +6,15 @@ package com.bahamaeats.constant
 class Constants {
     companion object {
         //Live server urls
-         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
-        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
-        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
-        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
-        //Local server urls
-//        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
-//        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
-//        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+//         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
+//        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
+//        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
 //        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
+        //Local server urls
+        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
+        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
+        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
 
         const val SECURITY_KEY = "security_key"
         const val SECURITY_KEY_CODE = "BahamaEats"
@@ -146,6 +146,7 @@ class Constants {
         const val BRANCH_NAME = "branch_name"
         const val ACCOUNT_TYPE = "account_type"
         const val ID = "id"
+        const val DAY_ID = "dayId"
 
         /**
          * ANDROID_DEVICE:1=For IOS device

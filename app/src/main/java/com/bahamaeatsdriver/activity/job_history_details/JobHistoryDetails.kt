@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.FoodQuantiytAdapter
+import com.bahamaeatsdriver.adapter.FoodQuantiytAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.helper.extensions.launchActivity
@@ -57,7 +57,11 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     longRestaurant = liveData.data.body.fromLong
                     Glide.with(this).load(Constants.RESTAURANT_BASE_URL + liveData.data.body.restaurant.image).placeholder(R.drawable.placeholder_circle).into(iv_restaurantImage)
 
+                    if (liveData.data.body.order.driverNetAmount.isNotEmpty())
+                    tv_orderPrice.text = "$ " + Helper.roundOffDecimalNew(liveData.data.body.order.driverNetAmount.toFloat())
+                    else
                     tv_orderPrice.text = "$ " + Helper.roundOffDecimalNew(liveData.data.body.order.netAmount.toFloat())
+
                     tv_orderId.text = liveData.data.body.order.id.toString()
                     if (liveData.data.body.order.orderDetails.size == 1)
                         tv_itemCount.text = liveData.data.body.order.orderDetails.size.toString() + " Item"
@@ -98,6 +102,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     }
                     tv_serviceFees.text = "$$serviceFee"
 
+//                    val deliveryFee=if (liveData.data.body.order.userDeliveryFee!=null&&liveData.data.body.order.userDeliveryFee.isNotEmpty()) liveData.data.body.order.userDeliveryFee else liveData.data.body.order.deliveryFee
                     val deliveryFee=liveData.data.body.order.deliveryFee
                     if (deliveryFee!=0.0){
                         view_deliveryFee.visibility=View.VISIBLE
@@ -137,6 +142,19 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         view_tip.visibility=View.GONE
                         ll_tip.visibility=View.GONE
                         tv_tip.text = "$" + Helper.roundOffDecimalNew(tip.toFloat())
+                    }
+
+                    val cartFee= if (liveData.data.body.order.cartFee!=null&&
+                        liveData.data.body.order.cartFee.isNotEmpty()&&
+                        liveData.data.body.order.cartFee!="0.0"&&liveData.data.body.order.cartFee!="0") liveData.data.body.order.cartFee.toDouble() else 0.0
+                    if (cartFee!=0.0){
+                        view_cartFee.visibility=View.VISIBLE
+                        ll_cartFee.visibility=View.VISIBLE
+                        tv_cartFee.text = "$$cartFee"
+                    }else{
+                        view_cartFee.visibility=View.GONE
+                        ll_cartFee.visibility=View.GONE
+                        tv_cartFee.text = "$" + Helper.roundOffDecimalNew(cartFee.toFloat())
                     }
                     val adapter = FoodQuantiytAdapter(this, liveData.data.body.order.orderDetails)
                     rv_quantity!!.adapter = adapter

@@ -8,7 +8,7 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="OkHttpClient" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="AutoImportSettings">
@@ -33,19 +33,67 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="Upload receipt with 5 images done">
+    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="Upload app on playstore">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsQuantiytAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/CityAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/CityAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/DriverAvailabilityAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverAvailabilityAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/DriverSubAvailabilityAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverSubAvailabilityAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/FilterPaymentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/FilterPaymentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/FoodQuantiytAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/FoodQuantiytAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/ItemsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/ItemsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/LicenseTypeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/LicenseTypeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/NotificationAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/NotificationAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/OrderDetailsAddOnAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsAddOnAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/OrderDetailsAddOnsQuantiytAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsAddOnsQuantiytAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/OrderDetailsQuantiytAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/OrderDetailsQuantiytAfterOrderCompleteAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsQuantiytAfterOrderCompleteAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/PaymentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/PaymentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/PhotoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/PhotoAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/ScheduleAvailableAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/ScheduleAvailableAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/Schedule_Sch_Adapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/Schedule_Sch_Adapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/ScheduletimeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/ScheduletimeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/Adapter/orderAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/orderAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/CompleteRideDetailsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/CompleteRideDetailsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Deliveries_jobhistory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Deliveries_jobhistory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/DriverTrainingVideoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/DriverTrainingVideoActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Id_Details/Edit_Id_Details.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Id_Details/Edit_Id_Details.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Pickup_By.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Pickup_By.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Schedule_time.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Schedule_time.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/bank_details/BankDetailsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/bank_details/BankDetailsActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_availability/DriverAvailability.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_availability/DriverAvailability.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_documentation/UploadDocumentActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_documentation/UploadDocumentActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_licence_detail/Edit_LicenceDetail_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_licence_detail/Edit_LicenceDetail_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_licence_detail/Fill_LicenseDetail_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_licence_detail/Fill_LicenseDetail_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/Edit_profile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/Edit_profile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/job_history_details/JobHistoryDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/job_history_details/JobHistoryDetails.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Identification_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Identification_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Registration_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Registration_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/notification_listing/NotificationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/notification_listing/NotificationActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/fcm/MyFirebaseMessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/fcm/MyFirebaseMessagingService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/ImagePicker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/ImagePicker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/change_ride_status/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/change_ride_status/Order.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Order.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_take_driver_orderstatus/GetTakeDriverOrderStatus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_take_driver_orderstatus/GetTakeDriverOrderStatus.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history/Order.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history/OrderX.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history/OrderX.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history_details/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history_details/Order.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestObservable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestObservable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_job_history_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_job_history_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/history_page_addons_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/history_page_addons_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_details_quantity_row_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_details_quantity_row_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,9 +121,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ApkExportedModule" value="BahamaEatsDriver.app" />
-    <property name="DEBUGGABLE_DEVICE" value="Pixel_4_API_30 [emulator-5554]" />
+    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_a505f-RZ8M42HZM4T" />
     <property name="DEBUGGABLE_PROCESS" value="com.bahamaeatsdriver" />
     <property name="DEBUGGER_ID" value="Auto" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="SerialNumber@RZ8M42HZM4T" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-10-12T13:13:47.451322Z" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
@@ -83,9 +133,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="android-custom-view/root/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/BahamaEatsDriver.jks" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1633348521617" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1634908636250" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -189,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632922634596</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Upload app on playstore">
+      <created>1633432464097</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1633432464097</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,69 +265,78 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="23-September-21" />
     <MESSAGE value="Upload receipt with 5 images done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upload receipt with 5 images done" />
+    <MESSAGE value="Upload app on playstore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upload app on playstore" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1634030302906">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1366.704@0.27.1366.704" timestamp="1634030302906" />
     <state x="0" y="27" width="1356" height="704" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1632395750689">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="0" y="27" width="1356" height="704" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1366.704@0.27.1366.704" timestamp="1632395750689" />
-    <state x="441" y="122" key="#xdebugger.evaluate" timestamp="1632893136918">
+    <state x="352" y="202" width="910" height="414" key="#xdebugger.evaluate" timestamp="1634217374960">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="441" y="122" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1632893136918" />
+    <state x="352" y="202" width="910" height="414" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1634217374960" />
     <state x="100" y="125" width="1166" height="506" key="AVDManager" timestamp="1632810485141">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="100" y="125" width="1166" height="506" key="AVDManager/0.27.1366.704@0.27.1366.704" timestamp="1632810485141" />
-    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog" timestamp="1632396659474">
+    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog" timestamp="1633952872884">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1632396659474" />
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1632893113519">
+    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1633952872884" />
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1634908852784">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1632893113519" />
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1634908852784" />
+    <state width="1277" height="411" key="DebuggerActiveHint" timestamp="1634908921205">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state width="1277" height="411" key="DebuggerActiveHint/0.27.1366.704@0.27.1366.704" timestamp="1634908921205" />
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl" timestamp="1633354275180">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1633354275180" />
-    <state width="1320" height="150" key="GridCell.Tab.0.bottom" timestamp="1633424585748">
+    <state width="1320" height="238" key="GridCell.Tab.0.bottom" timestamp="1634908931560">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="150" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1633424585748" />
-    <state width="1320" height="150" key="GridCell.Tab.0.center" timestamp="1633424585747">
+    <state width="1320" height="238" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1634908931560" />
+    <state width="1320" height="238" key="GridCell.Tab.0.center" timestamp="1634908931558">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="150" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1633424585747" />
-    <state width="1320" height="150" key="GridCell.Tab.0.left" timestamp="1633424585747">
+    <state width="1320" height="238" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1634908931558" />
+    <state width="1320" height="238" key="GridCell.Tab.0.left" timestamp="1634908931557">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="150" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1633424585747" />
-    <state width="1320" height="150" key="GridCell.Tab.0.right" timestamp="1633424585747">
+    <state width="1320" height="238" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1634908931557" />
+    <state width="1320" height="238" key="GridCell.Tab.0.right" timestamp="1634908931559">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="150" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1633424585747" />
-    <state width="1320" height="176" key="GridCell.Tab.1.bottom" timestamp="1632901276363">
+    <state width="1320" height="238" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1634908931559" />
+    <state width="1320" height="238" key="GridCell.Tab.1.bottom" timestamp="1634908931562">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="176" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1632901276363" />
-    <state width="1320" height="176" key="GridCell.Tab.1.center" timestamp="1632901276358">
+    <state width="1320" height="238" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1634908931562" />
+    <state width="1320" height="238" key="GridCell.Tab.1.center" timestamp="1634908931561">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="176" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1632901276358" />
-    <state width="1320" height="176" key="GridCell.Tab.1.left" timestamp="1632901276357">
+    <state width="1320" height="238" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1634908931561" />
+    <state width="1320" height="238" key="GridCell.Tab.1.left" timestamp="1634908931561">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="176" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1632901276357" />
-    <state width="1320" height="176" key="GridCell.Tab.1.right" timestamp="1632901276360">
+    <state width="1320" height="238" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1634908931561" />
+    <state width="1320" height="238" key="GridCell.Tab.1.right" timestamp="1634908931562">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="176" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1632901276360" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1632922643457">
+    <state width="1320" height="238" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1634908931562" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1633432474487">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1632922643457" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1633432474487" />
     <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1632814445925">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -278,21 +345,29 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="388" y="189" width="580" height="378" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog/0.27.1366.704@0.27.1366.704" timestamp="1632810027595" />
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1633347826832">
+    <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1634215619600">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1633347826832" />
-    <state x="373" y="117" width="668" height="522" key="find.popup" timestamp="1633352114428">
+    <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1634215619600" />
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1634908928179">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="373" y="117" width="668" height="522" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1633352114428" />
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1634908928179" />
+    <state x="373" y="117" width="668" height="522" key="find.popup" timestamp="1634535884896">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state x="373" y="117" width="668" height="522" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1634535884896" />
+    <state x="394" y="150" width="568" height="455" key="refactoring.ChangeSignatureDialog" timestamp="1634024998447">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state x="394" y="150" width="568" height="455" key="refactoring.ChangeSignatureDialog/0.27.1366.704@0.27.1366.704" timestamp="1634024998447" />
     <state x="347" y="166" key="run.anything.popup" timestamp="1632894155431">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="347" y="166" key="run.anything.popup/0.27.1366.704@0.27.1366.704" timestamp="1632894155431" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1633352106188">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1634909100995">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1633352106188" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1634909100995" />
   </component>
 </project>

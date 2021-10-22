@@ -8,6 +8,7 @@ data class Order(
     val cartFee: Double,
     val createdAt: String,
     val deliveryFee: Double,
+    val userDeliveryFee: Double,
     val foodPrice: String,
     val id: Int,
     val isDelivery: Int,
@@ -35,5 +36,10 @@ data class Order(
     val transactionId: Int,
     val transactionNo: String,
     val updatedAt: String,
-    val userId: Int
-): Serializable
+    val userId: Int,
+    val deliveryFeePercentage: String,
+    val tipsPercentage: String,
+    val driverNetAmount: String,
+    val driverTotalAmount: String,
+    val userTip: String
+) : Serializable

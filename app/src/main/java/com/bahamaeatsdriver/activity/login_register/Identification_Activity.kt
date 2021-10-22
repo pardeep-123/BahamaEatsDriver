@@ -29,6 +29,10 @@ class Identification_Activity : ImagePicker(), View.OnClickListener {
         //Not in use
     }
 
+    override fun uploadSlotsCodeFuncation() {
+        //Not in use
+    }
+
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
         if (Type_image == "Front") {

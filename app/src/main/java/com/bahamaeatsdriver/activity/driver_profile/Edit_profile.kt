@@ -6,7 +6,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -23,7 +22,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.CityAdapter
+import com.bahamaeatsdriver.adapter.CityAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.UpdateContactNumberActivity
 import com.bahamaeatsdriver.di.App
@@ -69,6 +68,9 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         et_contactNumber.text = updatedCountryCode + contactNumber
     }
 
+    override fun uploadSlotsCodeFuncation() {
+        //Not in use
+    }
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         imageUrl = imagePath!!
         Glide.with(this).load(imageUrl).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)

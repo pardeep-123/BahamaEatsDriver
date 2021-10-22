@@ -1,8 +1,7 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
-import com.bahamaeats.constant.Constants
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
 import com.bahamaeatsdriver.helper.others.CommonMethods
@@ -33,32 +32,28 @@ class NotificationAdapter(
 
             holder.itemView.tv_title.visibility = View.VISIBLE
             holder.itemView.iv_notificationImage.visibility = View.VISIBLE
-            Glide.with(mContext).load(notificationsList.get(position).restaurantImage).placeholder(R.drawable.placeholder_circle).into(holder.itemView.iv_notificationImage)
-            holder.itemView.tv_title.text = notificationsList.get(position).title
-            holder.itemView.tv_descriptions.text = notificationsList.get(position).message
-            holder.itemView.tv_dateTime.text = CommonMethods.convertToNewFormat3(notificationsList.get(position).createdAt)
+            Glide.with(mContext).load(notificationsList[position].restaurantImage).placeholder(R.drawable.placeholder_circle).into(holder.itemView.iv_notificationImage)
+            holder.itemView.tv_title.text = notificationsList[position].title
+            holder.itemView.tv_descriptions.text = notificationsList[position].message
+            holder.itemView.tv_dateTime.text = CommonMethods.convertToNewFormat3(notificationsList[position].createdAt)
         //Long Press
-        holder.itemView.setOnLongClickListener(object : View.OnLongClickListener {
-            override fun onLongClick(v: View): Boolean {
-                onClickEvent.onClickDeleteUserNotifcation(position, notificationsList.get(position).id)
-                return false
-            }
-        })
-       /* holder.itemView.setOnClickListener {
-            if (notificationsList.get(position).code != 10) {
-                onClickEvent.onClickReadUserNotifcation(
-                    position,
-                    notificationsList.get(position).id,
-                    notificationsList.get(position)
-                )
-            } else {
-                onClickEvent.onClickReadUserNotifcation(
-                    position,
-                    notificationsList.get(position).id,
-                    notificationsList.get(position)
-                )
-            }
-        }*/
+        holder.itemView.setOnLongClickListener { onClickEvent.onClickDeleteUserNotifcation(position, notificationsList[position].id)
+            false }
+        /* holder.itemView.setOnClickListener {
+             if (notificationsList.get(position).code != 10) {
+                 onClickEvent.onClickReadUserNotifcation(
+                     position,
+                     notificationsList.get(position).id,
+                     notificationsList.get(position)
+                 )
+             } else {
+                 onClickEvent.onClickReadUserNotifcation(
+                     position,
+                     notificationsList.get(position).id,
+                     notificationsList.get(position)
+                 )
+             }
+         }*/
 
        /* if (notificationsList.get(position).isRead == 0) {
             holder.itemView.tv_notification_count.visibility = View.VISIBLE
@@ -76,8 +71,8 @@ class NotificationAdapter(
         } catch (ex: java.lang.Exception) {
             ex.printStackTrace()
         }
-        System.out.println("dateeee" + date.toString())
-        var string_date: String?
+        println("dateeee" + date.toString())
+        val string_date: String?
         val current = Calendar.getInstance().time
         var diffInSeconds = (current.time - date!!.time) / 1000
         val sec = if (diffInSeconds >= 60) diffInSeconds % 60 else diffInSeconds
@@ -155,23 +150,23 @@ class NotificationAdapter(
         }
         //final result
         var finalResult = ""
-        if (!getYeardata.isEmpty()) {
+        if (getYeardata.isNotEmpty()) {
             finalResult = getYeardata
         } else {
-            if (!getMonthdata.isEmpty()) {
-                finalResult = "$getMonthdata"
+            if (getMonthdata.isNotEmpty()) {
+                finalResult = getMonthdata
             } else {
-                if (!getWeekData.isEmpty()) {
-                    finalResult = "$getWeekData"
+                if (getWeekData.isNotEmpty()) {
+                    finalResult = getWeekData
                 } else {
-                    if (!getDaydata.isEmpty()) {
-                        finalResult = "$getDaydata"
+                    if (getDaydata.isNotEmpty()) {
+                        finalResult = getDaydata
                     } else {
-                        if (!getHourData.isEmpty()) {
-                            finalResult = "$getHourData"
+                        if (getHourData.isNotEmpty()) {
+                            finalResult = getHourData
                         } else {
-                            if (!getMintData.isEmpty()) {
-                                finalResult = "$getMintData"
+                            if (getMintData.isNotEmpty()) {
+                                finalResult = getMintData
                             }
                         }
                     }

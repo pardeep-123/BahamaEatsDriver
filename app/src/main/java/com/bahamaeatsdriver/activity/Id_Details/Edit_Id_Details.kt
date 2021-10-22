@@ -355,4 +355,8 @@ class Edit_Id_Details : ImagePicker(), Observer<RestObservable>, View.OnClickLis
             }
         }
     }
+
+    override fun uploadSlotsCodeFuncation() {
+        //Not in use
+    }
 }

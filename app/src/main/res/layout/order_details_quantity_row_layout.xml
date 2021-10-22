@@ -33,6 +33,18 @@
                 style="@style/ScreenTextView2"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_9sdp" />
+            <TextView
+
+                android:id="@+id/tv_addOns"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/tv_quantity"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/tv_itemName"
+                style="@style/ScreenTextView2"
+                android:textColor="@color/White"
+                android:textSize="@dimen/_9sdp" />
         </RelativeLayout>
         <!--<TextView
             android:text="abc"

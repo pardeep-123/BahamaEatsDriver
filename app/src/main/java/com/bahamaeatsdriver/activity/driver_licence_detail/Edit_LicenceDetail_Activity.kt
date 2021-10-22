@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.LicenseTypeAdapter
+import com.bahamaeatsdriver.adapter.LicenseTypeAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.others.Helper
@@ -53,6 +53,9 @@ class Edit_LicenceDetail_Activity : ImagePicker(), View.OnClickListener, Observe
     private var popupWindow: PopupWindow? = null
     private var licenseTypeList = ArrayList<LicenseTypeModel>()
 
+    override fun uploadSlotsCodeFuncation() {
+        //Not in use
+    }
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
         if (Type_image == "Front") {

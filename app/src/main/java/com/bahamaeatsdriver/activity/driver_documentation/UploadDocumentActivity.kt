@@ -25,6 +25,11 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
     private var image_path = ""
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
 
+
+
+    override fun uploadSlotsCodeFuncation() {
+        //Not in use
+    }
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
         Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_rectangle).into(Image_identification)

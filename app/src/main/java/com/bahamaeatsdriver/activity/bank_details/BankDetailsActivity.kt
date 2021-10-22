@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.LicenseTypeAdapter
+import com.bahamaeatsdriver.adapter.LicenseTypeAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.others.Validator

@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter;
+package com.bahamaeatsdriver.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

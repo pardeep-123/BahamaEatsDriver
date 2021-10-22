@@ -1,4 +1,4 @@
-package com.bahamaeatsdriver.Adapter
+package com.bahamaeatsdriver.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -27,8 +27,8 @@ class DriverSubAvailabilityAdapter(var context: Context, val availableSlotsList:
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
-        myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).toUpperCase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).toUpperCase(Locale.ROOT)
-        myViewHolder.itemView.tv_end_date.text = sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).toUpperCase(Locale.ROOT)
+        myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).uppercase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT)
+        myViewHolder.itemView.tv_end_date.text = sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT)
         myViewHolder.itemView.ll_root1.setOnClickListener{
             listener.OnDriverAvailabilitySelection(availableSlotsList[i],i,daysPostion)
         }
@@ -36,12 +36,10 @@ class DriverSubAvailabilityAdapter(var context: Context, val availableSlotsList:
             listener.OnDriverAvailabilitySelection(availableSlotsList[i],i,daysPostion)
         }
         if (availableSlotsList[i].isSelected) {
-//            myViewHolder.itemView.cb_select.setImageResource(R.drawable.black_checked)
             myViewHolder.itemView.tv_start_date.setBackgroundResource(R.drawable.green_bg_selected_slot)
             myViewHolder.itemView.tv_end_date.setBackgroundResource(R.drawable.green_bg_selected_slot)
 
         } else {
-//            myViewHolder.itemView.cb_select.setImageResource(R.drawable.black_unchecked)
             myViewHolder.itemView.tv_start_date.setBackgroundResource(R.drawable.green_border)
             myViewHolder.itemView.tv_end_date.setBackgroundResource(R.drawable.green_border)
         }

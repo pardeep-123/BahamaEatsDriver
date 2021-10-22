@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.ItemsAdapter
+import com.bahamaeatsdriver.adapter.ItemsAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.job_history_details.JobHistoryDetails
 import com.bahamaeatsdriver.helper.extensions.launchActivity

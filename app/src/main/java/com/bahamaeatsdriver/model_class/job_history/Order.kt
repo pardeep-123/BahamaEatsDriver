@@ -13,6 +13,8 @@ data class Order(
     val longitude: String,
     val netAmount: Double,
     val orderDate: String,
+    val driverNetAmount: String,
+    val userDeliveryFee: String,
     val orderDetails: List<OrderDetail>,
     val orderRating: String,
     val orderType: Int,

@@ -40,13 +40,13 @@ import com.bahamaeats.constant.Constants.Companion.REJECT_RIDE_STATUS
 import com.bahamaeats.network.RestApiInterface
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.OrderDetailsAddOnsQuantiytAdapter
-import com.bahamaeatsdriver.Adapter.OrderDetailsQuantiytAdapter
-import com.bahamaeatsdriver.Adapter.PhotoAdapter
+import com.bahamaeatsdriver.adapter.OrderDetailsQuantiytAdapter
+import com.bahamaeatsdriver.adapter.PhotoAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.activity.Navigation.SettingsActivity
 import com.bahamaeatsdriver.activity.Navigation.TermAnd_Conditions
+import com.bahamaeatsdriver.activity.driver_availability.DriverAvailability
 import com.bahamaeatsdriver.activity.driver_profile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
@@ -65,6 +65,7 @@ import com.bahamaeatsdriver.model_class.change_ride_status.ChangeRideStatusRespo
 import com.bahamaeatsdriver.model_class.get_current_ride.Body
 import com.bahamaeatsdriver.model_class.get_current_ride.GetCurrentRideResponse
 import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.GetTakeDriverOrderStatus
+import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.SelectedSlot
 import com.bahamaeatsdriver.model_class.i_am_here.IAmHereResponse
 import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
@@ -157,10 +158,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var countDownTimer: CountDownTimer? = null
     private var image_path = ""
     private var isReceiptUpload = 0
+    private var takeOrderStatusLocal = ""
     private lateinit var relativeOnline: RelativeLayout
     private lateinit var relativeOffline: RelativeLayout
     private var videoUrl = ""
     private var mAlbumFiles = ArrayList<AlbumFile>()
+    private var todaySlotsListing = mutableListOf<SelectedSlot>()
     private lateinit var photoAdapter: PhotoAdapter
     private var arrayImageVideo = ArrayList<ImageVideoModel>()
 
@@ -209,8 +212,56 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
 
     private fun updateDriverOnlineOfflineStatus(isTakeOrderStatus: String) {
-        viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
-        viewModel.updateDriverOnlineStatusResposne().observe(this, this)
+        var isSelectExits = false
+        val currentTime = SimpleDateFormat("HH:mm").format(Date())
+        val onlineOfflineStatus =
+            if (isTakeOrderStatus == "0") "Please unselect the slot to be offline" else "Please add slot to be online"
+        if (todaySlotsListing.isNotEmpty()) {
+            /*  for (j in todaySlotsListing.indices) {
+                  if (todaySlotsListing[j].isSelected == 1) {
+                      isSelectExits=true
+                  }
+              }*/
+            for (i in todaySlotsListing.indices) {
+                if (todaySlotsListing[i].isSelected == 0) {
+                    if (currentTime > todaySlotsListing[i].openTime && currentTime < todaySlotsListing[i].closeTime) {
+                        /*if (isSelectExits)
+                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
+                        else
+                        {
+                        }*/
+                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
+                    }
+                } else {
+                    if (currentTime > todaySlotsListing[i].openTime && currentTime < todaySlotsListing[i].closeTime) {
+                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
+                    }
+
+                }
+            }
+        } else {
+            gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
+        }
+//        viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
+//        viewModel.updateDriverOnlineStatusResposne().observe(this, this)
+    }
+
+    private fun gotToAlertFuncation(onlineOfflineStatus: String, isTakeOrderStatus: String) {
+//        if (isTakeOrderStatus == takeOrderStatusLocal) {
+//            viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
+//            viewModel.updateDriverOnlineStatusResposne().observe(this, this)
+//        } else {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(onlineOfflineStatus).setCancelable(false)
+            .setPositiveButton(getString(R.string.go_to_slot_page)) { _, _ ->
+                launchActivity<DriverAvailability>()
+//                    val initData = Intent(this, DriverAvailability::class.java)
+//                    startActivityForResult(initData, uploadSlotcode)
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.cancel() }
+        builder.create().show()
+//        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -272,6 +323,18 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         if (!(context as Activity).isFinishing) {
                             if (intent.getStringExtra("type")!! == "3")
                                 currentRideApiCall()
+                            else if (intent.getStringExtra("type")!! == "16"){
+//                                val status=intent.getStringExtra("take_order_status")!!
+//                                updateDriverTakeOrderView(status.toInt())
+                                val c1 = Calendar.getInstance()
+                                //first day of week
+                                c1[Calendar.DAY_OF_WEEK] = 1
+                                //last day of week
+                                c1[Calendar.DAY_OF_WEEK] = 7
+                                val d = Date()
+                                getDriverTakeStatusApicall(d.day.toString())
+                            }
+
                         }
                     } else
                         Toast.makeText(
@@ -324,7 +387,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
-        getDriverTakeStatusApicall()
+        val c1 = Calendar.getInstance()
+        //first day of week
+        c1[Calendar.DAY_OF_WEEK] = 1
+        //last day of week
+        c1[Calendar.DAY_OF_WEEK] = 7
+        val d = Date()
+        getDriverTakeStatusApicall(d.day.toString())
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -355,8 +424,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         }
     }
 
-    private fun getDriverTakeStatusApicall() {
-        viewModel.getDriverTakeStatusApi(this, false)
+    private fun getDriverTakeStatusApicall(dayId: String) {
+        viewModel.getDriverTakeStatusApi(this, dayId, false)
         viewModel.getDriverTakeStatusResponse().observe(this, this)
     }
 
@@ -880,26 +949,28 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialogOrderDeatail.tv_specialRequest.visibility = View.GONE
 
         if (currentRideData.order.preparationTime.isNotEmpty()) {
-            if (currentRideData.rideStatus == 2) {
+            if (currentRideData.rideStatus == 2)
                 dialogOrderDeatail.tv_preprationTime.visibility = View.GONE
-            } else if (currentRideData.rideStatus == 1 && currentRideData.response == 0 || currentRideData.response == 1) {
+            else if (currentRideData.rideStatus == 1 && currentRideData.response == 0 || currentRideData.response == 1)
                 dialogOrderDeatail.tv_preprationTime.visibility = View.VISIBLE
-            } else if (currentRideData.rideStatus == 1 && currentRideData.response == 1) {
+            else if (currentRideData.rideStatus == 1 && currentRideData.response == 1)
                 dialogOrderDeatail.tv_preprationTime.visibility = View.VISIBLE
-            } else {
+            else
                 dialogOrderDeatail.tv_preprationTime.visibility = View.GONE
-            }
+
             dialogOrderDeatail.tv_preprationTime.text =
                 "Prepration time: " + currentRideData.order.preparationTime + " mins"
         }
         dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.id.toString()
-
         dialogOrderDeatail.tv_orderPrice.text =
             "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
-
-        dialogOrderDeatail.tv_totalAmountWithAll.text =
-            "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
-
+//        dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
+        if (currentRideData.order.driverNetAmount != null)
+            dialogOrderDeatail.tv_totalAmountWithAll.text =
+                "$ " + Helper.roundOffDecimalNew(currentRideData.order.driverNetAmount.toFloat())
+        else
+            dialogOrderDeatail.tv_totalAmountWithAll.text =
+                "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
         /** paymentMethod-1 for suncash
          * paymentMethod-2 for paypal
          * paymentMethod-4 for kanoo
@@ -947,13 +1018,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
         }
 
-        if (listAddOnList != null && listAddOnList.isNotEmpty()) {
+        /*if (listAddOnList != null && listAddOnList.isNotEmpty()) {
             dialogOrderDeatail.ll_addOnsLabel.visibility = View.VISIBLE
             val adapterItemAddOnsQuantity1 = OrderDetailsAddOnsQuantiytAdapter(this, listAddOnList)
             dialogOrderDeatail.rv_orderAddOnsItems.adapter = adapterItemAddOnsQuantity1
         } else {
             dialogOrderDeatail.ll_addOnsLabel.visibility = View.GONE
-        }
+        }*/
 
         dialogOrderDeatail.btn_ok.setOnClickListener { dialogOrderDeatail.dismiss() }
         dialogOrderDeatail.show()
@@ -965,11 +1036,21 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Log.e("uploadReceiptDialog:", "Already showing")
         } else {
             photoAdapter = PhotoAdapter(homePage, arrayImageVideo)
-            uploadReceiptDialog.rvImageVideo.setLayoutManager(LinearLayoutManager(homePage, LinearLayoutManager.HORIZONTAL, false))
+            uploadReceiptDialog.rvImageVideo.setLayoutManager(
+                LinearLayoutManager(
+                    homePage,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                )
+            )
             uploadReceiptDialog.rvImageVideo.setAdapter(photoAdapter)
             uploadReceiptDialog.setCancelable(false)
             uploadReceiptDialog.setCanceledOnTouchOutside(false)
-            uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
+//            uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
+            if (currentRideData!!.order.driverNetAmount != null)
+                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.driverNetAmount
+            else
+                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
             uploadReceiptDialog.show()
         }
         uploadReceiptDialog.iv_uploadReceipt.setOnClickListener {
@@ -984,10 +1065,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 .checkedList(mAlbumFiles)
                 .afterFilterVisibility(true)
                 .checkedList(mAlbumFiles)
-                .widget(Widget.newDarkBuilder(homePage).title(getString(R.string.app_name))
-                    .statusBarColor(ContextCompat.getColor(this,R.color.White))
-                    .toolBarColor(ContextCompat.getColor(this,R.color.Greenapp))
-                    .build())
+                .widget(
+                    Widget.newDarkBuilder(homePage).title(getString(R.string.app_name))
+                        .statusBarColor(ContextCompat.getColor(this, R.color.White))
+                        .toolBarColor(ContextCompat.getColor(this, R.color.Greenapp))
+                        .build()
+                )
                 .onResult { result ->
                     mAlbumFiles = result
                     for (i in 0 until mAlbumFiles.size) {
@@ -1003,8 +1086,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 imageVideoModel.setImageVideoPath(mAlbumFiles.get(i).path)
                                 imageVideoModel.setIsAdded("true")
                                 arrayImageVideo.add(imageVideoModel)
-                                Log.d("uploadReceiptForm: ",arrayImageVideo.size.toString())
-                            } } }
+                                Log.d("uploadReceiptForm: ", arrayImageVideo.size.toString())
+                            }
+                        }
+                    }
                     photoAdapter.notifyDataSetChanged()
                 }
                 .onCancel {
@@ -1021,23 +1106,31 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             else if (arrayImageVideo.isEmpty()) {
                 Helper.showSuccessToast(homePage, "Please add receipt image")
 //            } else if (arrayImageVideo.isNotEmpty()&&arrayImageVideo.size>5) {
-            } else if (arrayImageVideo.isNotEmpty()&&arrayImageVideo.size>1) {
+            } else if (arrayImageVideo.isNotEmpty() && arrayImageVideo.size > 1) {
 //                Helper.showSuccessToast(homePage, "Maximum  upload limit is 5")
                 Helper.showSuccessToast(homePage, "Maximum  upload limit is 1")
             } else {
-                Log.d( "uploadReceiptForm: ",arrayImageVideo.size.toString())
+                Log.d("uploadReceiptForm: ", arrayImageVideo.size.toString())
 //                viewModel.uploadReceiptApi(homePage, image_path, currentRideData!!.orderId.toString(), uploadReceiptDialog.et_receiptNumber.text.toString().trim(), uploadReceiptDialog.et_totalAmount.text.toString().trim(),arrayImageVideo, true)
-                viewModel.uploadReceiptApi(homePage, arrayImageVideo[0].imageVideoPath, currentRideData!!.orderId.toString(), uploadReceiptDialog.et_receiptNumber.text.toString().trim(), uploadReceiptDialog.et_totalAmount.text.toString().trim(),arrayImageVideo, true)
+                viewModel.uploadReceiptApi(
+                    homePage,
+                    arrayImageVideo[0].imageVideoPath,
+                    currentRideData!!.orderId.toString(),
+                    uploadReceiptDialog.et_receiptNumber.text.toString().trim(),
+                    uploadReceiptDialog.et_totalAmount.text.toString().trim(),
+                    arrayImageVideo,
+                    true
+                )
                 viewModel.getUploadReceiptResponse().observe(homePage, homePage)
             }
         }
     }
 
     @SuppressLint("RtlHardcoded")
-   private fun openCloseDrawer() {
+    private fun openCloseDrawer() {
         if (drawerLayout.isDrawerOpen(Gravity.LEFT))
             drawerLayout.closeDrawer(Gravity.LEFT)
-         else
+        else
             drawerLayout.openDrawer(Gravity.LEFT)
     }
 
@@ -1091,6 +1184,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     }
                 }
                 if (liveData.data is GetTakeDriverOrderStatus) {
+                    takeOrderStatusLocal = liveData.data.body.takeOrderStatus.toString()
+                    todaySlotsListing = liveData.data.body.selectedSlots
                     updateDriverTakeOrderView(liveData.data.body.takeOrderStatus)
                 }
                 if (liveData.data is UploadReceiptResponse) {
@@ -1209,8 +1304,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                     "Payment Mode: " + getString(R.string.loyalty_bonus)
                             }
                         }
-                        tv_currentOrderTotal.text =
-                            "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
+//                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
+                        if (currentRideData!!.order.driverNetAmount != null)
+                            tv_currentOrderTotal.text =
+                                "$" + Helper.roundOffDecimalNew(currentRideData!!.order.driverNetAmount.toFloat())
+                        else
+                            tv_currentOrderTotal.text =
+                                "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
+
                         //When new job is available for accept/reject
                         if (currentRideData!!.rideStatus == 1 && currentRideData!!.response == 0) {
                             finishlat = currentRideData!!.restaurant.latitude
@@ -1351,8 +1452,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 "Payment Mode: " + getString(R.string.loyalty_bonus)
                         }
                     }
-                    tv_currentOrderTotal.text =
-                        "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
+//                    tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
+                    if (changeRideStatus!!.order.driverNetAmount != null)
+                        tv_currentOrderTotal.text =
+                            "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.driverNetAmount.toFloat())
+                    else
+                        tv_currentOrderTotal.text =
+                            "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
                     val houseNumber = changeRideStatus!!.userAddress.completeAddress
                     val streetName =
                         if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
@@ -1369,9 +1475,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         finishlat = changeRideStatus!!.userAddress.latitude
                         finishlong = changeRideStatus!!.userAddress.longitude
                         val houseNumber = changeRideStatus!!.userAddress.completeAddress
-                        val streetName = if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
-                        val landmark = if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
-                        val userAddres = if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
+                        val streetName =
+                            if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
+                        val landmark =
+                            if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
+                        val userAddres =
+                            if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                         val finalAddress = houseNumber + streetName + landmark + userAddres
                         tv_adress.text = finalAddress
                         showViewsWhenRideIsStared()
@@ -1381,9 +1490,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             dropMarker!!.remove()
                             dropMarker = null
                         }
-                        drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Deliver to")
+                        drawpoliline(
+                            LatLng(startlat!!, startlong!!),
+                            LatLng(finishlat!!, finishlong!!),
+                            "Deliver to"
+                        )
                         setDropMaker("Deliver to")
-                        Log.e("GetCur:..mLatitute: ", changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
+                        Log.e(
+                            "GetCur:..mLatitute: ",
+                            changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
+                        )
                         startStep3(this)
                     } else if (liveData.data.body.rideStatus == 3) {
                         anyActiveJobAvailable = 0
@@ -1409,7 +1525,15 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 }
                 //Response change driver online/offline status
                 if (liveData.data is UpdateDriverTakeOrderStatus) {
+                    takeOrderStatusLocal = liveData.data.body.takeOrderStatus.toString()
                     updateDriverTakeOrderView(liveData.data.body.takeOrderStatus)
+                    /* val c1 = Calendar.getInstance()
+                     //first day of week
+                     c1[Calendar.DAY_OF_WEEK] = 1
+                     //last day of week
+                     c1[Calendar.DAY_OF_WEEK] = 7
+                     val d = Date()
+                     getDriverTakeStatusApicall(d.day.toString())*/
                 }
             }
 
@@ -1433,11 +1557,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         if (from.isEmpty()) {
             if (bePaymentAvailable == "1") {
                 tv_uploadReceipt.visibility = View.VISIBLE
-                if (receiptUpload.isEmpty()) tv_uploadReceipt.text = getString(R.string.upload_receipt) else tv_uploadReceipt.text = getString(R.string.uploaded_receipt)
+                if (receiptUpload.isEmpty()) tv_uploadReceipt.text =
+                    getString(R.string.upload_receipt) else tv_uploadReceipt.text =
+                    getString(R.string.uploaded_receipt)
             } else tv_uploadReceipt.visibility = View.GONE
         } else {
             if (bePaymentAvailable == "1") {
-                if (receiptUpload.isEmpty()) tv_uploadReceipt.visibility = View.VISIBLE else tv_uploadReceipt.visibility = View.GONE
+                if (receiptUpload.isEmpty()) tv_uploadReceipt.visibility =
+                    View.VISIBLE else tv_uploadReceipt.visibility = View.GONE
             }
         }
     }
@@ -1455,9 +1582,14 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
         if (uploadReceiptDialog != null && uploadReceiptDialog.isShowing) {
-            Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_circle).into(uploadReceiptDialog.iv_uploadReceipt)
+            Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_circle)
+                .into(uploadReceiptDialog.iv_uploadReceipt)
         }
 
+    }
+
+    override fun uploadSlotsCodeFuncation() {
+        Helper.showSuccessToast(this, "1211342342421")
     }
 
     override fun getUpdatedPhoneNoAfterVerify(
@@ -1522,8 +1654,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 if (body.userAddress.address.isNotEmpty()) "\n" + body.userAddress.address else ""
             val finalAddress = houseNumber + streetName + landmark + userAddres
             dialog.tv_userOrderAddress.text = finalAddress
-            dialog.tv_totalAmount.text =
-                "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+//            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+            if (body.order.driverNetAmount != null)
+                dialog.tv_totalAmount.text =
+                    "$" + Helper.roundOffDecimalNew(body.order.driverNetAmount.toFloat())
+            else
+                dialog.tv_totalAmount.text =
+                    "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {

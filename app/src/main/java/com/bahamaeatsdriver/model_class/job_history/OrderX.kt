@@ -13,6 +13,7 @@ data class OrderX(
     val longitude: String,
     val netAmount: Double,
     val orderDate: String,
+    val driverNetAmount: String,
     val orderDetails: List<OrderDetailX>,
     val orderRating: String,
     val orderType: Int,

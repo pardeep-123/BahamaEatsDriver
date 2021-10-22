@@ -18,9 +18,6 @@ import java.util.regex.Pattern
 
 class DriverTrainingVideoActivity : YouTubeBaseActivity(), Observer<RestObservable> {
     private lateinit var player: BetterVideoPlayer
-
-//    private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-
     private var key = "AIzaSyB3xv9GFjXugMjlR8TE1m3QfZfuP8NqkGM"
     private val TAG: String = DriverTrainingVideoActivity::class.java.getSimpleName()
     private var videoID = ""
@@ -28,42 +25,9 @@ class DriverTrainingVideoActivity : YouTubeBaseActivity(), Observer<RestObservab
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_training_video)
-//        viewModel.getTrainingVideoLinksApi(this, true)
-//        viewModel.getTrainingVideoLinksResponse().observe(this, this)
         iv_backBtn.setOnClickListener { finish() }
         if (intent.getStringExtra("videoUrl") != null && intent.getStringExtra("videoUrl")!!.isNotEmpty()) {
             videoID = getYouTubeId(intent.getStringExtra("videoUrl")!!)!!
-            /*  video_thumbnail_image_view.initialize(key, object : YouTubeThumbnailView.OnInitializedListener { override fun onInitializationSuccess(youTubeThumbnailView: YouTubeThumbnailView,youTubeThumbnailLoader: YouTubeThumbnailLoader) {
-                          //when initialization is sucess, set the video id to thumbnail to load
-                          youTubeThumbnailLoader.setVideo(videoID)
-                          youTubeThumbnailLoader.setOnThumbnailLoadedListener(object :
-                              YouTubeThumbnailLoader.OnThumbnailLoadedListener {
-                              override fun onThumbnailLoaded(
-                                  youTubeThumbnailView: YouTubeThumbnailView,
-                                  s: String
-                              ) {
-                                  //when thumbnail loaded successfully release the thumbnail loader as we are showing thumbnail in adapter
-                                  youTubeThumbnailLoader.release()
-                              }
-
-                              override fun onThumbnailError(
-                                  youTubeThumbnailView: YouTubeThumbnailView,
-                                  errorReason: YouTubeThumbnailLoader.ErrorReason
-                              ) {
-                                  //print or show error when thumbnail load failed
-                                  //Log.e(TAG, "Youtube Thumbnail Error")
-                              }
-                          })
-                      }
-
-                      override fun onInitializationFailure(
-                          youTubeThumbnailView: YouTubeThumbnailView,
-                          youTubeInitializationResult: YouTubeInitializationResult
-                      ) {
-                          //print or show error when initialization failed
-                          Log.e("Eeeeee", "Youtube Initialization Failure")
-                      }
-                  })*/
             tv_noDataFound.visibility = View.GONE
             initializeYoutubePlayer()
         }
@@ -80,17 +44,7 @@ class DriverTrainingVideoActivity : YouTubeBaseActivity(), Observer<RestObservab
             matcher.group()
         else
             "error"
-
     }
-
-    /*  override fun onPause() {
-          super.onPause()
-          // Make sure the player stops playing if the user presses the home button.
-          if (player.isPlaying) {
-              player.pause()
-          }
-      }*/
-
     override fun onChanged(liveData: RestObservable?) {
         when (liveData!!.status) {
             Status.SUCCESS -> {

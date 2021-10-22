@@ -121,8 +121,10 @@ interface RestApiInterface {
 
     @NonNull
     @GET(Constants.GET_DRIVER_TAKE_ORDER_STATUS)
-    fun GET_DRIVER_TAKE_ORDER_STATUS(): Observable<GetTakeDriverOrderStatus>
-
+    fun GET_DRIVER_TAKE_ORDER_STATUS(@Query(Constants.DAY_ID) dayId: String?): Observable<GetTakeDriverOrderStatus>
+//    @NonNull
+//    @GET(Constants.GET_DRIVER_TAKE_ORDER_STATUS)
+//    fun GET_DRIVER_TAKE_ORDER_STATUS(@Path(Constants.DAY_ID) dayId:String): Observable<GetTakeDriverOrderStatus>
     @Multipart
     @PUT(Constants.SIGN_UP)
     fun SIGNUP(

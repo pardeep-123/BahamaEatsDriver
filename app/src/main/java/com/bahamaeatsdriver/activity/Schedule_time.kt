@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bahamaeatsdriver.Adapter.ScheduleAvailableAdapter
-import com.bahamaeatsdriver.Adapter.Schedule_Sch_Adapter
-import com.bahamaeatsdriver.Adapter.ScheduletimeAdapter
+import com.bahamaeatsdriver.adapter.ScheduleAvailableAdapter
+import com.bahamaeatsdriver.adapter.Schedule_Sch_Adapter
+import com.bahamaeatsdriver.adapter.ScheduletimeAdapter
 import com.bahamaeatsdriver.R
 import java.util.*
 

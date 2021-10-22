@@ -20,7 +20,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.NotificationAdapter
+import com.bahamaeatsdriver.adapter.NotificationAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.listeners.DeleteUserNotificationOnClickEvent
@@ -63,18 +63,13 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable>,
                                     getSystemService(NOTIFICATION_SERVICE) as NotificationManager
                                 notificationManager.cancelAll()
                                 viewModel.getNotificationsListApi(this@NotificationActivity, true)
-                                viewModel.getNotificationsResposne()
-                                    .observe(this@NotificationActivity, this@NotificationActivity)
+                                viewModel.getNotificationsResposne().observe(this@NotificationActivity, this@NotificationActivity)
                             }
                         }
 
-                    } else {
-                        Toast.makeText(
-                            context,
-                            "Please check your internet connection",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    } else
+                        Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_LONG).show()
+
                 }
             }
         }
@@ -95,10 +90,7 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable>,
         clearNotiticationsDialog = Dialog(this, R.style.Theme_Dialog)
         clearNotiticationsDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         clearNotiticationsDialog.setContentView(R.layout.clear_notification_alert)
-        clearNotiticationsDialog.window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        clearNotiticationsDialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         clearNotiticationsDialog.setCancelable(true)
         clearNotiticationsDialog.setCanceledOnTouchOutside(false)
         clearNotiticationsDialog.window!!.setGravity(Gravity.CENTER)
@@ -191,10 +183,7 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable>,
         val deleteNotiticationsDialog = Dialog(this, R.style.Theme_Dialog)
         deleteNotiticationsDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         deleteNotiticationsDialog.setContentView(R.layout.clear_notification_alert)
-        deleteNotiticationsDialog.window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        deleteNotiticationsDialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         deleteNotiticationsDialog.setCancelable(true)
         deleteNotiticationsDialog.setCanceledOnTouchOutside(false)
         deleteNotiticationsDialog.window!!.setGravity(Gravity.CENTER)
@@ -209,15 +198,9 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable>,
             deleteNotiticationsDialog.dismiss()
         }
         deleteNotiticationsDialog.show()
-
     }
 
-    override fun onClickReadUserNotifcation(
-        postition: Int,
-        notificationId: Int,
-        notificationData: Body
-    ) {
-
+    override fun onClickReadUserNotifcation(postition: Int, notificationId: Int, notificationData: Body) {
     }
 
 }

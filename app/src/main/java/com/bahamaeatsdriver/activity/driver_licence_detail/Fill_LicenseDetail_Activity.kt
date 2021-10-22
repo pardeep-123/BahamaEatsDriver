@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.Adapter.LicenseTypeAdapter
+import com.bahamaeatsdriver.adapter.LicenseTypeAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Documentation
 import com.bahamaeatsdriver.activity.login_register.Identification_Activity
