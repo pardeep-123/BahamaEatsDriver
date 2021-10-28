@@ -20,6 +20,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.InputFilter
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
@@ -40,8 +41,6 @@ import com.bahamaeats.constant.Constants.Companion.REJECT_RIDE_STATUS
 import com.bahamaeats.network.RestApiInterface
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.adapter.OrderDetailsQuantiytAdapter
-import com.bahamaeatsdriver.adapter.PhotoAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.activity.Navigation.SettingsActivity
@@ -50,7 +49,10 @@ import com.bahamaeatsdriver.activity.driver_availability.DriverAvailability
 import com.bahamaeatsdriver.activity.driver_profile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
+import com.bahamaeatsdriver.adapter.OrderDetailsQuantiytAdapter
+import com.bahamaeatsdriver.adapter.PhotoAdapter
 import com.bahamaeatsdriver.di.App
+import com.bahamaeatsdriver.helper.DecimalDigitsInputFilter
 import com.bahamaeatsdriver.helper.extensions.clearPrefrences
 import com.bahamaeatsdriver.helper.extensions.getprefObject
 import com.bahamaeatsdriver.helper.extensions.launchActivity
@@ -1036,21 +1038,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Log.e("uploadReceiptDialog:", "Already showing")
         } else {
             photoAdapter = PhotoAdapter(homePage, arrayImageVideo)
-            uploadReceiptDialog.rvImageVideo.setLayoutManager(
-                LinearLayoutManager(
-                    homePage,
-                    LinearLayoutManager.HORIZONTAL,
-                    false
-                )
-            )
+            uploadReceiptDialog.rvImageVideo.setLayoutManager(LinearLayoutManager(homePage, LinearLayoutManager.HORIZONTAL, false))
             uploadReceiptDialog.rvImageVideo.setAdapter(photoAdapter)
             uploadReceiptDialog.setCancelable(false)
             uploadReceiptDialog.setCanceledOnTouchOutside(false)
+            uploadReceiptDialog.et_totalAmount.setFilters(arrayOf<InputFilter>(DecimalDigitsInputFilter(10, 2)))
 //            uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
-            if (currentRideData!!.order.driverNetAmount != null)
-                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.driverNetAmount
-            else
-                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
+//            if (currentRideData!!.order.driverNetAmount != null)
+//                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.driverNetAmount
+//            else
+//                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
             uploadReceiptDialog.show()
         }
         uploadReceiptDialog.iv_uploadReceipt.setOnClickListener {
@@ -1101,6 +1098,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         uploadReceiptDialog.btn_ok.setOnClickListener {
             if (uploadReceiptDialog.et_receiptNumber.text.toString().trim().isEmpty()) {
                 Helper.showSuccessToast(homePage, "Please enter receipt number")
+            }else if (uploadReceiptDialog.et_totalAmount.text.toString().trim().isEmpty()) {
+                Helper.showSuccessToast(homePage, "Please enter amount")
             }
 //            else if (image_path.isEmpty()) {
             else if (arrayImageVideo.isEmpty()) {

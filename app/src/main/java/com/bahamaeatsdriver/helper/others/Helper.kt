@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bahamaeats.listeners.OnNoInternetConnectionListener
@@ -14,6 +15,7 @@ import com.tapadoo.alerter.Alerter
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.abs
 
 
 object Helper {
@@ -126,5 +128,15 @@ object Helper {
 
         val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         return df.format(c)
+    }
+
+    fun getCurrentTimezoneOffset(): String? {
+        val tz = TimeZone.getDefault()
+        val cal = GregorianCalendar.getInstance(tz)
+        val offsetInMillis = tz.getOffset(cal.timeInMillis) / 1000
+        var offset = String.format("%02d:%02d", abs(offsetInMillis * 1000 / 3600000), abs(offsetInMillis * 1000 / 60000 % 60))
+        offset = "GMT" + (if (offsetInMillis >= 0) "+" else "-") + offset
+        Log.d("offset", offset)
+        return /*offset*/offsetInMillis.toString()
     }
 }

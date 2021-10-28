@@ -310,6 +310,7 @@
     <string name="clear_notification_alert">Are you sure want to delete notification</string>
     <string name="total_amount">Total Amount</string>
     <string name="enter_receipt_number">Enter Receipt Number</string>
+    <string name="enter_amount">Enter Amount</string>
     <string name="receipt_number">Receipt Number</string>
     <string name="loyalty_bonus">Loyalty Bonus</string>
     <string name="get_in_touch">Get In Touch</string>

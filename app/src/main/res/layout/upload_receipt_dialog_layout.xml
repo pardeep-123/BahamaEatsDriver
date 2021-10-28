@@ -67,13 +67,18 @@
                         android:textColor="@color/White"
                         android:textSize="@dimen/_10sdp" />
 
-                    <TextView
+                   <!-- <TextView
+                        android:id="@+id/et_totalAmount"
+                        style="@style/EditextField"-->
+                    <EditText
+                        android:hint="@string/enter_amount"
                         android:id="@+id/et_totalAmount"
                         style="@style/EditextField"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="start"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/Black" />
 
                     <TextView
