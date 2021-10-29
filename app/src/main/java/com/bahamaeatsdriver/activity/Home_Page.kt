@@ -215,35 +215,31 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
     private fun updateDriverOnlineOfflineStatus(isTakeOrderStatus: String) {
         var isSelectExits = false
-        val currentTime = SimpleDateFormat("HH:mm").format(Date())
-        val onlineOfflineStatus =
-            if (isTakeOrderStatus == "0") "Please unselect the slot to be offline" else "Please add slot to be online"
-        if (todaySlotsListing.isNotEmpty()) {
-            /*  for (j in todaySlotsListing.indices) {
-                  if (todaySlotsListing[j].isSelected == 1) {
-                      isSelectExits=true
-                  }
-              }*/
-            for (i in todaySlotsListing.indices) {
-                if (todaySlotsListing[i].isSelected == 0) {
-                    if (currentTime > todaySlotsListing[i].openTime && currentTime < todaySlotsListing[i].closeTime) {
-                        /*if (isSelectExits)
-                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-                        else
-                        {
-                        }*/
-                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-                    }
-                } else {
-                    if (currentTime > todaySlotsListing[i].openTime && currentTime < todaySlotsListing[i].closeTime) {
-                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-                    }
-
-                }
-            }
-        } else {
+        val currentTime = SimpleDateFormat("HH:mm a").format(Date())
+        val onlineOfflineStatus = if (isTakeOrderStatus == "0") "Please unselect the slot to be offline" else "Please add slot to be online"
+//        if (todaySlotsListing.isNotEmpty()) {
+//            /*  for (j in todaySlotsListing.indices) {
+//                  if (todaySlotsListing[j].isSelected == 1) {
+//                      isSelectExits=true
+//                  }
+//              }*/
+//            @SuppressLint("SimpleDateFormat")
+//             val sdf = SimpleDateFormat("HH:mm")
+//            @SuppressLint("SimpleDateFormat")
+//             val sdfs = SimpleDateFormat("hh:mm a")
+//            for (i in todaySlotsListing.indices) {
+//                val openTime= sdfs.format(sdf.parse(todaySlotsListing[i].openTime))
+//                val closeTime= sdfs.format(sdf.parse(todaySlotsListing[i].closeTime))
+//                if (todaySlotsListing[i].isSelected == 0) {
+//                    if (currentTime >= openTime && currentTime <= closeTime)
+//                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
+//                } else {
+//                    if (currentTime >= openTime && currentTime <= closeTime)
+//                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
+//                }
+//            }
+//        } else
             gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-        }
 //        viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
 //        viewModel.updateDriverOnlineStatusResposne().observe(this, this)
     }

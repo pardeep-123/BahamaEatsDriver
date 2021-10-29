@@ -154,6 +154,23 @@
         <item name="android:background">@drawable/et_border_bg</item>
     </style>
 
+
+    <style name="EditextField2222" parent="TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+        <item name="android:textColorHint">@color/colorTextView</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:layout_marginLeft">@dimen/_45sdp</item>
+        <item name="android:layout_marginRight">@dimen/_45sdp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/et_border_bg</item>
+    </style>
+
     <style name="EditextField4" parent="Widget.AppCompat.EditText">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>

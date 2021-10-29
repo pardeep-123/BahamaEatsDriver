@@ -33,24 +33,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="Upload app on playstore">
+    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="Updated receipt issue">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/Helper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/Helper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/ServiceGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/ServiceGenerator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/upload_receipt_dialog_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/upload_receipt_dialog_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8M42HZM4T]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/root/.android/avd/Pixel_4_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -212,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634909410966</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated receipt issue">
+      <created>1635426543200</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1635426543200</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,7 +233,8 @@
     <MESSAGE value="23-September-21" />
     <MESSAGE value="Upload receipt with 5 images done" />
     <MESSAGE value="Upload app on playstore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upload app on playstore" />
+    <MESSAGE value="Updated receipt issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated receipt issue" />
   </component>
   <component name="WindowStateProjectService">
     <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1635152746123">
@@ -242,10 +245,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="0" y="27" width="1356" height="704" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1366.704@0.27.1366.704" timestamp="1632395750689" />
-    <state x="352" y="202" width="910" height="414" key="#xdebugger.evaluate" timestamp="1635165234598">
+    <state x="396" y="317" width="910" height="414" key="#xdebugger.evaluate" timestamp="1635495422529">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="352" y="202" width="910" height="414" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1635165234598" />
+    <state x="396" y="317" width="910" height="414" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1635495422529" />
     <state x="100" y="125" width="1166" height="506" key="AVDManager" timestamp="1632810485141">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -254,54 +257,58 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1633952872884" />
-    <state x="430" y="125" width="495" height="505" key="AndroidProcessChooserDialog" timestamp="1635165199485">
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1635495179885">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="430" y="125" width="495" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1635165199485" />
-    <state width="1277" height="411" key="DebuggerActiveHint" timestamp="1634908921205">
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1635495179885" />
+    <state width="1277" height="411" key="DebuggerActiveHint" timestamp="1635495210946">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1277" height="411" key="DebuggerActiveHint/0.27.1366.704@0.27.1366.704" timestamp="1634908921205" />
+    <state width="1277" height="411" key="DebuggerActiveHint/0.27.1366.704@0.27.1366.704" timestamp="1635495210946" />
+    <state x="100" y="125" width="1166" height="506" maximized="true" key="DiffContextDialog" timestamp="1635494810968">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state x="100" y="125" width="1166" height="506" maximized="true" key="DiffContextDialog/0.27.1366.704@0.27.1366.704" timestamp="1635494810968" />
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl" timestamp="1633354275180">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1633354275180" />
-    <state width="1320" height="238" key="GridCell.Tab.0.bottom" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.0.bottom" timestamp="1635498115965">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state width="1320" height="238" key="GridCell.Tab.0.center" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1635498115965" />
+    <state width="1320" height="91" key="GridCell.Tab.0.center" timestamp="1635498115963">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state width="1320" height="238" key="GridCell.Tab.0.left" timestamp="1635168632409">
+    <state width="1320" height="91" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1635498115963" />
+    <state width="1320" height="91" key="GridCell.Tab.0.left" timestamp="1635498115962">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1635168632409" />
-    <state width="1320" height="238" key="GridCell.Tab.0.right" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1635498115962" />
+    <state width="1320" height="91" key="GridCell.Tab.0.right" timestamp="1635498115964">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state width="1320" height="238" key="GridCell.Tab.1.bottom" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1635498115964" />
+    <state width="1320" height="91" key="GridCell.Tab.1.bottom" timestamp="1635498115969">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state width="1320" height="238" key="GridCell.Tab.1.center" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1635498115969" />
+    <state width="1320" height="91" key="GridCell.Tab.1.center" timestamp="1635498115967">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state width="1320" height="238" key="GridCell.Tab.1.left" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1635498115967" />
+    <state width="1320" height="91" key="GridCell.Tab.1.left" timestamp="1635498115966">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state width="1320" height="238" key="GridCell.Tab.1.right" timestamp="1635168632410">
+    <state width="1320" height="91" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1635498115966" />
+    <state width="1320" height="91" key="GridCell.Tab.1.right" timestamp="1635498115968">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="238" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1635168632410" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1634909421599">
+    <state width="1320" height="91" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1635498115968" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1635426579613">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1634909421599" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1635426579613" />
     <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1632814445925">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -314,10 +321,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1634215619600" />
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1635165266942">
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1635498360342">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1635165266942" />
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1635498360342" />
     <state x="373" y="117" width="668" height="522" key="find.popup" timestamp="1634535884896">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -330,9 +337,9 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="347" y="166" key="run.anything.popup/0.27.1366.704@0.27.1366.704" timestamp="1632894155431" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1635164959506">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1635494520845">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1635164959506" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1635494520845" />
   </component>
 </project>
