@@ -315,5 +315,6 @@
     <string name="loyalty_bonus">Loyalty Bonus</string>
     <string name="get_in_touch">Get In Touch</string>
     <string name="go_to_slot_page">Go to slot page</string>
+    <string name="call_restaurant">Call Restaurant</string>
 
 </resources>

@@ -17,7 +17,7 @@ data class Order(
     @SerializedName("deliveredTimestamp")
     val deliveredTimestamp: Int,
     @SerializedName("deliveryFee")
-    val deliveryFee: String,
+    val deliveryFee: Double,
     @SerializedName("driverConfirmedTimestamp")
     val driverConfirmedTimestamp: Int,
     @SerializedName("foodOnTheWayTimestamp")
@@ -75,7 +75,7 @@ data class Order(
     @SerializedName("taxPercentage")
     val taxPercentage: String,
     @SerializedName("tip")
-    val tip: String,
+    val tip: Double,
     @SerializedName("totalAmount")
     val totalAmount: String,
     @SerializedName("transactionId")

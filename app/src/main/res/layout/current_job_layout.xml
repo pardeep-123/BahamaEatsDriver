@@ -210,6 +210,25 @@
                     android:layout_weight="1"
                     android:background="@drawable/call_new" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/_8sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/border_green_new"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="@dimen/_26sdp">
+                <TextView
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/_9sdp"
+                    android:text="@string/call_restaurant"
+                    android:id="@+id/btn_callRestaurant"
+                    android:layout_width="wrap_content"
+                    app:drawableStartCompat="@drawable/ic_baseline_call_24" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

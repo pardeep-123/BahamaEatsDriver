@@ -122,6 +122,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
     private lateinit var socketManager: SocketManager
     private var btnAcceptRide: TextView? = null
+    private var btn_callMerchant: TextView? = null
     private var btnRejectRide: TextView? = null
     private var btnOrderDetail: TextView? = null
     private lateinit var dialog: Dialog
@@ -302,6 +303,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         tv_uploadReceipt.setOnClickListener(this)
         iv_whatsApp.setOnClickListener(this)
         ll_call.setOnClickListener(this)
+        btn_callRestaurant.setOnClickListener(this)
         tv_currentOrderDetails.setOnClickListener(this)
 
         relativeOnline.setOnClickListener { updateDriverOnlineOfflineStatus("0") }
@@ -724,6 +726,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             R.id.ll_call -> {
                 val phone = currentRideData!!.user.countryCodePhone
+                val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
+                startActivity(intent)
+            }
+            R.id.btn_callRestaurant -> {
+                val phone = currentRideData!!.restaurant.phone
                 val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
                 startActivity(intent)
             }
@@ -1631,6 +1638,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialog.setCancelable(false)
             btnAcceptRide = dialog.findViewById(R.id.Button_accept)
             btnRejectRide = dialog.findViewById(R.id.Button_regect)
+            btn_callMerchant = dialog.findViewById(R.id.btn_callMerchant)
             btnOrderDetail = dialog.findViewById(R.id.btn_orderDetails)
             /***
              * Be Card Payment View
@@ -1650,13 +1658,19 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             val finalAddress = houseNumber + streetName + landmark + userAddres
             dialog.tv_userOrderAddress.text = finalAddress
 //            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
-            if (body.order.driverNetAmount != null)
-                dialog.tv_totalAmount.text =
-                    "$" + Helper.roundOffDecimalNew(body.order.driverNetAmount.toFloat())
-            else
-                dialog.tv_totalAmount.text =
-                    "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
+//            if (body.order.driverNetAmount != null)
+            val paymentGauranteed=body.order.tip+body.order.deliveryFee
+                dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(paymentGauranteed.toFloat())
+//            else
+//                dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
+
+            if (body.order.preparationTime.isNotEmpty()){
+                dialog.ll_restaurantPreprationTime.visibility=View.VISIBLE
+                dialog.tv_orderPreprationTime.text = "Prepration Time: "+body.order.preparationTime + " mins"
+               }else
+                dialog.ll_restaurantPreprationTime.visibility=View.GONE
+
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {
                     val value1: String = java.lang.String.valueOf(
@@ -1705,6 +1719,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 val nm =
                     getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
                 nm.cancelAll()
+            }
+            btn_callMerchant?.setOnClickListener {
+                val phone =body.restaurant.phone
+                val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
+                startActivity(intent)
             }
             btnOrderDetail?.setOnClickListener {
                 if (currentRideData != null && currentRideData!!.id != 0) {
