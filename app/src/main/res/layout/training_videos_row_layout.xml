@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_10sdp">
+
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp">
+
+        <TextView
+            android:fontFamily="@font/poppins_medium"
+            android:id="@+id/tv_title"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_toStartOf="@+id/expand_arrow"
+            android:maxLines="1"
+            android:textColor="@color/White"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/here_is_the_video_title"
+            android:textSize="@dimen/_11sdp" />
+        <ImageView
+            android:id="@+id/expand_arrow"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/arrowside" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_below="@+id/tv_title"
+            android:scaleType="fitXY"
+            android:src="@drawable/placeholder_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@id/root"
+        android:background="@color/colorViewLineInAddOn" />
+</RelativeLayout>

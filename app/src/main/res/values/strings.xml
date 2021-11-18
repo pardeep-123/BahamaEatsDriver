@@ -1,5 +1,4 @@
 <resources>
-    <!--    <string name="app_name">BahamaEats Driver</string>-->
     <string name="app_name">BE Driver</string>
     <string name="login">LOGIN</string>
     <string name="submit">SUBMIT</string>
@@ -73,9 +72,6 @@
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="procced">Procced</string>
     <string name="google_maps_key" translatable="false">AIzaSyDLLJ3Ck9wLZRvHLlvdWnhnD1XpUMkB-go</string>
-
-    <!--    <string name="map_key">AIzaSyBC8rG3Pm4TYeTkAiqrqhAEB3X2jk3HvpA</string>&lt;!&ndash;gagan sir project key&ndash;&gt;-->
-
     <string name="no_internet_connection">No internet connection.</string>
     <string name="error_empty_all_fields">Please fill all the fields</string>
     <string name="error_empty_add_post_all_fields">Please select image and add description first</string>
@@ -189,6 +185,7 @@
     <string name="distance">Distance</string>
     <string name="delivered">Delivered</string>
     <string name="logout_alert">Are you sure you want to logout?</string>
+    <string name="cancel_ride_alert">Do you want to cancel this order?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -267,6 +264,7 @@
     <string name="open_with">Open with:</string>
     <string name="move_to_googlemap">Move to google map</string>
     <string name="drop_off_location">DROP OFF LOCATION</string>
+    <string name="pick_up_location">PICKUP LOCATION</string>
     <string name="offline">Offline</string>
     <string name="pick_your_order">Pickup your order</string>
     <string name="account_settings">ACCOUNT SETTINGS</string>
@@ -315,6 +313,15 @@
     <string name="loyalty_bonus">Loyalty Bonus</string>
     <string name="get_in_touch">Get In Touch</string>
     <string name="go_to_slot_page">Go to slot page</string>
-    <string name="call_restaurant">Call Restaurant</string>
+    <string name="call_restaurant">Call Merchant</string>
+    <string name="call_customer">Call\nCustomer</string>
+    <string name="msg_customer">Message\nCustomer</string>
+    <string name="faqs">Faqs</string>
+    <string name="search_for_help">Search for help</string>
+    <string name="faq_question">Frequently Asked Questions</string>
+    <string name="dummy_faq">aaaa</string>
+    <string name="cancel_ride">Cancel Order</string>
+    <string name="here_is_the_video_title">Here is the video title</string>
+    <string name="training_videos">Training Videos</string>
 
 </resources>

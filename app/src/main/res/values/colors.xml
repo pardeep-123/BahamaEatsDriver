@@ -22,4 +22,7 @@
     <color name="Red_new">#CA1011</color>
     <color name="colorRed">#D7EF2323</color>
     <color name="Background">#FAFAFA</color>
+    <color name="colorBlackOff">#C8000000</color>
+    <color name="colorLightGrey">#E0E0E0</color>
+
 </resources>

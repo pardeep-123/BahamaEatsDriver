@@ -27,6 +27,7 @@ class FoodQuantiytAdapter(var context: Context, val orderDetails: List<OrderDeta
         myViewHolder.itemView.tv_quantity.text = orderDetails[position].quantity.toString()+"x"
         myViewHolder.itemView.tv_itemName.text = orderDetails[position].itemName
         myViewHolder.itemView.tv_desciption.text = orderDetails[position].itemDescription
+        myViewHolder.itemView.tv_menuName.text = orderDetails[position].menu_name
         val listAddOnList=ArrayList<AddOnArray>()
         var count = 0
         for (i in orderDetails[position].categories.indices){

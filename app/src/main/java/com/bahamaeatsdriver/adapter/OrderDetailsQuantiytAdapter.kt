@@ -54,6 +54,7 @@ class OrderDetailsQuantiytAdapter(var context: Context, val orderDetails: List<O
             myViewHolder.itemView.tv_price.text = "$" + roundOffDecimalNew(orderDetails[i].price.toFloat()* orderDetails[i].quantity)
             myViewHolder.itemView.tv_quantity.text = orderDetails[i].quantity.toString()+"x"
             myViewHolder.itemView.tv_itemName.text = orderDetails[i].itemName
+            myViewHolder.itemView.tv_menuName.text = orderDetails[i].menu_name
         } catch (e: Exception) {
         }
     }

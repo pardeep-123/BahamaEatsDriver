@@ -41,7 +41,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.notification_listing.NotificationActivity"
+        <activity android:name=".activity.DriverTrainingVideosListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.FaqActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.notification_listing.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DriverTrainingVideoActivity"

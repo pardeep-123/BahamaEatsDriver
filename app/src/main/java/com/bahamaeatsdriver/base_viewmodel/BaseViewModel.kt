@@ -2233,6 +2233,50 @@ class BaseViewModel : ViewModel() {
         }
     }
 
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Get driver faqs
+    private var getDriverFaqResponse: MutableLiveData<RestObservable> =
+        MutableLiveData()
+
+    fun getDriverFaqResponse(): LiveData<RestObservable> {
+        return getDriverFaqResponse
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun getDriverFaqApi(
+        activity: Activity,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.GET_DRIVER_FAQ()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    getDriverFaqResponse.value =
+                        RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { getDriverFaqResponse.value = RestObservable.success(it) },
+                    {
+                        getDriverFaqResponse.value =
+                            RestObservable.error(activity, it)
+                    })
+        } else {
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getDriverFaqApi(activity, isDialogShow)
+                    }
+                })
+        }
+    }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Get driver take status api call

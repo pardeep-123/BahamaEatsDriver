@@ -20,6 +20,7 @@ import com.bahamaeatsdriver.model_class.driver_earnings.DriverEarningResposne
 import com.bahamaeatsdriver.model_class.driver_payments.DriverPaymentsResposne
 import com.bahamaeatsdriver.model_class.driver_tips_earning.DriverTipsAndEarning
 import com.bahamaeatsdriver.model_class.edit_driver_profile.EditDriverProfileResponse
+import com.bahamaeatsdriver.model_class.faqs.FaqResponse
 import com.bahamaeatsdriver.model_class.forgot_password.ForgotPasswordResponse
 import com.bahamaeatsdriver.model_class.get_bank_details.GetBankDetails
 import com.bahamaeatsdriver.model_class.get_city.GetCityResponse
@@ -267,6 +268,9 @@ interface RestApiInterface {
 
     @GET(Constants.GET_DRIVER_ADDED_SLOTS)
     fun GET_DRIVER_ADDED_SLOTS(): Observable<DriverAddedSlotList>
+
+    @GET(Constants.GET_DRIVER_FAQ)
+    fun GET_DRIVER_FAQ(): Observable<FaqResponse>
 
     @FormUrlEncoded
     @POST(Constants.FILTER_EARNINGS)

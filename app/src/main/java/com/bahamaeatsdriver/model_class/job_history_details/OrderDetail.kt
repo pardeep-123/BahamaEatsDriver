@@ -8,6 +8,7 @@ data class OrderDetail(
     val itemDescription: String,
     val itemId: Int,
     val itemImage: String,
+    val menu_name: String,
     val itemImagePath: String,
     val itemMenuId: Int,
     val itemName: String,

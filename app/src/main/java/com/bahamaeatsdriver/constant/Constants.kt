@@ -87,6 +87,7 @@ class Constants {
         const val  DRIVER_SLOTS="driverSlots"
         const val  ADD_DRIVER_SLOTS="addTimeSlots"
         const val  GET_DRIVER_ADDED_SLOTS="getDriverSlots"
+        const val  GET_DRIVER_FAQ="getDriverFaqs"
 
 
         const val LATITUDE = "latitude"

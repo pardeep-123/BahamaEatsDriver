@@ -380,6 +380,7 @@
                         app:drawableStartCompat="@drawable/ic_prepartion_icon" />
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:padding="@dimen/_5sdp"
                     android:background="@drawable/border_green_new"

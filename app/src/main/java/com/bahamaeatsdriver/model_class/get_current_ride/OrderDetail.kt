@@ -35,5 +35,7 @@ data class OrderDetail(
     @SerializedName("restaurantId")
     val restaurantId: Int,
     @SerializedName("updatedAt")
-    val updatedAt: String
+    val updatedAt: String,
+    @SerializedName("menu_name")
+    val menu_name: String
 )

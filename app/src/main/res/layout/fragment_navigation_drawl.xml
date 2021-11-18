@@ -415,6 +415,25 @@
                         android:textSize="@dimen/_11sdp"
                         android:text="@string/training" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/help_green"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="@string/faqs" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_Documents"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:context=".activity.DriverTrainingVideosListActivity">
+    <RelativeLayout
+        android:background="@color/Greenapp"
+        android:id="@+id/hedder"
+        style="@style/Heddersiz">
+        <ImageView
+            android:id="@+id/iv_backArrow"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/backbtn" />
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/training_videos" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_trainingVideos"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/training_videos_row_layout"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

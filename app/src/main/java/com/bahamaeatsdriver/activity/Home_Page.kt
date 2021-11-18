@@ -305,7 +305,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         ll_call.setOnClickListener(this)
         btn_callRestaurant.setOnClickListener(this)
         tv_currentOrderDetails.setOnClickListener(this)
-
+        ll_faq.setOnClickListener(this)
         relativeOnline.setOnClickListener { updateDriverOnlineOfflineStatus("0") }
         relativeOffline.setOnClickListener { updateDriverOnlineOfflineStatus("1") }
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -537,7 +537,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         Log.e("DGSdgsdsg", "pickuplatlng==>" + pickuplatlng.longitude)
         Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.latitude)
         Log.e("DGSdgsdsg", "dropofflatlng==>" + dropofflatlng.longitude)
-        val apiInterface: RestApiInterface
+        /*val apiInterface: RestApiInterface
         val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl("https://maps.googleapis.com/").build()
@@ -563,7 +563,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 drawPolyLineAndAnimateCar()
                 createZoomRoute(pickuplatlng, dropofflatlng)
             }
-        }
+        }*/
+        createZoomRoute(pickuplatlng, dropofflatlng)
     }
 
     fun setDropMaker(dropTitle: String) {
@@ -581,7 +582,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         )
     }
 
-    private fun drawPolyLineAndAnimateCar() {
+  /*  private fun drawPolyLineAndAnimateCar() {
         runOnUiThread {
             runningdriver = false
             val builder = LatLngBounds.Builder()
@@ -605,7 +606,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             blackPolyline = googleMap!!.addPolyline(blackPolylineOptions!!)
             runningdriver = true
         }
-    }
+    }*/
 
     private fun decodePoly(encoded: String): List<LatLng> {
         val poly: MutableList<LatLng> = java.util.ArrayList()
@@ -644,6 +645,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
     override fun onClick(view: View?) {
         when (view!!.id) {
+            R.id.ll_faq -> {
+                temp = 1
+                launchActivity<FaqActivity>()
+            }
             R.id.Button_Starttrip -> {
                 /****
                  * cancel the ride here with change ride status
@@ -735,13 +740,21 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 startActivity(intent)
             }
             R.id.Button_cancle -> {
-                /****
-                 * cancel the ride here with change ride status
-                 */
-                if (rideRequestId.isNotEmpty()) {
-                    viewModel.changeRideStatusApi(this, rideRequestId, Constants.CANCEL_RIDE, true)
-                    viewModel.getChangeRideStatusResposne().observe(this, this)
-                }
+                builder!!.setMessage(getString(R.string.cancel)).setTitle(getString(R.string.app_name))
+                builder!!.setMessage(getString(R.string.cancel_ride_alert))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                        /****
+                         * cancel the ride here with change ride status
+                         */
+                        if (rideRequestId.isNotEmpty()) {
+                            viewModel.changeRideStatusApi(this, rideRequestId, Constants.CANCEL_RIDE, true)
+                            viewModel.getChangeRideStatusResposne().observe(this, this)
+                        }
+                    }
+                    .setNegativeButton(getString(R.string.no)) { dialog, _ -> dialog.cancel() }
+                builder!!.create().show()
+
             }
             R.id.Button_COMPLETEtrip -> {
                 /****
@@ -865,11 +878,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             R.id.ll_trainingVideo -> {
                 temp = 1
-                viewModel.getTrainingVideoLinksApi(this, true)
-                viewModel.getTrainingVideoLinksResponse().observe(this, this)
-                /* launchActivity<DriverTrainingVideoActivity>() {
-                     putExtra("videoUrl", videoUrl)
-                 }*/
+//                viewModel.getTrainingVideoLinksApi(this, true)
+//                viewModel.getTrainingVideoLinksResponse().observe(this, this)
+                 launchActivity<DriverTrainingVideosListActivity>()
             }
             R.id.Relativ_profile -> {
                 temp = 1
@@ -1333,6 +1344,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 )
                                 setDropMaker("Restaurant")
                             }
+                            tv_dropOffType.text = getString(R.string.pick_up_location)
+                            tv_merchantName.text = "Merchant: "+currentRideData!!.restaurant.name
+                            tv_merchantName.visibility = View.VISIBLE
                             tv_adress.text = currentRideData!!.restaurant.address
                             showViewsWhenRideIsAccepted()
                             showHildeUploadReceiptView(
@@ -1355,6 +1369,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 if (currentRideData!!.userAddress.address.isNotEmpty()) "\n" + currentRideData!!.userAddress.address else ""
                             val finalAddress = houseNumber + streetName + landmark + userAddres
                             tv_adress.text = finalAddress
+                            tv_merchantName.visibility = View.GONE
+                            tv_dropOffType.text = getString(R.string.drop_off_location)
                             showViewsWhenRideIsStared()
                             tv_adress.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                             Iv_search.visibility = View.GONE
@@ -1470,6 +1486,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                     val finalAddress = houseNumber + streetName + landmark + userAddres
                     tv_adress.text = finalAddress
+                    tv_merchantName.visibility = View.GONE
+                    tv_dropOffType.text = getString(R.string.drop_off_location)
+
                     //rideStatus=2 when  driver click to start ride
                     if (changeRideStatus!!.rideStatus == 2) {
                         Helper.showSuccessAlert(this, liveData.data.message)
@@ -1485,6 +1504,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                         val finalAddress = houseNumber + streetName + landmark + userAddres
                         tv_adress.text = finalAddress
+                        tv_merchantName.visibility = View.GONE
+                        tv_dropOffType.text = getString(R.string.drop_off_location)
+
                         showViewsWhenRideIsStared()
                         tv_adress.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         Iv_search.visibility = View.GONE
