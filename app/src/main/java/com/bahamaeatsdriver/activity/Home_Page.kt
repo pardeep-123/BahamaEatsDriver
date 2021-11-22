@@ -1652,10 +1652,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Log.e("openNewJobDailog:", "else:  " + "Already showing")
             dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.window!!.setGravity(Gravity.CENTER)
-            dialog.window!!.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT
-            )
+            dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT)
             dialog.setContentView(R.layout.res_pickup_request)
             dialog.setCancelable(false)
             btnAcceptRide = dialog.findViewById(R.id.Button_accept)

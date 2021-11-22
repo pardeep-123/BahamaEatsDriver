@@ -67,6 +67,7 @@
     <string name="confirm">CONFIRM</string>
     <string name="update">UPDATE</string>
     <string name="bank_details">Bank Details</string>
+    <string name="payouts_details">Payouts Details</string>
     <string name="schedule">Schedule</string>
     <string name="statistics">Statistics</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
@@ -151,6 +152,15 @@
     <string name="error_mismatch_account_number">Mismatch account number</string>
     <string name="error_account_type">Please select account type</string>
     <string name="error_bank_brank_name">Please add bank branch</string>
+
+
+    <!--Payout Details-->
+    <string name="error_empty_payout_details">Please add payouts details</string>
+    <string name="error_first_name">Please first name</string>
+    <string name="error_last_name">Please last name</string>
+    <string name="error_dob">Please add date of birth</string>
+    <string name="error_empty_nib_number">Please add NIB Number</string>
+    <string name="error_mismatch_nib_number">Mismatch NIB number</string>
 
     <!--Change passord page strings-->
     <string name="error_empty_current_passoword">Please enter current password.</string>
@@ -277,7 +287,7 @@
     <string name="account_type">Account Type</string>
     <string name="confirm_account_number">Confirm Account Number</string>
     <string name="branch_name">Branch Name</string>
-    <string name="bank_details_are_verified">Bank details are verified</string>
+    <string name="bank_details_are_verified">Payout details are verified</string>
     <string name="bank_details_under_review">Under review</string>
     <string name="pick_up">Pick Up</string>
     <string name="order_id_new">Order ID: #</string>
@@ -323,5 +333,8 @@
     <string name="cancel_ride">Cancel Order</string>
     <string name="here_is_the_video_title">Here is the video title</string>
     <string name="training_videos">Training Videos</string>
+    <string name="nib_number">NIB Number</string>
+    <string name="confirm_nib_number">Confirm NIB Number</string>
+    <string name="email_alert">"The email address is just the email address which you used to signup with island pay.</string>
 
 </resources>

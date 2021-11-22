@@ -290,6 +290,17 @@ interface RestApiInterface {
         @Field(Constants.ID) id: String
     ): Observable<AddUpdateBankDetails>
 
+    @FormUrlEncoded
+    @POST(Constants.ADD_EDIT_BANK)
+    fun ADD_EDIT_BANK(
+        @Field(Constants.first_name) first_name: String,
+        @Field(Constants.last_name) last_name: String,
+        @Field(Constants.dob) dob: String,
+        @Field(Constants.bank_email) bank_email: String,
+        @Field(Constants.nib_number) nib_number: String,
+        @Field(Constants.bank_id) id: String
+    ): Observable<AddUpdateBankDetails>
+
     @GET(Constants.JOB_HISTORY)
     fun JOB_HISTORY(): Observable<JobHistoryResponse>
 

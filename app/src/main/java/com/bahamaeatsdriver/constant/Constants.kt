@@ -19,6 +19,7 @@ class Constants {
         const val SECURITY_KEY = "security_key"
         const val SECURITY_KEY_CODE = "BahamaEats"
         const val LICENSE_DATE_FORMAT = "dd-MM-yyyy"
+        const val PAYOUT_DOB_FORMAT = "yyyy-MM-dd"
         const val ORDER_DATE_FORMAT = "dd-MMM-yyyy"
 
         //End URL
@@ -63,6 +64,7 @@ class Constants {
         const val EARNINGS = "earnings"
         const val FILTER_EARNINGS = "earningsDataBasedOnDates"
         const val ADD_UPDATE_BANK = "addupdatebank"
+        const val ADD_EDIT_BANK = "addEditBank" /*"Payout details new api*/
         const val GET_BANK_DETAILS = "getbankdetail"
         const val GET_TRAINING_LINKS = "getTrainingLinks"
 
@@ -148,6 +150,12 @@ class Constants {
         const val ACCOUNT_TYPE = "account_type"
         const val ID = "id"
         const val DAY_ID = "dayId"
+        const val first_name = "first_name"
+        const val last_name = "last_name"
+        const val bank_email = "email"
+        const val dob = "dob"
+        const val nib_number = "nib_number"
+        const val bank_id = "id"
 
         /**
          * ANDROID_DEVICE:1=For IOS device

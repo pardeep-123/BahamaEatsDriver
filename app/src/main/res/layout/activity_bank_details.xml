@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/Tv_L_hedder"
             style="@style/Hedder"
-            android:text="@string/bank_details" />
+            android:text="@string/payouts_details" />
 
         <ImageView
             android:id="@+id/iv_editBankDetails"
@@ -56,7 +56,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center" />
 
-            <EditText
+           <!-- <EditText
                 android:id="@+id/et_beneficiaryName"
                 style="@style/EditextField4"
                 android:enabled="false"
@@ -102,14 +102,56 @@
                 style="@style/EditextField3"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:drawableEnd="@drawable/ccp_down_arrow"
-                android:hint="@string/account_type" />
+                android:hint="@string/account_type" />-->
+            <EditText
+                android:id="@+id/et_firstName"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/first_name"
+                android:inputType="text"/>
+            <EditText
+                android:layout_marginTop="@dimen/_18sdp"
+                android:id="@+id/et_lastName"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/last_name"
+                android:inputType="text"/>
+            <TextView
+                android:clickable="false"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:id="@+id/tv_dobs"
+                android:focusable="false"
+                style="@style/EditextField3"
+                android:hint="@string/dateofbirth" />
 
+            <EditText
+                android:layout_marginTop="@dimen/_18sdp"
+                android:id="@+id/et_email"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"/>
+            <EditText
+                android:layout_marginTop="@dimen/_18sdp"
+                android:id="@+id/et_nib"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/nib_number"
+                android:inputType="number"/>
+            <EditText
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:id="@+id/et_confirmNib"
+                style="@style/EditextField4"
+                android:enabled="false"
+                android:hint="@string/confirm_nib_number"
+                android:inputType="number"/>
             <Button
 
                 android:visibility="gone"
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_45sdp"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/_45sdp"

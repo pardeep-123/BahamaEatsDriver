@@ -194,6 +194,38 @@ class Validator {
         }
         return check
     }
+    fun addPayoutDetails(
+        context: Activity,
+        firstName: String,
+        lastName: String,
+        dob: String,
+        email: String,
+        nib: String,
+        confirmNib: String
+    ): Boolean {
+        var check = false
+        if (firstName.isEmpty() && lastName.isEmpty() && dob.isEmpty() && dob.isEmpty() &&
+            email.isEmpty() && nib.isEmpty()&& confirmNib.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_payout_details))
+        } else if (firstName.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_first_name))
+        } else if (lastName.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_last_name))
+        } else if (dob.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_dob))
+        } else if (email.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_email))
+        } else if (nib.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_nib_number))
+        } else if (confirmNib.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_mismatch_nib_number))
+        } else if (nib.isNotEmpty()&&confirmNib.isNotEmpty()&&nib!=confirmNib) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_mismatch_nib_number))
+        } else {
+            check = true
+        }
+        return check
+    }
 
 
     fun addIdCardDetailsValid(context: Activity, firstName: String, lastName: String, idNumber: String, issueDate: String, expiryDate: String, address: String): Boolean {

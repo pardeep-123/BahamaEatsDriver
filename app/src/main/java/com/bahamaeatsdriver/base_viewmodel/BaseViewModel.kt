@@ -2621,7 +2621,58 @@ class BaseViewModel : ViewModel() {
         }
     }
 
+    /****************************************************************************************************************************************************/
+    //add bank details latest(Payout details updated s)
+    private var addEditBankDetailsResposne: MutableLiveData<RestObservable> = MutableLiveData()
+    fun addEditBankDetailsResposne(): LiveData<RestObservable> {
+        return addEditBankDetailsResposne
+    }
 
+    @SuppressLint("CheckResult")
+    fun addEditBankDetailsApi(
+        activity: Activity,
+        firstName: String,
+        lastName: String,
+        dob: String,
+        email: String,
+        nib: String,
+        id: String,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.ADD_EDIT_BANK(
+                firstName,
+                lastName,
+                dob,
+                email,
+                nib,id
+            )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    addEditBankDetailsResposne.value = RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { addEditBankDetailsResposne.value = RestObservable.success(it) },
+                    { addEditBankDetailsResposne.value = RestObservable.error(activity, it) })
+        } else {
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        addEditBankDetailsApi(
+                            activity,
+                            firstName,
+                            lastName,
+                            dob,
+                            email,
+                            nib,id,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
 }
 
 
