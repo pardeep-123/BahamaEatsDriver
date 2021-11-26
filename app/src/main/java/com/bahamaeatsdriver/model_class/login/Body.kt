@@ -4,6 +4,8 @@ data class Body(
     val address: String,
     val availability: Int,
     val city: String,
+    var gender: Int,
+    var dob: String,
     val contactNo: String,
     val country: String,
     val countryCode: String,

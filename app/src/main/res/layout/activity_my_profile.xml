@@ -326,8 +326,63 @@
 
                         </RelativeLayout>
                     </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Litgray">
+
+                    </View>
 
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp">
+                            <ImageView
+                                android:id="@+id/imageView6"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/calander" />
+                            <TextView
+                                android:id="@+id/tv_dob"
+                                style="@style/ScreenTextView1"
+                                android:layout_marginStart="20dp"
+                                android:layout_toEndOf="@+id/imageView6" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/Litgray"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp">
+                            <ImageView
+                                android:id="@+id/imageView7"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/gender" />
+                            <TextView
+                                android:id="@+id/tv_gender"
+                                style="@style/ScreenTextView1"
+                                android:layout_marginStart="20dp"
+                                android:layout_toEndOf="@+id/imageView7" />
+
+                        </RelativeLayout>
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>

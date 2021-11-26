@@ -2,6 +2,7 @@ package com.bahamaeatsdriver.activity.driver_profile
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -10,22 +11,18 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Base64
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.TextView
-import android.widget.Toast
+import android.util.Log
+import android.view.*
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
-import com.bahamaeatsdriver.adapter.CityAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.UpdateContactNumberActivity
+import com.bahamaeatsdriver.adapter.CityAdapter
 import com.bahamaeatsdriver.di.App
+import com.bahamaeatsdriver.helper.extensions.equalsIgnoreCase
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.ImagePicker
 import com.bahamaeatsdriver.helper.others.Validator
@@ -39,6 +36,10 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.activity_edit_profile.et_country
+import kotlinx.android.synthetic.main.activity_edit_profile.et_email
+import kotlinx.android.synthetic.main.activity_edit_profile.genderSpinner
+import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.custom_city_dialog.view.*
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -56,7 +57,12 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     private var isOpenDot = false
     private var popupWindow: PopupWindow? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-
+    private var dobDayStart = ""
+    private var dobMonthStart = ""
+    private var dobYearStart = ""
+    private var finalDob = ""
+    private var genderValue = ""
+    private val genderlist = listOf("", "Male", "Female", "Rather not say")
     @Inject
     lateinit var validator: Validator
     private var updatedCountry_Code = ""
@@ -81,16 +87,16 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         App.getinstance().getmydicomponent().inject(this)
-
+        tv_Dob.setOnClickListener(this)
         iv_edit_profile.setOnClickListener(this)
         tv_selectedCity.setOnClickListener(this)
         iv_backArrow_editprofile.setOnClickListener(this)
         et_contactNumber.setOnClickListener(this)
         btn_update.setOnClickListener(this)
+        setGenderSpinner()
         if (intent.getSerializableExtra("profileDetails") != null) {
             profileDetails = (intent.getSerializableExtra("profileDetails") as DriverProfileDetailsResposne?)!!
             Glide.with(this).load(profileDetails!!.body.image).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)
-//            et_fullName.setText(profileDetails!!.body.fullName)
             if (profileDetails!!.body.fullName.isNotEmpty())
                 et_fullName.setText(profileDetails!!.body.fullName)
             else
@@ -101,10 +107,33 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
             tv_selectedCity.text = profileDetails!!.body.city
             updatedCountry_Code = profileDetails!!.body.countryCode
             contact_Number = profileDetails!!.body.contactNo
-        }
+            if (profileDetails!!.body.dob!=null)
+                tv_Dob.text=profileDetails!!.body.dob
 
+            if (profileDetails!!.body.gender!=null)
+                genderSpinner.setSelection(profileDetails!!.body.gender)
+        }
     }
 
+    private fun setGenderSpinner() {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderlist)
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        genderSpinner.adapter = adapter
+        genderSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                adapterView: AdapterView<*>?, view: View?, position: Int, p3: Long) {
+                val v = (adapterView?.getChildAt(0) as TextView)
+                v.setGravity(Gravity.CENTER)
+                if (position == 0) {
+                    v.setHint("Gender")
+                    genderValue = ""
+                } else
+                    genderValue = genderlist.get(position)
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        })
+    }
 
     fun image() {
         dialog = Dialog(this@Edit_profile)
@@ -176,46 +205,6 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
-/*
-    @Throws(IOException::class)
-    fun createImageFile(context: Context, name: String, extension: String) {
-        val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        mImageFile = File.createTempFile(
-                name,
-                extension,
-                storageDir
-        )
-    }*/
-
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        dialog.dismiss()
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            mImageUri = data.data
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, data.data)
-                strIMg = convertImageToString(bitmap)
-                iv_edit_profile!!.setImageBitmap(bitmap)
-                Log.e("catch_bitmap", "value: $strIMg")
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            try {
-                imgFile = File(pictureFilePath)
-                val bmOptions = BitmapFactory.Options()
-                val bitmap = BitmapFactory.decodeFile(imgFile!!.absolutePath, bmOptions)
-                strIMg = convertimage(bitmap)
-                Log.e("cactch_bit", "bitmap : $strIMg")
-                iv_edit_profile!!.setImageBitmap(bitmap)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-*/
-
 
     //    File imgFile = new File(pictureFilePath);
     fun convertimage(bit: Bitmap): String? {
@@ -234,6 +223,9 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
+            R.id.tv_Dob -> {
+                selectStartDate(tv_Dob)
+            }
             R.id.iv_edit_profile -> {
                 checkPermissionCamera(false, "1", "")
             }
@@ -257,8 +249,10 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
                 val fullname = et_fullName.text.toString().trim()
                 val country = et_country.text.toString().trim()
                 val city = tv_selectedCity.text.toString().trim()
-                if (validator.editProfileUpValid(this, fullname, city, country, contact_Number)) {
-                    viewModel.editProfileApi(this, updatedCountry_Code, contact_Number, "", "", city, country, fullname, imageUrl, true)
+                val dob = tv_Dob.text.toString().trim()
+                if (validator.editProfileUpValid(this, fullname, city, country, contact_Number,dob,genderValue)) {
+                    val genderType= if (genderValue.equalsIgnoreCase("Male")) "1" else if (genderValue.equalsIgnoreCase("Female"))  "2" else "3"
+                    viewModel.editProfileApi(this, updatedCountry_Code, contact_Number, "", "", city, country, fullname, imageUrl,dob,genderType,true)
                     viewModel.getEditProfileResponse().observe(this, this)
                 }
             }
@@ -318,4 +312,43 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
 
     }
 
+
+    private fun selectStartDate(tv_startDate: TextView) {
+        val mYear: Int
+        val mMonth: Int
+        val mDay: Int
+        val mcurrentDate = Calendar.getInstance()
+        mYear = mcurrentDate[Calendar.YEAR]
+        mMonth = mcurrentDate[Calendar.MONTH]
+        mDay = mcurrentDate[Calendar.DAY_OF_MONTH]
+
+        val mDatePicker = DatePickerDialog(
+            this, { datepicker, selectedyear, selectedmonth, selectedday ->
+                if (selectedday.toString().length == 1)
+                    dobDayStart = "0$selectedday"
+                else
+                    dobDayStart = selectedday.toString()
+
+                if ((selectedmonth + 1).toString().length == 1)
+                    dobMonthStart = "0" + (selectedmonth + 1).toString()
+                else dobMonthStart = (selectedmonth + 1).toString()
+                dobYearStart = selectedyear.toString()
+                Log.e("day", dobDayStart)
+                Log.e("month", dobMonthStart)
+                Log.e("year", selectedyear.toString())
+                //yyyy-MM-dd format of dob
+                finalDob = selectedyear.toString() + "-" + dobMonthStart + "-" + dobDayStart
+                tv_startDate.setText(finalDob)
+            },
+            mYear,
+            mMonth,
+            mDay
+        )
+
+        mcurrentDate[mYear - 18, mMonth] = mDay
+        val value = mcurrentDate.timeInMillis
+        mDatePicker.datePicker.maxDate = value
+        if (!mDatePicker.isShowing)
+            mDatePicker.show()
+    }
 }

@@ -121,6 +121,7 @@ class Constants {
         const val COUNTRY_CODE = "countryCode"
         const val image = "image"
         const val DEVICE_TOKEN = "deviceToken"
+        const val GENDER = "gender"
         const val USER_ID = "user_id"
         const val FRONT_PHOTO = "frontPhoto"
         const val BACK_PHOTO = "backPhoto"

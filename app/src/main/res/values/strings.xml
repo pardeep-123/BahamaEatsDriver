@@ -72,7 +72,8 @@
     <string name="statistics">Statistics</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="procced">Procced</string>
-    <string name="google_maps_key" translatable="false">AIzaSyDLLJ3Ck9wLZRvHLlvdWnhnD1XpUMkB-go</string>
+<!--    <string name="google_maps_key" translatable="false">AIzaSyDLLJ3Ck9wLZRvHLlvdWnhnD1XpUMkB-go</string>-->
+    <string name="google_maps_key" translatable="false">AIzaSyAzzSNl6FRgZyl8QlihOlF6dLKbjzr61oI</string>
     <string name="no_internet_connection">No internet connection.</string>
     <string name="error_empty_all_fields">Please fill all the fields</string>
     <string name="error_empty_add_post_all_fields">Please select image and add description first</string>
@@ -91,7 +92,8 @@
     <string name="error_empty_phone_number_limit">Phone number should be mininum 10 digits</string>
     <string name="error_accpet_terms_conditions1">Please accept the terms and conditions. </string>
     <string name="error_image_mandetory">Please upload image</string>
-
+    <string name="error_empty_dob">Please select date of birth</string>
+    <string name="error_empty_gender">Please select gender</string>
     <string name="error_mismatch_password">Password and confirm password does not match.</string>
     <string name="error_country_code">Select country code</string>
     <string name="error_password_short_length">Password contain at least 8 characters,\u0020 contain at least one uppercase letter,\u0020 contain at least one lowercase letter,\u0020 contain at least one number</string>
@@ -222,6 +224,7 @@
     <string name="select_start_date">Select start date</string>
     <string name="select_end_date">Select end date</string>
     <string name="allow">Allow permission</string>
+    <string name="please_select_date_of_birth_and_gender">Please select date of birth and gender</string>
 
     <string name="notifications_on_content">Notification Permission!!</string>
     <string name="notification_required">For better experience please on the notifications!!</string>
@@ -335,6 +338,7 @@
     <string name="training_videos">Training Videos</string>
     <string name="nib_number">NIB Number</string>
     <string name="confirm_nib_number">Confirm NIB Number</string>
-    <string name="email_alert">"The email address is just the email address which you used to signup with island pay.</string>
+    <string name="email_alert">"Please make sure the email you entered matches the email you used to signup with Island Pay.</string>
+    <string name="date_of_birth">Date Of Birth</string>
 
 </resources>

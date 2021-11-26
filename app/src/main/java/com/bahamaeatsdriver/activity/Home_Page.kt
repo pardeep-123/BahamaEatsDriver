@@ -38,7 +38,6 @@ import com.bahamaeats.constant.Constants
 import com.bahamaeats.constant.Constants.Companion.ACCEPT_RIDE_STATUS
 import com.bahamaeats.constant.Constants.Companion.IMAGE_URL
 import com.bahamaeats.constant.Constants.Companion.REJECT_RIDE_STATUS
-import com.bahamaeats.network.RestApiInterface
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
@@ -71,7 +70,6 @@ import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.SelectedSlot
 import com.bahamaeatsdriver.model_class.i_am_here.IAmHereResponse
 import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
-import com.bahamaeatsdriver.model_class.map_poliline.Route
 import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksResponse
 import com.bahamaeatsdriver.model_class.update_driver_online_status.UpdateDriverTakeOrderStatus
 import com.bahamaeatsdriver.model_class.update_latitudeLongitude.UpdateDriverLatLongResponse
@@ -85,13 +83,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home_page.*
+import kotlinx.android.synthetic.main.alert_dob_gender_layout.*
 import kotlinx.android.synthetic.main.current_job_layout.*
 import kotlinx.android.synthetic.main.current_job_layout.tv_uploadReceipt
 import kotlinx.android.synthetic.main.fragment_navigation_drawl.*
@@ -106,8 +102,6 @@ import kotlinx.android.synthetic.main.upload_receipt_dialog_layout.*
 import org.joda.time.Duration
 import org.joda.time.format.DateTimeFormat
 import org.json.JSONObject
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -148,6 +142,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var loadMapOf = 0
     private var type = 0
     private lateinit var notificationOnDialog: Dialog
+    private lateinit var addDobGenderDialog: Dialog
     private lateinit var uploadReceiptDialog: Dialog
     private lateinit var currentJobOptiondialog: Dialog
     private var isCall = "false"
@@ -279,6 +274,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         relativeOffline = findViewById(R.id.rl_offline)
         currentJobOptiondialog = Dialog(this)
         notificationOnDialog = Dialog(this)
+        addDobGenderDialog = Dialog(this)
         builder = AlertDialog.Builder(this)
         iv_drawable.setOnClickListener(this)
         Relativ_moveToMapApp.setOnClickListener(this)
@@ -394,14 +390,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         c1[Calendar.DAY_OF_WEEK] = 7
         val d = Date()
         getDriverTakeStatusApicall(d.day.toString())
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             checkPermissionLocation(this)
             return
         } else {
@@ -409,18 +398,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             driverDetails = getprefObject(Constants.DRIVER_DETAILS)
             loginDiverId = driverDetails.body.id.toString()
             if (driverDetails.body.image.contains("http"))
-                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage)
-                    .into(iv_Profile_image)
+                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
             else
-                Glide.with(this).load(IMAGE_URL + driverDetails.body.image)
-                    .placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(IMAGE_URL + driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
 
             if (driverDetails.body.fullName.isNotEmpty())
                 tv_driverName.text = driverDetails.body.fullName
             else
-                tv_driverName.text =
-                    driverDetails.body.firstName + " " + driverDetails.body.lastName
+                tv_driverName.text = driverDetails.body.firstName + " " + driverDetails.body.lastName
             checkNotificationsPermissionIsEnable()
+            if(driverDetails.body.dob.isNullOrEmpty())
+            checkDobGenderAdded()
         }
     }
 
@@ -429,6 +417,28 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         viewModel.getDriverTakeStatusResponse().observe(this, this)
     }
 
+    private fun checkDobGenderAdded() {
+            if (addDobGenderDialog != null && addDobGenderDialog.isShowing) {
+                Log.e("addDobGenderDialog:", "Already showing")
+            } else {
+                Log.e("addDobGenderDialog:", "else:  " + "Already showing")
+                addDobGenderDialog = Dialog(this, R.style.Theme_Dialog)
+                addDobGenderDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                addDobGenderDialog.setContentView(R.layout.alert_dob_gender_layout)
+                addDobGenderDialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+                addDobGenderDialog.setCancelable(false)
+                addDobGenderDialog.setCanceledOnTouchOutside(false)
+                addDobGenderDialog.window!!.setGravity(Gravity.CENTER)
+                addDobGenderDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                addDobGenderDialog.tv_ok.setOnClickListener {
+                    addDobGenderDialog.dismiss()
+                    launchActivity<My_Profile_Activity>()
+                }
+
+                addDobGenderDialog.show()
+            }
+
+    }
     private fun checkNotificationsPermissionIsEnable() {
         if (driverDetails.body.isNotification == 0) {
             if (notificationOnDialog != null && notificationOnDialog.isShowing) {

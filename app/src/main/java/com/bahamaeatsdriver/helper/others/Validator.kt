@@ -66,7 +66,7 @@ class Validator {
      * Sign Up Page validation
      **/
     fun signUpValid(context: Activity, fullname: String, email: String, password: String, confirmPassword: String, city: String, country: String, phone: String, imagePath: String,
-                    isTermsCondition: Boolean): Boolean {
+                   dob:String,gender:String, isTermsCondition: Boolean): Boolean {
         var check = false
         if (fullname.isEmpty() && email.isEmpty() && password.isEmpty() && confirmPassword.isEmpty() && city.isEmpty() && country.isEmpty() && phone.isEmpty()) {
             Helper.showErrorAlert(context, context.getString(R.string.error_empty_all_fields))
@@ -86,6 +86,10 @@ class Validator {
             Helper.showErrorAlert(context, context.getString(R.string.please_enter_country))
         } else if (city.isEmpty()) {
             Helper.showErrorAlert(context, context.getString(R.string.error_empty_city))
+        } else if (dob.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_dob))
+        } else if (gender.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_gender))
         } else if (password.isEmpty()) {
             Helper.showErrorAlert(context, context.getString(R.string.error_empty_password))
         } else if (confirmPassword.isEmpty()) {
@@ -278,7 +282,7 @@ class Validator {
     /***
      * Sign Up Page validation
      **/
-    fun editProfileUpValid(context: Activity, fullname: String, city: String, country: String, phone: String): Boolean {
+    fun editProfileUpValid(context: Activity, fullname: String, city: String, country: String, phone: String, dob: String, genderValue: String): Boolean {
         var check = false
         if (fullname.isEmpty() && city.isEmpty() && country.isEmpty() && phone.isEmpty()) {
             Helper.showErrorAlert(context, context.getString(R.string.error_empty_all_fields))
@@ -292,6 +296,10 @@ class Validator {
             Helper.showErrorAlert(context, context.getString(R.string.please_enter_country))
         } else if (city.isEmpty()) {
             Helper.showErrorAlert(context, context.getString(R.string.error_empty_city))
+        }  else if (dob.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_dob))
+        }  else if (genderValue.isEmpty()) {
+            Helper.showErrorAlert(context, context.getString(R.string.error_empty_gender))
         } else {
             check = true
         }

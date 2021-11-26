@@ -139,7 +139,9 @@ interface RestApiInterface {
         @Part(Constants.COUNTRY) country: RequestBody,
         @Part(Constants.LOGIN_TYPE) loginType: RequestBody,
         @Part(Constants.DEVICE_TYPE) deviceType: RequestBody,
-        @Part(Constants.DEVICE_TOKEN) deviceToken: RequestBody
+        @Part(Constants.DEVICE_TOKEN) deviceToken: RequestBody,
+        @Part(Constants.DOB) dob: RequestBody,
+        @Part(Constants.GENDER) gender: RequestBody
     ): Observable<SignUpResponse>
 
     @Multipart
@@ -150,10 +152,11 @@ interface RestApiInterface {
         @Part(Constants.PHONE) phone: RequestBody,
         @Part(Constants.LATITUDE) latitude: RequestBody,
         @Part(Constants.LONGITUDE) longitude: RequestBody,
-//            @Part(Constants.ADDRESS) address: RequestBody,
         @Part(Constants.CITY) city: RequestBody,
         @Part(Constants.COUNTRY) country: RequestBody,
-        @Part(Constants.FULL_NAME) fullName: RequestBody
+        @Part(Constants.FULL_NAME) fullName: RequestBody,
+        @Part(Constants.dob) dob: RequestBody,
+        @Part(Constants.GENDER) gender: RequestBody
     ): Observable<EditDriverProfileResponse>
 
     @Multipart

@@ -33,6 +33,8 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
     private var tv_countryCode: TextView? = null
     private var tv_ContactNumber: TextView? = null
     private var tv_email: TextView? = null
+    private var tv_dob: TextView? = null
+    private var tv_gender: TextView? = null
     private var tv_dateOfJoin: TextView? = null
     private var tv_Username: TextView? = null
     private var iv_Profile_image: CircularImageView? = null
@@ -50,6 +52,8 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
         tv_fullName = findViewById(R.id.tv_fullName)
         tv_countryCode = findViewById(R.id.tv_countryCode)
         tv_ContactNumber = findViewById(R.id.tv_ContactNumber)
+        tv_dob = findViewById(R.id.tv_dob)
+        tv_gender = findViewById(R.id.tv_gender)
         tv_email = findViewById(R.id.tv_email)
         tv_dateOfJoin = findViewById(R.id.tv_dateOfJoin)
         tv_Username = findViewById(R.id.tv_username)
@@ -96,6 +100,19 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
             Status.SUCCESS -> {
                 if (liveData.data is DriverProfileDetailsResposne) {
                     profileDetails = liveData.data
+                    if ( liveData.data.body.dob!=null)
+                    tv_dob!!.text = "Dob: "+liveData.data.body.dob
+                    if (profileDetails!!.body.gender!=null){
+                        if (profileDetails!!.body.gender==1)
+                            tv_gender?.text="Gender: Male"
+                        else if (profileDetails!!.body.gender==2)
+                            tv_gender?.text="Gender: Female"
+                        else if (profileDetails!!.body.gender==3)
+                            tv_gender?.text="Gender: Rather not say"
+                        else
+                            tv_gender?.text="Gender: "
+
+                    }
                     tv_email!!.text = liveData.data.body.email
                     tv_countryCode!!.text = liveData.data.body.countryCode
                     tv_ContactNumber!!.text = liveData.data.body.contactNo
@@ -112,6 +129,8 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
                     //Update data to prefrence
                     driverDetails.body.image = liveData.data.body.image
                     driverDetails.body.fullName = liveData.data.body.fullName
+                    driverDetails.body.dob = liveData.data.body.fullName
+                    driverDetails.body.gender = profileDetails!!.body.gender
                     savePrefObject(Constants.DRIVER_DETAILS, driverDetails)
                 }
             }

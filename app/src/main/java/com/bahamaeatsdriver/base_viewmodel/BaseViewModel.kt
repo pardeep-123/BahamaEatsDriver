@@ -412,6 +412,8 @@ class BaseViewModel : ViewModel() {
         deviceType: String,
         deviceToken: String,
         imageUrl: String,
+        dob: String,
+        gender: String,
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
@@ -440,6 +442,8 @@ class BaseViewModel : ViewModel() {
             val keyLoginType = loginType.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyDeviceType = deviceType.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyDeviceToken = deviceToken.toRequestBody("text/plain".toMediaTypeOrNull())
+            val keyDobToken = dob.toRequestBody("text/plain".toMediaTypeOrNull())
+            val keyGenderToken = gender.toRequestBody("text/plain".toMediaTypeOrNull())
 
             apiService.SIGNUP(
                 imageFileBody,
@@ -452,7 +456,7 @@ class BaseViewModel : ViewModel() {
                 keyCountry,
                 keyLoginType,
                 keyDeviceType,
-                keyDeviceToken
+                keyDeviceToken,keyDobToken,keyGenderToken
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -480,7 +484,7 @@ class BaseViewModel : ViewModel() {
                             loginType,
                             deviceType,
                             deviceType,
-                            imageUrl,
+                            imageUrl,dob,gender,
                             isDialogShow
                         )
                     }
@@ -1180,11 +1184,12 @@ class BaseViewModel : ViewModel() {
         phone: String,
         latitude: String,
         longitude: String,
-//            address: String,
         city: String,
         country: String,
         fullName: String,
         imageUrl: String,
+        dob: String,
+        gender: String,
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
@@ -1208,10 +1213,11 @@ class BaseViewModel : ViewModel() {
             val keyPhone = phone.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyLatitude = latitude.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyLongitude = longitude.toRequestBody("text/plain".toMediaTypeOrNull())
-//            val keyAddress = address.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyCity = city.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyCountry = country.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyFullName = fullName.toRequestBody("text/plain".toMediaTypeOrNull())
+            val keyDob = dob.toRequestBody("text/plain".toMediaTypeOrNull())
+            val keyGender = gender.toRequestBody("text/plain".toMediaTypeOrNull())
 
             apiService.EDIT_DRIVER_PROFILE(
                 imageFileBody,
@@ -1221,7 +1227,7 @@ class BaseViewModel : ViewModel() {
                 keyLongitude,
                 keyCity,
                 keyCity,
-                keyFullName
+                keyFullName,keyDob,keyGender
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1247,7 +1253,7 @@ class BaseViewModel : ViewModel() {
                             city,
                             country,
                             fullName,
-                            imageUrl,
+                            imageUrl,dob,gender,
                             isDialogShow
                         )
                     }
