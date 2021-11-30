@@ -16,6 +16,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -148,6 +150,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var isCall = "false"
     private var startlat: Double? = null
     private var startlong: Double? = null
+    private var startlatNew: Double? = null
+    private var startlongNew: Double? = null
     private var finishlat: Double? = null
     private var finishlong: Double? = null
     private var runningdriver = true
@@ -187,8 +191,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             /***
              * Update Location on server
              */
-            viewModel.updateDriverLatLongApi(this, mLatitute, mLongitute, false)
-            viewModel.getUpdateDriverLatLongResponse().observe(this, this)
+//            viewModel.updateDriverLatLongApi(this, mLatitute, mLongitute, false)
+//            viewModel.getUpdateDriverLatLongResponse().observe(this, this)
             if (googleMap != null) {
                 if (mLatitute.isNotEmpty()) {
                     if (driverMarker == null)
@@ -200,6 +204,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         }
         if (finishlat != null && finishlong != null && finishlat != 0.0 && finishlong != 0.0 && startlat != 0.0 && startlong != 0.0) {
             drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "")
+//            val mylocation = Location("")
+//            val dest_location = Location("")
+//            dest_location.latitude= finishlat as Double
+//            mylocation.latitude= startlat as Double
+//            mylocation.longitude= startlong as Double
+//            mylocation.longitude= finishlong as Double
+//            val distance = mylocation.distanceTo(dest_location).toDouble()
+//            println(distance.toString()+"")
+//            //1 miles=1609.34 meters
+//          val finalDistanceInMeters=  distance(startlat!!,startlong!!,finishlat!!,finishlong!!)*1609.34
         }
     }
 
@@ -527,7 +541,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         val mMarker: Marker? = createMarker(LATITUDE, LONGITUDE, R.drawable.car_marker, "You")
         //first maker camera focuse
         val latLng = LatLng(LATITUDE, LONGITUDE)
-        val cameraPosition = CameraPosition.fromLatLngZoom(latLng, 15.0f)
+//        val cameraPosition = CameraPosition.fromLatLngZoom(latLng, 15.0f)
+        val cameraPosition = CameraPosition.fromLatLngZoom(latLng, 25.0f)
         val cu = CameraUpdateFactory.newCameraPosition(cameraPosition)
         googleMap!!.animateCamera(cu)
         return mMarker
@@ -582,14 +597,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dropMarker!!.remove()
             dropMarker = null
         }
-        dropMarker = googleMap!!.addMarker(
-            MarkerOptions().position(
-                LatLng(
-                    finishlat!!.toDouble(),
-                    finishlong!!.toDouble()
-                )
-            ).title(dropTitle).icon(BitmapDescriptorFactory.fromResource(R.drawable.source))
-        )
+        dropMarker = googleMap!!.addMarker(MarkerOptions().position(LatLng(finishlat!!.toDouble(), finishlong!!.toDouble())).title(dropTitle).icon(BitmapDescriptorFactory.fromResource(R.drawable.source)))
     }
 
   /*  private fun drawPolyLineAndAnimateCar() {

@@ -175,6 +175,41 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
                     android:background="@color/Litgray" />
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/toll_reimbursement"
+                        android:textSize="@dimen/_7sdp"
+                        app:drawableStartCompat="@drawable/ic_toll_fee" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:text="$ 5.0"
+                        android:id="@+id/tv_tollFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_9sdp" />
+                </LinearLayout>
+
+                <View
+                    android:visibility="gone"
+                    android:id="@+id/divider9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2px"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@color/Litgray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

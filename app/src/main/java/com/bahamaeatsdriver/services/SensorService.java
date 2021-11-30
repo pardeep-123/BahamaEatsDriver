@@ -51,13 +51,16 @@ public class SensorService extends Service implements GoogleApiClient.Connection
     GoogleApiClient mLocationClient;
     LocationRequest mLocationRequest = new LocationRequest();
     Context context = this;
-    public static final int LOCATION_INTERVAL = 10000;
-    public static final int FASTEST_LOCATION_INTERVAL = 5000;
+    //    public static final int LOCATION_INTERVAL = 10000;
+//    public static final int FASTEST_LOCATION_INTERVAL = 5000;
+    private static final long LOCATION_INTERVAL = 1000 * 60 * 1; //1 minute
+    private static final long FASTEST_LOCATION_INTERVAL = 1000 * 60 * 1; // 1 minute
     SocketManager socketManager;
 
     public static final String ACTION_LOCATION_BROADCAST = LocationMonitoringService.class.getName() + "LocationBroadcast";
     public static final String EXTRA_LATITUDE = "extra_latitude";
     public static final String EXTRA_LONGITUDE = "extra_longitude";
+    private static final float SMALLEST_DISPLACEMENT = 0.15F; //quarter of a meter
 
 
     public SensorService(Context applicationContext) {
@@ -94,7 +97,7 @@ public class SensorService extends Service implements GoogleApiClient.Connection
 
         mLocationRequest.setInterval(LOCATION_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_LOCATION_INTERVAL);
-
+        mLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT);
 
         int priority = LocationRequest.PRIORITY_HIGH_ACCURACY; //by default
         //PRIORITY_BALANCED_POWER_ACCURACY, PRIORITY_LOW_POWER, PRIORITY_NO_POWER are the other priority modes
@@ -166,13 +169,12 @@ public class SensorService extends Service implements GoogleApiClient.Connection
         Bitmap icon1 = BitmapFactory.decodeResource(getResources(), R.mipmap.bahama_icon);
 
 
-
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String channelId = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? createNotificationChannel(notificationManager) : "";
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
         Notification notification = notificationBuilder.setOngoing(true)
                 .setSmallIcon(getNotificationIcon()).setLargeIcon(icon1)
-                . setContentTitle(getString(R.string.app_name)).setContentText("Fetching Location").
+                .setContentTitle(getString(R.string.app_name)).setContentText("Fetching Location").
                         setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher)).setPriority(PRIORITY_MIN)
                 .setCategory(NotificationCompat.CATEGORY_SERVICE).build();
         startForeground(101, notification);
@@ -180,13 +182,13 @@ public class SensorService extends Service implements GoogleApiClient.Connection
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    private  int getNotificationIcon(){
+    private int getNotificationIcon() {
 
         int useWhiteIcon;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            useWhiteIcon=R.drawable.ic_noti_trans;
-        }else {
-            useWhiteIcon= R.mipmap.bahama_icon;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            useWhiteIcon = R.drawable.ic_noti_trans;
+        } else {
+            useWhiteIcon = R.mipmap.bahama_icon;
         }
         return useWhiteIcon;
     }
@@ -220,7 +222,7 @@ public class SensorService extends Service implements GoogleApiClient.Connection
     }
 
     private void sendMessageToUI(String lat, String lng) {
-        Log.d(TAG, "sendMessageToUI:"+ "Sending info...");
+        Log.d(TAG, "sendMessageToUI:" + "Sending info...");
 
         Log.d("TAG", "Sending info...");
         Intent intent = new Intent("restartservice");
@@ -232,7 +234,7 @@ public class SensorService extends Service implements GoogleApiClient.Connection
           "latitude": 30.192414,
           "longitude": 76.122341
         }*/
-        if (!Home_Page.Companion.getOtherUserId().isEmpty()){
+        if (!Home_Page.Companion.getOtherUserId().isEmpty()) {
             try {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("receiverId", Home_Page.Companion.getOtherUserId());
@@ -299,11 +301,11 @@ public class SensorService extends Service implements GoogleApiClient.Connection
         switch (event) {
             case SocketManager.UPDATE_LOCATION_LISTENER:
                 try {
-                   JSONObject data = (JSONObject) args[0];
+                    JSONObject data = (JSONObject) args[0];
                     SaveLocationResponse chatModel = new SaveLocationResponse();
                     chatModel.setLatitude(new JSONObject(data.getString("body")).getString("latitude"));
                     chatModel.setLongitude(new JSONObject(data.getString("body")).getString("longitude"));
-                    Log.d(TAG, "onResponse: "+data.toString());
+                    Log.d(TAG, "onResponse: " + data.toString());
                 } catch (JSONException ex) {
                     ex.printStackTrace();
                 }

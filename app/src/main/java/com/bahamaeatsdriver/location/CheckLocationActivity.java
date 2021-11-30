@@ -56,8 +56,12 @@ abstract public class CheckLocationActivity extends ImagePicker implements
 
     private static final long INTERVAL = 1000 * 60 * 1; //1 minute
     private static final long FASTEST_INTERVAL = 1000 * 60 * 1; // 1 minute
-    private static final float SMALLEST_DISPLACEMENT = 0.25F; //quarter of a meter
-    public void checkPermissionLocation(Activity activity) {
+//    private static final float SMALLEST_DISPLACEMENT = 0.15F; //quarter of a meter
+//    private static final float SMALLEST_DISPLACEMENT = 0.80F; //quarter of a meter
+
+    // The minimum distance to change Updates in meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 100; // 10 meters
+        public void checkPermissionLocation(Activity activity) {
         this.activity = activity;
         permissionlistener = new PermissionListener() {
             @Override
@@ -180,7 +184,7 @@ abstract public class CheckLocationActivity extends ImagePicker implements
     protected void createLocationRequest() {
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT);
+//        mLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT);
         mLocationRequest.setInterval(INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
     }

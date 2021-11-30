@@ -340,5 +340,6 @@
     <string name="confirm_nib_number">Confirm NIB Number</string>
     <string name="email_alert">"Please make sure the email you entered matches the email you used to signup with Island Pay.</string>
     <string name="date_of_birth">Date Of Birth</string>
+    <string name="toll_reimbursement">Toll Reimbursement</string>
 
 </resources>
