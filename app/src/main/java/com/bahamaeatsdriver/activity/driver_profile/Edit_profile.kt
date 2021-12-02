@@ -16,6 +16,7 @@ import android.view.*
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
@@ -23,6 +24,8 @@ import com.bahamaeatsdriver.activity.UpdateContactNumberActivity
 import com.bahamaeatsdriver.adapter.CityAdapter
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.equalsIgnoreCase
+import com.bahamaeatsdriver.helper.extensions.getprefObject
+import com.bahamaeatsdriver.helper.extensions.savePrefObject
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.ImagePicker
 import com.bahamaeatsdriver.helper.others.Validator
@@ -30,6 +33,7 @@ import com.bahamaeatsdriver.listeners.OnCitySelection
 import com.bahamaeatsdriver.model_class.edit_driver_profile.EditDriverProfileResponse
 import com.bahamaeatsdriver.model_class.get_city.Body
 import com.bahamaeatsdriver.model_class.get_city.GetCityResponse
+import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.profile_details.DriverProfileDetailsResposne
 import com.bahamaeatsdriver.repository.BaseViewModel
 import com.bumptech.glide.Glide
@@ -53,7 +57,7 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     private var encodedImage: String? = null
     private var pictureFilePath: String? = null
     private var imageUrl = ""
-    private var profileDetails: DriverProfileDetailsResposne? = null
+//    private var profileDetails: DriverProfileDetailsResposne? = null
     private var isOpenDot = false
     private var popupWindow: PopupWindow? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
@@ -67,6 +71,8 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     lateinit var validator: Validator
     private var updatedCountry_Code = ""
     private var contact_Number = ""
+    private lateinit var profileDetails: LoginResponse
+
     @SuppressLint("SetTextI18n")
     override fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String) {
         updatedCountry_Code = updatedCountryCode
@@ -86,6 +92,8 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+        profileDetails = getprefObject(Constants.DRIVER_DETAILS)
+
         App.getinstance().getmydicomponent().inject(this)
         tv_Dob.setOnClickListener(this)
         iv_edit_profile.setOnClickListener(this)
@@ -94,25 +102,22 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         et_contactNumber.setOnClickListener(this)
         btn_update.setOnClickListener(this)
         setGenderSpinner()
-        if (intent.getSerializableExtra("profileDetails") != null) {
-            profileDetails = (intent.getSerializableExtra("profileDetails") as DriverProfileDetailsResposne?)!!
-            Glide.with(this).load(profileDetails!!.body.image).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)
-            if (profileDetails!!.body.fullName.isNotEmpty())
-                et_fullName.setText(profileDetails!!.body.fullName)
+        /*if (intent.getSerializableExtra("profileDetails") != null) {
+            profileDetails = (intent.getSerializableExtra("profileDetails") as DriverProfileDetailsResposne?)!!*/
+            Glide.with(this).load(profileDetails.body.image).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)
+            if (profileDetails.body.fullName.isNotEmpty())
+                et_fullName.setText(profileDetails.body.fullName)
             else
-                et_fullName.setText(profileDetails!!.body.firstName + " " + profileDetails!!.body.lastName)
-            et_contactNumber.text = profileDetails!!.body.countryCodePhone
-            et_email.text = profileDetails!!.body.email
+                et_fullName.setText(profileDetails.body.firstName + " " + profileDetails.body.lastName)
+            et_contactNumber.text = profileDetails.body.countryCodePhone
+            et_email.text = profileDetails.body.email
             et_country.text = getString(R.string.countryName)
-            tv_selectedCity.text = profileDetails!!.body.city
-            updatedCountry_Code = profileDetails!!.body.countryCode
-            contact_Number = profileDetails!!.body.contactNo
-            if (profileDetails!!.body.dob!=null)
-                tv_Dob.text=profileDetails!!.body.dob
-
-            if (profileDetails!!.body.gender!=null)
-                genderSpinner.setSelection(profileDetails!!.body.gender)
-        }
+            tv_selectedCity.text = profileDetails.body.city
+            updatedCountry_Code = profileDetails.body.countryCode
+            contact_Number = profileDetails.body.contactNo
+            if (!profileDetails.body.dob.isNullOrEmpty())
+                tv_Dob.text= profileDetails.body.dob
+                genderSpinner.setSelection(profileDetails.body.gender)
     }
 
     private fun setGenderSpinner() {
@@ -267,6 +272,11 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
                         Helper.showErrorAlert(this, liveData.data.message)
                     } else {
                         Helper.showSuccessToast(this, liveData.data.message)
+                        profileDetails.body.image = liveData.data.body.image
+                        profileDetails.body.fullName = liveData.data.body.fullName
+                        profileDetails.body.dob = liveData.data.body.dob
+                        profileDetails.body.gender = profileDetails.body.gender
+                        savePrefObject(Constants.DRIVER_DETAILS, profileDetails)
                         finish()
                     }
 

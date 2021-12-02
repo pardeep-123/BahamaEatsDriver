@@ -80,7 +80,7 @@ class ItemsAdapter(
             Glide.with(context).load(RESTAURANT_BASE_URL + upComingJobHistory.restaurant.image).placeholder(R.drawable.placeholder_circle).into(myViewHolder.itemView.iv_restaurantImage)
             myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(upComingJobHistory.order.createdAt) + upComingJobHistory.vehicle
 //            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(upComingJobHistory.order.netAmount.toFloat())
-            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(upComingJobHistory.order.driverNetAmount.toFloat())
+            myViewHolder.itemView.tv_price.text = "$" + if (upComingJobHistory.order.driverNetAmount.isNotEmpty()) Helper.roundOffDecimalNew(upComingJobHistory.order.driverNetAmount.toFloat()) else Helper.roundOffDecimalNew(upComingJobHistory.order.netAmount.toFloat())
             myViewHolder.itemView.ratingBar.visibility = View.GONE
             myViewHolder.itemView.ratingBar.rating = upComingJobHistory.rating.toFloat()
             myViewHolder.itemView.tv_Status.text = upComingJobHistory.rideStatus.toString()

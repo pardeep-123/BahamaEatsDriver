@@ -9,8 +9,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="== location != null" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
@@ -36,25 +35,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="dob updated and gender">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_toll_fee.png" afterDir="false" />
+    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="in case of tracking update location after every 100 meters(or every 1 min)">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/location/CheckLocationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/location/CheckLocationActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/services/SensorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/services/SensorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/res_pickup_request.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/res_pickup_request.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/Edit_profile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/Edit_profile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/My_Profile_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/My_Profile_Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/ItemsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/ItemsAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/edit_driver_profile/Body.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/edit_driver_profile/EditDriverProfileResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/edit_driver_profile/EditDriverProfileResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8M42HZM4T]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/root/.android/avd/Pixel_4_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -348,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637933981961</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="in case of tracking update location after every 100 meters(or every 1 min)">
+      <created>1638276493010</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1638276493010</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -373,7 +378,8 @@
     <MESSAGE value="Add FAQ page to driver app&#10;Driver cancel button&#10;Driver oder details&#10;Driver app preperation time&#10;Allow calling for merchant store number&#10;“Payment guranteed” needs to be the calculation of delivery fee + tip" />
     <MESSAGE value="Update driver payout details done" />
     <MESSAGE value="dob updated and gender" />
-    <option name="LAST_COMMIT_MESSAGE" value="dob updated and gender" />
+    <MESSAGE value="in case of tracking update location after every 100 meters(or every 1 min)" />
+    <option name="LAST_COMMIT_MESSAGE" value="in case of tracking update location after every 100 meters(or every 1 min)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="203" y="113" width="950" height="530" key="#PSD" timestamp="1636630255411">
@@ -388,10 +394,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="0" y="27" width="1356" height="704" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1366.704@0.27.1366.704" timestamp="1632395750689" />
-    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1637580556514">
+    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1638439542385">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.704@0.27.1366.704" timestamp="1637580556514" />
+    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.704@0.27.1366.704" timestamp="1638439542385" />
     <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate" timestamp="1638271326707">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -408,10 +414,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1638166948464" />
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1638270594802">
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1638439033912">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1638270594802" />
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1638439033912" />
     <state width="1277" height="411" key="DebuggerActiveHint" timestamp="1638271177464">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -424,46 +430,46 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1636712246804" />
-    <state width="1320" height="327" key="GridCell.Tab.0.bottom" timestamp="1638275467332">
+    <state width="1320" height="69" key="GridCell.Tab.0.bottom" timestamp="1638440335376">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="327" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1638275467332" />
-    <state width="1320" height="327" key="GridCell.Tab.0.center" timestamp="1638275467332">
+    <state width="1320" height="69" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1638440335376" />
+    <state width="1320" height="69" key="GridCell.Tab.0.center" timestamp="1638440335376">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="327" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1638275467332" />
-    <state width="1320" height="327" key="GridCell.Tab.0.left" timestamp="1638275467332">
+    <state width="1320" height="69" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1638440335376" />
+    <state width="1320" height="69" key="GridCell.Tab.0.left" timestamp="1638440335375">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="327" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1638275467332" />
-    <state width="1320" height="327" key="GridCell.Tab.0.right" timestamp="1638275467332">
+    <state width="1320" height="69" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1638440335375" />
+    <state width="1320" height="69" key="GridCell.Tab.0.right" timestamp="1638440335376">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="327" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1638275467332" />
-    <state width="1320" height="223" key="GridCell.Tab.1.bottom" timestamp="1638274411477">
+    <state width="1320" height="69" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1638440335376" />
+    <state width="1320" height="223" key="GridCell.Tab.1.bottom" timestamp="1638439065564">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="223" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1638274411477" />
-    <state width="1320" height="223" key="GridCell.Tab.1.center" timestamp="1638274411477">
+    <state width="1320" height="223" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1638439065564" />
+    <state width="1320" height="223" key="GridCell.Tab.1.center" timestamp="1638439065563">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="223" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1638274411477" />
-    <state width="1320" height="223" key="GridCell.Tab.1.left" timestamp="1638274411476">
+    <state width="1320" height="223" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1638439065563" />
+    <state width="1320" height="223" key="GridCell.Tab.1.left" timestamp="1638439065563">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="223" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1638274411476" />
-    <state width="1320" height="223" key="GridCell.Tab.1.right" timestamp="1638274411477">
+    <state width="1320" height="223" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1638439065563" />
+    <state width="1320" height="223" key="GridCell.Tab.1.right" timestamp="1638439065564">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="223" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1638274411477" />
+    <state width="1320" height="223" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1638439065564" />
     <state x="180" y="61" width="996" height="633" key="RollbackChangesDialog" timestamp="1636972746849">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="180" y="61" width="996" height="633" key="RollbackChangesDialog/0.27.1366.704@0.27.1366.704" timestamp="1636972746849" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1637933988858">
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1638276594802">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1637933988858" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1638276594802" />
     <state width="683" height="353" key="XDebugger.FullValuePopup" timestamp="1638173081461">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -480,14 +486,14 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1634215619600" />
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1638274400222">
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1638438376107">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1638274400222" />
-    <state x="373" y="117" width="741" height="580" key="find.popup" timestamp="1638272112613">
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1638438376107" />
+    <state x="373" y="117" width="741" height="580" key="find.popup" timestamp="1638440399101">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="373" y="117" width="741" height="580" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1638272112613" />
+    <state x="373" y="117" width="741" height="580" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1638440399101" />
     <state x="394" y="150" width="568" height="455" key="refactoring.ChangeSignatureDialog" timestamp="1634024998447">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -496,9 +502,20 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="347" y="166" key="run.anything.popup/0.27.1366.704@0.27.1366.704" timestamp="1637842625772" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1638272316653">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1638440384598">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1638272316653" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1638440384598" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/My_Profile_Activity.kt</url>
+          <line>130</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -47,6 +47,7 @@ import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.activity.Navigation.SettingsActivity
 import com.bahamaeatsdriver.activity.Navigation.TermAnd_Conditions
 import com.bahamaeatsdriver.activity.driver_availability.DriverAvailability
+import com.bahamaeatsdriver.activity.driver_profile.Edit_profile
 import com.bahamaeatsdriver.activity.driver_profile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
@@ -446,7 +447,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 addDobGenderDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 addDobGenderDialog.tv_ok.setOnClickListener {
                     addDobGenderDialog.dismiss()
-                    launchActivity<My_Profile_Activity>()
+                    launchActivity<Edit_profile>()
                 }
 
                 addDobGenderDialog.show()

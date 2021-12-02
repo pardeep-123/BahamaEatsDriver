@@ -100,9 +100,8 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
             Status.SUCCESS -> {
                 if (liveData.data is DriverProfileDetailsResposne) {
                     profileDetails = liveData.data
-                    if ( liveData.data.body.dob!=null)
+                    if ( !liveData.data.body.dob.isNullOrEmpty())
                     tv_dob!!.text = "Dob: "+liveData.data.body.dob
-                    if (profileDetails!!.body.gender!=null){
                         if (profileDetails!!.body.gender==1)
                             tv_gender?.text="Gender: Male"
                         else if (profileDetails!!.body.gender==2)
@@ -111,8 +110,6 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
                             tv_gender?.text="Gender: Rather not say"
                         else
                             tv_gender?.text="Gender: "
-
-                    }
                     tv_email!!.text = liveData.data.body.email
                     tv_countryCode!!.text = liveData.data.body.countryCode
                     tv_ContactNumber!!.text = liveData.data.body.contactNo
@@ -129,7 +126,7 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
                     //Update data to prefrence
                     driverDetails.body.image = liveData.data.body.image
                     driverDetails.body.fullName = liveData.data.body.fullName
-                    driverDetails.body.dob = liveData.data.body.fullName
+                    driverDetails.body.dob = liveData.data.body.dob
                     driverDetails.body.gender = profileDetails!!.body.gender
                     savePrefObject(Constants.DRIVER_DETAILS, driverDetails)
                 }
