@@ -175,7 +175,7 @@ public class LocationMonitoringService extends Service implements
     private void runAsForeground(){
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Bitmap icon1 = BitmapFactory.decodeResource(getResources(), R.mipmap.bahama_icon);
+        Bitmap icon1 = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 
 
         String channelId = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? createNotificationChannel(notificationManager) : "";
@@ -198,7 +198,7 @@ public class LocationMonitoringService extends Service implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             useWhiteIcon=R.drawable.ic_noti_trans;
         }else {
-            useWhiteIcon= R.mipmap.bahama_icon;
+            useWhiteIcon= R.mipmap.ic_launcher;
         }
         return useWhiteIcon;
     }
