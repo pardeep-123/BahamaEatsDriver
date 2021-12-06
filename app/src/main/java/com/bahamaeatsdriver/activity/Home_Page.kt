@@ -1000,12 +1000,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         dialogOrderDeatail.tv_orderPrice.text =
             "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
 //        dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
-        if (currentRideData.order.driverNetAmount != null)
-            dialogOrderDeatail.tv_totalAmountWithAll.text =
-                "$ " + Helper.roundOffDecimalNew(currentRideData.order.driverNetAmount.toFloat())
+        if (!currentRideData.order.driverNetAmount.isNullOrEmpty())
+            dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.driverNetAmount.toFloat())
         else
-            dialogOrderDeatail.tv_totalAmountWithAll.text =
-                "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
+            dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
         /** paymentMethod-1 for suncash
          * paymentMethod-2 for paypal
          * paymentMethod-4 for kanoo
@@ -1337,12 +1335,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             }
                         }
 //                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
-                        if (currentRideData!!.order.driverNetAmount != null)
-                            tv_currentOrderTotal.text =
-                                "$" + Helper.roundOffDecimalNew(currentRideData!!.order.driverNetAmount.toFloat())
+                        if (!currentRideData!!.order.driverNetAmount.isNullOrEmpty())
+                            tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.driverNetAmount.toFloat())
                         else
-                            tv_currentOrderTotal.text =
-                                "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
+                            tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
 
                         //When new job is available for accept/reject
                         if (currentRideData!!.rideStatus == 1 && currentRideData!!.response == 0) {
@@ -1490,9 +1486,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         }
                     }
 //                    tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
-                    if (changeRideStatus!!.order.driverNetAmount != null)
-                        tv_currentOrderTotal.text =
-                            "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.driverNetAmount.toFloat())
+                    if (changeRideStatus!!.order.driverNetAmount.isNotEmpty())
+                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.driverNetAmount.toFloat())
                     else
                         tv_currentOrderTotal.text =
                             "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
@@ -1512,20 +1507,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     if (changeRideStatus!!.rideStatus == 2) {
                         Helper.showSuccessAlert(this, liveData.data.message)
                         anyActiveJobAvailable = 1
-                        finishlat = changeRideStatus!!.userAddress.latitude
-                        finishlong = changeRideStatus!!.userAddress.longitude
+                        finishlat = if (changeRideStatus!!.userAddress.latitude.isNotEmpty())changeRideStatus!!.userAddress.latitude.toDouble() else 0.0
+                        finishlong = if (changeRideStatus!!.userAddress.longitude.isNotEmpty())changeRideStatus!!.userAddress.longitude.toDouble() else 0.0
                         val houseNumber = changeRideStatus!!.userAddress.completeAddress
-                        val streetName =
-                            if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
-                        val landmark =
-                            if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
-                        val userAddres =
-                            if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
+                        val streetName = if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
+                        val landmark = if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
+                        val userAddres = if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                         val finalAddress = houseNumber + streetName + landmark + userAddres
                         tv_adress.text = finalAddress
                         tv_merchantName.visibility = View.GONE
                         tv_dropOffType.text = getString(R.string.drop_off_location)
-
                         showViewsWhenRideIsStared()
                         tv_adress.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
                         Iv_search.visibility = View.GONE
@@ -1533,16 +1524,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             dropMarker!!.remove()
                             dropMarker = null
                         }
-                        drawpoliline(
-                            LatLng(startlat!!, startlong!!),
-                            LatLng(finishlat!!, finishlong!!),
-                            "Deliver to"
-                        )
+                        drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Deliver to")
                         setDropMaker("Deliver to")
-                        Log.e(
-                            "GetCur:..mLatitute: ",
-                            changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
-                        )
+                        Log.e("GetCur:..mLatitute: ", changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
                         startStep3(this)
                     } else if (liveData.data.body.rideStatus == 3) {
                         anyActiveJobAvailable = 0

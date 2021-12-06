@@ -55,7 +55,7 @@ class ItemsAdapter(
             latRestaurant = pastJobHistory[i].fromLat
             longRestaurant = pastJobHistory[i].fromLong
 
-            myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(pastJobHistory[i].order.createdAt) + upComingJobHistory.vehicle
+            myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(pastJobHistory[i].order.createdAt) + pastJobHistory[i].vehicle
             if(pastJobHistory[i].order.driverNetAmount.isNotEmpty())
             myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(pastJobHistory[i].order.driverNetAmount.toFloat())
             else
@@ -79,7 +79,6 @@ class ItemsAdapter(
             longRestaurant = upComingJobHistory.fromLong
             Glide.with(context).load(RESTAURANT_BASE_URL + upComingJobHistory.restaurant.image).placeholder(R.drawable.placeholder_circle).into(myViewHolder.itemView.iv_restaurantImage)
             myViewHolder.Tv_time.text = CommonMethods.convertToNewFormat2(upComingJobHistory.order.createdAt) + upComingJobHistory.vehicle
-//            myViewHolder.itemView.tv_price.text = "$" + Helper.roundOffDecimalNew(upComingJobHistory.order.netAmount.toFloat())
             myViewHolder.itemView.tv_price.text = "$" + if (upComingJobHistory.order.driverNetAmount.isNotEmpty()) Helper.roundOffDecimalNew(upComingJobHistory.order.driverNetAmount.toFloat()) else Helper.roundOffDecimalNew(upComingJobHistory.order.netAmount.toFloat())
             myViewHolder.itemView.ratingBar.visibility = View.GONE
             myViewHolder.itemView.ratingBar.rating = upComingJobHistory.rating.toFloat()

@@ -14,8 +14,7 @@ import kotlinx.android.synthetic.main.history_page_addons_layout.view.*
 class OrderDetailsAddOnAdapter(val mContext: Context, val addonsList: ArrayList<AddOnArray>) : RecyclerView.Adapter<OrderDetailsAddOnAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.history_page_addons_layout, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.history_page_addons_layout, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -28,8 +27,8 @@ class OrderDetailsAddOnAdapter(val mContext: Context, val addonsList: ArrayList<
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.tv_addOnName.text=addonsList.get(position).addon
         holder.itemView.tv_addOnquantity.text=addonsList.get(position).quantity.toString()+"x"
+        if (addonsList[position].price.isNotEmpty())
         holder.itemView.tv_addOnPrice.text="$"+roundOffDecimalNew(addonsList[position].price.toFloat()*addonsList[position].quantity).toString()
-//        holder.itemView.tv_addOnPrice.text="$"+addonsList.get(position).price
     }
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

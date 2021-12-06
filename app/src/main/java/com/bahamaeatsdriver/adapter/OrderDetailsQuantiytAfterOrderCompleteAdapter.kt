@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -17,10 +18,13 @@ class OrderDetailsQuantiytAfterOrderCompleteAdapter(var context: Context, val or
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
         try {
-            myViewHolder.itemView.tv_price.text = "$" + roundOffDecimalNew(orderDetails.get(i).price.toFloat()*orderDetails.get(i).quantity)
-            myViewHolder.itemView.tv_price.text = "$" + orderDetails.get(i).price*orderDetails.get(i).quantity
+            if (orderDetails.get(i).price.isNotEmpty()){
+                myViewHolder.itemView.tv_price.text = "$" + roundOffDecimalNew(orderDetails.get(i).price.toFloat()*orderDetails.get(i).quantity)
+                myViewHolder.itemView.tv_price.text = "$" + orderDetails.get(i).price.toFloat()*orderDetails.get(i).quantity
+            }
             myViewHolder.itemView.tv_quantity.text = orderDetails.get(i).quantity.toString()
             myViewHolder.itemView.tv_itemName.text = orderDetails.get(i).itemName
         } catch (e: Exception) {
@@ -35,8 +39,6 @@ class OrderDetailsQuantiytAfterOrderCompleteAdapter(var context: Context, val or
         return orderDetails.size
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

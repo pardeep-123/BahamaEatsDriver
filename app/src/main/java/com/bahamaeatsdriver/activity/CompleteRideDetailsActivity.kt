@@ -24,12 +24,12 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
         if (intent.getSerializableExtra("data") != null) {
             val orderData = intent.getSerializableExtra("data") as Body
             Helper.showErrorAlertWithoutTitle(this, "Ride completed successfully.")
-            if (orderData.restaurant.latitude.isNotEmpty() && orderData.restaurant.longitude.isNotEmpty() && orderData.userAddress.latitude != 0.0 && orderData.userAddress.longitude != 0.0) {
+            if (orderData.restaurant.latitude.isNotEmpty() && orderData.restaurant.longitude.isNotEmpty() && orderData.userAddress.latitude.toDouble() != 0.0 && orderData.userAddress.longitude.toDouble() != 0.0) {
                 val restaurantToUser = distance(
                     orderData.restaurant.latitude.toDouble(),
                     orderData.restaurant.longitude.toDouble(),
-                    orderData.userAddress.latitude,
-                    orderData.userAddress.longitude
+                    orderData.userAddress.latitude.toDouble(),
+                    orderData.userAddress.longitude.toDouble()
                 )
                 val finalDistanceNew: String = java.lang.String.valueOf(DecimalFormat("##").format(restaurantToUser))
                 tv_totalDistance.text = "$finalDistanceNew mi"
@@ -76,7 +76,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
             tv_userOrderAddress.text = finalAddress
             tv_deliveryAmount.text = "$" + orderData.order.deliveryFee
 //            tv_deliveryAmount.text = "$" + orderData.order.userDeliveryFee
-            if (orderData.order.deliveryFee != 0.0) {
+            if (orderData.order.deliveryFee.isNotEmpty()&&orderData.order.deliveryFee!="0"&&orderData.order.deliveryFee!="0.0") {
                 ll_deliverChargesRoot.visibility = View.VISIBLE
                 ll_deliverChargesRootView.visibility = View.VISIBLE
             } else {
@@ -85,7 +85,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             tv_vatAmount.text = "$" + orderData.order.tax
-            if (orderData.order.tax != 0.0) {
+            if (orderData.order.tax.isNotEmpty()&&orderData.order.tax!="0"&&orderData.order.tax!="0.0") {
                 ll_vatRoot.visibility = View.VISIBLE
                 ll_vatRootView.visibility = View.VISIBLE
             } else {
@@ -102,7 +102,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
             }
             tv_vatLabel.text = "VAT(" + orderData.order.taxPercentage + "%)"
             tv_tip.text = "$" + orderData.order.tip
-            if (orderData.order.tip != 0.0) {
+            if (orderData.order.tip.isNotEmpty()&&orderData.order.tip!="0"&&orderData.order.tip!="0.0") {
                 ll_tipRoot.visibility = View.VISIBLE
                 ll_tipRootView.visibility = View.VISIBLE
             } else {
@@ -110,7 +110,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 ll_tipRootView.visibility = View.GONE
             }
             tv_cartFee.text = "$" + orderData.order.cartFee
-            if (orderData.order.cartFee != 0.0) {
+            if (orderData.order.cartFee.isNotEmpty()&&orderData.order.cartFee!="0.0"&&orderData.order.cartFee!="0") {
                 ll_cartFeeRoot.visibility = View.VISIBLE
                 ll_cartFeeRootView.visibility = View.VISIBLE
             } else {
@@ -118,7 +118,7 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 ll_cartFeeRootView.visibility = View.GONE
             }
             tv_promo.text = "-$" + orderData.order.promoDiscount
-            if (orderData.order.promoDiscount != 0.0) {
+            if (orderData.order.promoDiscount.isNotEmpty()&&orderData.order.promoDiscount!="0.0"&&orderData.order.promoDiscount!="0") {
                 ll_promoRoot.visibility = View.VISIBLE
                 ll_promoRootView.visibility = View.VISIBLE
             } else {
