@@ -414,6 +414,7 @@ class BaseViewModel : ViewModel() {
         imageUrl: String,
         dob: String,
         gender: String,
+        referralCode: String,
         isDialogShow: Boolean
     ) {
         if (Helper.isNetworkConnected(activity)) {
@@ -444,6 +445,7 @@ class BaseViewModel : ViewModel() {
             val keyDeviceToken = deviceToken.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyDobToken = dob.toRequestBody("text/plain".toMediaTypeOrNull())
             val keyGenderToken = gender.toRequestBody("text/plain".toMediaTypeOrNull())
+            val keyReferralCode = referralCode.toRequestBody("text/plain".toMediaTypeOrNull())
 
             apiService.SIGNUP(
                 imageFileBody,
@@ -456,7 +458,7 @@ class BaseViewModel : ViewModel() {
                 keyCountry,
                 keyLoginType,
                 keyDeviceType,
-                keyDeviceToken,keyDobToken,keyGenderToken
+                keyDeviceToken,keyDobToken,keyGenderToken,keyReferralCode
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -484,7 +486,7 @@ class BaseViewModel : ViewModel() {
                             loginType,
                             deviceType,
                             deviceType,
-                            imageUrl,dob,gender,
+                            imageUrl,dob,gender,referralCode,
                             isDialogShow
                         )
                     }
@@ -2679,6 +2681,53 @@ class BaseViewModel : ViewModel() {
                 })
         }
     }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /***
+     * Driver store links api call
+     */
+    private var getStoreLinksResposne: MutableLiveData<RestObservable> = MutableLiveData()
+
+    fun getStoreLinksResposne(): LiveData<RestObservable> {
+        return getStoreLinksResposne
+    }
+
+    @SuppressLint("CheckResult")
+    fun getStoreLinks(
+        activity: Activity,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.GET_DRIVER_MENU_STORE()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    getStoreLinksResposne.value =
+                        RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { getStoreLinksResposne.value = RestObservable.success(it) },
+                    {
+                        getStoreLinksResposne.value =
+                            RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getStoreLinks(
+                            activity,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
+
 }
 
 

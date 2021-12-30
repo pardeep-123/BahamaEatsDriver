@@ -24,6 +24,10 @@ class OrderDetailsAddOnsQuantiytAdapter(var context: Context, val listAddOnList:
         myViewHolder.itemView.tv_price.text = "$"+roundOffDecimalNew(listAddOnList.get(i).price.toFloat()*listAddOnList.get(i).quantity)
             myViewHolder.itemView.tv_quantity.text = listAddOnList.get(i).quantity.toString()+"x"
             myViewHolder.itemView.tv_itemName.text = listAddOnList.get(i).addon
+            myViewHolder.itemView.tv_itemName.setTextColor(context.getResources().getColor(R.color.Black))
+            myViewHolder.itemView.tv_price.setTextColor(context.getResources().getColor(R.color.Black))
+            myViewHolder.itemView.tv_addOns.visibility=View.GONE
+            myViewHolder.itemView.tv_menuName.visibility=View.GONE
 
     }
 

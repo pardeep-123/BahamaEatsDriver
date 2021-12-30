@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    tools:context=".activity.shop_store.ShopStoreActivity">
+
+    <RelativeLayout
+        android:id="@+id/hedder"
+        style="@style/Heddersiz"
+        android:background="@color/Greenapp">
+
+        <ImageView
+            android:id="@+id/iv_backArrow"
+            style="@style/BackButtonImage"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            style="@style/HedderSmallsiz"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:text="@string/store" />
+
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

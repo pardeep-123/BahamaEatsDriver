@@ -72,7 +72,7 @@
     <string name="statistics">Statistics</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="procced">Procced</string>
-<!--    <string name="google_maps_key" translatable="false">AIzaSyDLLJ3Ck9wLZRvHLlvdWnhnD1XpUMkB-go</string>-->
+    <!--    <string name="google_maps_key" translatable="false">AIzaSyDLLJ3Ck9wLZRvHLlvdWnhnD1XpUMkB-go</string>-->
     <string name="google_maps_key" translatable="false">AIzaSyAzzSNl6FRgZyl8QlihOlF6dLKbjzr61oI</string>
     <string name="no_internet_connection">No internet connection.</string>
     <string name="error_empty_all_fields">Please fill all the fields</string>
@@ -104,8 +104,14 @@
     <string name="enter_otp">ENTER OTP</string>
     <string name="resend_otp">Resend code</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="referral_code_if_any">Referral code(If any)</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="share_and_win">Share and Win</string>
+    <string name="get_your_fee_10_credit_by_inviting_your_friends">Get your fee 10$ Credit by inviting your friends</string>
+    <string name="share_your_code">Share your code</string>
     <string name="agree_with">Agrees with</string>
     <string name="registration">Registration</string>
+    <string name="share_referral_code">Invite Friends, Get Rewards </string>
     <string name="select_city">Select City</string>
     <string name="year">Year</string>
     <string name="job_history_details">Job History Details</string>
@@ -173,6 +179,7 @@
     <string name="past">Past</string>
     <string name="job_history">Job History</string>
     <string name="total_tips_earned">Total Tips Earned:</string>
+    <string name="refferal_reward">Refferal Reward:</string>
     <string name="total_deliver_fee">Total Delivery Fee:</string>
     <string name="date_of_issue">Date of Issue</string>
     <string name="add">Add</string>
@@ -341,5 +348,15 @@
     <string name="email_alert">"Please make sure the email you entered matches the email you used to signup with Island Pay.</string>
     <string name="date_of_birth">Date Of Birth</string>
     <string name="toll_reimbursement">Toll Reimbursement</string>
+    <string name="store">Store</string>
+    <string name="completed_rides">Completed Rides</string>
+    <string name="earn_rewards">Earn Rewards</string>
+    <string name="special_request">Special Request</string>
+    <string name="would_you_like_to_extend_your_shift">Would you like to extend your shift?</string>
+    <string name="complete_ride_message">Please complete current ride first</string>
+    <string name="once_we_ll_verify">Once we\'ll verify</string>
+    <string name="we_ll_get_back_to_you">We\'ll get back to you</string>
+    <string name="please_wait_for_admin_approval_once_admin_will_verify_your_profile_you_ll_be_able_swipe_online">Please wait for admin approval, Once admin will verify your profile you\'ll be able swipe online</string>
+    <string name="verification_pending">Verification Pending</string>
 
 </resources>

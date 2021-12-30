@@ -28,6 +28,8 @@ class FoodQuantiytAdapter(var context: Context, val orderDetails: List<OrderDeta
         myViewHolder.itemView.tv_itemName.text = orderDetails[position].itemName
         myViewHolder.itemView.tv_desciption.text = orderDetails[position].itemDescription
         myViewHolder.itemView.tv_menuName.text = orderDetails[position].menu_name
+        if (orderDetails[position].itemSpecialRequest.isNotEmpty()) myViewHolder.itemView.tv_specialRequest.visibility=View.VISIBLE else myViewHolder.itemView.tv_specialRequest.visibility=View.GONE
+        myViewHolder.itemView.tv_specialRequest.text="Special Request: "+orderDetails[position].itemSpecialRequest
         val listAddOnList=ArrayList<AddOnArray>()
         var count = 0
         for (i in orderDetails[position].categories.indices){

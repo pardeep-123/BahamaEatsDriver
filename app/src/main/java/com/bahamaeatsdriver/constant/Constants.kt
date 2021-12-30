@@ -6,15 +6,15 @@ package com.bahamaeats.constant
 class Constants {
     companion object {
         //Live server urls
-         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
-        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
-        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
-        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
-        //Local server urls
-//        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
-//        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
-//        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+//         const val BASE_URL = "https://bahamaeats.com:8008/apiNew/"
+//        const val SOCKET_BASE_URL = "https://bahamaeats.com:8008/"
+//        const val IMAGE_URL = "https://bahamaeats.com:8008/images/drivers/"
 //        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
+        //Local server urls
+        const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
+        const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
+        const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
 
         const val SECURITY_KEY = "security_key"
         const val SECURITY_KEY_CODE = "BahamaEats"
@@ -53,7 +53,6 @@ class Constants {
         const val JOB_HISTORY = "jobHistory"
         const val JOB_HISTORY_DETAILS = "jobHistoryDetails"
         const val PAYMENT_STATUS_LISTING = "paymentStatusListingDriver"
-        const val PAYMENT_STATUS_LISTING_LIVE = "paymentStatusListingDriverlive"
 
         const val GET_DRIVER_TAKE_ORDER_STATUS = "getDriverTakeOrderStatus"
         const val RESPOND_RIDE_REQUEST = "respondRideRequest"
@@ -62,7 +61,10 @@ class Constants {
         const val GET_RIDER_DETAILS = "getRideDetails"
         const val I_AM_HERE = "iAmHere"
         const val EARNINGS = "earnings"
+        const val PAYMENT_STATUS_LISTING_LIVE = "paymentStatusListingDriverlive"
         const val FILTER_EARNINGS = "earningsDataBasedOnDates"
+        const val FILTER_EARNINGS_NEW = "getRefferalsDataBasedOnDates"
+        const val PAYMENT_STATUS_LISTING_LIVE_NEW = "getRefferalsPaymentStatusListingDriverlive"
         const val ADD_UPDATE_BANK = "addupdatebank"
         const val ADD_EDIT_BANK = "addEditBank" /*"Payout details new api*/
         const val GET_BANK_DETAILS = "getbankdetail"
@@ -90,6 +92,7 @@ class Constants {
         const val  ADD_DRIVER_SLOTS="addTimeSlots"
         const val  GET_DRIVER_ADDED_SLOTS="getDriverSlots"
         const val  GET_DRIVER_FAQ="getDriverFaqs"
+        const val  GET_DRIVER_MENU_STORE="driverMenuStore"
 
 
         const val LATITUDE = "latitude"
@@ -122,6 +125,7 @@ class Constants {
         const val image = "image"
         const val DEVICE_TOKEN = "deviceToken"
         const val GENDER = "gender"
+        const val REFERRAL_CODE = "referrals_code"
         const val USER_ID = "user_id"
         const val FRONT_PHOTO = "frontPhoto"
         const val BACK_PHOTO = "backPhoto"

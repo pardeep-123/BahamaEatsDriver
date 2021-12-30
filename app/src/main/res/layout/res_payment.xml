@@ -76,6 +76,32 @@
 
         <LinearLayout
             android:visibility="gone"
+            android:id="@+id/ll_deliveryFeeDeducationRoot"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Deducted Delivery Fee: - 1"
+                android:id="@+id/tv_deductedDeliveryAmount"
+                style="@style/ScreenTextView1"
+                android:gravity="end"
+                android:textColor="@color/red"/>
+            <TextView
+                android:text="Received Delivery Fee: 0"
+                android:id="@+id/tv_receivedDeliveryAmount"
+                style="@style/ScreenTextView1"
+                android:gravity="end"
+                android:textColor="@color/Greenapp"/>
+            <TextView
+                android:text="Reason: Abc testing reason"
+                android:id="@+id/tv_reasonOfdecuction"
+                style="@style/ScreenTextView1"
+                android:gravity="end"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"

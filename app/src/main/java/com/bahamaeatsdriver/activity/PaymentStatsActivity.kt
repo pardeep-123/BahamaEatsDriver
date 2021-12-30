@@ -21,13 +21,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
+import com.bahamaeatsdriver.R
+import com.bahamaeatsdriver.adapter.DriverEarnRewardPaymentAdapter
 import com.bahamaeatsdriver.adapter.FilterPaymentAdapter
 import com.bahamaeatsdriver.adapter.PaymentAdapter
-import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.helper.others.Helper
-import com.bahamaeatsdriver.model_class.driver_earnings.Day
-import com.bahamaeatsdriver.model_class.driver_earnings.Month
-import com.bahamaeatsdriver.model_class.driver_earnings.Week
 import com.bahamaeatsdriver.model_class.driver_payments.DriverPaymentsResposne
 import com.bahamaeatsdriver.model_class.driver_tips_earning.DriverTipsAndEarning
 import com.bahamaeatsdriver.repository.BaseViewModel
@@ -41,6 +39,7 @@ import java.util.*
 class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private var Recycler_view: RecyclerView? = null
+    private var rv_rewardEarnings: RecyclerView? = null
     private var LL_Day: LinearLayout? = null
     private var LL_week: LinearLayout? = null
     private var LL_months: LinearLayout? = null
@@ -51,9 +50,6 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
     private var isFilterApplied = 0
     private var type = "0"
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-//    private lateinit var dayEarning: Day
-//    private lateinit var monthEarning: Month
-//    private lateinit var weeklyEarning: Week
 
     private lateinit var activityReachDialog: Dialog
     private var date_startTimestamp = ""
@@ -74,6 +70,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment__status)
         Recycler_view = findViewById(R.id.Recycler_view)
+        rv_rewardEarnings = findViewById(R.id.rv_rewardEarnings)
         getDateMonth()
         LL_Day = findViewById(R.id.LL_Day)
         LL_week = findViewById(R.id.LL_week)
@@ -86,32 +83,14 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         LL_Day?.setOnClickListener {
 
             try {
-               /* tv_day!!.setTypeface(Typeface.DEFAULT_BOLD)
-                tv_week!!.setTypeface(null, Typeface.NORMAL)
-                tv_months!!.setTypeface(null, Typeface.NORMAL)
-                tv_day?.setTextColor(resources.getColor(R.color.Black))
-                tv_week?.setTextColor(resources.getColor(R.color.colorTextView))
-                tv_months?.setTextColor(resources.getColor(R.color.colorTextView))*/
                 type = "0"
                 callFilterByDate("", "", type)
-                /*  if (dayEarning != null) {
-                      updateDeliveryAmount(1, dayEarning, monthEarning, weeklyEarning)
-                  }*/
                 updateViewAsPerType(type)
             } catch (e: Exception) {
             }
         }
         LL_week?.setOnClickListener {
             try {
-                /*tv_day!!.setTypeface(null, Typeface.NORMAL)
-                tv_week!!.setTypeface(Typeface.DEFAULT_BOLD)
-                tv_months!!.setTypeface(null, Typeface.NORMAL)
-                tv_day?.setTextColor(resources.getColor(R.color.colorTextView))
-                tv_week?.setTextColor(resources.getColor(R.color.Black))
-                tv_months?.setTextColor(resources.getColor(R.color.colorTextView))*/
-                /*  if (weeklyEarning != null) {
-                      updateDeliveryAmount(3, dayEarning, monthEarning, weeklyEarning)
-                  }*/
                 type = "1"
                 callFilterByDate("", "", type)
                 updateViewAsPerType(type)
@@ -120,15 +99,6 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         }
         LL_months?.setOnClickListener {
             try {
-                /*tv_day!!.setTypeface(null, Typeface.NORMAL)
-                tv_week!!.setTypeface(null, Typeface.NORMAL)
-                tv_months!!.setTypeface(Typeface.DEFAULT_BOLD)
-                tv_day?.setTextColor(resources.getColor(R.color.colorTextView))
-                tv_week?.setTextColor(resources.getColor(R.color.colorTextView))
-                tv_months?.setTextColor(resources.getColor(R.color.Black))*/
-                /* if (monthEarning != null) {
-                     updateDeliveryAmount(2, dayEarning, monthEarning, weeklyEarning)
-                 }*/
                 type = "2"
                 callFilterByDate("", "", type)
                 updateViewAsPerType(type)
@@ -158,10 +128,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         activityReachDialog = Dialog(this, R.style.Theme_Dialog)
         activityReachDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         activityReachDialog.setContentView(R.layout.dialog_filter)
-        activityReachDialog.window!!.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        activityReachDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         activityReachDialog.setCancelable(true)
         activityReachDialog.setCanceledOnTouchOutside(false)
         activityReachDialog.window!!.setGravity(Gravity.CENTER)
@@ -469,55 +436,13 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
     }
 
     @SuppressLint("SetTextI18n")
-    fun updateDeliveryAmount(type: Int, dayEarning: Day, monthEarning: Month, weeklyEarning: Week) {
-        /***
-         * Type=1 for dayEarning
-         * Type=2 for monthEarning
-         * Type=3 for weeklyEarning
-         */
-        if (type == 1) {
-            if (dayEarning.total_delivery_fee != null && dayEarning.total_delivery_fee.isNotEmpty())
-                tv_totalDelivery.text = "$ " + changeDoubleFormat(dayEarning.total_delivery_fee.toDouble())
-            else
-                tv_totalDelivery.text = "$ " + dayEarning.total_delivery_fee
-
-            if (dayEarning.total_tip != null && dayEarning.total_tip.isNotEmpty())
-                tv_tipDelivery.text = "$ " + changeDoubleFormat(dayEarning.total_tip.toDouble())
-            else
-                tv_tipDelivery.text = "$ " + dayEarning.total_tip
-
-
-        } else if (type == 2) {
-            if (monthEarning.total_delivery_fee != null && monthEarning.total_delivery_fee.isNotEmpty())
-                tv_totalDelivery.text = "$ " + changeDoubleFormat(monthEarning.total_delivery_fee.toDouble())
-            else
-                tv_totalDelivery.text = "$ " + monthEarning.total_delivery_fee.toDouble()
-
-            if (monthEarning.total_tip != null && monthEarning.total_tip.isNotEmpty())
-                tv_tipDelivery.text = "$ " + changeDoubleFormat(monthEarning.total_tip.toDouble())
-            else
-                tv_tipDelivery.text = "$ " + changeDoubleFormat(monthEarning.total_tip.toDouble())
-        } else if (type == 3) {
-            if (weeklyEarning.total_delivery_fee != null && weeklyEarning.total_delivery_fee.isNotEmpty())
-                tv_totalDelivery.text = "$ " + changeDoubleFormat(weeklyEarning.total_delivery_fee.toDouble())
-            else
-                tv_totalDelivery.text = "$ " + weeklyEarning.total_delivery_fee
-
-            if (weeklyEarning.total_tip != null && weeklyEarning.total_tip.isNotEmpty())
-                tv_tipDelivery.text = "$ " + changeDoubleFormat(weeklyEarning.total_tip.toDouble())
-            else
-                tv_tipDelivery.text = "$ " + weeklyEarning.total_tip
-        }
-
-    }
-
-    @SuppressLint("SetTextI18n")
     override fun onChanged(liveData: RestObservable?) {
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is DriverPaymentsResposne) {
-                    tv_tipDelivery.text = "$ " + changeDoubleFormat(liveData.data.body.earning.total_tip)
-                    tv_totalDelivery.text = "$ " +changeDoubleFormat(liveData.data.body.earning.total_delivery_fee)
+                    tv_tipDelivery.text = "$ " + changeDoubleFormat(liveData.data.body.earning.totalTip)
+                    tv_totalDelivery.text = "$ " +changeDoubleFormat(liveData.data.body.earning.totalDeliveryFee)
+                    tv_refferBenefit.text = "$ " +if (!liveData.data.body.earning.referalBonus.isNullOrEmpty())changeDoubleFormat(liveData.data.body.earning.referalBonus.toDouble()) else 0.0
                     if (liveData.data.body.order.isEmpty()) {
                         tv_noDataAvailable.visibility = View.VISIBLE
                         Recycler_view!!.visibility = View.GONE
@@ -528,6 +453,17 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                         Recycler_view?.layoutManager = linearLayoutManager
                         val adapterItems = PaymentAdapter(this, liveData.data.body.order)
                         Recycler_view?.adapter = adapterItems
+                    }
+                    if (liveData.data.body.refferalData.isNotEmpty()){
+                        tv_noRewardAvailable.visibility=View.GONE
+                        rv_rewardEarnings?.visibility=View.VISIBLE
+                        rl_earnRewardRoot.visibility=View.VISIBLE
+                        val driverEarnsRewardsAdapter = DriverEarnRewardPaymentAdapter(this,liveData.data.body.refferalData)
+                        rv_rewardEarnings?.adapter = driverEarnsRewardsAdapter
+                    }else{
+                        rl_earnRewardRoot.visibility=View.GONE
+                        tv_noRewardAvailable.visibility=View.VISIBLE
+                        rv_rewardEarnings?.visibility=View.GONE
                     }
                 }
 
@@ -540,15 +476,19 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                     else
                         tv_filterClear.visibility = View.GONE
 
-                    if (liveData.data.body.earnings.total_delivery_fee != 0.0)
-                        tv_totalDelivery.text ="$ " + changeDoubleFormat(liveData.data.body.earnings.total_delivery_fee)
+                        tv_totalDelivery.text ="$ " +if (liveData.data.body.earnings.totalDeliveryFee.isNotEmpty()) changeDoubleFormat(liveData.data.body.earnings.totalDeliveryFee.toDouble())
                     else
-                        tv_totalDelivery.text ="$ " + liveData.data.body.earnings.total_delivery_fee
+                        tv_totalDelivery.text ="$ " + liveData.data.body.earnings.totalDeliveryFee
 
-                    if (liveData.data.body.earnings.total_tip != 0.0)
-                        tv_tipDelivery.text = "$ " + changeDoubleFormat(liveData.data.body.earnings.total_tip)
+                    if (liveData.data.body.earnings.totalTip.isNotEmpty())
+                        tv_tipDelivery.text = "$ " + changeDoubleFormat(liveData.data.body.earnings.totalTip.toDouble())
                     else
-                        tv_tipDelivery.text = "$ " + liveData.data.body.earnings.total_tip
+                        tv_tipDelivery.text = "$ " + liveData.data.body.earnings.totalTip
+
+                    if (liveData.data.body.earnings.referalBonus.isNotEmpty())
+                        tv_refferBenefit.text = "$ " + changeDoubleFormat(liveData.data.body.earnings.referalBonus.toDouble())
+                    else
+                        tv_refferBenefit.text = "$ " + 0.0
 
                     if (liveData.data.body.rideRequest.isEmpty()) {
                         tv_noDataAvailable.visibility = View.VISIBLE
@@ -560,6 +500,17 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                         Recycler_view?.layoutManager = linearLayoutManager
                         val adapterItems = FilterPaymentAdapter(this, liveData.data.body.rideRequest)
                         Recycler_view?.adapter = adapterItems
+                    }
+                    if (liveData.data.body.refferalData.isNotEmpty()){
+                        tv_noRewardAvailable.visibility=View.GONE
+                        rl_earnRewardRoot.visibility=View.VISIBLE
+                        rv_rewardEarnings?.visibility=View.VISIBLE
+                        val driverEarnsRewardsAdapter = DriverEarnRewardPaymentAdapter(this,liveData.data.body.refferalData)
+                        rv_rewardEarnings?.adapter = driverEarnsRewardsAdapter
+                    }else{
+                        rv_rewardEarnings?.visibility=View.GONE
+                        rl_earnRewardRoot.visibility=View.GONE
+                        tv_noRewardAvailable.visibility=View.VISIBLE
                     }
                 }
             }
@@ -580,6 +531,5 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
         } catch (e: Exception) {
             return ""
         }
-
     }
 }

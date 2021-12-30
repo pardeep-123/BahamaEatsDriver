@@ -434,6 +434,26 @@
                         android:textSize="@dimen/_11sdp"
                         android:text="@string/faqs" />
                 </LinearLayout>
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/ll_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/store"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="@string/store" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_Documents"

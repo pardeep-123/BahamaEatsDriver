@@ -55,6 +55,8 @@ class OrderDetailsQuantiytAdapter(var context: Context, val orderDetails: List<O
             myViewHolder.itemView.tv_quantity.text = orderDetails[i].quantity.toString()+"x"
             myViewHolder.itemView.tv_itemName.text = orderDetails[i].itemName
             myViewHolder.itemView.tv_menuName.text = orderDetails[i].menu_name
+            if (orderDetails[i].itemSpecialRequest.isNotEmpty()) myViewHolder.itemView.tv_specialRequest.visibility=View.VISIBLE else myViewHolder.itemView.tv_specialRequest.visibility=View.GONE
+            myViewHolder.itemView.tv_specialRequest.text = "Special Request: "+orderDetails[i].itemSpecialRequest
         } catch (e: Exception) {
         }
     }

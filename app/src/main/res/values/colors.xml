@@ -13,6 +13,7 @@
     <color name="Greenapp">#78B071</color>
     <color name="GreenLight">#ADD3A9</color>
     <color name="Litgray">#D3D3D3</color>
+    <color name="darkGreen">#28652A</color>
     <color name="LLgray">#777777</color>
     <color name="YelloStar">#FAC917</color>
     <color name="colorTextView">#808080</color>
@@ -24,5 +25,7 @@
     <color name="Background">#FAFAFA</color>
     <color name="colorBlackOff">#C8000000</color>
     <color name="colorLightGrey">#E0E0E0</color>
+    <color name="colorBlackOff1">#B8AEAE</color>
+    <color name="colorScreenGrey">#F9F9F9</color>
 
 </resources>

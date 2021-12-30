@@ -16,8 +16,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.location.Location
-import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -51,6 +49,7 @@ import com.bahamaeatsdriver.activity.driver_profile.Edit_profile
 import com.bahamaeatsdriver.activity.driver_profile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
+import com.bahamaeatsdriver.activity.shop_store.ShopStoreActivity
 import com.bahamaeatsdriver.adapter.OrderDetailsQuantiytAdapter
 import com.bahamaeatsdriver.adapter.PhotoAdapter
 import com.bahamaeatsdriver.di.App
@@ -66,12 +65,12 @@ import com.bahamaeatsdriver.model_class.ImageVideoModel
 import com.bahamaeatsdriver.model_class.accept_reject_ride.AcceptRejectRideRequest
 import com.bahamaeatsdriver.model_class.add_on_list.AddOnsCustomModel
 import com.bahamaeatsdriver.model_class.change_ride_status.ChangeRideStatusResponse
+import com.bahamaeatsdriver.model_class.driver_details.DriverDetails
 import com.bahamaeatsdriver.model_class.get_current_ride.Body
 import com.bahamaeatsdriver.model_class.get_current_ride.GetCurrentRideResponse
 import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.GetTakeDriverOrderStatus
 import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.SelectedSlot
 import com.bahamaeatsdriver.model_class.i_am_here.IAmHereResponse
-import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
 import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksResponse
 import com.bahamaeatsdriver.model_class.update_driver_online_status.UpdateDriverTakeOrderStatus
@@ -93,6 +92,7 @@ import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.alert_dob_gender_layout.*
 import kotlinx.android.synthetic.main.current_job_layout.*
 import kotlinx.android.synthetic.main.current_job_layout.tv_uploadReceipt
+import kotlinx.android.synthetic.main.extent_slots_layout.*
 import kotlinx.android.synthetic.main.fragment_navigation_drawl.*
 import kotlinx.android.synthetic.main.messenger_popup_layout.*
 import kotlinx.android.synthetic.main.notification_on_alert.*
@@ -101,6 +101,7 @@ import kotlinx.android.synthetic.main.order_details_dailog_new.*
 import kotlinx.android.synthetic.main.order_details_dailog_new.btn_ok
 import kotlinx.android.synthetic.main.res_pickup_request.*
 import kotlinx.android.synthetic.main.res_pickup_request.tv_totalAmount
+import kotlinx.android.synthetic.main.res_verification_panding.*
 import kotlinx.android.synthetic.main.upload_receipt_dialog_layout.*
 import org.joda.time.Duration
 import org.joda.time.format.DateTimeFormat
@@ -123,6 +124,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var btnRejectRide: TextView? = null
     private var btnOrderDetail: TextView? = null
     private lateinit var dialog: Dialog
+    private lateinit var slotExtentDialog: Dialog
     private lateinit var dialogOrderDeatail: Dialog
     private var builder: AlertDialog.Builder? = null
     private var temp = 0
@@ -133,7 +135,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var currentRideData: Body? = null
     private var changeRideStatus: com.bahamaeatsdriver.model_class.change_ride_status.Body? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-    private lateinit var driverDetails: LoginResponse
+    private lateinit var driverDetails: DriverDetails
     private var mapFragment: SupportMapFragment? = null
     private var mBroadcastReceiver: BroadcastReceiver? = null
     private var googleMap: GoogleMap? = null
@@ -162,6 +164,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var image_path = ""
     private var isReceiptUpload = 0
     private var takeOrderStatusLocal = ""
+    private var isApproved = ""
     private lateinit var relativeOnline: RelativeLayout
     private lateinit var relativeOffline: RelativeLayout
     private var videoUrl = ""
@@ -225,52 +228,47 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 
 
     private fun updateDriverOnlineOfflineStatus(isTakeOrderStatus: String) {
-        var isSelectExits = false
-        val currentTime = SimpleDateFormat("HH:mm a").format(Date())
-        val onlineOfflineStatus = if (isTakeOrderStatus == "0") "Please unselect the slot to be offline" else "Please add slot to be online"
-//        if (todaySlotsListing.isNotEmpty()) {
-//            /*  for (j in todaySlotsListing.indices) {
-//                  if (todaySlotsListing[j].isSelected == 1) {
-//                      isSelectExits=true
-//                  }
-//              }*/
-//            @SuppressLint("SimpleDateFormat")
-//             val sdf = SimpleDateFormat("HH:mm")
-//            @SuppressLint("SimpleDateFormat")
-//             val sdfs = SimpleDateFormat("hh:mm a")
-//            for (i in todaySlotsListing.indices) {
-//                val openTime= sdfs.format(sdf.parse(todaySlotsListing[i].openTime))
-//                val closeTime= sdfs.format(sdf.parse(todaySlotsListing[i].closeTime))
-//                if (todaySlotsListing[i].isSelected == 0) {
-//                    if (currentTime >= openTime && currentTime <= closeTime)
-//                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-//                } else {
-//                    if (currentTime >= openTime && currentTime <= closeTime)
-//                        gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-//                }
-//            }
-//        } else
+        if (isApproved.isNotEmpty()&&isApproved!="1"){
+            showAdminApprovalDailog()
+        }else{
+           if (anyActiveJobAvailable == 1) {
+            Helper.showErrorAlertWithoutTitle(this, getString(R.string.complete_ride_message))
+        } else {
+            val onlineOfflineStatus =
+                if (isTakeOrderStatus == "0") "Please unselect the slot to be offline" else "Please add slot to be online"
             gotToAlertFuncation(onlineOfflineStatus, isTakeOrderStatus)
-//        viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
-//        viewModel.updateDriverOnlineStatusResposne().observe(this, this)
+        }
+        }
     }
 
     private fun gotToAlertFuncation(onlineOfflineStatus: String, isTakeOrderStatus: String) {
-//        if (isTakeOrderStatus == takeOrderStatusLocal) {
-//            viewModel.updateDriverOnlineStatusResposneApi(this, isTakeOrderStatus, true)
-//            viewModel.updateDriverOnlineStatusResposne().observe(this, this)
-//        } else {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(onlineOfflineStatus).setCancelable(false)
             .setPositiveButton(getString(R.string.go_to_slot_page)) { _, _ ->
                 launchActivity<DriverAvailability>()
-//                    val initData = Intent(this, DriverAvailability::class.java)
-//                    startActivityForResult(initData, uploadSlotcode)
             }
             .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.cancel() }
         builder.create().show()
-//        }
+    }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        if (intent!!.getStringExtra("type") != null && intent.getStringExtra("message") != null) {
+            if (intent.getStringExtra("type") == "20")
+                openExtentSlotDailog(intent.getStringExtra("message")!!)
+        }
+    }
+
+    private fun showAdminApprovalDailog() {
+        val dialog = Dialog(this)
+        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setContentView(R.layout.res_verification_panding)
+        dialog.setCancelable(false)
+        dialog.tv_Done?.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -282,6 +280,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         socketManager.getDriverTakeOrderStatus()
         checkPermissionLocation(this)
         dialog = Dialog(this)
+        slotExtentDialog = Dialog(this)
         uploadReceiptDialog = Dialog(this@Home_Page)
         uploadReceiptDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         uploadReceiptDialog.setContentView(R.layout.upload_receipt_dialog_layout)
@@ -302,6 +301,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         LL_notification.setOnClickListener(this)
         LL_TandC.setOnClickListener(this)
         LL_settings.setOnClickListener(this)
+        ll_store.setOnClickListener(this)
         ll_trainingVideo.setOnClickListener(this)
         LL_logout.setOnClickListener(this)
         Relativ_profile.setOnClickListener(this)
@@ -334,9 +334,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         if (!(context as Activity).isFinishing) {
                             if (intent.getStringExtra("type")!! == "3")
                                 currentRideApiCall()
-                            else if (intent.getStringExtra("type")!! == "16"){
-//                                val status=intent.getStringExtra("take_order_status")!!
-//                                updateDriverTakeOrderView(status.toInt())
+                            else if (intent.getStringExtra("type")!! == "20") {
+                                openExtentSlotDailog(intent.getStringExtra("message")!!)
+                            } else if (intent.getStringExtra("type")!! == "16"||intent.getStringExtra("type")!! == "21") {
                                 val c1 = Calendar.getInstance()
                                 //first day of week
                                 c1[Calendar.DAY_OF_WEEK] = 1
@@ -345,7 +345,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 val d = Date()
                                 getDriverTakeStatusApicall(d.day.toString())
                             }
-
                         }
                     } else
                         Toast.makeText(
@@ -358,6 +357,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         }
         val filter = IntentFilter("msg")
         registerReceiver(mBroadcastReceiver, filter)
+        if (intent!!.getStringExtra("type") != null) {
+            if (intent.getStringExtra("type") == "20")
+                openExtentSlotDailog(intent.getStringExtra("message")!!)
+        }
     }
 
     private fun currentRideApiCall() {
@@ -405,25 +408,34 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         c1[Calendar.DAY_OF_WEEK] = 7
         val d = Date()
         getDriverTakeStatusApicall(d.day.toString())
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             checkPermissionLocation(this)
             return
         } else {
             currentRideApiCall()
             driverDetails = getprefObject(Constants.DRIVER_DETAILS)
-            loginDiverId = driverDetails.body.id.toString()
-            if (driverDetails.body.image.contains("http"))
-                Glide.with(this).load(driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
+            loginDiverId = driverDetails.id.toString()
+            if (driverDetails.image.contains("http"))
+                Glide.with(this).load(driverDetails.image).placeholder(R.drawable.profileimage)
+                    .into(iv_Profile_image)
             else
-                Glide.with(this).load(IMAGE_URL + driverDetails.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(IMAGE_URL + driverDetails.image)
+                    .placeholder(R.drawable.profileimage).into(iv_Profile_image)
 
-            if (driverDetails.body.fullName.isNotEmpty())
-                tv_driverName.text = driverDetails.body.fullName
+            if (driverDetails.fullName.isNotEmpty())
+                tv_driverName.text = driverDetails.fullName
             else
-                tv_driverName.text = driverDetails.body.firstName + " " + driverDetails.body.lastName
+                tv_driverName.text = driverDetails.firstName + " " + driverDetails.lastName
             checkNotificationsPermissionIsEnable()
-            if(driverDetails.body.dob.isNullOrEmpty())
-            checkDobGenderAdded()
+            if (driverDetails.dob.isNullOrEmpty())
+                checkDobGenderAdded()
         }
     }
 
@@ -433,29 +445,31 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     }
 
     private fun checkDobGenderAdded() {
-            if (addDobGenderDialog != null && addDobGenderDialog.isShowing) {
-                Log.e("addDobGenderDialog:", "Already showing")
-            } else {
-                Log.e("addDobGenderDialog:", "else:  " + "Already showing")
-                addDobGenderDialog = Dialog(this, R.style.Theme_Dialog)
-                addDobGenderDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                addDobGenderDialog.setContentView(R.layout.alert_dob_gender_layout)
-                addDobGenderDialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
-                addDobGenderDialog.setCancelable(false)
-                addDobGenderDialog.setCanceledOnTouchOutside(false)
-                addDobGenderDialog.window!!.setGravity(Gravity.CENTER)
-                addDobGenderDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                addDobGenderDialog.tv_ok.setOnClickListener {
-                    addDobGenderDialog.dismiss()
-                    launchActivity<Edit_profile>()
-                }
-
-                addDobGenderDialog.show()
+        if (addDobGenderDialog != null && addDobGenderDialog.isShowing) {
+            Log.e("addDobGenderDialog:", "Already showing")
+        } else {
+            Log.e("addDobGenderDialog:", "else:  " + "Already showing")
+            addDobGenderDialog = Dialog(this, R.style.Theme_Dialog)
+            addDobGenderDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            addDobGenderDialog.setContentView(R.layout.alert_dob_gender_layout)
+            addDobGenderDialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            addDobGenderDialog.setCancelable(false)
+            addDobGenderDialog.setCanceledOnTouchOutside(false)
+            addDobGenderDialog.window!!.setGravity(Gravity.CENTER)
+            addDobGenderDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            addDobGenderDialog.tv_ok.setOnClickListener {
+                addDobGenderDialog.dismiss()
+                launchActivity<Edit_profile>()
             }
-
+            addDobGenderDialog.show()
+        }
     }
+
     private fun checkNotificationsPermissionIsEnable() {
-        if (driverDetails.body.isNotification == 0) {
+        if (driverDetails.isNotification == 0) {
             if (notificationOnDialog != null && notificationOnDialog.isShowing) {
                 Log.e("notificationOnDialog:", "Already showing")
             } else {
@@ -598,34 +612,41 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dropMarker!!.remove()
             dropMarker = null
         }
-        dropMarker = googleMap!!.addMarker(MarkerOptions().position(LatLng(finishlat!!.toDouble(), finishlong!!.toDouble())).title(dropTitle).icon(BitmapDescriptorFactory.fromResource(R.drawable.source)))
+        dropMarker = googleMap!!.addMarker(
+            MarkerOptions().position(
+                LatLng(
+                    finishlat!!.toDouble(),
+                    finishlong!!.toDouble()
+                )
+            ).title(dropTitle).icon(BitmapDescriptorFactory.fromResource(R.drawable.source))
+        )
     }
 
-  /*  private fun drawPolyLineAndAnimateCar() {
-        runOnUiThread {
-            runningdriver = false
-            val builder = LatLngBounds.Builder()
-            for (latLng in polyLineList!!) {
-                builder.include(latLng)
-            }
-            polylineOptions = PolylineOptions()
-            polylineOptions!!.color(Color.BLACK)
-            polylineOptions!!.width(9f)
-            polylineOptions!!.startCap(SquareCap())
-            polylineOptions!!.endCap(SquareCap())
-            polylineOptions!!.jointType(JointType.ROUND)
-            polylineOptions!!.addAll(polyLineList!!)
-            greyPolyLine = googleMap!!.addPolyline(polylineOptions!!)
-            blackPolylineOptions = PolylineOptions()
-            blackPolylineOptions!!.width(9f)
-            blackPolylineOptions!!.color(Color.BLACK)
-            blackPolylineOptions!!.startCap(SquareCap())
-            blackPolylineOptions!!.endCap(SquareCap())
-            blackPolylineOptions!!.jointType(JointType.ROUND)
-            blackPolyline = googleMap!!.addPolyline(blackPolylineOptions!!)
-            runningdriver = true
-        }
-    }*/
+    /*  private fun drawPolyLineAndAnimateCar() {
+          runOnUiThread {
+              runningdriver = false
+              val builder = LatLngBounds.Builder()
+              for (latLng in polyLineList!!) {
+                  builder.include(latLng)
+              }
+              polylineOptions = PolylineOptions()
+              polylineOptions!!.color(Color.BLACK)
+              polylineOptions!!.width(9f)
+              polylineOptions!!.startCap(SquareCap())
+              polylineOptions!!.endCap(SquareCap())
+              polylineOptions!!.jointType(JointType.ROUND)
+              polylineOptions!!.addAll(polyLineList!!)
+              greyPolyLine = googleMap!!.addPolyline(polylineOptions!!)
+              blackPolylineOptions = PolylineOptions()
+              blackPolylineOptions!!.width(9f)
+              blackPolylineOptions!!.color(Color.BLACK)
+              blackPolylineOptions!!.startCap(SquareCap())
+              blackPolylineOptions!!.endCap(SquareCap())
+              blackPolylineOptions!!.jointType(JointType.ROUND)
+              blackPolyline = googleMap!!.addPolyline(blackPolylineOptions!!)
+              runningdriver = true
+          }
+      }*/
 
     private fun decodePoly(encoded: String): List<LatLng> {
         val poly: MutableList<LatLng> = java.util.ArrayList()
@@ -759,7 +780,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 startActivity(intent)
             }
             R.id.Button_cancle -> {
-                builder!!.setMessage(getString(R.string.cancel)).setTitle(getString(R.string.app_name))
+                builder!!.setMessage(getString(R.string.cancel))
+                    .setTitle(getString(R.string.app_name))
                 builder!!.setMessage(getString(R.string.cancel_ride_alert))
                     .setCancelable(false)
                     .setPositiveButton(getString(R.string.yes)) { _, _ ->
@@ -767,7 +789,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                          * cancel the ride here with change ride status
                          */
                         if (rideRequestId.isNotEmpty()) {
-                            viewModel.changeRideStatusApi(this, rideRequestId, Constants.CANCEL_RIDE, true)
+                            viewModel.changeRideStatusApi(
+                                this,
+                                rideRequestId,
+                                Constants.CANCEL_RIDE,
+                                true
+                            )
                             viewModel.getChangeRideStatusResposne().observe(this, this)
                         }
                     }
@@ -899,7 +926,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 temp = 1
 //                viewModel.getTrainingVideoLinksApi(this, true)
 //                viewModel.getTrainingVideoLinksResponse().observe(this, this)
-                 launchActivity<DriverTrainingVideosListActivity>()
+                launchActivity<DriverTrainingVideosListActivity>()
+            }
+            R.id.ll_store -> {
+                temp = 1
+                launchActivity<ShopStoreActivity>()
             }
             R.id.Relativ_profile -> {
                 temp = 1
@@ -996,14 +1027,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialogOrderDeatail.tv_preprationTime.text =
                 "Prepration time: " + currentRideData.order.preparationTime + " mins"
         }
-        dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.id.toString()
+//        dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.id.toString()
+        dialogOrderDeatail.tv_orderId.text = "#" + currentRideData.order.order_number.toString()
         dialogOrderDeatail.tv_orderPrice.text =
             "$ " + Helper.roundOffDecimalNew(currentRideData.order.totalAmount.toFloat())
 //        dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
         if (!currentRideData.order.driverNetAmount.isNullOrEmpty())
-            dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.driverNetAmount.toFloat())
+            dialogOrderDeatail.tv_totalAmountWithAll.text =
+                "$ " + Helper.roundOffDecimalNew(currentRideData.order.driverNetAmount.toFloat())
         else
-            dialogOrderDeatail.tv_totalAmountWithAll.text = "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
+            dialogOrderDeatail.tv_totalAmountWithAll.text =
+                "$ " + Helper.roundOffDecimalNew(currentRideData.order.netAmount.toFloat())
         /** paymentMethod-1 for suncash
          * paymentMethod-2 for paypal
          * paymentMethod-4 for kanoo
@@ -1069,11 +1103,13 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Log.e("uploadReceiptDialog:", "Already showing")
         } else {
             photoAdapter = PhotoAdapter(homePage, arrayImageVideo)
-            uploadReceiptDialog.rvImageVideo.setLayoutManager(LinearLayoutManager(homePage, LinearLayoutManager.HORIZONTAL, false))
-            uploadReceiptDialog.rvImageVideo.setAdapter(photoAdapter)
+            uploadReceiptDialog.rvImageVideo.layoutManager =
+                LinearLayoutManager(homePage, LinearLayoutManager.HORIZONTAL, false)
+            uploadReceiptDialog.rvImageVideo.adapter = photoAdapter
             uploadReceiptDialog.setCancelable(false)
             uploadReceiptDialog.setCanceledOnTouchOutside(false)
-            uploadReceiptDialog.et_totalAmount.setFilters(arrayOf<InputFilter>(DecimalDigitsInputFilter(10, 2)))
+            uploadReceiptDialog.et_totalAmount.filters =
+                arrayOf<InputFilter>(DecimalDigitsInputFilter(10, 2))
 //            uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.netAmount
 //            if (currentRideData!!.order.driverNetAmount != null)
 //                uploadReceiptDialog.et_totalAmount.text = currentRideData!!.order.driverNetAmount
@@ -1110,9 +1146,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             Helper.showSuccessToast(homePage, "Maximum  upload limit is 1")
                         } else {
                             if (type == 1) {
-                                imageVideoModel.setType("0")
-                                imageVideoModel.setImageVideoPath(mAlbumFiles.get(i).path)
-                                imageVideoModel.setIsAdded("true")
+                                imageVideoModel.type = "0"
+                                imageVideoModel.imageVideoPath = mAlbumFiles.get(i).path
+                                imageVideoModel.isAdded = "true"
                                 arrayImageVideo.add(imageVideoModel)
                                 Log.d("uploadReceiptForm: ", arrayImageVideo.size.toString())
                             }
@@ -1129,7 +1165,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         uploadReceiptDialog.btn_ok.setOnClickListener {
             if (uploadReceiptDialog.et_receiptNumber.text.toString().trim().isEmpty()) {
                 Helper.showSuccessToast(homePage, "Please enter receipt number")
-            }else if (uploadReceiptDialog.et_totalAmount.text.toString().trim().isEmpty()) {
+            } else if (uploadReceiptDialog.et_totalAmount.text.toString().trim().isEmpty()) {
                 Helper.showSuccessToast(homePage, "Please enter amount")
             }
 //            else if (image_path.isEmpty()) {
@@ -1215,6 +1251,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 }
                 if (liveData.data is GetTakeDriverOrderStatus) {
                     takeOrderStatusLocal = liveData.data.body.takeOrderStatus.toString()
+                    isApproved = liveData.data.body.isApproved.toString()
                     todaySlotsListing = liveData.data.body.selectedSlots
                     updateDriverTakeOrderView(liveData.data.body.takeOrderStatus)
                 }
@@ -1299,7 +1336,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         Glide.with(this).load(currentRideData!!.user.photo)
                             .placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                         tv_currentOrderUsename.text = currentRideData!!.user.username
-                        tv_currentOrderId.text = "Order ID: #" + currentRideData!!.order.id
+//                        tv_currentOrderId.text = "Order ID: #" + currentRideData!!.order.id
+                        tv_currentOrderId.text =
+                            "Order ID: #" + currentRideData!!.order.order_number
 
                         /** paymentMethod-1 for suncash
                          * paymentMethod-2 for paypal
@@ -1336,9 +1375,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         }
 //                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
                         if (!currentRideData!!.order.driverNetAmount.isNullOrEmpty())
-                            tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.driverNetAmount.toFloat())
+                            tv_currentOrderTotal.text =
+                                "$" + Helper.roundOffDecimalNew(currentRideData!!.order.driverNetAmount.toFloat())
                         else
-                            tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
+                            tv_currentOrderTotal.text =
+                                "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
 
                         //When new job is available for accept/reject
                         if (currentRideData!!.rideStatus == 1 && currentRideData!!.response == 0) {
@@ -1360,7 +1401,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 setDropMaker("Restaurant")
                             }
                             tv_dropOffType.text = getString(R.string.pick_up_location)
-                            tv_merchantName.text = "Merchant: "+currentRideData!!.restaurant.name
+                            tv_merchantName.text = "Merchant: " + currentRideData!!.restaurant.name
                             tv_merchantName.visibility = View.VISIBLE
                             tv_adress.text = currentRideData!!.restaurant.address
                             showViewsWhenRideIsAccepted()
@@ -1450,7 +1491,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     Glide.with(this).load(changeRideStatus!!.user.photo)
                         .placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                     tv_currentOrderUsename.text = changeRideStatus!!.user.username
-                    tv_currentOrderId.text = "Order ID: #" + changeRideStatus!!.order.id
+//                    tv_currentOrderId.text = "Order ID: #" + changeRideStatus!!.order.id
+                    tv_currentOrderId.text = "Order ID: #" + changeRideStatus!!.order.order_number
                     /**
                      * paymentMethod-1 for suncash
                      * paymentMethod-2 for paypal
@@ -1487,7 +1529,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     }
 //                    tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
                     if (changeRideStatus!!.order.driverNetAmount.isNotEmpty())
-                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.driverNetAmount.toFloat())
+                        tv_currentOrderTotal.text =
+                            "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.driverNetAmount.toFloat())
                     else
                         tv_currentOrderTotal.text =
                             "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())
@@ -1507,12 +1550,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                     if (changeRideStatus!!.rideStatus == 2) {
                         Helper.showSuccessAlert(this, liveData.data.message)
                         anyActiveJobAvailable = 1
-                        finishlat = if (changeRideStatus!!.userAddress.latitude.isNotEmpty())changeRideStatus!!.userAddress.latitude.toDouble() else 0.0
-                        finishlong = if (changeRideStatus!!.userAddress.longitude.isNotEmpty())changeRideStatus!!.userAddress.longitude.toDouble() else 0.0
+                        finishlat =
+                            if (changeRideStatus!!.userAddress.latitude.isNotEmpty()) changeRideStatus!!.userAddress.latitude.toDouble() else 0.0
+                        finishlong =
+                            if (changeRideStatus!!.userAddress.longitude.isNotEmpty()) changeRideStatus!!.userAddress.longitude.toDouble() else 0.0
                         val houseNumber = changeRideStatus!!.userAddress.completeAddress
-                        val streetName = if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
-                        val landmark = if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
-                        val userAddres = if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
+                        val streetName =
+                            if (changeRideStatus!!.userAddress.streetName.isNotEmpty()) "/" + changeRideStatus!!.userAddress.streetName else ""
+                        val landmark =
+                            if (changeRideStatus!!.userAddress.deliveryInstructions.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.deliveryInstructions else ""
+                        val userAddres =
+                            if (changeRideStatus!!.userAddress.address.isNotEmpty()) "\n" + changeRideStatus!!.userAddress.address else ""
                         val finalAddress = houseNumber + streetName + landmark + userAddres
                         tv_adress.text = finalAddress
                         tv_merchantName.visibility = View.GONE
@@ -1524,9 +1572,16 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                             dropMarker!!.remove()
                             dropMarker = null
                         }
-                        drawpoliline(LatLng(startlat!!, startlong!!), LatLng(finishlat!!, finishlong!!), "Deliver to")
+                        drawpoliline(
+                            LatLng(startlat!!, startlong!!),
+                            LatLng(finishlat!!, finishlong!!),
+                            "Deliver to"
+                        )
                         setDropMaker("Deliver to")
-                        Log.e("GetCur:..mLatitute: ", changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude)
+                        Log.e(
+                            "GetCur:..mLatitute: ",
+                            changeRideStatus!!.fromLat + "mLongitute: " + changeRideStatus!!.fromLong + "restaurant.latitude: " + liveData.data.body.restaurant.latitude + "restaurant.longitude" + liveData.data.body.restaurant.longitude
+                        )
                         startStep3(this)
                     } else if (liveData.data.body.rideStatus == 3) {
                         anyActiveJobAvailable = 0
@@ -1647,6 +1702,33 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     }
 
     @SuppressLint("SetTextI18n")
+    fun openExtentSlotDailog(msg: String) {
+        if (slotExtentDialog != null && slotExtentDialog.isShowing) {
+            Log.e("slotExtentDialog:", "Already showing")
+        } else {
+            Log.e("slotExtentDialog:", "else:  " + "Already showing")
+            slotExtentDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+            slotExtentDialog.window!!.setGravity(Gravity.CENTER)
+            slotExtentDialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            slotExtentDialog.setContentView(R.layout.extent_slots_layout)
+            slotExtentDialog.tv_slotMessage.text =
+                msg + "\n" + getString(R.string.would_you_like_to_extend_your_shift)
+            slotExtentDialog.setCancelable(false)
+            slotExtentDialog.show()
+            slotExtentDialog.tv_yes.setOnClickListener {
+                slotExtentDialog.dismiss()
+                launchActivity<DriverAvailability>()
+            }
+            slotExtentDialog.tv_no.setOnClickListener {
+                slotExtentDialog.dismiss()
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     fun openNewJobDailog(body: Body) {
         Log.e("open", "true")
         if (dialog != null && dialog.isShowing) {
@@ -1655,7 +1737,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             Log.e("openNewJobDailog:", "else:  " + "Already showing")
             dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.window!!.setGravity(Gravity.CENTER)
-            dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT)
+            dialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
             dialog.setContentView(R.layout.res_pickup_request)
             dialog.setCancelable(false)
             btnAcceptRide = dialog.findViewById(R.id.Button_accept)
@@ -1681,17 +1766,19 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             dialog.tv_userOrderAddress.text = finalAddress
 //            dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
 //            if (body.order.driverNetAmount != null)
-            val paymentGauranteed=body.order.tip+body.order.deliveryFee
-                dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(paymentGauranteed.toFloat())
+            val paymentGauranteed = body.order.tip + body.order.deliveryFee
+            dialog.tv_totalAmount.text =
+                "$" + Helper.roundOffDecimalNew(paymentGauranteed.toFloat())
 //            else
 //                dialog.tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(body.order.netAmount.toFloat())
             dialog.tv_minTimeToDeliver.text = body.restaurant.minDelivery + " mins"
 
-            if (body.order.preparationTime.isNotEmpty()){
-                dialog.ll_restaurantPreprationTime.visibility=View.VISIBLE
-                dialog.tv_orderPreprationTime.text = "Prepration Time: "+body.order.preparationTime + " mins"
-               }else
-                dialog.ll_restaurantPreprationTime.visibility=View.GONE
+            if (body.order.preparationTime.isNotEmpty()) {
+                dialog.ll_restaurantPreprationTime.visibility = View.VISIBLE
+                dialog.tv_orderPreprationTime.text =
+                    "Prepration Time: " + body.order.preparationTime + " mins"
+            } else
+                dialog.ll_restaurantPreprationTime.visibility = View.GONE
 
             try {
                 if (body.restaurant.longitude != 0.0 && body.userAddress.latitude != 0.0) {
@@ -1743,7 +1830,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 nm.cancelAll()
             }
             btn_callMerchant?.setOnClickListener {
-                val phone =body.restaurant.phone
+                val phone = body.restaurant.phone
                 val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
                 startActivity(intent)
             }

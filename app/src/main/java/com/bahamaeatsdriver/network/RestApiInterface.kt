@@ -42,6 +42,7 @@ import com.bahamaeatsdriver.model_class.profile_details.DriverProfileDetailsResp
 import com.bahamaeatsdriver.model_class.resend_otp.ResendOtpResponse
 import com.bahamaeatsdriver.model_class.signup.SignUpResponse
 import com.bahamaeatsdriver.model_class.slots.DriverSlots
+import com.bahamaeatsdriver.model_class.store_menu.GetStoreMenuResponse
 import com.bahamaeatsdriver.model_class.terms_and_conditions.TermsAndConditionResponse
 import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksResponse
 import com.bahamaeatsdriver.model_class.update_driver_online_status.UpdateDriverTakeOrderStatus
@@ -141,7 +142,8 @@ interface RestApiInterface {
         @Part(Constants.DEVICE_TYPE) deviceType: RequestBody,
         @Part(Constants.DEVICE_TOKEN) deviceToken: RequestBody,
         @Part(Constants.DOB) dob: RequestBody,
-        @Part(Constants.GENDER) gender: RequestBody
+        @Part(Constants.GENDER) gender: RequestBody,
+        @Part(Constants.REFERRAL_CODE) referrals_code: RequestBody
     ): Observable<SignUpResponse>
 
     @Multipart
@@ -262,9 +264,6 @@ interface RestApiInterface {
     @PUT(Constants.LOGOUT)
     fun LOGOUT(): Observable<LogoutResponse>
 
-    @FormUrlEncoded
-    @POST(Constants.PAYMENT_STATUS_LISTING_LIVE)
-    fun PAYMENT_STATUS_LISTING(@Field(Constants.type) type: String): Observable<DriverPaymentsResposne>
 
     @GET(Constants.EARNINGS)
     fun EARNINGS(): Observable<DriverEarningResposne>
@@ -275,12 +274,19 @@ interface RestApiInterface {
     @GET(Constants.GET_DRIVER_FAQ)
     fun GET_DRIVER_FAQ(): Observable<FaqResponse>
 
+    @GET(Constants.GET_DRIVER_MENU_STORE)
+    fun GET_DRIVER_MENU_STORE(): Observable<GetStoreMenuResponse>
+
     @FormUrlEncoded
-    @POST(Constants.FILTER_EARNINGS)
+    @POST(Constants.FILTER_EARNINGS_NEW)
     fun FILTER_EARNINGS(
         @Field(Constants.fromDate) fromDate: String,
         @Field(Constants.toDate) toDate: String
     ): Observable<DriverTipsAndEarning>
+
+    @FormUrlEncoded
+    @POST(Constants.PAYMENT_STATUS_LISTING_LIVE_NEW)
+    fun PAYMENT_STATUS_LISTING(@Field(Constants.type) type: String): Observable<DriverPaymentsResposne>
 
     @FormUrlEncoded
     @POST(Constants.ADD_UPDATE_BANK)

@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import com.bahamaeats.constant.Constants
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Home_Page
+import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
 import com.bahamaeatsdriver.helper.extensions.saveTokenPrefrence
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -72,18 +73,32 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 sendMessagePush(notification_code!!, message!!, title!!)
             else if (notification_code.equals("10")) 
                 sendMessagePush(notification_code!!, message!!, title!!)
+            else if (notification_code.equals("20")) {
+                val i = Intent("msg") //action: "msg"
+                i.setPackage(packageName)
+                i.putExtra("type", notification_code)
+                i.putExtra("message", message)
+                applicationContext.sendBroadcast(i)
+                sendMessagePush(notification_code!!, message!!, title!!)
+            }  else if (notification_code.equals("21")) {
+                val i = Intent("msg") //action: "msg"
+                i.setPackage(packageName)
+                i.putExtra("type", notification_code)
+                i.putExtra("message", message)
+                applicationContext.sendBroadcast(i)
+                sendMessagePush(notification_code!!, message!!, title!!)
+            }
             else if (notification_code.equals("16")) {
-
-                var value= JSONObject(remoteMessage.data.get("body"))
-                var take_order_status=value.getString("take_order_status")
+                val value= JSONObject(remoteMessage.data.get("body"))
+                val take_order_status=value.getString("take_order_status")
                 val i = Intent("msg") //action: "msg"
                 i.setPackage(packageName)
                 i.putExtra("type", notification_code)
                 i.putExtra("take_order_status", take_order_status)
                 applicationContext.sendBroadcast(i)
-            }else{
+//                sendMessagePush(notification_code!!, message!!, title!!)
+            }else
                 sendMessagePush(notification_code!!, message!!, title!!)
-            }
         }
     }
 
@@ -93,7 +108,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         /***
          * notification_code == 8
         Then show simple notification message
-        notification_code == 3. the getRideDetails api hit need to hit. Ride id will get in notification(Accpet reject vali screen)
+        notification_code == 3. the getRideDetails api hit need to hit. Ride id will get in notification(Accpet reject screen)
          */
         if (type == "10")
             notificationHeader = title
@@ -101,7 +116,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationHeader = getString(R.string.app_name)
 
 
-        val intent = Intent(this, Home_Page::class.java)
+        var intent:Intent?=null
+        if (type=="22")
+         intent=   Intent(this, NotificationActivity::class.java)
+        else
+        intent=   Intent(this, Home_Page::class.java)
+
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         val pendingIntent = PendingIntent.getActivity(this, i, intent, 0)
         val icon1 = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
@@ -124,9 +144,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager!!.createNotificationChannel(notificationChannel!!)
         }
         val openIntent = Intent(this, Home_Page::class.java)
+        openIntent.putExtra("type", type)
+        openIntent.putExtra("message", message)
         openIntent.action = "View"
         openIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        val openPendingIntent = PendingIntent.getActivity(this, 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val openPendingIntent = PendingIntent.getActivity(this, i, openIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         val openDismissAction = NotificationCompat.Action(0, "View", openPendingIntent)
         notificationBuilder.addAction(openDismissAction)
         notification = notificationBuilder.build()
@@ -134,6 +156,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val i = Intent("msg") //action: "msg"
         i.setPackage(packageName)
         i.putExtra("type", type)
+        i.putExtra("message", message)
         applicationContext.sendBroadcast(i)
     }
 

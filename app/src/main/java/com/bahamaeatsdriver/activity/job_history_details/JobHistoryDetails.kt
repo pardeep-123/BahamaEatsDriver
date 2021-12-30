@@ -62,7 +62,8 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                     else
                     tv_orderPrice.text = "$ " + Helper.roundOffDecimalNew(liveData.data.body.order.netAmount.toFloat())
 
-                    tv_orderId.text = liveData.data.body.order.id.toString()
+//                    tv_orderId.text = liveData.data.body.order.id.toString()
+                    tv_orderId.text = liveData.data.body.order.order_number
                     if (liveData.data.body.order.orderDetails.size == 1)
                         tv_itemCount.text = liveData.data.body.order.orderDetails.size.toString() + " Item"
                     else

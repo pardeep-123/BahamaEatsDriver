@@ -24,10 +24,13 @@ import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.adapter.LicenseTypeAdapter
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Documentation
+import com.bahamaeatsdriver.activity.Home_Page
 import com.bahamaeatsdriver.activity.login_register.Identification_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
 import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.launchActivity
+import com.bahamaeatsdriver.helper.extensions.savePrefObject
+import com.bahamaeatsdriver.helper.extensions.savePrefrence
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.Validator
 import com.bahamaeatsdriver.listeners.OnLicenseTypeSelection
@@ -261,7 +264,7 @@ class Fill_LicenseDetail_Activity : AppCompatActivity(), View.OnClickListener, O
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is AddLicenseDetails) {
-                    dialog = Dialog(this@Fill_LicenseDetail_Activity)
+                   /* dialog = Dialog(this@Fill_LicenseDetail_Activity)
                     dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
                     dialog.setContentView(R.layout.res_verification_panding)
                     dialog.setCancelable(false)
@@ -273,7 +276,11 @@ class Fill_LicenseDetail_Activity : AppCompatActivity(), View.OnClickListener, O
                         finishAffinity()
                     }
 
-                    dialog.show()
+                    dialog.show()*/
+                    Helper.showSuccessToast(this, liveData.data.message)
+                    launchActivity<Home_Page>()
+                    savePrefrence(Constants.TOKEN, token!!)
+                    finishAffinity()
                 }
             }
 

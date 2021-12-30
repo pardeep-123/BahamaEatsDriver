@@ -89,6 +89,16 @@
     </LinearLayout>
 
     <TextView
+        android:includeFontPadding="false"
+        android:textColor="@color/White"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:id="@+id/tv_specialRequest"
+        style="@style/ScreenTextView2"
+        android:textSize="@dimen/_8sdp"
+        android:visibility="visible" />
+
+    <TextView
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:visibility="gone"

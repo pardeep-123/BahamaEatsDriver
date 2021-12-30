@@ -30,6 +30,7 @@ import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.ImagePicker
 import com.bahamaeatsdriver.helper.others.Validator
 import com.bahamaeatsdriver.listeners.OnCitySelection
+import com.bahamaeatsdriver.model_class.driver_details.DriverDetails
 import com.bahamaeatsdriver.model_class.edit_driver_profile.EditDriverProfileResponse
 import com.bahamaeatsdriver.model_class.get_city.Body
 import com.bahamaeatsdriver.model_class.get_city.GetCityResponse
@@ -71,7 +72,7 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
     lateinit var validator: Validator
     private var updatedCountry_Code = ""
     private var contact_Number = ""
-    private lateinit var profileDetails: LoginResponse
+    private lateinit var profileDetails: DriverDetails
 
     @SuppressLint("SetTextI18n")
     override fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String) {
@@ -104,20 +105,20 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         setGenderSpinner()
         /*if (intent.getSerializableExtra("profileDetails") != null) {
             profileDetails = (intent.getSerializableExtra("profileDetails") as DriverProfileDetailsResposne?)!!*/
-            Glide.with(this).load(profileDetails.body.image).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)
-            if (profileDetails.body.fullName.isNotEmpty())
-                et_fullName.setText(profileDetails.body.fullName)
+            Glide.with(this).load(profileDetails.image).placeholder(R.drawable.profileimage).into(iv_edit_profile!!)
+            if (profileDetails.fullName.isNotEmpty())
+                et_fullName.setText(profileDetails.fullName)
             else
-                et_fullName.setText(profileDetails.body.firstName + " " + profileDetails.body.lastName)
-            et_contactNumber.text = profileDetails.body.countryCodePhone
-            et_email.text = profileDetails.body.email
+                et_fullName.setText(profileDetails.firstName + " " + profileDetails.lastName)
+            et_contactNumber.text = profileDetails.countryCodePhone
+            et_email.text = profileDetails.email
             et_country.text = getString(R.string.countryName)
-            tv_selectedCity.text = profileDetails.body.city
-            updatedCountry_Code = profileDetails.body.countryCode
-            contact_Number = profileDetails.body.contactNo
-            if (!profileDetails.body.dob.isNullOrEmpty())
-                tv_Dob.text= profileDetails.body.dob
-                genderSpinner.setSelection(profileDetails.body.gender)
+            tv_selectedCity.text = profileDetails.city
+            updatedCountry_Code = profileDetails.countryCode
+            contact_Number = profileDetails.contactNo
+            if (!profileDetails.dob.isNullOrEmpty())
+                tv_Dob.text= profileDetails.dob
+                genderSpinner.setSelection(profileDetails.gender)
     }
 
     private fun setGenderSpinner() {
@@ -272,10 +273,10 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
                         Helper.showErrorAlert(this, liveData.data.message)
                     } else {
                         Helper.showSuccessToast(this, liveData.data.message)
-                        profileDetails.body.image = liveData.data.body.image
-                        profileDetails.body.fullName = liveData.data.body.fullName
-                        profileDetails.body.dob = liveData.data.body.dob
-                        profileDetails.body.gender = profileDetails.body.gender
+                        profileDetails.image = liveData.data.body.image
+                        profileDetails.fullName = liveData.data.body.fullName
+                        profileDetails.dob = liveData.data.body.dob
+                        profileDetails.gender = profileDetails.gender
                         savePrefObject(Constants.DRIVER_DETAILS, profileDetails)
                         finish()
                     }

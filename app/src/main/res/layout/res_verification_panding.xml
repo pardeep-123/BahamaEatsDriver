@@ -27,8 +27,7 @@
                     android:layout_width="@dimen/_50sdp"
                     android:layout_gravity="center"
                     android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/app_logo_black">
-                </ImageView>
+                    android:src="@drawable/app_logo_black"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -39,7 +38,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="@dimen/_14sdp"
-                    android:text="Verification Pending">
+                    android:text="@string/verification_pending">
 
                 </TextView>
                 <TextView
@@ -49,17 +48,18 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="@dimen/_7sdp"
-                    android:text="Once we'll verify">
+                    android:text="@string/please_wait_for_admin_approval_once_admin_will_verify_your_profile_you_ll_be_able_swipe_online">
                 </TextView>
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="@dimen/_7sdp"
-                    android:text="We'll get back to you">
+                    android:text="@string/we_ll_get_back_to_you">
 
                 </TextView>
             </LinearLayout>
@@ -77,13 +77,11 @@
             android:id="@+id/tv_Done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DONE"
+            android:text="@string/ok"
             android:textSize="@dimen/_9sdp"
             android:gravity="center"
             android:textColor="@color/White"
-            android:background="@drawable/borderasset100">
-
-        </TextView>
+            android:background="@drawable/borderasset100"/>
     </RelativeLayout>
 
 </RelativeLayout>

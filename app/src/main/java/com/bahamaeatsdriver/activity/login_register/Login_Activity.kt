@@ -17,6 +17,7 @@ import com.bahamaeatsdriver.helper.extensions.savePrefObject
 import com.bahamaeatsdriver.helper.extensions.savePrefrence
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.Validator
+import com.bahamaeatsdriver.model_class.driver_details.DriverDetails
 import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.repository.BaseViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -69,9 +70,9 @@ class Login_Activity : AppCompatActivity(), View.OnClickListener, Observer<RestO
                     if (liveData.data.code == 403) {
                         Helper.showErrorAlert(this, liveData.data.message)
                     } else {
-                        if (liveData.data.body.isApproved == 0) {
-                            Helper.showErrorAlert(this, "Your account is not approved yet by admin.")
-                        } else {
+//                        if (liveData.data.body.isApproved == 0) {
+//                            Helper.showErrorAlert(this, "Your account is not approved yet by admin.")
+//                        } else {
                             if (liveData.data.body.isLicenceExists == 0) {
                                 launchActivity<Identification_Activity>()
                                 {
@@ -82,10 +83,13 @@ class Login_Activity : AppCompatActivity(), View.OnClickListener, Observer<RestO
                                 Helper.showSuccessToast(this, liveData.data.message)
                                 launchActivity<Home_Page>()
                                 savePrefrence(Constants.TOKEN, liveData.data.body.token)
-                                savePrefObject(Constants.DRIVER_DETAILS, liveData.data)
+                                savePrefObject(Constants.DRIVER_DETAILS, DriverDetails(liveData.data.body.email,
+                                    liveData.data.body.firstName,liveData.data.body.id,liveData.data.body.image,liveData.data.body.dob,liveData.data.body.gender,liveData.data.body.driver_referrals_amount,
+                                    liveData.data.body.referrals_code,liveData.data.body.isApproved,liveData.data.body.isDocumentVerified,
+                                    liveData.data.body.isLicenceExists,liveData.data.body.lastName,liveData.data.body.fullName,liveData.data.body.token,liveData.data.body.username,liveData.data.body.isNotification,liveData.data.body.countryCodePhone,liveData.data.body.city,liveData.data.body.countryCode,liveData.data.body.contactNo))
                                 finishAffinity()
                             }
-                        }
+//                        }
                     }
                 }
             }

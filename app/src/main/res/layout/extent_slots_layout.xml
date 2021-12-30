@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/White"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:textColor="@color/Black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:id="@+id/tv_slotMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/Black"
+        android:text="@string/would_you_like_to_extend_your_shift"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:padding="@dimen/_2sdp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tv_slotMessage"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/tv_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:textColor="@color/Greenapp"
+            android:textSize="@dimen/_15sdp" />
+        <TextView
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/tv_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:textSize="@dimen/_15sdp"
+           />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/black"
     tools:context=".activity.PaymentStatsActivity">
 
@@ -220,15 +221,94 @@
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_refferBenefitLabel"
+                        style="@style/ScreenTextView3"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/refferal_reward"
+                        android:textColor="@color/Black" />
+
+                    <TextView
+                        android:id="@+id/tv_refferBenefit"
+                        style="@style/ScreenTextView1"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_earnRewardRoot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_20sdp">
 
+                <TextView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:id="@+id/tv_rewardsLabel"
+                    style="@style/ScreenTextView1"
+                    android:layout_weight="70"
+                    android:text="@string/earn_rewards"
+                    android:textStyle="bold"
+                    android:textColor="@color/White"/>
+
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_below="@+id/tv_rewardsLabel"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:id="@+id/rv_rewardEarnings"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/driver_reward_payment_row_layout"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tv_noRewardAvailable"
+                    style="@style/ScreenTextView3"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_120sdp"
+                    android:text="@string/no_data_available"
+                    android:textColor="@color/White"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <!--<View
+                android:id="@+id/view_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@color/White"/>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp">
+                <TextView
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:id="@+id/tv_completedRides"
+                    style="@style/ScreenTextView1"
+                    android:layout_weight="70"
+                    android:text="@string/completed_rides"
+                    android:textStyle="bold"
+                    android:textColor="@color/White"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_below="@+id/tv_completedRides"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:id="@+id/Recycler_view"
+                    tools:listitem="@layout/res_payment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="false" />

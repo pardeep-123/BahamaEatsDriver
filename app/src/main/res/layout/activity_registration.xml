@@ -207,6 +207,14 @@
                 android:hint="@string/confirm_password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/et_refferalCode"
+                style="@style/EditextField"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:autofillHints="@string/referral_code_if_any"
+                android:hint="@string/referral_code_if_any"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

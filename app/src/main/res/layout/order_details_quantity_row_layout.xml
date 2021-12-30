@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <TextView
+        android:text="dfdkfdhfdhj"
         android:layout_marginTop="@dimen/_4sdp"
         android:fontFamily="@font/poppins_regular"
         android:layout_width="wrap_content"
@@ -21,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:text="1x"
                 android:layout_alignParentStart="true"
                 android:id="@+id/tv_quantity"
                 android:layout_width="@dimen/_13sdp"
@@ -32,6 +34,7 @@
                 android:textColor="@color/White"
                 android:textSize="@dimen/_7sdp"/>
             <TextView
+                android:text="abccgddgdg"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/tv_quantity"
@@ -40,37 +43,20 @@
                 style="@style/ScreenTextView2"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_9sdp" />
+
             <TextView
 
+                android:text="Add ons, Add on1"
                 android:id="@+id/tv_addOns"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_toEndOf="@+id/tv_quantity"
                 android:layout_width="wrap_content"
                 android:layout_below="@+id/tv_itemName"
                 style="@style/ScreenTextView2"
                 android:textColor="@color/White"
                 android:textSize="@dimen/_9sdp" />
         </RelativeLayout>
-        <!--<TextView
-            android:text="abc"
-            android:layout_width="0dp"
-            android:id="@+id/tv_itemName"
-            style="@style/ScreenTextView2"
-            android:layout_weight="1"
-            android:textColor="@color/offBalck"
-            android:textSize="@dimen/_13sdp" />-->
 
-        <!-- <TextView
-             android:text="1"
-             android:layout_width="0dp"
-             android:id="@+id/tv_quantity"
-             style="@style/ScreenTextView2"
-             android:layout_weight="1"
-             android:gravity="center"
-             android:textColor="@color/offBalck"
-             android:textSize="@dimen/_13sdp" />-->
 
         <TextView
             android:fontFamily="@font/poppins_regular"
@@ -83,5 +69,30 @@
             android:gravity="end"
             android:textColor="@color/White" />
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:visibility="gone"
+            android:text="@string/special_request"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_specialRequestLabel"
+            style="@style/ScreenTextView2"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_9sdp" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_specialRequest"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            style="@style/ScreenTextView2"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_9sdp" />
+    </LinearLayout>
+
 
 </LinearLayout>

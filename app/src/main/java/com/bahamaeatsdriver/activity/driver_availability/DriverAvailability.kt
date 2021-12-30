@@ -109,16 +109,16 @@ class DriverAvailability : AppCompatActivity(), View.OnClickListener, OnDriverAv
                         slotIdMultiple = ""
                     }
                 }
-                if (isSlotSelected) {
+//                if (isSlotSelected) {
                     Log.d("addDriverAvailablity: ", jsonArray.toString())
                     viewModel.addDriverAvailablitySlotsApi(this, jsonArray.toString(), true)
                     viewModel.addDriverAvailablitySlotsResponse().observe(this, this)
-                } else {
+               /* } else {
                     com.bahamaeatsdriver.helper.others.Helper.showErrorAlert(
                         this,
                         "Please select any slot."
                     )
-                }
+                }*/
                 Log.d("", "onClick: ")
             }
             R.id.iv_backArrow_jobhistory -> {

@@ -1,7 +1,11 @@
 package com.bahamaeatsdriver.model_class.login
 
-data class Body(
+data class  Body(
+    var driver_referrals_amount: String,
+    var referrals_code: String,
     val address: String,
+    val driver_referrals_status: Int,
+    val manually_on_off: Int,
     val availability: Int,
     val city: String,
     var gender: Int,

@@ -12,6 +12,7 @@ import com.bahamaeatsdriver.activity.PaymentStatsActivity
 import com.bahamaeatsdriver.activity.job_history_details.JobHistoryDetails
 import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.others.CommonMethods
+import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.model_class.driver_tips_earning.RideRequest
 import kotlinx.android.synthetic.main.res_payment.view.*
 
@@ -31,14 +32,24 @@ class FilterPaymentAdapter(
             myViewHolder.itemView.tv_userName.text =
                 paymentsList[i].user.firstName + " " + paymentsList[i].user.lastName
         if (paymentsList[i].order != null) {
-            myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList[i].order.id
-            if (paymentsList[i].order.tip != 0.0) myViewHolder.itemView.tv_tip.visibility else myViewHolder.itemView.tv_tip.visibility =
+//            myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList[i].order.id
+            myViewHolder.itemView.tv_orderNumber.text = "Order Number-" + paymentsList[i].order.orderNumber
+            if (paymentsList[i].order.tip.isNotEmpty()&&paymentsList[i].order.tip != "0.0"||paymentsList[i].order.tip != "0") myViewHolder.itemView.tv_tip.visibility else myViewHolder.itemView.tv_tip.visibility =
                 View.GONE
-            if (paymentsList[i].order.deliveryFee != 0.0) myViewHolder.itemView.tv_deliveryFee.visibility else myViewHolder.itemView.tv_deliveryFee.visibility =
+            if (paymentsList[i].order.deliveryFee.isNotEmpty()&&paymentsList[i].order.deliveryFee != "0.0"||paymentsList[i].order.deliveryFee !="0") myViewHolder.itemView.tv_deliveryFee.visibility else myViewHolder.itemView.tv_deliveryFee.visibility =
                 View.GONE
             myViewHolder.itemView.tv_tip.text = "Tip : $" + paymentsList[i].order.tip
             myViewHolder.itemView.tv_deliveryFee.text =
                 "Delivery Fee : $" + paymentsList[i].order.deliveryFee
+        }
+        if (paymentsList[i].order.deliverydeduction != null) {
+            myViewHolder.itemView.ll_deliveryFeeDeducationRoot.visibility = View.VISIBLE
+            myViewHolder.itemView.tv_deductedDeliveryAmount.text = "Deducted Delivery Fee: -"+paymentsList[i].order.deliverydeduction.deliveryDeduction
+//            myViewHolder.itemView.tv_receivedDeliveryAmount.text = "Received Delivery Fee: "+paymentsList[i].order.deliverydeduction.deliveryReceived
+            myViewHolder.itemView.tv_receivedDeliveryAmount.text = "Received Delivery Fee: "+ Helper.roundOffDecimalNew(paymentsList[i].order.deliverydeduction.deliveryReceived.toFloat())
+            myViewHolder.itemView.tv_reasonOfdecuction.text ="Reason: "+ paymentsList[i].order.deliverydeduction.reason
+        } else {
+            myViewHolder.itemView.ll_deliveryFeeDeducationRoot.visibility = View.GONE
         }
 
         myViewHolder.itemView.tv_date.text = CommonMethods.parseDateToddMMyyyy(

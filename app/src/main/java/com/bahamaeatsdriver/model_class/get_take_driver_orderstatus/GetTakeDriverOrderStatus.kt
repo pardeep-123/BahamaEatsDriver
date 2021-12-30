@@ -22,6 +22,8 @@ data class Body(
     val selectedSlots: MutableList<SelectedSlot>,
     @SerializedName("takeOrderStatus")
     val takeOrderStatus: Int,
+    @SerializedName("isApproved")
+    val isApproved: Int,
     @SerializedName("username")
     val username: String
 )

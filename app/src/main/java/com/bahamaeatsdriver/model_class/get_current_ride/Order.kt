@@ -26,6 +26,8 @@ data class Order(
     val foodPrice: String,
     @SerializedName("id")
     val id: Int,
+    @SerializedName("order_number")
+    val order_number: Int,
     @SerializedName("isDelivery")
     val isDelivery: Int,
     @SerializedName("latitude")

@@ -13,6 +13,8 @@ data class Body(
     val countryCodePhone: String,
     val createdAt: String,
     val deviceToken: String,
+    /*which set by admin*/
+    val driver_referrals_amount: String,
     val deviceType: Int,
     val gender: Int,
     val driverAddress: DriverAddress,
@@ -36,9 +38,15 @@ data class Body(
     val postalCode: Int,
     val province: String,
     val socialId: String,
+    val referrals_code: String,
+    val driver_referrals_status: Int,
+    val manually_on_off: Int,
     val socialType: Int,
     val status: Int,
+    val driver_ride_complete_count: String,
     val takeOrderStatus: Int,
+    /*earned amount by driver*/
+    val earned_referrals_amount: String,
     val updatedAt: String,
     val username: String
 ):Serializable

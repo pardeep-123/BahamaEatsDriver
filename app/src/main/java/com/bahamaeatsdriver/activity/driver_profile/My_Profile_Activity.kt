@@ -14,13 +14,13 @@ import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Id_Details.Edit_Id_Details
-import com.bahamaeatsdriver.activity.driver_licence_detail.LicenceDetail_Activity
 import com.bahamaeatsdriver.activity.driver_documentation.AddDocumentationActivity
+import com.bahamaeatsdriver.activity.driver_licence_detail.LicenceDetail_Activity
 import com.bahamaeatsdriver.helper.extensions.getprefObject
 import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.extensions.savePrefObject
 import com.bahamaeatsdriver.helper.others.CommonMethods.parseDateToddMMyyyy
-import com.bahamaeatsdriver.model_class.login.LoginResponse
+import com.bahamaeatsdriver.model_class.driver_details.DriverDetails
 import com.bahamaeatsdriver.model_class.profile_details.DriverProfileDetailsResposne
 import com.bahamaeatsdriver.repository.BaseViewModel
 import com.bumptech.glide.Glide
@@ -41,7 +41,7 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
 
     private var profileDetails: DriverProfileDetailsResposne? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-    private lateinit var driverDetails: LoginResponse
+    private lateinit var driverDetails: DriverDetails
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
         /*****
          * Get Profil Details
          */
-        viewModel.getDriverDetailsResposneApi(this, driverDetails.body.id, true)
+        viewModel.getDriverDetailsResposneApi(this, driverDetails.id, true)
         viewModel.getDriverDetailsResposne().observe(this, this)
     }
 
@@ -114,20 +114,22 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
                     tv_countryCode!!.text = liveData.data.body.countryCode
                     tv_ContactNumber!!.text = liveData.data.body.contactNo
                     if (liveData.data.body.fullName.isNotEmpty()){
-                        tv_fullName!!.text = driverDetails.body.fullName
-                        tv_Username!!.text = driverDetails.body.fullName
+                        tv_fullName!!.text = driverDetails.fullName
+                        tv_Username!!.text = driverDetails.fullName
                     }
                     else{
-                        tv_fullName!!.text = driverDetails.body.firstName + " " + driverDetails.body.lastName
-                        tv_Username!!.text = driverDetails.body.firstName + " " + driverDetails.body.lastName
+                        tv_fullName!!.text = driverDetails.firstName + " " + driverDetails.lastName
+                        tv_Username!!.text = driverDetails.firstName + " " + driverDetails.lastName
                     }
                     Glide.with(this).load(liveData.data.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image!!)
                     tv_dateOfJoin!!.text = parseDateToddMMyyyy(liveData.data.body.createdAt, "MMM dd, yyyy ")
                     //Update data to prefrence
-                    driverDetails.body.image = liveData.data.body.image
-                    driverDetails.body.fullName = liveData.data.body.fullName
-                    driverDetails.body.dob = liveData.data.body.dob
-                    driverDetails.body.gender = profileDetails!!.body.gender
+                    driverDetails.image = liveData.data.body.image
+                    driverDetails.fullName = liveData.data.body.fullName
+                    driverDetails.dob = liveData.data.body.dob
+                    driverDetails.gender = profileDetails!!.body.gender
+                    driverDetails.driver_referrals_amount = profileDetails!!.body.driver_referrals_amount
+                    driverDetails.referrals_code = profileDetails!!.body.referrals_code
                     savePrefObject(Constants.DRIVER_DETAILS, driverDetails)
                 }
             }

@@ -4,6 +4,7 @@ data class Order(
     val address: String,
     val addressId: Int,
     val cartFee: String,
+    val order_number: String,
     val createdAt: String,
     val deliveredTimestamp: Long,
     val deliveryFee: Double,

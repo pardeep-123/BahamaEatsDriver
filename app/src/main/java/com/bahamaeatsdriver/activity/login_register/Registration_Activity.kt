@@ -13,7 +13,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.PopupWindow
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.constant.Constants
@@ -26,10 +25,12 @@ import com.bahamaeatsdriver.di.App
 import com.bahamaeatsdriver.helper.extensions.equalsIgnoreCase
 import com.bahamaeatsdriver.helper.extensions.getTokenPrefrence
 import com.bahamaeatsdriver.helper.extensions.launchActivity
+import com.bahamaeatsdriver.helper.extensions.savePrefObject
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.ImagePicker
 import com.bahamaeatsdriver.helper.others.Validator
 import com.bahamaeatsdriver.listeners.OnCitySelection
+import com.bahamaeatsdriver.model_class.driver_details.DriverDetails
 import com.bahamaeatsdriver.model_class.get_city.Body
 import com.bahamaeatsdriver.model_class.get_city.GetCityResponse
 import com.bahamaeatsdriver.model_class.signup.SignUpResponse
@@ -135,6 +136,7 @@ class Registration_Activity : ImagePicker(), View.OnClickListener, OnCitySelecti
                 val password = et_password.text.toString().trim()
                 val confirmPassword = et_confirmPassword.text.toString().trim()
                 val dob = tv_dob.text.toString().trim()
+                val referralCode = et_refferalCode.text.toString().trim()
 
                 if (validator.signUpValid(
                         this,
@@ -161,7 +163,7 @@ class Registration_Activity : ImagePicker(), View.OnClickListener, OnCitySelecti
                         Constants.SIMPLE_LOGIN,
                         Constants.ANDROID_DEVICE,
                         getTokenPrefrence(Constants.DEVICE_TOKEN, ""),
-                        imagePath,dob,genderType,
+                        imagePath,dob,genderType,referralCode,
                         true
                     )
                     viewModel.getSignUpResponse().observe(this, this)
@@ -205,6 +207,14 @@ class Registration_Activity : ImagePicker(), View.OnClickListener, OnCitySelecti
                             Helper.showSuccessToast(this, "Invalid phone number")
                         } else {
                             Helper.showSuccessToast(this, liveData.data.message)
+                            savePrefObject(Constants.DRIVER_DETAILS, DriverDetails(liveData.data.body.user.email,
+                                liveData.data.body.user.firstName,liveData.data.body.user.id,liveData.data.body.user.image,liveData.data.body.user.dob, liveData.data.body.user.gender,
+                                "", "",liveData.data.body.user.isApproved,liveData.data.body.user.isDocumentVerified,
+                                liveData.data.body.user.isLicenceExists,liveData.data.body.user.lastName,liveData.data.body.user.fullName,liveData.data.body.user.token,liveData.data.body.user.username,
+                                liveData.data.body.user.isNotification,liveData.data.body.user.countryCodePhone,
+                                liveData.data.body.user.city,liveData.data.body.user.countryCode,liveData.data.body.user.contactNo)
+                            )
+                            finishAffinity()
                             launchActivity<Identification_Activity>()
                             {
                                 putExtra("Typeof", "Normal")

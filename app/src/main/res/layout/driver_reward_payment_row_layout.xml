@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    app:contentPadding="@dimen/_10sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_userName"
+                style="@style/ScreenTextView1"
+                android:layout_weight="70"
+                android:textColor="@color/Black">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/ScreenTextView1"
+                android:layout_weight="30"
+                android:gravity="end"
+                android:textColor="@color/Black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:text= "Completed Rides - 10"
+                android:id="@+id/tv_completedRides"
+                style="@style/ScreenTextView1"
+                android:textColor="@color/Black">
+
+            </TextView>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_earnReward"
+            style="@style/ScreenTextView1"
+            android:gravity="end"
+            android:textColor="@color/darkGreen"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
