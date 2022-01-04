@@ -45,6 +45,7 @@ import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.activity.Navigation.SettingsActivity
 import com.bahamaeatsdriver.activity.Navigation.TermAnd_Conditions
 import com.bahamaeatsdriver.activity.driver_availability.DriverAvailability
+import com.bahamaeatsdriver.activity.driver_deals.DriverDealsActivity
 import com.bahamaeatsdriver.activity.driver_profile.Edit_profile
 import com.bahamaeatsdriver.activity.driver_profile.My_Profile_Activity
 import com.bahamaeatsdriver.activity.login_register.Login_Activity
@@ -60,6 +61,7 @@ import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.others.CommonMethods
 import com.bahamaeatsdriver.helper.others.CommonMethods.convertToNewFormat5
 import com.bahamaeatsdriver.helper.others.Helper
+import com.bahamaeatsdriver.helper.others.Helper.distance
 import com.bahamaeatsdriver.location.CheckLocationActivity
 import com.bahamaeatsdriver.model_class.ImageVideoModel
 import com.bahamaeatsdriver.model_class.accept_reject_ride.AcceptRejectRideRequest
@@ -130,8 +132,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var temp = 0
     private var rideRequestId = ""
     private var isResuarantBePaymentAvailable = ""
-    private var mLatitute = ""
-    private var mLongitute = ""
     private var currentRideData: Body? = null
     private var changeRideStatus: com.bahamaeatsdriver.model_class.change_ride_status.Body? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
@@ -176,6 +176,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     companion object {
         var loginDiverId = ""
         var otherUserId = ""
+        var mLatitute = ""
+        var mLongitute = ""
     }
 
     private var mSensorService: SensorService? = null
@@ -302,6 +304,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         LL_TandC.setOnClickListener(this)
         LL_settings.setOnClickListener(this)
         ll_store.setOnClickListener(this)
+        ll_deals.setOnClickListener(this)
         ll_trainingVideo.setOnClickListener(this)
         LL_logout.setOnClickListener(this)
         Relativ_profile.setOnClickListener(this)
@@ -876,7 +879,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 //                Relative_offlineN!!.setVisibility(View.GONE)
 //            }
             R.id.Relativ_moveToMapApp -> {
-                if (isGoogleMapsInstalled()) {
+                if (Helper.isGoogleMapsInstalled(this)) {
                     if (finishlat != null && finishlong != null && finishlat != 0.0 && finishlong != 0.0) {
                         val uri =
                             "http://maps.google.com/maps?saddr=$mLatitute,$mLongitute&daddr=$finishlat,$finishlong"
@@ -928,6 +931,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
 //                viewModel.getTrainingVideoLinksResponse().observe(this, this)
                 launchActivity<DriverTrainingVideosListActivity>()
             }
+            R.id.ll_deals -> {
+                temp = 1
+                launchActivity<DriverDealsActivity>()
+            }
             R.id.ll_store -> {
                 temp = 1
                 launchActivity<ShopStoreActivity>()
@@ -955,16 +962,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private fun changeRideStatusMethod(rideRequestId: String, ridestatus: String) {
         viewModel.changeRideStatusApi(this, rideRequestId, ridestatus, true)
         viewModel.getChangeRideStatusResposne().observe(this, this)
-    }
-
-    private fun isGoogleMapsInstalled(): Boolean {
-        return try {
-            val info: ApplicationInfo =
-                packageManager.getApplicationInfo("com.google.android.apps.maps", 0)
-            true
-        } catch (e: PackageManager.NameNotFoundException) {
-            false
-        }
     }
 
     /***
@@ -1921,26 +1918,6 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         viewModel.getResponseRideRequestResposne().observe(this, this)
     }
 
-    private fun distance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val theta = lon1 - lon2
-        var dist = (sin(deg2rad(lat1))
-                * sin(deg2rad(lat2))
-                + (cos(deg2rad(lat1))
-                * cos(deg2rad(lat2))
-                * cos(deg2rad(theta))))
-        dist = acos(dist)
-        dist = rad2deg(dist)
-        dist *= 60 * 1.1515
-        return dist
-    }
-
-    private fun deg2rad(deg: Double): Double {
-        return deg * Math.PI / 180.0
-    }
-
-    private fun rad2deg(rad: Double): Double {
-        return rad * 180.0 / Math.PI
-    }
 
     override fun onError(event: String?, vararg args: Any?) {
         Log.d("onError: ", args.toString())

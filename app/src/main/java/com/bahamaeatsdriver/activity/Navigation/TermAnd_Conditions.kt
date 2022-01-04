@@ -32,11 +32,10 @@ class TermAnd_Conditions : AppCompatActivity(), Observer<RestObservable> {
         when (liveData!!.status) {
             Status.SUCCESS -> {
 
-                if (liveData.data is TermsAndConditionResponse) {
+                    if (liveData.data is TermsAndConditionResponse) {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        tv_content.text = Html.fromHtml(
-                                liveData.data.body.content,
-                                Html.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH
+                        tv_content.text = Html.fromHtml(liveData.data.body.content,
+                            Html.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH
                         )
 
                     } else {

@@ -15,6 +15,7 @@ import com.bahamaeatsdriver.model_class.delete_id_card_image.DeleteIdDetailsResp
 import com.bahamaeatsdriver.model_class.delete_notifications.DeleteNotificationResponse
 import com.bahamaeatsdriver.model_class.delete_police_record.DeletePoliceRecordResponse
 import com.bahamaeatsdriver.model_class.driver_added_slots.DriverAddedSlotList
+import com.bahamaeatsdriver.model_class.driver_deals.DriverDealsResponse
 import com.bahamaeatsdriver.model_class.driver_documentation_details.DriverDocumentaionResponse
 import com.bahamaeatsdriver.model_class.driver_earnings.DriverEarningResposne
 import com.bahamaeatsdriver.model_class.driver_payments.DriverPaymentsResposne
@@ -33,6 +34,7 @@ import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.GetTakeDrive
 import com.bahamaeatsdriver.model_class.i_am_here.IAmHereResponse
 import com.bahamaeatsdriver.model_class.job_history.JobHistoryResponse
 import com.bahamaeatsdriver.model_class.job_history_details.JobHistoryyDetailsResponse
+import com.bahamaeatsdriver.model_class.like_merchant_deal.LikeUnlikeDealResponse
 import com.bahamaeatsdriver.model_class.login.LoginResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
 import com.bahamaeatsdriver.model_class.map_poliline.Result
@@ -120,6 +122,10 @@ interface RestApiInterface {
     @NonNull
     @GET(Constants.TERMS_AND_CONDITIONS)
     fun TermsAndCondition(): Observable<TermsAndConditionResponse>
+
+    @NonNull
+    @GET(Constants.DRIVER_DEALS_AMOUNT)
+    fun DRIVER_DEALS_AMOUNT(): Observable<DriverDealsResponse>
 
     @NonNull
     @GET(Constants.GET_DRIVER_TAKE_ORDER_STATUS)
@@ -246,6 +252,9 @@ interface RestApiInterface {
     @POST(Constants.ADD_DRIVER_SLOTS)
     fun ADD_DRIVER_SLOTS(@Field("timeSlots") timeSlots: String): Observable<AddDriverAvailabilitySlots>
 
+    @FormUrlEncoded
+    @POST(Constants.driver_deal_like_dislike)
+    fun driver_deal_like_dislike(@Field("merchant_id") merchant_id: String,@Field("status") status: String): Observable<LikeUnlikeDealResponse>
 
     @Multipart
     @PUT(Constants.UPDATE_LICENSE)

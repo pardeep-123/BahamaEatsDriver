@@ -454,6 +454,26 @@
                         android:textSize="@dimen/_11sdp"
                         android:text="@string/store" />
                 </LinearLayout>
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/ll_deals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/NavIcon"
+                        android:src="@drawable/deals"
+                        />
+
+                    <TextView
+                        style="@style/ScreenTextView2"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/_11sdp"
+                        android:text="@string/deals" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_Documents"
@@ -470,7 +490,7 @@
 
                     <TextView
                         style="@style/ScreenTextView2"
-                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:textColor="@color/White"
                         android:textSize="@dimen/_11sdp"
                         android:text="Documents" />

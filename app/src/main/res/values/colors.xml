@@ -27,5 +27,6 @@
     <color name="colorLightGrey">#E0E0E0</color>
     <color name="colorBlackOff1">#B8AEAE</color>
     <color name="colorScreenGrey">#F9F9F9</color>
+    <color name="color_close">#AD0B0A0A</color>
 
 </resources>

@@ -2728,6 +2728,81 @@ class BaseViewModel : ViewModel() {
         }
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Driver deals listing api call
+    private var driverDealsResposne: MutableLiveData<RestObservable> = MutableLiveData()
+    fun getDriverDealsResposne(): LiveData<RestObservable> {
+        return driverDealsResposne
+    }
+
+    @SuppressLint("CheckResult")
+    fun driverDealsResposne(
+        activity: Activity,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.DRIVER_DEALS_AMOUNT()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    driverDealsResposne.value = RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { driverDealsResposne.value = RestObservable.success(it) },
+                    {
+                        driverDealsResposne.value = RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        driverDealsResposne(
+                            activity,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*Add Driver availablity slots*/
+
+    private var driverLikeMerchantDeal: MutableLiveData<RestObservable> = MutableLiveData()
+
+    fun driverLikeMerchantDealResponse(): LiveData<RestObservable> {
+        return driverLikeMerchantDeal
+    }
+
+    @SuppressLint("CheckResult")
+    fun driverLikeMerchantDealApi(activity: Activity, merchant_id: String,status: String, isDialogShow: Boolean) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.driver_deal_like_dislike(merchant_id,status)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    driverLikeMerchantDeal.value = RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe({ driverLikeMerchantDeal.value = RestObservable.success(it) },
+                    {
+                        driverLikeMerchantDeal.value = RestObservable.error(activity, it)
+                    })
+        } else {
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        driverLikeMerchantDealApi(activity, merchant_id,status, isDialogShow)
+                    }
+                })
+        }
+    }
+
 }
 
 

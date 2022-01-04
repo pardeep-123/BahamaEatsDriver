@@ -32,6 +32,7 @@ class Constants {
         const val RESEND_OTP = "resendDriverOTP"
         const val GET_CITY = "getCity"
         const val TERMS_AND_CONDITIONS = "termsAndConditions"
+        const val DRIVER_DEALS_AMOUNT = "get_driver_deal_merchant"
         const val UPDATE_DRIVER_TAKE_ORDER_STATUS = "updateDriverTakeOrderStatus"
         const val DRIVER_PROFILE_DETAILS = "getDriverProfile"
 
@@ -90,6 +91,7 @@ class Constants {
         const val  UPLOAD_RECEIPT="uploadBeReceipt"
         const val  DRIVER_SLOTS="driverSlots"
         const val  ADD_DRIVER_SLOTS="addTimeSlots"
+        const val  driver_deal_like_dislike="driver_deal_like_dislike"
         const val  GET_DRIVER_ADDED_SLOTS="getDriverSlots"
         const val  GET_DRIVER_FAQ="getDriverFaqs"
         const val  GET_DRIVER_MENU_STORE="driverMenuStore"

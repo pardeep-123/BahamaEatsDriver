@@ -35,90 +35,43 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Past order crash&#10;Show null on delivery listing instead of vehicle type.&#10;Date: 6 Dec 2021">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/referral_code/ShareReferralActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/shop_store/ShopStoreActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverEarnRewardPaymentAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/store_menu/Body.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/store_menu/GetStoreMenuResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/apply_promo_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/blank_all_round_shape.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/green_round_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_copytoclipboard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/refer_code_banner_view.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/refer_code_green_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/referal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/store.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_share_referral.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_shop_store.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/driver_reward_payment_row_layout.xml" afterDir="false" />
+    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Gourav sir&#10;&#10;Task:&#10;1.Are partial refunded order still showing up in the spreadsheet? If not it needs to and also has a column in the spreadsheet showing how much was partially refunded back to that customer because a partial refund are usually made only because the merchant may have been out of stock for an item and we refunded them back for it but when we pay the merchant out we need to deduct that partial refund from their payouts so it needs to be shown. Also partial refund should say a badge in the user app “history” as completed &amp; refunded. For full refund orders it will just show as “refunded” because that would mean the entire order was cancelled and voided .&#10;2.Change driver verification method&#10;3.Custom tip amount&#10;4.Ready for pickup removal&#10;Note: Remove “ready for pickup” from dispatcher and merchant panel because it’s also showing as a refunded status when it’s used&#10;But now it'll show as ready for pickup&#10;5.Order details preview box&#10;6.Drivers order completion&#10;7. Driver delivery fee deduction&#10;8. Show loyalty points in admin panel&#10;9. Driver deals/discount page  --(Task is in progress)&#10;Android:&#10;User: https://i.diawi.com/YxRu8r&#10;Driver:  https://i.diawi.com/3SQrYP&#10;&#10;IOS&#10;Driver: https://i.diawi.com/EnJZF5&#10;User: https://i.diawi.com/DC4Qip&#10;Date-30- Dec-21">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_deals/DriverDealsActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverDealsAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/listeners/OnDealSelection.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_deals/DriverDealsResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/like_merchant_deal/LikeUnlikeDealResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/deals.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/dummy_img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/green_right_round_shape_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_like.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_navigate.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_unlike.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/white_right_round_shape_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_driver_deals.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/driver_deals_row_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_siyamed_android_shape_imageview_0_9_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_siyamed_android_shape_imageview_0_9_3_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/SettingsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/SettingsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_availability/DriverAvailability.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_availability/DriverAvailability.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_licence_detail/Fill_LicenseDetail_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_licence_detail/Fill_LicenseDetail_Activity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/Edit_profile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/Edit_profile.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/My_Profile_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_profile/My_Profile_Activity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/job_history_details/JobHistoryDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/job_history_details/JobHistoryDetails.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Login_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Login_Activity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Registration_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Registration_Activity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/FilterPaymentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/FilterPaymentAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/FoodQuantiytAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/FoodQuantiytAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsAddOnsQuantiytAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsAddOnsQuantiytAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsQuantiytAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsQuantiytAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/PaymentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/PaymentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/TermAnd_Conditions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/TermAnd_Conditions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/fcm/MyFirebaseMessagingService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/fcm/MyFirebaseMessagingService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/extensions/PrefExtenesion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/extensions/PrefExtenesion.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/change_ride_status/ChangeRideStatusResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/change_ride_status/ChangeRideStatusResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_details/DriverDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_details/DriverDetails.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/Body.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/DriverPaymentsResposne.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/DriverPaymentsResposne.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/Earning.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/Order.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/OrderX.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/User.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/Body.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/DriverTipsAndEarning.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/DriverTipsAndEarning.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/Earnings.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/Order.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/RideRequest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/User.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Order.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_take_driver_orderstatus/GetTakeDriverOrderStatus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_take_driver_orderstatus/GetTakeDriverOrderStatus.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history_details/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/job_history_details/Order.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/login/Body.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/login/Body.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/profile_details/Body.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/profile_details/Body.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/signup/Body.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/signup/SignUpResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/signup/SignUpResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/signup/User.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/Helper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/Helper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment__status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment__status.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/food_quantity_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/food_quantity_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_navigation_drawl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_navigation_drawl.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_details_quantity_row_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_details_quantity_row_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/res_payment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/res_payment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/res_verification_panding.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/res_verification_panding.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/root/.android/avd/Pixel_4_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8M42HZM4T]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -186,7 +139,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ApkExportedModule" value="BahamaEatsDriver.app" />
-    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_a505f-RZ8M42HZM4T" />
+    <property name="DEBUGGABLE_DEVICE" value="Pixel_4_API_30 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="com.bahamaeatsdriver" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@/root/.android/avd/Pixel_4_API_30.avd" />
@@ -200,19 +153,25 @@
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android-custom-view/root/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-view/root/Android/Sdk/sources/android-29/android/widget/TextView.java_SELECTED" value="TextView" />
+    <property name="android-custom-view/root/Android/Sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1640173273511" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1641185567960" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.874923785">
       <recent name="com.bahamaeatsdriver.activity.shop_store" />
     </key>
+    <key name="android.template.-1700198400">
+      <recent name="com.bahamaeatsdriver.activity.driver_deals" />
+    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.bahamaeatsdriver.listeners" />
       <recent name="com.bahamaeatsdriver.adapter" />
     </key>
     <key name="android.template.-376440582">
@@ -222,8 +181,8 @@
       <recent name="com.bahamaeatsdriver.activity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable/xhdpi" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -454,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638785298667</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Gourav sir&#10;&#10;Task:&#10;1.Are partial refunded order still showing up in the spreadsheet? If not it needs to and also has a column in the spreadsheet showing how much was partially refunded back to that customer because a partial refund are usually made only because the merchant may have been out of stock for an item and we refunded them back for it but when we pay the merchant out we need to deduct that partial refund from their payouts so it needs to be shown. Also partial refund should say a badge in the user app “history” as completed &amp; refunded. For full refund orders it will just show as “refunded” because that would mean the entire order was cancelled and voided .&#10;2.Change driver verification method&#10;3.Custom tip amount&#10;4.Ready for pickup removal&#10;Note: Remove “ready for pickup” from dispatcher and merchant panel because it’s also showing as a refunded status when it’s used&#10;But now it'll show as ready for pickup&#10;5.Order details preview box&#10;6.Drivers order completion&#10;7. Driver delivery fee deduction&#10;8. Show loyalty points in admin panel&#10;9. Driver deals/discount page  --(Task is in progress)&#10;Android:&#10;User: https://i.diawi.com/YxRu8r&#10;Driver:  https://i.diawi.com/3SQrYP&#10;&#10;IOS&#10;Driver: https://i.diawi.com/EnJZF5&#10;User: https://i.diawi.com/DC4Qip&#10;Date-30- Dec-21">
+      <created>1640872629242</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1640872629242</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -484,7 +450,8 @@
     <MESSAGE value="Code after upload build over play store on 3-Dec-21." />
     <MESSAGE value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Past order crash&#10;Show null on delivery listing instead of vehicle type." />
     <MESSAGE value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Past order crash&#10;Show null on delivery listing instead of vehicle type.&#10;Date: 6 Dec 2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Past order crash&#10;Show null on delivery listing instead of vehicle type.&#10;Date: 6 Dec 2021" />
+    <MESSAGE value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Gourav sir&#10;&#10;Task:&#10;1.Are partial refunded order still showing up in the spreadsheet? If not it needs to and also has a column in the spreadsheet showing how much was partially refunded back to that customer because a partial refund are usually made only because the merchant may have been out of stock for an item and we refunded them back for it but when we pay the merchant out we need to deduct that partial refund from their payouts so it needs to be shown. Also partial refund should say a badge in the user app “history” as completed &amp; refunded. For full refund orders it will just show as “refunded” because that would mean the entire order was cancelled and voided .&#10;2.Change driver verification method&#10;3.Custom tip amount&#10;4.Ready for pickup removal&#10;Note: Remove “ready for pickup” from dispatcher and merchant panel because it’s also showing as a refunded status when it’s used&#10;But now it'll show as ready for pickup&#10;5.Order details preview box&#10;6.Drivers order completion&#10;7. Driver delivery fee deduction&#10;8. Show loyalty points in admin panel&#10;9. Driver deals/discount page  --(Task is in progress)&#10;Android:&#10;User: https://i.diawi.com/YxRu8r&#10;Driver:  https://i.diawi.com/3SQrYP&#10;&#10;IOS&#10;Driver: https://i.diawi.com/EnJZF5&#10;User: https://i.diawi.com/DC4Qip&#10;Date-30- Dec-21" />
+    <option name="LAST_COMMIT_MESSAGE" value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Gourav sir&#10;&#10;Task:&#10;1.Are partial refunded order still showing up in the spreadsheet? If not it needs to and also has a column in the spreadsheet showing how much was partially refunded back to that customer because a partial refund are usually made only because the merchant may have been out of stock for an item and we refunded them back for it but when we pay the merchant out we need to deduct that partial refund from their payouts so it needs to be shown. Also partial refund should say a badge in the user app “history” as completed &amp; refunded. For full refund orders it will just show as “refunded” because that would mean the entire order was cancelled and voided .&#10;2.Change driver verification method&#10;3.Custom tip amount&#10;4.Ready for pickup removal&#10;Note: Remove “ready for pickup” from dispatcher and merchant panel because it’s also showing as a refunded status when it’s used&#10;But now it'll show as ready for pickup&#10;5.Order details preview box&#10;6.Drivers order completion&#10;7. Driver delivery fee deduction&#10;8. Show loyalty points in admin panel&#10;9. Driver deals/discount page  --(Task is in progress)&#10;Android:&#10;User: https://i.diawi.com/YxRu8r&#10;Driver:  https://i.diawi.com/3SQrYP&#10;&#10;IOS&#10;Driver: https://i.diawi.com/EnJZF5&#10;User: https://i.diawi.com/DC4Qip&#10;Date-30- Dec-21" />
   </component>
   <component name="WindowStateProjectService">
     <state x="203" y="113" width="950" height="530" key="#PSD" timestamp="1636630255411">
@@ -495,38 +462,38 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="363" y="180" width="629" height="396" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1366.704@0.27.1366.704" timestamp="1638786755335" />
-    <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1637577861302">
+    <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1641212024646">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1366.704@0.27.1366.704" timestamp="1637577861302" />
-    <state x="0" y="27" width="1356" height="704" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1632395750689">
+    <state x="457" y="97" width="442" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1366.704@0.27.1366.704" timestamp="1641212024646" />
+    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1641213260504">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="0" y="27" width="1356" height="704" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1366.704@0.27.1366.704" timestamp="1632395750689" />
-    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1640779261407">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.704@0.27.1366.704" timestamp="1640779261407" />
+    <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.704@0.27.1366.704" timestamp="1641213260504" />
     <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate" timestamp="1640857277561">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1640857277561" />
+    <state x="343" y="208" width="669" height="339" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1641188140743">
+      <screen x="0" y="27" width="1366" height="704" />
+    </state>
+    <state x="343" y="208" width="669" height="339" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1366.704@0.27.1366.704" timestamp="1641188140742" />
     <state x="100" y="125" width="1166" height="506" key="AVDManager" timestamp="1632810485141">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="100" y="125" width="1166" height="506" key="AVDManager/0.27.1366.704@0.27.1366.704" timestamp="1632810485141" />
-    <state x="266" y="136" width="824" height="484" key="AndroidCreateResourceFileDialog" timestamp="1640173868755">
+    <state x="266" y="136" width="824" height="484" key="AndroidCreateResourceFileDialog" timestamp="1641194773036">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="266" y="136" width="824" height="484" key="AndroidCreateResourceFileDialog/0.27.1366.704@0.27.1366.704" timestamp="1640173868755" />
-    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog" timestamp="1640690050542">
+    <state x="266" y="136" width="824" height="484" key="AndroidCreateResourceFileDialog/0.27.1366.704@0.27.1366.704" timestamp="1641194773036" />
+    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog" timestamp="1641188363463">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1640690050542" />
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1640859972836">
+    <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1641188363463" />
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1641213165300">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1640859972836" />
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1641213165300" />
     <state width="1277" height="411" key="DebuggerActiveHint" timestamp="1639134891262">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -539,38 +506,38 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1638523723045" />
-    <state width="1320" height="165" key="GridCell.Tab.0.bottom" timestamp="1640860087384">
+    <state width="1320" height="253" key="GridCell.Tab.0.bottom" timestamp="1641213930529">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
-    <state width="1320" height="165" key="GridCell.Tab.0.center" timestamp="1640860087384">
+    <state width="1320" height="253" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1641213930529" />
+    <state width="1320" height="253" key="GridCell.Tab.0.center" timestamp="1641213930528">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
-    <state width="1320" height="165" key="GridCell.Tab.0.left" timestamp="1640860087383">
+    <state width="1320" height="253" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1641213930528" />
+    <state width="1320" height="253" key="GridCell.Tab.0.left" timestamp="1641213930527">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1640860087383" />
-    <state width="1320" height="165" key="GridCell.Tab.0.right" timestamp="1640860087384">
+    <state width="1320" height="253" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1641213930527" />
+    <state width="1320" height="253" key="GridCell.Tab.0.right" timestamp="1641213930528">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
-    <state width="1320" height="165" key="GridCell.Tab.1.bottom" timestamp="1640860087384">
+    <state width="1320" height="253" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1641213930528" />
+    <state width="1320" height="165" key="GridCell.Tab.1.bottom" timestamp="1641213355500">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
-    <state width="1320" height="165" key="GridCell.Tab.1.center" timestamp="1640860087384">
+    <state width="1320" height="165" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1641213355500" />
+    <state width="1320" height="165" key="GridCell.Tab.1.center" timestamp="1641213355499">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
-    <state width="1320" height="165" key="GridCell.Tab.1.left" timestamp="1640860087384">
+    <state width="1320" height="165" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1641213355499" />
+    <state width="1320" height="165" key="GridCell.Tab.1.left" timestamp="1641213355499">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
-    <state width="1320" height="165" key="GridCell.Tab.1.right" timestamp="1640860087384">
+    <state width="1320" height="165" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1641213355499" />
+    <state width="1320" height="165" key="GridCell.Tab.1.right" timestamp="1641213355499">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="165" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1640860087384" />
+    <state width="1320" height="165" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1641213355499" />
     <state x="180" y="61" width="996" height="633" key="RollbackChangesDialog" timestamp="1636972746849">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -579,18 +546,18 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="172" y="27" width="1012" height="704" key="SettingsEditor/0.27.1366.704@0.27.1366.704" timestamp="1638870057440" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1638785312514">
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1640872635476">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1638785312514" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1640872635476" />
     <state width="683" height="353" key="XDebugger.FullValuePopup" timestamp="1638771564312">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state width="683" height="353" key="XDebugger.FullValuePopup/0.27.1366.704@0.27.1366.704" timestamp="1638771564312" />
-    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1638957903886">
+    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1641200790815">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1638957903886" />
+    <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1641200790815" />
     <state x="388" y="189" width="580" height="378" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog" timestamp="1632810027595">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -599,14 +566,14 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1634215619600" />
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1640860089187">
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1641213556535">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1640860089187" />
-    <state x="0" y="62" width="1366" height="635" key="find.popup" timestamp="1640864633386">
+    <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1641213556535" />
+    <state x="0" y="62" width="1366" height="635" key="find.popup" timestamp="1641204995764">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="0" y="62" width="1366" height="635" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1640864633386" />
+    <state x="0" y="62" width="1366" height="635" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1641204995764" />
     <state x="363" y="183" width="630" height="389" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1639121432825">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -619,9 +586,9 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="347" y="166" key="run.anything.popup/0.27.1366.704@0.27.1366.704" timestamp="1637842625772" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1640870432816">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1641216142278">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1640870432816" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1641216142278" />
   </component>
 </project>

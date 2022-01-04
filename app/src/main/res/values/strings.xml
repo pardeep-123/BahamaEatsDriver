@@ -358,5 +358,6 @@
     <string name="we_ll_get_back_to_you">We\'ll get back to you</string>
     <string name="please_wait_for_admin_approval_once_admin_will_verify_your_profile_you_ll_be_able_swipe_online">Please wait for admin approval, Once admin will verify your profile you\'ll be able swipe online</string>
     <string name="verification_pending">Verification Pending</string>
+    <string name="deals">Deals</string>
 
 </resources>

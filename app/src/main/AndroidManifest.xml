@@ -41,7 +41,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.shop_store.ShopStoreActivity"
+        <activity android:name=".activity.driver_deals.DriverDealsActivity"></activity>
+        <activity
+            android:name=".activity.shop_store.ShopStoreActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.referral_code.ShareReferralActivity"
