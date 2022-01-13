@@ -65,6 +65,9 @@ class CompleteRideDetailsActivity : AppCompatActivity(), View.OnClickListener {
                 8 -> {
                     tv_paymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus)
                 }
+                9 -> {
+                    tv_paymentMode.text = "Payment Mode: " + getString(R.string.referral_reward)
+                }
             }
             tv_totalAmount.text = "$" + Helper.roundOffDecimalNew(orderData.order.netAmount.toFloat())
             tv_restaurantName.text = orderData.restaurant.address

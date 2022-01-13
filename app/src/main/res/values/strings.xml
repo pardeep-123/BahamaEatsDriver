@@ -117,6 +117,7 @@
     <string name="job_history_details">Job History Details</string>
     <string name="having_problem_with_your_order">Having problem with your order?</string>
     <string name="call_support">Call Support</string>
+    <string name="message_support">Message Support</string>
     <string name="or">or</string>
     <string name="chat_with_team">Chat with team</string>
     <string name="delivery_details">Delivery Details</string>
@@ -331,6 +332,7 @@
     <string name="enter_amount">Enter Amount</string>
     <string name="receipt_number">Receipt Number</string>
     <string name="loyalty_bonus">Loyalty Bonus</string>
+    <string name="referral_reward">Referral Reward</string>
     <string name="get_in_touch">Get In Touch</string>
     <string name="go_to_slot_page">Go to slot page</string>
     <string name="call_restaurant">Call Merchant</string>
@@ -359,5 +361,6 @@
     <string name="please_wait_for_admin_approval_once_admin_will_verify_your_profile_you_ll_be_able_swipe_online">Please wait for admin approval, Once admin will verify your profile you\'ll be able swipe online</string>
     <string name="verification_pending">Verification Pending</string>
     <string name="deals">Deals</string>
+    <string name="support_">Support</string>
 
 </resources>

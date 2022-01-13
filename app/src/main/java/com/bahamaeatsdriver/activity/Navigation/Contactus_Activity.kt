@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bahamaeats.constant.Constants
 import com.bahamaeatsdriver.R
+import com.bahamaeatsdriver.activity.shop_store.ShopStoreActivity
+import com.bahamaeatsdriver.helper.extensions.launchActivity
 import kotlinx.android.synthetic.main.activity_contactus.*
 
 
@@ -24,18 +26,25 @@ class Contactus_Activity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.rl_callSupport -> {
-                val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", Constants.HELPLINE_NO, null))
-                startActivity(intent)
+              /*  val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", Constants.HELPLINE_NO, null))
+                startActivity(intent)*/
+                launchActivity<ShopStoreActivity> {
+                    putExtra("from","Contactus_Activity")
+                    putExtra("click","1")
+                }
             }
             R.id.rl_chatSupport -> {
-                val link = "http://m.me/bahamaeats?ref=2062529467381132"
+               /* val link = "http://m.me/bahamaeats?ref=2062529467381132"
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 try {
                     startActivity(intent)
                 } catch (ex: android.content.ActivityNotFoundException) {
                     Toast.makeText(this, "Please Install Facebook Messenger", Toast.LENGTH_LONG).show();
+                }*/
+                launchActivity<ShopStoreActivity> {
+                    putExtra("from","Contactus_Activity")
+                    putExtra("click","0")
                 }
-
             }
             R.id.iv_backArrow_contactus -> {
                 finish()

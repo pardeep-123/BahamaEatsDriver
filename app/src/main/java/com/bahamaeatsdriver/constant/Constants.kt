@@ -32,6 +32,7 @@ class Constants {
         const val RESEND_OTP = "resendDriverOTP"
         const val GET_CITY = "getCity"
         const val TERMS_AND_CONDITIONS = "termsAndConditions"
+        const val supportLinks = "supportLinks"
         const val DRIVER_DEALS_AMOUNT = "get_driver_deal_merchant"
         const val UPDATE_DRIVER_TAKE_ORDER_STATUS = "updateDriverTakeOrderStatus"
         const val DRIVER_PROFILE_DETAILS = "getDriverProfile"

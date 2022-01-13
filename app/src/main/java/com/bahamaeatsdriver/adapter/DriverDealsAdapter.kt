@@ -64,7 +64,7 @@ class DriverDealsAdapter(
         myViewHolder.itemView.tv_categories.text = dealsList[i].description
         if (!mLatitute.isNullOrEmpty() && !mLongitute.isNullOrEmpty() && !dealsList[i].latitude.isNullOrEmpty() && !dealsList[i].longitude.isNullOrEmpty()) {
             val value1: String = java.lang.String.valueOf(DecimalFormat("##").format(distance(mLatitute.toDouble(),mLongitute.toDouble(), dealsList[i].latitude.toDouble(), dealsList[i].longitude.toDouble())))
-            myViewHolder.itemView.tv_distance.text = value1+" miles away"
+            myViewHolder.itemView.tv_distance.text = "$value1 miles away"
         }
         Glide.with(mContext).load(dealsList[i].image).placeholder(R.drawable.placeholder_rectangle)
             .into(myViewHolder.itemView.iv_imageThumbail)

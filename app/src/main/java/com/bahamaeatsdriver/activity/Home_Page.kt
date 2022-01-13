@@ -937,7 +937,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
             R.id.ll_store -> {
                 temp = 1
-                launchActivity<ShopStoreActivity>()
+                launchActivity<ShopStoreActivity>(){
+                    putExtra("from","home_page")
+                }
             }
             R.id.Relativ_profile -> {
                 temp = 1
@@ -1042,6 +1044,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
          * paymentMethod-6 for IsLand Pay
          * paymentMethod-7 for BE Wallet
          * paymentMethod-8 for Loyalty Bonus
+         * paymentMethod-9 for Referral Amount
          * */
         when (currentRideData.order.paymentMethod) {
             "1" -> {
@@ -1057,12 +1060,12 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                 dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: Atlantic"
             }
             "7" -> {
-                dialogOrderDeatail.tv_paymentMode.text =
-                    "Payment Mode: " + getString(R.string.be_wallet)
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.be_wallet)
             }
             "8" -> {
-                dialogOrderDeatail.tv_paymentMode.text =
-                    "Payment Mode: " + getString(R.string.loyalty_bonus)
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus)
+            }"9" -> {
+                dialogOrderDeatail.tv_paymentMode.text = "Payment Mode: " + getString(R.string.referral_reward)
             }
         }
 
@@ -1344,6 +1347,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                          * paymentMethod-6 for IsLand Pay
                          * paymentMethod-7 for BE Wallet
                          * paymentMethod-8 for Loyalty Bonus
+                         * paymentMethod-9 for Referral Reward
                          */
                         when (currentRideData!!.order.paymentMethod) {
                             "1" -> {
@@ -1366,8 +1370,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                     "Payment Mode: " + getString(R.string.be_wallet)
                             }
                             "8" -> {
-                                tv_currentOrderPaymentMode.text =
-                                    "Payment Mode: " + getString(R.string.loyalty_bonus)
+                                tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus)
+                            }"9" -> {
+                                tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.referral_reward)
                             }
                         }
 //                        tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(currentRideData!!.order.netAmount.toFloat())
@@ -1520,8 +1525,9 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                                 "Payment Mode: " + getString(R.string.be_wallet)
                         }
                         8 -> {
-                            tv_currentOrderPaymentMode.text =
-                                "Payment Mode: " + getString(R.string.loyalty_bonus)
+                            tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.loyalty_bonus)
+                        }9 -> {
+                            tv_currentOrderPaymentMode.text = "Payment Mode: " + getString(R.string.referral_reward)
                         }
                     }
 //                    tv_currentOrderTotal.text = "$" + Helper.roundOffDecimalNew(changeRideStatus!!.order.netAmount.toFloat())

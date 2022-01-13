@@ -23,7 +23,7 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            android:text="Support"></TextView>
+            android:text="@string/support_"/>
 
     </RelativeLayout>
     <LinearLayout

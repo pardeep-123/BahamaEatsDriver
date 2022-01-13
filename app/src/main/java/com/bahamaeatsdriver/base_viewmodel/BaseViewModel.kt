@@ -538,6 +538,49 @@ class BaseViewModel : ViewModel() {
                 })
         }
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Terms and conditions API call
+    private var supportLinksResposne: MutableLiveData<RestObservable> = MutableLiveData()
+    fun supportLinksResposne(): LiveData<RestObservable> {
+        return supportLinksResposne
+    }
+
+    @SuppressLint("CheckResult")
+    fun supportLinksApi(
+        activity: Activity,
+        isDialogShow: Boolean
+    ) {
+        if (Helper.isNetworkConnected(activity)) {
+            apiService.supportLinks()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+
+                    supportLinksResposne.value =
+                        RestObservable.loading(activity, isDialogShow)
+                }
+                .subscribe(
+                    { supportLinksResposne.value = RestObservable.success(it) },
+                    {
+                        supportLinksResposne.value =
+                            RestObservable.error(activity, it)
+                    }
+                )
+        } else {
+
+            Helper.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        supportLinksApi(
+                            activity,
+                            isDialogShow
+                        )
+                    }
+                })
+        }
+    }
 
     /****************************************************************************************************************************************************/
     //logout api call

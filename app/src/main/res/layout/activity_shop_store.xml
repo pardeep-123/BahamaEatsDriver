@@ -19,6 +19,7 @@
             android:src="@drawable/backbtn" />
 
         <TextView
+            android:id="@+id/tv_title"
             style="@style/HedderSmallsiz"
             android:layout_centerInParent="true"
             android:layout_marginStart="0dp"

@@ -19,6 +19,7 @@ import com.bahamaeatsdriver.model_class.driver_deals.DriverDealsResponse
 import com.bahamaeatsdriver.model_class.driver_documentation_details.DriverDocumentaionResponse
 import com.bahamaeatsdriver.model_class.driver_earnings.DriverEarningResposne
 import com.bahamaeatsdriver.model_class.driver_payments.DriverPaymentsResposne
+import com.bahamaeatsdriver.model_class.driver_support.DriverSupportResponse
 import com.bahamaeatsdriver.model_class.driver_tips_earning.DriverTipsAndEarning
 import com.bahamaeatsdriver.model_class.edit_driver_profile.EditDriverProfileResponse
 import com.bahamaeatsdriver.model_class.faqs.FaqResponse
@@ -122,6 +123,10 @@ interface RestApiInterface {
     @NonNull
     @GET(Constants.TERMS_AND_CONDITIONS)
     fun TermsAndCondition(): Observable<TermsAndConditionResponse>
+
+    @NonNull
+    @GET(Constants.supportLinks)
+    fun supportLinks(): Observable<DriverSupportResponse>
 
     @NonNull
     @GET(Constants.DRIVER_DEALS_AMOUNT)

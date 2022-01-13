@@ -91,6 +91,7 @@ class JobHistoryDetails : AppCompatActivity(), Observer<RestObservable>, OnMapRe
                         "6" -> { tv_paymentMode.text = "Payment method: IsLand Pay" }
                         "7" -> { tv_paymentMode.text = "Payment method: "+getString(R.string.be_wallet) }
                         "8" -> { tv_paymentMode.text = "Payment method: "+getString(R.string.loyalty_bonus) }
+                        "9" -> { tv_paymentMode.text = "Payment method: "+getString(R.string.referral_reward) }
                     }
                     tv_vatPercentage.text = "VAT(" + liveData.data.body.order.taxPercentage + "%) "
                     val serviceFee=liveData.data.body.order.serviceFee
