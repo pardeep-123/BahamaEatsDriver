@@ -197,8 +197,8 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             /***
              * Update Location on server
              */
-//            viewModel.updateDriverLatLongApi(this, mLatitute, mLongitute, false)
-//            viewModel.getUpdateDriverLatLongResponse().observe(this, this)
+            viewModel.updateDriverLatLongApi(this, mLatitute, mLongitute, false)
+            viewModel.getUpdateDriverLatLongResponse().observe(this, this)
             if (googleMap != null) {
                 if (mLatitute.isNotEmpty()) {
                     if (driverMarker == null)

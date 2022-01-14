@@ -9,8 +9,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ok" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -35,26 +34,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="done: Driver deals/discount page&#10;&#10;Date: 04/01/2022">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_support/DriverSupportResponse.kt" afterDir="false" />
+    <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="&#10;Date: 13/01/2022">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/CompleteRideDetailsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/CompleteRideDetailsActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/Contactus_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/Contactus_Activity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/job_history_details/JobHistoryDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/job_history_details/JobHistoryDetails.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/shop_store/ShopStoreActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/shop_store/ShopStoreActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverDealsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverDealsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/network/RestApiInterface.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_contactus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_contactus.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_shop_store.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_shop_store.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_support.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -417,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641299862842</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="&#10;Date: 13/01/2022">
+      <created>1642079992969</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1642079992969</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -449,7 +441,8 @@
     <MESSAGE value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Past order crash&#10;Show null on delivery listing instead of vehicle type.&#10;Date: 6 Dec 2021" />
     <MESSAGE value="After upload worked on app crashs.&#10;The following:&#10;New job pop up and order detail popup&#10;Gourav sir&#10;&#10;Task:&#10;1.Are partial refunded order still showing up in the spreadsheet? If not it needs to and also has a column in the spreadsheet showing how much was partially refunded back to that customer because a partial refund are usually made only because the merchant may have been out of stock for an item and we refunded them back for it but when we pay the merchant out we need to deduct that partial refund from their payouts so it needs to be shown. Also partial refund should say a badge in the user app “history” as completed &amp; refunded. For full refund orders it will just show as “refunded” because that would mean the entire order was cancelled and voided .&#10;2.Change driver verification method&#10;3.Custom tip amount&#10;4.Ready for pickup removal&#10;Note: Remove “ready for pickup” from dispatcher and merchant panel because it’s also showing as a refunded status when it’s used&#10;But now it'll show as ready for pickup&#10;5.Order details preview box&#10;6.Drivers order completion&#10;7. Driver delivery fee deduction&#10;8. Show loyalty points in admin panel&#10;9. Driver deals/discount page  --(Task is in progress)&#10;Android:&#10;User: https://i.diawi.com/YxRu8r&#10;Driver:  https://i.diawi.com/3SQrYP&#10;&#10;IOS&#10;Driver: https://i.diawi.com/EnJZF5&#10;User: https://i.diawi.com/DC4Qip&#10;Date-30- Dec-21" />
     <MESSAGE value="done: Driver deals/discount page&#10;&#10;Date: 04/01/2022" />
-    <option name="LAST_COMMIT_MESSAGE" value="done: Driver deals/discount page&#10;&#10;Date: 04/01/2022" />
+    <MESSAGE value="&#10;Date: 13/01/2022" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;Date: 13/01/2022" />
   </component>
   <component name="WindowStateProjectService">
     <state x="203" y="113" width="950" height="530" key="#PSD" timestamp="1636630255411">
@@ -500,22 +493,22 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1638523723045" />
-    <state width="1320" height="300" key="GridCell.Tab.0.bottom" timestamp="1642078573472">
+    <state width="1320" height="197" key="GridCell.Tab.0.bottom" timestamp="1642152606466">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="300" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1642078573472" />
-    <state width="1320" height="300" key="GridCell.Tab.0.center" timestamp="1642078573471">
+    <state width="1320" height="197" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1642152606466" />
+    <state width="1320" height="197" key="GridCell.Tab.0.center" timestamp="1642152606466">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="300" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1642078573471" />
-    <state width="1320" height="300" key="GridCell.Tab.0.left" timestamp="1642078573470">
+    <state width="1320" height="197" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1642152606466" />
+    <state width="1320" height="197" key="GridCell.Tab.0.left" timestamp="1642152606465">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="300" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1642078573470" />
-    <state width="1320" height="300" key="GridCell.Tab.0.right" timestamp="1642078573472">
+    <state width="1320" height="197" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1642152606465" />
+    <state width="1320" height="197" key="GridCell.Tab.0.right" timestamp="1642152606466">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="300" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1642078573472" />
+    <state width="1320" height="197" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1642152606466" />
     <state width="1320" height="334" key="GridCell.Tab.1.bottom" timestamp="1641822135865">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -540,10 +533,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="172" y="27" width="1012" height="704" key="SettingsEditor/0.27.1366.704@0.27.1366.704" timestamp="1638870057440" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1641299932845">
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1642080003391">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1641299932845" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1642080003391" />
     <state width="683" height="353" key="XDebugger.FullValuePopup" timestamp="1638771564312">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -576,10 +569,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="347" y="166" key="run.anything.popup/0.27.1366.704@0.27.1366.704" timestamp="1637842625772" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1642079017593">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1642143191412">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1642079017593" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1642143191412" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
