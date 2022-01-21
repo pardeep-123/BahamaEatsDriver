@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
-import com.bahamaeatsdriver.activity.shop_store.ShopStoreActivity
-import com.bahamaeatsdriver.helper.extensions.launchActivity
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.model_class.driver_support.DriverSupportResponse
 import com.bahamaeatsdriver.repository.BaseViewModel
