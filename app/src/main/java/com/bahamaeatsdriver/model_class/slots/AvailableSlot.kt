@@ -12,6 +12,8 @@ data class AvailableSlot(
     val day: String,
     @SerializedName("id")
     val id: Int,
+    @SerializedName("countOfOtherDriversWithSameSlot")
+    val countOfOtherDriversWithSameSlot: Int,
     @SerializedName("openTime")
     val openTime: String,
     @SerializedName("updatedAt")

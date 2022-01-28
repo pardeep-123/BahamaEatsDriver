@@ -27,7 +27,12 @@ class DriverSubAvailabilityAdapter(var context: Context, val availableSlotsList:
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
-        myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).uppercase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT)
+//        myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).uppercase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT) +"\n (2 Drivers)"
+        if (availableSlotsList[i].countOfOtherDriversWithSameSlot!=0)
+        myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).uppercase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT) +"\n ("+availableSlotsList[i].countOfOtherDriversWithSameSlot+" Driver)"
+      else
+            myViewHolder.itemView.tv_start_date.text = sdfs.format(sdf.parse(availableSlotsList[i].openTime)!!).uppercase(Locale.ROOT)+" - "+sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT) +"\n (No Driver)"
+
         myViewHolder.itemView.tv_end_date.text = sdfs.format(sdf.parse(availableSlotsList[i].closeTime)!!).uppercase(Locale.ROOT)
         myViewHolder.itemView.ll_root1.setOnClickListener{
             listener.OnDriverAvailabilitySelection(availableSlotsList[i],i,daysPostion)

@@ -9,7 +9,8 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="OkHttpClient" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -35,12 +36,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/Contactus_Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Navigation/Contactus_Activity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_term_and__conditions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_term_and__conditions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverSubAvailabilityAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverSubAvailabilityAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/slots/AvailableSlot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/slots/AvailableSlot.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +135,7 @@
     <property name="android-custom-view/root/Android/Sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1642493411363" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1643348505480" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -417,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642153396806</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="&#10;Date: 21/01/2022">
+      <created>1642769670151</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1642769670151</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -451,7 +461,8 @@
     <MESSAGE value="done: Driver deals/discount page&#10;&#10;Date: 04/01/2022" />
     <MESSAGE value="&#10;Date: 13/01/2022" />
     <MESSAGE value="&#10;Date: 14/01/2022" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;Date: 14/01/2022" />
+    <MESSAGE value="&#10;Date: 21/01/2022" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;Date: 21/01/2022" />
   </component>
   <component name="WindowStateProjectService">
     <state x="203" y="113" width="950" height="530" key="#PSD" timestamp="1636630255411">
@@ -470,10 +481,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="416" y="127" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.704@0.27.1366.704" timestamp="1641213260504" />
-    <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate" timestamp="1641812562133">
+    <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate" timestamp="1643366453063">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1641812562133" />
+    <state x="310" y="141" width="910" height="523" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1643366453063" />
     <state x="343" y="208" width="669" height="339" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1641188140743">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -486,14 +497,14 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="499" y="166" width="357" height="424" key="AndroidCreateXmlResourceDialog/0.27.1366.704@0.27.1366.704" timestamp="1642077252358" />
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1641812447928">
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog" timestamp="1643366380207">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1641812447928" />
-    <state x="44" y="27" width="1268" height="704" key="CommitChangelistDialog2" timestamp="1642153396614">
+    <state x="430" y="125" width="505" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1643366380207" />
+    <state x="44" y="27" width="1268" height="704" key="CommitChangelistDialog2" timestamp="1642769669644">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="44" y="27" width="1268" height="704" key="CommitChangelistDialog2/0.27.1366.704@0.27.1366.704" timestamp="1642153396614" />
+    <state x="44" y="27" width="1268" height="704" key="CommitChangelistDialog2/0.27.1366.704@0.27.1366.704" timestamp="1642769669644" />
     <state width="1277" height="411" key="DebuggerActiveHint" timestamp="1639134891262">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -506,38 +517,38 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="461" y="136" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.704@0.27.1366.704" timestamp="1638523723045" />
-    <state width="1320" height="241" key="GridCell.Tab.0.bottom" timestamp="1642654598510">
+    <state width="1320" height="454" key="GridCell.Tab.0.bottom" timestamp="1643366439777">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="241" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1642654598510" />
-    <state width="1320" height="241" key="GridCell.Tab.0.center" timestamp="1642654598510">
+    <state width="1320" height="454" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1643366439777" />
+    <state width="1320" height="454" key="GridCell.Tab.0.center" timestamp="1643366439776">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="241" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1642654598510" />
-    <state width="1320" height="241" key="GridCell.Tab.0.left" timestamp="1642654598509">
+    <state width="1320" height="454" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1643366439776" />
+    <state width="1320" height="454" key="GridCell.Tab.0.left" timestamp="1643366439776">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="241" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1642654598509" />
-    <state width="1320" height="241" key="GridCell.Tab.0.right" timestamp="1642654598510">
+    <state width="1320" height="454" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1643366439776" />
+    <state width="1320" height="454" key="GridCell.Tab.0.right" timestamp="1643366439776">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="241" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1642654598510" />
-    <state width="1320" height="334" key="GridCell.Tab.1.bottom" timestamp="1641822135865">
+    <state width="1320" height="454" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1643366439776" />
+    <state width="1320" height="417" key="GridCell.Tab.1.bottom" timestamp="1643366439770">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="334" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1641822135865" />
-    <state width="1320" height="334" key="GridCell.Tab.1.center" timestamp="1641822135865">
+    <state width="1320" height="417" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1643366439770" />
+    <state width="1320" height="417" key="GridCell.Tab.1.center" timestamp="1643366439770">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="334" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1641822135865" />
-    <state width="1320" height="334" key="GridCell.Tab.1.left" timestamp="1641822135865">
+    <state width="1320" height="417" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1643366439770" />
+    <state width="1320" height="417" key="GridCell.Tab.1.left" timestamp="1643366439770">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="334" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1641822135865" />
-    <state width="1320" height="334" key="GridCell.Tab.1.right" timestamp="1641822135865">
+    <state width="1320" height="417" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1643366439770" />
+    <state width="1320" height="417" key="GridCell.Tab.1.right" timestamp="1643366439770">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state width="1320" height="334" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1641822135865" />
+    <state width="1320" height="417" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1643366439770" />
     <state x="180" y="61" width="996" height="633" key="RollbackChangesDialog" timestamp="1636972746849">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -546,10 +557,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="172" y="27" width="1012" height="704" key="SettingsEditor/0.27.1366.704@0.27.1366.704" timestamp="1638870057440" />
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1642153406087">
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1642769688491">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1642153406087" />
+    <state x="278" y="114" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.704@0.27.1366.704" timestamp="1642769688491" />
     <state width="683" height="353" key="XDebugger.FullValuePopup" timestamp="1638771564312">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -558,10 +569,6 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="455" y="158" width="446" height="440" key="chooseDestDirectoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1641200790815" />
-    <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1634215619600">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="100" y="125" width="1166" height="506" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1366.704@0.27.1366.704" timestamp="1634215619600" />
     <state x="228" y="84" width="899" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1641802153494">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
@@ -582,10 +589,10 @@
       <screen x="0" y="27" width="1366" height="704" />
     </state>
     <state x="347" y="166" key="run.anything.popup/0.27.1366.704@0.27.1366.704" timestamp="1637842625772" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1642682462815">
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1643367835965">
       <screen x="0" y="27" width="1366" height="704" />
     </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1642682462815" />
+    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1643367835965" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
