@@ -58,6 +58,7 @@ import com.bahamaeatsdriver.helper.DecimalDigitsInputFilter
 import com.bahamaeatsdriver.helper.extensions.clearPrefrences
 import com.bahamaeatsdriver.helper.extensions.getprefObject
 import com.bahamaeatsdriver.helper.extensions.launchActivity
+import com.bahamaeatsdriver.helper.extensions.savePrefObject
 import com.bahamaeatsdriver.helper.others.CommonMethods
 import com.bahamaeatsdriver.helper.others.CommonMethods.convertToNewFormat5
 import com.bahamaeatsdriver.helper.others.Helper
@@ -74,6 +75,7 @@ import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.GetTakeDrive
 import com.bahamaeatsdriver.model_class.get_take_driver_orderstatus.SelectedSlot
 import com.bahamaeatsdriver.model_class.i_am_here.IAmHereResponse
 import com.bahamaeatsdriver.model_class.logout.LogoutResponse
+import com.bahamaeatsdriver.model_class.profile_details.DriverProfileDetailsResposne
 import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksResponse
 import com.bahamaeatsdriver.model_class.update_driver_online_status.UpdateDriverTakeOrderStatus
 import com.bahamaeatsdriver.model_class.update_latitudeLongitude.UpdateDriverLatLongResponse
@@ -411,26 +413,18 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         c1[Calendar.DAY_OF_WEEK] = 7
         val d = Date()
         getDriverTakeStatusApicall(d.day.toString())
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             checkPermissionLocation(this)
             return
         } else {
+//            getDriverProfileDetails()
             currentRideApiCall()
             driverDetails = getprefObject(Constants.DRIVER_DETAILS)
             loginDiverId = driverDetails.id.toString()
             if (driverDetails.image.contains("http"))
-                Glide.with(this).load(driverDetails.image).placeholder(R.drawable.profileimage)
-                    .into(iv_Profile_image)
+                Glide.with(this).load(driverDetails.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
             else
-                Glide.with(this).load(IMAGE_URL + driverDetails.image)
-                    .placeholder(R.drawable.profileimage).into(iv_Profile_image)
+                Glide.with(this).load(IMAGE_URL + driverDetails.image).placeholder(R.drawable.profileimage).into(iv_Profile_image)
 
             if (driverDetails.fullName.isNotEmpty())
                 tv_driverName.text = driverDetails.fullName
@@ -442,6 +436,10 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         }
     }
 
+    private fun getDriverProfileDetails() {
+        viewModel.getDriverDetailsResposneApi(this, driverDetails.id, true)
+        viewModel.getDriverDetailsResposne().observe(this, this)
+    }
     private fun getDriverTakeStatusApicall(dayId: String) {
         viewModel.getDriverTakeStatusApi(this, dayId, false)
         viewModel.getDriverTakeStatusResponse().observe(this, this)
@@ -1240,6 +1238,17 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     override fun onChanged(liveData: RestObservable?) {
         when (liveData!!.status) {
             Status.SUCCESS -> {
+                 if (liveData.data is DriverProfileDetailsResposne) {
+                    Glide.with(this).load(liveData.data.body.image).placeholder(R.drawable.profileimage).into(iv_Profile_image!!)
+                    //Update data to prefrence
+                    driverDetails.image = liveData.data.body.image
+                    driverDetails.fullName = liveData.data.body.fullName
+                    driverDetails.dob = liveData.data.body.dob
+                    driverDetails.gender = liveData.data.body.gender
+                    driverDetails.driver_referrals_amount = liveData.data.body.driver_referrals_amount
+                    driverDetails.referrals_code = liveData.data.body.referrals_code
+                    savePrefObject(Constants.DRIVER_DETAILS, driverDetails)
+                }
                 if (liveData.data is TrainingVideoLinksResponse) {
 
                     if (liveData.data.body.isNotEmpty()) {

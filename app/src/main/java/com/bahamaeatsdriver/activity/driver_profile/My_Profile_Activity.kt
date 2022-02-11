@@ -46,7 +46,6 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_profile)
-        driverDetails = getprefObject(Constants.DRIVER_DETAILS)
         Relativ_profile = findViewById(R.id.Relativ_profile)
         Card_lincencinfo = findViewById(R.id.Card_lincencinfo)
         tv_fullName = findViewById(R.id.tv_fullName)
@@ -65,6 +64,7 @@ class My_Profile_Activity : AppCompatActivity(), Observer<RestObservable> {
         /*****
          * Get Profil Details
          */
+        driverDetails = getprefObject(Constants.DRIVER_DETAILS)
         viewModel.getDriverDetailsResposneApi(this, driverDetails.id, true)
         viewModel.getDriverDetailsResposne().observe(this, this)
     }
