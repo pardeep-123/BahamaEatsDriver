@@ -72,6 +72,7 @@ object ServiceGenerator {
             } else {
                 request = chain.request().newBuilder()
                     .header(Constants.SECURITY_KEY, Constants.SECURITY_KEY_CODE)
+                    .header("default_time_zone", Helper.getCurrentTimezoneOffset()!!)
                     .build()
             }
 
