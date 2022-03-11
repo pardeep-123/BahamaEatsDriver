@@ -107,6 +107,7 @@ import kotlinx.android.synthetic.main.res_pickup_request.*
 import kotlinx.android.synthetic.main.res_pickup_request.tv_totalAmount
 import kotlinx.android.synthetic.main.res_verification_panding.*
 import kotlinx.android.synthetic.main.upload_receipt_dialog_layout.*
+import kotlinx.android.synthetic.main.view_user_id_image_layout.*
 import org.joda.time.Duration
 import org.joda.time.format.DateTimeFormat
 import org.json.JSONObject
@@ -134,6 +135,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
     private var temp = 0
     private var rideRequestId = ""
     private var isResuarantBePaymentAvailable = ""
+    private var isHighRisk = ""
     private var currentRideData: Body? = null
     private var changeRideStatus: com.bahamaeatsdriver.model_class.change_ride_status.Body? = null
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
@@ -995,6 +997,29 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         dialogOrderDeatail.tv_restaurantAddress.text = currentRideData.restaurant.address
         dialogOrderDeatail.tv_ContactNumber.text = "P: " + currentRideData.user.countryCodePhone
         dialogOrderDeatail.tv_userEmail.text = "Email: " + currentRideData.user.email
+        if(currentRideData.restaurant.highRisk=="1"){
+            dialogOrderDeatail.view_hightRisk.visibility=View.VISIBLE
+            dialogOrderDeatail.ll_hightRiskRoot.visibility=View.VISIBLE
+            dialogOrderDeatail.tv_idNumber.text = "ID Number: " + currentRideData.order.highRiskTitle
+            Glide.with(this).load(currentRideData.order.highRiskImage).placeholder(R.drawable.placeholder_rectangle).into(dialogOrderDeatail.iv_userIdImage)
+        }else{
+            dialogOrderDeatail.view_hightRisk.visibility=View.GONE
+            dialogOrderDeatail.ll_hightRiskRoot.visibility=View.GONE
+        }
+        dialogOrderDeatail.iv_userIdImage.setOnClickListener {
+            val viewIdImageDialog = Dialog(this@Home_Page)
+            viewIdImageDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+            viewIdImageDialog.setContentView(R.layout.view_user_id_image_layout)
+            viewIdImageDialog.window!!.setGravity(Gravity.CENTER)
+            viewIdImageDialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+            viewIdImageDialog.setCancelable(false)
+            Glide.with(this).load(currentRideData.order.highRiskImage)
+                .placeholder(R.drawable.placeholder_rectangle).into(viewIdImageDialog.iv_idImage)
+            viewIdImageDialog.show()
+            viewIdImageDialog.iv_close.setOnClickListener {
+                viewIdImageDialog.dismiss()
+            }
+        }
         dialogOrderDeatail.tv_orderPlaceDate.text = CommonMethods.parseDateToddMMyyyy(
             currentRideData.order.createdAt,
             Constants.ORDER_DATE_FORMAT
@@ -1342,6 +1367,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
                         otherUserId = liveData.data.body.userId.toString()
                         rideRequestId = currentRideData!!.id.toString()
                         isResuarantBePaymentAvailable = currentRideData!!.restaurant.isBe
+                        isHighRisk = currentRideData!!.restaurant.highRisk
                         Glide.with(this).load(currentRideData!!.user.photo)
                             .placeholder(R.drawable.placeholder_rectangle).into(Image_profile)
                         tv_currentOrderUsename.text = currentRideData!!.user.username

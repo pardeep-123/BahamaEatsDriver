@@ -14,24 +14,23 @@ import com.bahamaeatsdriver.activity.driver_deals.DriverDealsActivity
 import com.bahamaeatsdriver.helper.others.Helper
 import com.bahamaeatsdriver.helper.others.Helper.distance
 import com.bahamaeatsdriver.listeners.OnDealSelection
-import com.bahamaeatsdriver.model_class.driver_deals.Body
+import com.bahamaeatsdriver.model_class.driver_deals.All
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.driver_deals_row_layout.view.*
 import java.text.DecimalFormat
 
 class DriverDealsAdapter(
-    var mContext: DriverDealsActivity, val dealsList: ArrayList<Body>,
+    var mContext: DriverDealsActivity, var  dealsList: ArrayList<All>,
     val listener: OnDealSelection
 ) : RecyclerView.Adapter<DriverDealsAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.driver_deals_row_layout, viewGroup, false)
+        val itemView = LayoutInflater.from(viewGroup.context).inflate(R.layout.driver_deals_row_layout, viewGroup, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
-        val countToTargetDeal = Math.abs(dealsList[i].completeRides - dealsList[i].numberOfOrder)
+        val countToTargetDeal = Math.abs(dealsList[i].complete_rides - dealsList[i].number_of_order)
         if (countToTargetDeal == 0) {
             myViewHolder.itemView.rl_closeRootLayout.visibility = View.GONE
             myViewHolder.itemView.tv_openCloseStatus.text = ""
@@ -58,8 +57,8 @@ class DriverDealsAdapter(
                     R.drawable.ic_unlike
                 )
             )
-        myViewHolder.itemView.tv_discount.text = dealsList[i].discountTitle
-        myViewHolder.itemView.tv_description.text = dealsList[i].discountDescription
+        myViewHolder.itemView.tv_discount.text = dealsList[i].discount_title
+        myViewHolder.itemView.tv_description.text = dealsList[i].discount_description
         myViewHolder.itemView.tv_restaurantName.text = dealsList[i].name
         myViewHolder.itemView.tv_categories.text = dealsList[i].description
         if (!mLatitute.isNullOrEmpty() && !mLongitute.isNullOrEmpty() && !dealsList[i].latitude.isNullOrEmpty() && !dealsList[i].longitude.isNullOrEmpty()) {
@@ -86,6 +85,11 @@ class DriverDealsAdapter(
             listener.OnDealSelection(dealsList[i],i,dealsList[i].id.toString())
         }
 
+    }
+
+    fun updateList( dealsList: ArrayList<All>){
+      this.dealsList=dealsList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

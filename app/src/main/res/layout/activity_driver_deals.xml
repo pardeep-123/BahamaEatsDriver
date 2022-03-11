@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,7 +27,40 @@
             android:text="@string/deals" />
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_below="@+id/hedder"
+        android:id="@+id/ll_root2"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_all"
+            android:textStyle="bold"
+            android:textColor="@color/White"
+            android:text="All"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_fav"
+            android:textStyle="bold"
+            android:textColor="#808080"
+            android:text="Favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </LinearLayout>
+
     <RelativeLayout
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@+id/ll_root2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_10sdp"
@@ -52,4 +85,4 @@
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

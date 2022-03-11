@@ -1,5 +1,6 @@
 package com.bahamaeatsdriver.model_class.like_merchant_deal
 
+import com.bahamaeatsdriver.model_class.driver_deals.All
 import com.google.gson.annotations.SerializedName
 
 data class LikeUnlikeDealResponse(
@@ -11,19 +12,11 @@ data class LikeUnlikeDealResponse(
     val message: String,
     @SerializedName("status")
     val status: Boolean
-)
-
-data class Body(
-    @SerializedName("createdAt")
-    val createdAt: String,
-    @SerializedName("driver_id")
-    val driverId: Int,
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("merchant_deal_id")
-    val merchantDealId: Int,
-    @SerializedName("status")
-    val status: Int,
-    @SerializedName("updatedAt")
-    val updatedAt: String
-)
+) {
+    data class Body(
+        @SerializedName("all")
+        val all: ArrayList<All>,
+        @SerializedName("favourite")
+        val favourite: ArrayList<All>
+    )
+}

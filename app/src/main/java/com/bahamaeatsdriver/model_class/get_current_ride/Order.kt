@@ -103,7 +103,13 @@ data class Order(
 
     @SerializedName("driverTotalAmount")
     val driverTotalAmount: String,
-
     @SerializedName("userTip")
-    val userTip: String
+    val userTip: String,
+
+    @SerializedName("dealType")
+    val dealType: String,
+    @SerializedName("high_risk_title")
+    val highRiskTitle: String,
+    @SerializedName("high_risk_image")
+    val highRiskImage: String
 )

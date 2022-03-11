@@ -38,6 +38,8 @@ data class Restaurant(
     val image: String,
     @SerializedName("isBe")
     val isBe: String,
+    @SerializedName("high_risk")
+    val highRisk: String,
     @SerializedName("isPopular")
     val isPopular: Int,
     @SerializedName("latitude")
