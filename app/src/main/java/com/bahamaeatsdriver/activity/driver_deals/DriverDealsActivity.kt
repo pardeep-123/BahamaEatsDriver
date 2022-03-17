@@ -2,6 +2,7 @@ package com.bahamaeatsdriver.activity.driver_deals
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -70,6 +71,10 @@ class DriverDealsActivity : AppCompatActivity(), OnDealSelection, Observer<RestO
                     else{
                         dealsListing=liveData.data.body.favourite
                     }
+                    if (dealsListing.isEmpty())
+                        no_dataAvailable.visibility=View.VISIBLE
+                    else
+                        no_dataAvailable.visibility=View.GONE
                     driverDealsAdapter.updateList(dealsListing)
 
                 }
@@ -80,6 +85,10 @@ class DriverDealsActivity : AppCompatActivity(), OnDealSelection, Observer<RestO
                         dealsListing=liveData.data.body.all
                     else
                         dealsListing=liveData.data.body.favourite
+                    if (dealsListing.isEmpty())
+                        no_dataAvailable.visibility=View.VISIBLE
+                    else
+                        no_dataAvailable.visibility=View.GONE
                     driverDealsAdapter = DriverDealsAdapter(this@DriverDealsActivity,dealsListing, this)
                     rv_deals.adapter = driverDealsAdapter
                 }
