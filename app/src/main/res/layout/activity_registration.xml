@@ -91,7 +91,7 @@
                 android:autofillHints="@string/mobile_number"
                 android:hint="@string/mobile_number"
                 android:inputType="phone"
-                android:maxLength="13" />
+                android:maxLength="10" />
 
             <EditText
                 android:id="@+id/et_email"

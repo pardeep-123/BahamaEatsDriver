@@ -36,7 +36,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_user_id_image_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -49,27 +48,34 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_devbrackets_android_exomedia_3_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_halilozercan_BetterVideoPlayer_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ybq_Android_SpinKit_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_yesterselga_country_picker_android_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_yesterselga_country_picker_android_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_yanzhenjie_album_2_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_yanzhenjie_album_2_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__gun0912_ted_tedpermission_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__gun0912_ted_tedpermission_2_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__me_zhanghai_android_materialprogressbar_library_1_1_6_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_adw_library_discrete_seekbar_1_0_1_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/BahamaEatsDriver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BahamaEatsDriver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/YouTubeAndroidPlayerApi/BahamaEatsDriver.YouTubeAndroidPlayerApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/YouTubeAndroidPlayerApi/BahamaEatsDriver.YouTubeAndroidPlayerApi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/BahamaEatsDriver.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/BahamaEatsDriver.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_deals/DriverDealsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_deals/DriverDealsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverDealsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/DriverDealsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/listeners/OnDealSelection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/listeners/OnDealSelection.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_deals/DriverDealsResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_deals/DriverDealsResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Order.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Restaurant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/get_current_ride/Restaurant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/like_merchant_deal/LikeUnlikeDealResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/like_merchant_deal/LikeUnlikeDealResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_driver_deals.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_driver_deals.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_details_dailog_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_details_dailog_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/DriverTrainingVideoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/DriverTrainingVideoActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@RZ8M42HZM4T]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/root/.android/avd/Pixel_4_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -164,7 +170,7 @@
     <property name="android-custom-view/root/Android/Sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="memory.settings.postsync.last.time.stamp" value="1646909753409" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -285,7 +291,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -517,63 +525,5 @@
     <MESSAGE value="&#10;Date: 11/02/2022" />
     <MESSAGE value="&#10;Date: 17/02/2022" />
     <option name="LAST_COMMIT_MESSAGE" value="&#10;Date: 17/02/2022" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="441" y="126" width="529" height="524" key="#xdebugger.evaluate" timestamp="1646997502596">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="441" y="126" width="529" height="524" key="#xdebugger.evaluate/0.27.1366.704@0.27.1366.704" timestamp="1646997502596" />
-    <state x="430" y="125" width="495" height="505" key="AndroidProcessChooserDialog" timestamp="1647002102652">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="430" y="125" width="495" height="505" key="AndroidProcessChooserDialog/0.27.1366.704@0.27.1366.704" timestamp="1647002102652" />
-    <state width="467" height="478" key="DebuggerActiveHint" timestamp="1646915461887">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="467" height="478" key="DebuggerActiveHint/0.27.1366.704@0.27.1366.704" timestamp="1646915461887" />
-    <state width="1320" height="200" key="GridCell.Tab.0.bottom" timestamp="1647002157824">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.0.bottom/0.27.1366.704@0.27.1366.704" timestamp="1647002157824" />
-    <state width="1320" height="200" key="GridCell.Tab.0.center" timestamp="1647002157824">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.0.center/0.27.1366.704@0.27.1366.704" timestamp="1647002157824" />
-    <state width="1320" height="200" key="GridCell.Tab.0.left" timestamp="1647002157822">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.0.left/0.27.1366.704@0.27.1366.704" timestamp="1647002157822" />
-    <state width="1320" height="200" key="GridCell.Tab.0.right" timestamp="1647002157824">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.0.right/0.27.1366.704@0.27.1366.704" timestamp="1647002157824" />
-    <state width="1320" height="200" key="GridCell.Tab.1.bottom" timestamp="1647002157825">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.1.bottom/0.27.1366.704@0.27.1366.704" timestamp="1647002157825" />
-    <state width="1320" height="200" key="GridCell.Tab.1.center" timestamp="1647002157825">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.1.center/0.27.1366.704@0.27.1366.704" timestamp="1647002157825" />
-    <state width="1320" height="200" key="GridCell.Tab.1.left" timestamp="1647002157825">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.1.left/0.27.1366.704@0.27.1366.704" timestamp="1647002157825" />
-    <state width="1320" height="200" key="GridCell.Tab.1.right" timestamp="1647002157825">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state width="1320" height="200" key="GridCell.Tab.1.right/0.27.1366.704@0.27.1366.704" timestamp="1647002157825" />
-    <state x="190" y="90" width="976" height="576" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1647002421757">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="190" y="90" width="976" height="576" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1366.704@0.27.1366.704" timestamp="1647002421757" />
-    <state x="373" y="117" width="733" height="522" key="find.popup" timestamp="1646911364651">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="373" y="117" width="733" height="522" key="find.popup/0.27.1366.704@0.27.1366.704" timestamp="1646911364651" />
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup" timestamp="1646915718594">
-      <screen x="0" y="27" width="1366" height="704" />
-    </state>
-    <state x="346" y="52" width="672" height="678" key="search.everywhere.popup/0.27.1366.704@0.27.1366.704" timestamp="1646915718594" />
   </component>
 </project>

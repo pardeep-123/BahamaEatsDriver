@@ -100,7 +100,6 @@ dependencies {
     }
     implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
     implementation 'joda-time:joda-time:2.9.7'
-    implementation 'com.github.halilozercan:BetterVideoPlayer:1.0.0'
     //Youtube Android Player API Jar dependency
     implementation project(':YouTubeAndroidPlayerApi')
     implementation 'com.yanzhenjie:album:2.1.3'

@@ -11,13 +11,11 @@ import com.bahamaeatsdriver.model_class.training_video_links.TrainingVideoLinksR
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import com.halilibo.bettervideoplayer.BetterVideoPlayer
 import kotlinx.android.synthetic.main.activity_driver_training_video.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class DriverTrainingVideoActivity : YouTubeBaseActivity(), Observer<RestObservable> {
-    private lateinit var player: BetterVideoPlayer
     private var key = "AIzaSyB3xv9GFjXugMjlR8TE1m3QfZfuP8NqkGM"
     private val TAG: String = DriverTrainingVideoActivity::class.java.getSimpleName()
     private var videoID = ""
