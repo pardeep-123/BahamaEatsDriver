@@ -1773,14 +1773,13 @@ class BaseViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
 
-                    changeRideStatusResposne.value =
-                        RestObservable.loading(activity, isDialogShow)
+                    changeRideStatusResposne.value = RestObservable.loading(activity, isDialogShow)
                 }
                 .subscribe(
-                    { changeRideStatusResposne.value = RestObservable.success(it) },
                     {
-                        changeRideStatusResposne.value =
-                            RestObservable.error(activity, it)
+                        changeRideStatusResposne.value = RestObservable.success(it) },
+                    {
+                        changeRideStatusResposne.value = RestObservable.error(activity, it)
                     }
                 )
         } else {
