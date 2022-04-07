@@ -48,15 +48,16 @@
             android:text="@string/no_data_available"
             android:textColor="@color/Black"
             />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/tv_save"
             android:layout_marginBottom="5dp"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/driver_availability_row_layout"
-            android:id="@+id/rv_days"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            tools:listitem="@layout/driver_availability_row_layout" />
         <!--            android:layout_below="@+id/rv_days"-->
         <TextView
             android:layout_alignParentBottom="true"

@@ -442,6 +442,7 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (liveData.data is DriverPaymentsResposne) {
                     tv_tipDelivery.text = "$ " + changeDoubleFormat(liveData.data.body.earning.totalTip)
                     tv_totalDelivery.text = "$ " +changeDoubleFormat(liveData.data.body.earning.totalDeliveryFee)
+                    tv_inActive_penalty.text = "-$ " +changeDoubleFormat(liveData.data.body.earning.total_penality_amount)
                     tv_refferBenefit.text = "$ " +if (!liveData.data.body.earning.referalBonus.isNullOrEmpty())changeDoubleFormat(liveData.data.body.earning.referalBonus.toDouble()) else 0.0
                     if (liveData.data.body.order.isEmpty()) {
                         tv_noDataAvailable.visibility = View.VISIBLE
@@ -479,6 +480,9 @@ class PaymentStatsActivity : AppCompatActivity(), Observer<RestObservable> {
                         tv_totalDelivery.text ="$ " +if (liveData.data.body.earnings.totalDeliveryFee.isNotEmpty()) changeDoubleFormat(liveData.data.body.earnings.totalDeliveryFee.toDouble())
                     else
                         tv_totalDelivery.text ="$ " + liveData.data.body.earnings.totalDeliveryFee
+
+                        tv_inActive_penalty.text ="-$ " +changeDoubleFormat(liveData.data.body.earnings.total_penality_amount.toDouble())
+
 
                     if (liveData.data.body.earnings.totalTip.isNotEmpty())
                         tv_tipDelivery.text = "$ " + changeDoubleFormat(liveData.data.body.earnings.totalTip.toDouble())

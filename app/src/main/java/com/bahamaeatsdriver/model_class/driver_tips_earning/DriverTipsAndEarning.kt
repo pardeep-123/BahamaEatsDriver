@@ -29,7 +29,9 @@ data class Earnings(
     @SerializedName("total_delivery_fee")
     val totalDeliveryFee: String,
     @SerializedName("total_tip")
-    val totalTip: String
+    val totalTip: String,
+    @SerializedName("total_penality_amount")
+    val total_penality_amount: Double
 )
 
 data class RefferalData(

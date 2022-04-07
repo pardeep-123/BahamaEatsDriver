@@ -181,6 +181,7 @@
     <string name="job_history">Job History</string>
     <string name="total_tips_earned">Total Tips Earned:</string>
     <string name="refferal_reward">Refferal Reward:</string>
+    <string name="inactive_penalty">Inactive Penalty:</string>
     <string name="total_deliver_fee">Total Delivery Fee:</string>
     <string name="date_of_issue">Date of Issue</string>
     <string name="add">Add</string>

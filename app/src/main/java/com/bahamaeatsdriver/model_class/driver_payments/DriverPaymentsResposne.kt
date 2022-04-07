@@ -30,7 +30,9 @@ data class Earning(
     @SerializedName("total_delivery_fee")
     val totalDeliveryFee: Double,
     @SerializedName("total_tip")
-    val totalTip: Double
+    val totalTip: Double,
+    @SerializedName("total_penality_amount")
+    val total_penality_amount: Double
 )
 
 data class Order(

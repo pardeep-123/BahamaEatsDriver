@@ -51,7 +51,7 @@ abstract class ImagePicker : AppCompatActivity() {
             if (!cameraPermission(arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
                 requestPermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), requestPermissionsCamera
                 )
-                Helper.showSuccessToast(this, "You  can go to settings to allow permission")
+                Helper.showSuccessToast(this, "You can go to settings to allow permission")
                 return
             } else {
 //                if (from1.equals("1")) {

@@ -4,8 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.164" />
+        <entry key="app/src/main/res/layout/activity_driver_availablity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_driver_training_video.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_payment__status.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/driver_availability_row_layout.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/fragment_navigation_drawl.xml" value="0.25" />
         <entry key="app/src/main/res/layout/messenger_popup_layout.xml" value="0.16614583333333333" />
         <entry key="app/src/main/res/layout/order_details_dailog_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/res_pickup_request.xml" value="0.22" />

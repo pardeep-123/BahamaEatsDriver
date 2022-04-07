@@ -2,17 +2,20 @@ package com.bahamaeatsdriver.activity.bank_details
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.DatePicker
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bahamaeats.constant.Constants
 import com.bahamaeats.network.RestObservable
 import com.bahamaeats.network.Status
 import com.bahamaeatsdriver.R
@@ -27,12 +30,9 @@ import com.bahamaeatsdriver.repository.BaseViewModel
 import kotlinx.android.synthetic.main.activity_bank_details.*
 import kotlinx.android.synthetic.main.payout_email_popup_layouts.*
 import kotlinx.android.synthetic.main.select_licence_type_dialog.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import android.app.DatePickerDialog.OnDateSetListener
-import android.widget.DatePicker
-import com.bahamaeats.constant.Constants
-import java.text.SimpleDateFormat
 
 class BankDetailsActivity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable>,
     OnLicenseTypeSelection {
@@ -41,9 +41,10 @@ class BankDetailsActivity : AppCompatActivity(), View.OnClickListener, Observer<
     private var popupWindow: PopupWindow? = null
     private var licenseTypeList = ArrayList<LicenseTypeModel>()
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
-companion object{
-     var textViewDob:TextView?=null
-}
+
+    companion object {
+        var textViewDob: TextView? = null
+    }
 
     @Inject
     lateinit var validator: Validator
@@ -51,10 +52,10 @@ companion object{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bank_details)
         App.getinstance().getmydicomponent().inject(this)
-        textViewDob=findViewById(R.id.tv_dobs)
+        textViewDob = findViewById(R.id.tv_dobs)
         licenseTypeList.add(LicenseTypeModel("1", "Savings"))
         licenseTypeList.add(LicenseTypeModel("2", "Checkings"))
-        setOnCLickListiners()
+        setOnCLickListeners()
         getBankDetailsApiCall()
         textViewDob!!.setOnClickListener {
             val fragment: DialogFragment = DatePickerFragment_static()
@@ -80,8 +81,8 @@ companion object{
         et_email.isEnabled = value
         et_nib.isEnabled = value
         et_confirmNib.isEnabled = value
-         textViewDob!!.isClickable = value
-        textViewDob!!.setFocusable(value)
+        textViewDob!!.isClickable = value
+        textViewDob!!.isFocusable = value
         if (value) {
             btn_submit.visibility = View.VISIBLE
             et_confirmNib.visibility = View.VISIBLE
@@ -91,7 +92,7 @@ companion object{
         }
     }
 
-    private fun setOnCLickListiners() {
+    private fun setOnCLickListeners() {
         iv_back.setOnClickListener(this)
 //        et_accountType.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
@@ -121,7 +122,7 @@ companion object{
                  }*/
                 val firstName = et_firstName.text.toString().trim()
                 val lastName = et_lastName.text.toString().trim()
-                val dob =  textViewDob!!.text.toString().trim()
+                val dob = textViewDob!!.text.toString().trim()
                 val email = et_email.text.toString().trim()
                 val nib = et_nib.text.toString().trim()
                 val confirmNib = et_confirmNib.text.toString().trim()
@@ -197,13 +198,13 @@ companion object{
 
         when (liveData!!.status) {
             Status.SUCCESS -> {
-                 if (liveData.data is AddUpdateBankDetails) {
-                     id = liveData.data.body.id.toString()
-                     enableEditableViews(false)
-                     btn_submit.visibility = View.GONE
+                if (liveData.data is AddUpdateBankDetails) {
+                    id = liveData.data.body.id.toString()
+                    enableEditableViews(false)
+                    btn_submit.visibility = View.GONE
 //                     et_confirmAccountNumber.visibility = View.GONE
 //                     et_accountType.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-                 }
+                }
 
                 if (liveData.data is GetBankDetails) {
                     if (liveData.data.body != null) {
@@ -219,7 +220,7 @@ companion object{
                             tv_verified.text = getString(R.string.bank_details_under_review)
                         et_firstName.setText(bankDetais.firstName)
                         et_lastName.setText(bankDetais.lastName)
-                         textViewDob!!.setText(bankDetais.dob)
+                        textViewDob!!.setText(bankDetais.dob)
                         et_email.setText(bankDetais.email)
                         et_nib.setText(bankDetais.nibNumber)
                         et_confirmNib.setText(bankDetais.nibNumber)
@@ -268,7 +269,8 @@ companion object{
             cal[year, monthOfYear, dayOfMonth, 0, 0] = 0
             val Date = cal.time
             Log.e("date", "asa  " + cal.time)
-             textViewDob!!.text=(SimpleDateFormat(Constants.PAYOUT_DOB_FORMAT).format(Date).toString())
+            textViewDob!!.text =
+                (SimpleDateFormat(Constants.PAYOUT_DOB_FORMAT).format(Date).toString())
         }
     }
 }
