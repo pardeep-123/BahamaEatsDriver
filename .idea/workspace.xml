@@ -36,16 +36,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/bank_details/BankDetailsActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/bank_details/BankDetailsActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/ImagePicker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/helper/others/ImagePicker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/DriverPaymentsResposne.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_payments/DriverPaymentsResposne.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/DriverTipsAndEarning.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/model_class/driver_tips_earning/DriverTipsAndEarning.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_driver_availablity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_driver_availablity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment__status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment__status.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
