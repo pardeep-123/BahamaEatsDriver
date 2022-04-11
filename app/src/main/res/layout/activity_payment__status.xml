@@ -182,7 +182,6 @@
 
                     <TextView
                         android:id="@+id/tv_totalLabel"
-
                         style="@style/ScreenTextView3"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
@@ -278,7 +277,6 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:id="@+id/tv_rewardsLabel"
                     style="@style/ScreenTextView1"
-                    android:layout_weight="70"
                     android:text="@string/earn_rewards"
                     android:textStyle="bold"
                     android:textColor="@color/White"/>
@@ -322,7 +320,6 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:id="@+id/tv_completedRides"
                     style="@style/ScreenTextView1"
-                    android:layout_weight="70"
                     android:text="@string/completed_rides"
                     android:textStyle="bold"
                     android:textColor="@color/White"/>

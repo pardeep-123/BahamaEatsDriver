@@ -82,8 +82,7 @@ class AddDocumentationActivity : AppCompatActivity(), Observer<RestObservable> {
     }
 
     fun editDriverLicense(view: View) {
-        launchActivity<Edit_LicenceDetail_Activity>()
-        {
+        launchActivity<Edit_LicenceDetail_Activity>() {
             putExtra("from", "2")
         }
     }
