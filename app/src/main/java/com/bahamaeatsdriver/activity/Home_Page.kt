@@ -386,6 +386,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
         }
     }
+    // start the task
 
     //***********************location background service code***************************//
     private fun isMyServiceRunning(activity: Activity, serviceClass: Class<*>): Boolean {
