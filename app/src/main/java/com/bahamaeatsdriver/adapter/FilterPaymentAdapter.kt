@@ -89,7 +89,13 @@ class FilterPaymentAdapter(
 
         }
     }
+/*
 
+    var intent1=Intent(this@VideoCallActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(intent1)
+                        finish()
+ */
     override fun getItemCount(): Int {
         return paymentsList.size
     }

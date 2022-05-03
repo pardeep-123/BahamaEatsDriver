@@ -26,13 +26,14 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
     private val viewModel: BaseViewModel by lazy { ViewModelProvider(this).get(BaseViewModel::class.java) }
 
 
-
     override fun uploadSlotsCodeFuncation() {
         //Not in use
     }
+
     override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
         image_path = imagePath!!
-        Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_rectangle).into(Image_identification)
+        Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_rectangle)
+            .into(Image_identification)
     }
 
     override fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String) {
@@ -44,9 +45,12 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
         setContentView(R.layout.activity_upload_document)
         if (intent.getIntExtra("from", 0) != 0) {
             type = intent.getIntExtra("from", 0)
-            if (intent.getStringExtra("image") != null && intent.getStringExtra("image")!!.isNotEmpty()) {
+            if (intent.getStringExtra("image") != null && intent.getStringExtra("image")!!
+                    .isNotEmpty()
+            ) {
                 image_path = intent.getStringExtra("image")!!
-                Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_rectangle).into(Image_identification)
+                Glide.with(this).load(image_path).placeholder(R.drawable.placeholder_rectangle)
+                    .into(Image_identification)
             }
         }
 //        type=1 for car insurance document
@@ -67,7 +71,7 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
             if (image_path.isEmpty()) {
                 Helper.showErrorAlert(this, "Please upload image to upload")
             } else {
-                /***
+                /**
                  * Upload image here
                  */
                 if (type == 1) {
@@ -98,15 +102,14 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
         when (liveData!!.status) {
             Status.SUCCESS -> {
                 if (liveData.data is AddUpdateCarInsurance) {
-                    Helper.showSuccessToast(this,"Uploaded")
+                    Helper.showSuccessToast(this, "Uploaded")
                     finish()
                 }
                 if (liveData.data is AddUpdatePoliceRecord) {
-                    Helper.showSuccessToast(this,"Uploaded")
+                    Helper.showSuccessToast(this, "Uploaded")
                     finish()
                 }
             }
-
 
             Status.ERROR -> {
 
@@ -116,4 +119,5 @@ class UploadDocumentActivity : ImagePicker(), Observer<RestObservable> {
             }
         }
     }
+
 }

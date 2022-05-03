@@ -102,7 +102,6 @@ public class SensorService extends Service implements GoogleApiClient.Connection
         int priority = LocationRequest.PRIORITY_HIGH_ACCURACY; //by default
         //PRIORITY_BALANCED_POWER_ACCURACY, PRIORITY_LOW_POWER, PRIORITY_NO_POWER are the other priority modes
 
-
         mLocationRequest.setPriority(priority);
         mLocationClient.connect();
         socketManager.onRegister(this);
@@ -161,6 +160,7 @@ public class SensorService extends Service implements GoogleApiClient.Connection
 
     @Override
     public IBinder onBind(Intent intent) {
+
         return null;
     }
 

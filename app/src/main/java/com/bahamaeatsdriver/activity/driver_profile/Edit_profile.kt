@@ -125,20 +125,21 @@ class Edit_profile : ImagePicker(), View.OnClickListener, Observer<RestObservabl
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderlist)
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = adapter
-        genderSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 adapterView: AdapterView<*>?, view: View?, position: Int, p3: Long) {
                 val v = (adapterView?.getChildAt(0) as TextView)
-                v.setGravity(Gravity.CENTER)
-                if (position == 0) {
-                    v.setHint("Gender")
-                    genderValue = ""
+                v.gravity = Gravity.CENTER
+                genderValue = if (position == 0) {
+                    v.hint = "Gender"
+                    ""
                 } else
-                    genderValue = genderlist.get(position)
+                    genderlist[position]
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
-        })
+        }
     }
 
     fun image() {
