@@ -386,7 +386,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             }
         }
     }
-    // start the task
+    // start the task an show to screen
 
     //***********************location background service code***************************//
     private fun isMyServiceRunning(activity: Activity, serviceClass: Class<*>): Boolean {
@@ -401,7 +401,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         return false
     }
 
-
+// calling the on resume method
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
