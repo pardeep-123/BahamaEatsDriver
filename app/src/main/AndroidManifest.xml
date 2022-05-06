@@ -41,7 +41,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.driver_deals.DriverDealsActivity"></activity>
+        <activity
+            android:name=".activity.chat.OneToOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.chat.ChatListActivity"
+            android:exported="false" />
+        <activity android:name=".activity.driver_deals.DriverDealsActivity" />
         <activity
             android:name=".activity.shop_store.ShopStoreActivity"
             android:screenOrientation="portrait" />

@@ -11,7 +11,7 @@ import com.bahamaeatsdriver.R
 import com.google.android.material.textfield.TextInputEditText
 
 class Driving_License_Imformation : AppCompatActivity() {
-   private var iv_licence: ImageView? = null
+    private var iv_licence: ImageView? = null
     private var iv_edit: ImageView? = null
     private var Relativ_camera: RelativeLayout? = null
     private var ButtonsLayout: LinearLayout? = null

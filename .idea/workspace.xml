@@ -35,11 +35,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3583af57-2462-492f-a24f-b98fe76bd4e4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/BahamaEatsDriver.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/BahamaEatsDriver.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Driver_details/Driving_License_Imformation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Driver_details/Driving_License_Imformation.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_documentation/AddDocumentationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/driver_documentation/AddDocumentationActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment__status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_payment__status.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/constant/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/socket/SocketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/socket/SocketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_documentation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_documentation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/current_job_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/current_job_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +107,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="layoutResourceFile" />
         <option value="layoutResourceFile_vertical" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -104,13 +132,16 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1yR1K9EdifXnv5Yy7aAwPt72rJC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ApkExportedModule" value="BahamaEatsDriver.app" />
-    <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_note_8_pro-vkee5xqofebmuolr" />
+    <property name="DEBUGGABLE_DEVICE" value="Pixel_3a_API_30_x86 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="com.bahamaeatsdriver" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@/root/.android/avd/Pixel_3a_API_30_x86.avd" />
@@ -130,8 +161,8 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1651128436863" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1651829893331" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -147,19 +178,21 @@
       <recent name="com.bahamaeatsdriver.activity.driver_deals" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.bahamaeatsdriver.model_class" />
       <recent name="com.bahamaeatsdriver.listeners" />
       <recent name="com.bahamaeatsdriver.adapter" />
     </key>
     <key name="android.template.-376440582">
       <recent name="com.bahamaeatsdriver.activity.referral_code" />
     </key>
-    <key name="android.template.574864805">
-      <recent name="com.bahamaeatsdriver.activity" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable/xhdpi" />
+    </key>
+    <key name="android.template.574864805">
+      <recent name="com.bahamaeatsdriver.activity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.bahamaeatsdriver.helper" />
@@ -168,6 +201,9 @@
     </key>
     <key name="android.template.618370695">
       <recent name="com.bahamaeatsdriver.activity" />
+    </key>
+    <key name="android.template.39989313">
+      <recent name="com.bahamaeatsdriver.activity.chat" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -486,52 +522,58 @@
     <option name="LAST_COMMIT_MESSAGE" value="&#10;Date: 17/02/2022" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="203" y="131" width="950" height="530" key="#PSD" timestamp="1651064521661">
+    <state x="457" y="115" width="442" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1651829557276">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="203" y="131" width="950" height="530" key="#PSD/0.27.1366.741@0.27.1366.741" timestamp="1651064521661" />
-    <state width="1320" height="123" key="GridCell.Tab.0.bottom" timestamp="1651561870782">
+    <state x="457" y="115" width="442" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1651829557276" />
+    <state x="483" y="257" key="#xdebugger.evaluate" timestamp="1651841782342">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="123" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1651561870782" />
-    <state width="1320" height="123" key="GridCell.Tab.0.center" timestamp="1651561870782">
+    <state x="483" y="257" key="#xdebugger.evaluate/0.27.1366.741@0.27.1366.741" timestamp="1651841782342" />
+    <state x="430" y="144" width="495" height="505" key="AndroidProcessChooserDialog" timestamp="1651842857402">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="123" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1651561870782" />
-    <state width="1320" height="123" key="GridCell.Tab.0.left" timestamp="1651561870781">
+    <state x="430" y="144" width="495" height="505" key="AndroidProcessChooserDialog/0.27.1366.741@0.27.1366.741" timestamp="1651842857402" />
+    <state width="536" height="478" key="DebuggerActiveHint" timestamp="1651836230035">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="123" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1651561870781" />
-    <state width="1320" height="123" key="GridCell.Tab.0.right" timestamp="1651561870782">
+    <state width="536" height="478" key="DebuggerActiveHint/0.27.1366.741@0.27.1366.741" timestamp="1651836230035" />
+    <state width="1320" height="37" key="GridCell.Tab.0.bottom" timestamp="1651842802745">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="123" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1651561870782" />
-    <state x="388" y="207" width="580" height="378" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog" timestamp="1651238653579">
+    <state width="1320" height="37" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1651842802745" />
+    <state width="1320" height="37" key="GridCell.Tab.0.center" timestamp="1651842802744">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="388" y="207" width="580" height="378" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog/0.27.1366.741@0.27.1366.741" timestamp="1651238653579" />
-    <state x="487" y="57" width="381" height="679" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1651495512081">
+    <state width="1320" height="37" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1651842802744" />
+    <state width="1320" height="37" key="GridCell.Tab.0.left" timestamp="1651842802743">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="487" y="57" width="381" height="679" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1366.741@0.27.1366.741" timestamp="1651495512081" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1651559601415">
+    <state width="1320" height="37" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1651842802743" />
+    <state width="1320" height="37" key="GridCell.Tab.0.right" timestamp="1651842802745">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1651559601415" />
+    <state width="1320" height="37" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1651842802745" />
+    <state width="683" height="371" key="XDebugger.FullValuePopup" timestamp="1651836241058">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="683" height="371" key="XDebugger.FullValuePopup/0.27.1366.741@0.27.1366.741" timestamp="1651836241058" />
+    <state x="455" y="176" width="446" height="440" key="chooseDestDirectoryDialog" timestamp="1651832019897">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="455" y="176" width="446" height="440" key="chooseDestDirectoryDialog/0.27.1366.741@0.27.1366.741" timestamp="1651832019897" />
+    <state x="374" y="135" width="865" height="522" key="find.popup" timestamp="1651835086504">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="374" y="135" width="865" height="522" key="find.popup/0.27.1366.741@0.27.1366.741" timestamp="1651835086504" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1651841401501">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1651841401501" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt</url>
-          <line>1344</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/Home_Page.kt</url>
-          <line>1345</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/base_viewmodel/BaseViewModel.kt</url>
           <line>1770</line>
@@ -563,11 +605,6 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/PaymentStatsActivity.kt</url>
-          <line>444</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Registration_Activity.kt</url>
           <line>159</line>
           <option name="timeStamp" value="17" />
@@ -591,6 +628,36 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/login_register/Registration_Activity.kt</url>
           <line>160</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/OrderDetailsQuantiytAfterOrderCompleteAdapter.kt</url>
+          <line>25</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/adapter/ChatAdapter.kt</url>
+          <line>66</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/activity/chat/OneToOneActivity.kt</url>
+          <line>119</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/socket/SocketManager.java</url>
+          <line>204</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/socket/SocketManager.java</url>
+          <line>202</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/bahamaeatsdriver/socket/SocketManager.java</url>
+          <line>205</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

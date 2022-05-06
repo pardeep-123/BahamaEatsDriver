@@ -73,8 +73,16 @@
                         android:id="@+id/Image_profile"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/user"
                         app:siRadius="@dimen/_2sdp" />
+                    <ImageView
+                        android:id="@+id/chatIcon"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/chaticon"
 
+                        android:layout_alignBottom="@id/Image_profile"
+                        android:layout_toEndOf="@id/Image_profile" />
                     <LinearLayout
                         android:id="@+id/ll_userNameLayout"
                         android:layout_width="wrap_content"

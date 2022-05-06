@@ -6,7 +6,7 @@
     <color name="red">#EF3022</color>
     <color name="red_new">#D7EF2323</color>
     <color name="colorViewLineInAddOn">#D3DDDADA</color>
-
+    <color name="colorAppTheme">#74b16b</color>
     <color name="White">#FFFFFF</color>
     <color name="Black">#000000</color>
     <color name="offBalck">#A4000000</color>
@@ -28,5 +28,6 @@
     <color name="colorBlackOff1">#B8AEAE</color>
     <color name="colorScreenGrey">#F9F9F9</color>
     <color name="color_close">#AD0B0A0A</color>
+    <color name="colorOffGray">#F2F2F2</color>
 
 </resources>

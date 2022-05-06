@@ -363,5 +363,6 @@
     <string name="verification_pending">Verification Pending</string>
     <string name="deals">Deals</string>
     <string name="support_">Support</string>
+    <string name="chat">Chat</string>
 
 </resources>

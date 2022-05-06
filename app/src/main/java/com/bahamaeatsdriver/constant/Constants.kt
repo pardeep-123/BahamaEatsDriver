@@ -13,6 +13,7 @@ class Constants {
         //Local server urls
         const val BASE_URL = "https://dev.bahamaeats.com:8008/apiNew/"
         const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
+        const val SOCKET_IMAGE_BASE_URL = "https://dev.bahamaeats.com:8008"
         const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
         const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
 

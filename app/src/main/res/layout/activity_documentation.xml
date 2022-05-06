@@ -15,7 +15,7 @@
             android:id="@+id/iv_backArrow_documents"
             android:onClick="iv_backArrow_documents"
             android:src="@drawable/backbtn"
-            android:tint="@color/White"/>
+            app:tint="@color/White" />
 
         <TextView
             style="@style/Hedder"
@@ -39,7 +39,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/LL_selectimg"
             android:padding="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_60sdp"
             android:orientation="vertical">
@@ -73,13 +72,13 @@
                         android:layout_height="@dimen/_25sdp"
                         android:background="@drawable/transparent_circle"
                         android:gravity="center">
+
                         <ImageView
                             android:id="@+id/iv_addid_icon"
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
                             android:padding="@dimen/_7sdp"
-                            android:src="@drawable/plus">
-                        </ImageView>
+                            android:src="@drawable/plus"/>
 
                     </RelativeLayout>
 
@@ -95,7 +94,7 @@
                         android:textColor="@color/White"
                         android:layout_toEndOf="@+id/R_plus"
                         android:text="ADD Id CARD"
-                        android:textSize="@dimen/_14sdp"></TextView>
+                        android:textSize="@dimen/_14sdp"/>
 
                 </RelativeLayout>
 
@@ -151,7 +150,7 @@
                         android:textColor="@color/White"
                         android:layout_toEndOf="@+id/R_plus2"
                         android:text="ADD LICENSE"
-                        android:textSize="@dimen/_14sdp"></TextView>
+                        android:textSize="@dimen/_14sdp"/>
 
                 </RelativeLayout>
             </LinearLayout>

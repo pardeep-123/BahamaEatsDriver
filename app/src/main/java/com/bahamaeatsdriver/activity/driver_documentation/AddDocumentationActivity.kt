@@ -273,7 +273,7 @@ class AddDocumentationActivity : AppCompatActivity(), Observer<RestObservable> {
                          */
                         if (liveData.data.body.isPoliceReportApproved == 0) {
                             iv_addDeletePoliceRecord.setImageResource(R.drawable.close_icon)
-                            //                             iv_addDeletePoliceRecord.visibility=View.INVISIBLE
+                            //iv_addDeletePoliceRecord.visibility=View.INVISIBLE
                             iv_addDeletePoliceRecord.isClickable = true
                             ll_addDeletePoliceRecord.isClickable = false
                             tv_isAppovedPoliceRecord.text = getString(R.string.in_review)

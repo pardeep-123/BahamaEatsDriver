@@ -43,6 +43,7 @@ import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Navigation.Contactus_Activity
 import com.bahamaeatsdriver.activity.Navigation.SettingsActivity
 import com.bahamaeatsdriver.activity.Navigation.TermAnd_Conditions
+import com.bahamaeatsdriver.activity.chat.OneToOneActivity
 import com.bahamaeatsdriver.activity.driver_availability.DriverAvailability
 import com.bahamaeatsdriver.activity.driver_deals.DriverDealsActivity
 import com.bahamaeatsdriver.activity.driver_profile.Edit_profile
@@ -320,6 +321,7 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
         btn_callRestaurant.setOnClickListener(this)
         tv_currentOrderDetails.setOnClickListener(this)
         ll_faq.setOnClickListener(this)
+        chatIcon.setOnClickListener(this)
         relativeOnline.setOnClickListener { updateDriverOnlineOfflineStatus("0") }
         relativeOffline.setOnClickListener { updateDriverOnlineOfflineStatus("1") }
         mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -688,6 +690,11 @@ class Home_Page : CheckLocationActivity(), OnMapReadyCallback, View.OnClickListe
             R.id.ll_faq -> {
                 temp = 1
                 launchActivity<FaqActivity>()
+            }
+            R.id.chatIcon ->{
+                val intent = Intent(this,OneToOneActivity::class.java)
+                intent.putExtra("user2Id", otherUserId)
+                startActivity(intent)
             }
             R.id.Button_Starttrip -> {
                 /****
