@@ -24,14 +24,15 @@ public class SocketManager {
     public static final String UPDATE_LOCATION = "sendLatLng";
     public static final String send_message = "send_message";
     public static final String get_chat = "get_chat";
-    public static final String get_chat_list = "get_chat_list";
+    public static final String clear_chat = "clear_chat";
     //listener
     public static final String CONNECT_USER_LISTENER = "connectListener";
     public static final String UPDATE_LOCATION_LISTENER = "receiveLatLng";
     public static final String TAKE_ORDER_STATUS = "driver_offline";
     public static final String SEND_MESSAGE_LISTENER = "body";
     public static final String my_chat = "my_chat";
-    public static final String get_list = "get_list";
+    public static final String clear_data = "clear_data";
+
 
     public void initializeSocket() {
         mSocket = getSocket();
@@ -159,6 +160,23 @@ public class SocketManager {
     }
 
     /**
+     *clear chat function
+     */
+
+    public void clearChat(JSONObject jsonObject) {
+        if (!mSocket.connected()) {
+            mSocket.connect();
+            mSocket.emit(clear_chat, jsonObject);
+            mSocket.off(clear_data);
+            mSocket.on(clear_data, onClearChat);
+        } else {
+            mSocket.emit(clear_chat, jsonObject);
+            mSocket.off(clear_data);
+            mSocket.on(clear_data, onClearChat);
+        }
+    }
+
+    /**
      * Get Chat of user
      */
     public void getChat(JSONObject jsonObject) {
@@ -208,6 +226,17 @@ public class SocketManager {
         }
     };
 
+    ///********\\\\\\\\\\\\\ clear chat
+    private Emitter.Listener onClearChat = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            Log.i("Socket", "onGetLocListener" + "" + args.toString());
+
+            for (Observer observer : observerList) {
+                observer.onResponse(clear_data, args);
+            }
+        }
+    };
     private Emitter.Listener onGetChatListener = new Emitter.Listener() {
         @Override
         public void call(Object... args) {

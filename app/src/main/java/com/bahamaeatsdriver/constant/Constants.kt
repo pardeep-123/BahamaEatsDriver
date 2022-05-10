@@ -15,6 +15,13 @@ class Constants {
         const val SOCKET_BASE_URL = "https://dev.bahamaeats.com:8008/"
         const val SOCKET_IMAGE_BASE_URL = "https://dev.bahamaeats.com:8008"
         const val IMAGE_URL = "https://dev.bahamaeats.com:8008/images/drivers/"
+//        const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
+
+        //Upgraded server urls
+//        const val BASE_URL = "http://be-sockets.us-east-1.elasticbeanstalk.com/apiNew/"
+//        const val SOCKET_BASE_URL = "http://be-sockets.us-east-1.elasticbeanstalk.com/"
+//        const val SOCKET_IMAGE_BASE_URL = "http://be-sockets.us-east-1.elasticbeanstalk.com"
+//        const val IMAGE_URL = "http://be-sockets.us-east-1.elasticbeanstalk.com/images/drivers/"
         const val RESTAURANT_BASE_URL = "https://admin.bahamaeats.com/"
 
         const val SECURITY_KEY = "security_key"

@@ -74,14 +74,25 @@ class ChatAdapter(
             friendViewHolder.txt_time.text =
                 CommonMethods.convertTimeStampToDa(arrayList[position].createdAt)
             Glide.with(context)
-                .load("https://dev.bahamaeats.com:8008/images/drivers/" + arrayList[position].receiverImage)
+                .load("https://dev.bahamaeats.com:8008/images/users/" + arrayList[position].senderImage)
                 .into(friendViewHolder.profileimage)
 
         } else if (holder.itemViewType == TYPE_USER) {
             val userViewHolder = holder as UserViewHolder
-            userViewHolder.txt_userView.text = arrayList[position].message
+            if (arrayList[position].msgType == 1) {
+                userViewHolder.txt_userView.visibility = View.GONE
+                userViewHolder.image.visibility = View.VISIBLE
+                Glide.with(context).load(Constants.SOCKET_IMAGE_BASE_URL+arrayList[position].message).into(userViewHolder.image)
+
+            }else{
+                userViewHolder.txt_userView.visibility = View.VISIBLE
+                userViewHolder.image.visibility = View.GONE
+                userViewHolder.txt_userView.text = arrayList[position].message
+            }
+
             Glide.with(context)
-                .load("https://dev.bahamaeats.com:8008/images/users/" + arrayList[position].senderImage)
+                .load("https://dev.bahamaeats.com:8008/images/drivers/" + arrayList[position].senderImage)
+
                 .into(userViewHolder.profileimage)
             userViewHolder.txt_time.text =
                 CommonMethods.convertTimeStampToDa(arrayList[position].createdAt)
@@ -104,7 +115,7 @@ class ChatAdapter(
         val txt_userView: TextView = itemView.findViewById(R.id.tvMyMsg)
         val txt_time: TextView = itemView.findViewById(R.id.tvTime)
         val profileimage: CircleImageView = itemView.findViewById(R.id.ivUser)
-//        val image: ImageView = itemView.findViewById(R.id.ivSendPic)
+        val image: ImageView = itemView.findViewById(R.id.ivSendPic)
     }
 
     inner class FriendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

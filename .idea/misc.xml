@@ -11,18 +11,22 @@
         <entry key="app/src/main/res/layout/activity_documentation.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_driver_availablity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_driver_training_video.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.159375" />
-        <entry key="app/src/main/res/layout/activity_one_to_one.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/activity_one_to_one.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_payment__status.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_shop_store.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/add_photo.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/current_job_layout.xml" value="0.2" />
         <entry key="app/src/main/res/layout/driver_availability_row_layout.xml" value="0.159375" />
-        <entry key="app/src/main/res/layout/fragment_navigation_drawl.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_view_friend_chat.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/fragment_navigation_drawl.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/item_view_friend_chat.xml" value="0.2" />
         <entry key="app/src/main/res/layout/item_view_my_chat.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/messenger_popup_layout.xml" value="0.16614583333333333" />
         <entry key="app/src/main/res/layout/order_details_dailog_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/res_pickup_request.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/update_app_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/upload_receipt_dialog_layout.xml" value="0.16614583333333333" />
         <entry key="app/src/main/res/layout/view_user_id_image_layout.xml" value="0.1" />
       </map>

@@ -2,6 +2,7 @@ package com.bahamaeatsdriver.activity.chat
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Home_Page.Companion.loginDiverId
 import com.bahamaeatsdriver.adapter.ChatAdapter
 import com.bahamaeatsdriver.di.App
+import com.bahamaeatsdriver.helper.others.ImagePicker
 import com.bahamaeatsdriver.model_class.ChatListModel
 import com.bahamaeatsdriver.model_class.OneToOneModel
 import com.bahamaeatsdriver.socket.SocketManager
@@ -19,17 +21,70 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
 
-class OneToOneActivity : AppCompatActivity(), SocketManager.Observer {
+class OneToOneActivity : ImagePicker(), SocketManager.Observer {
     val chatList = ArrayList<ChatListModel.ChatListModelItem>()
     var layoutManager: LinearLayoutManager? = null
     var user2Id = ""
+    private var imageFilePath = ""
+    private var extension = ""
     private var socketManager: SocketManager? = null
     private var activityScope = CoroutineScope(Dispatchers.Main)
 
 
     var chatAdapter: ChatAdapter? = null
+    override fun uploadSlotsCodeFuncation() {
 
+    }
+
+    override fun selectedImage(imagePath: String?, thumbnailVideoPath: String) {
+        if (!imagePath.isNullOrEmpty()) {
+            imageFilePath = imagePath
+
+            try {
+                extension = imageFilePath.substring(imageFilePath.lastIndexOf(".") + 1); // Without dot jpg, png
+            } catch (e: Exception) {
+            }
+
+            val imgBase64 = getBase64FromPath(imageFilePath)
+            val jsonObject = JSONObject()
+            jsonObject.put("userid", loginDiverId)
+            jsonObject.put("user2Id", user2Id)
+            jsonObject.put("extension", extension)
+            jsonObject.put("messageType", "1")
+            jsonObject.put("userid_type", "2")
+            jsonObject.put("user2id_type", "1")
+            jsonObject.put("message", imgBase64)
+            socketManager?.sendMessage(jsonObject)
+        }
+    }
+
+    override fun getUpdatedPhoneNoAfterVerify(contactNumber: String, updatedCountryCode: String) {
+
+    }
+
+    /**
+     * @author Pardeep Sharma
+     */
+    private fun getBase64FromPath(path: String): String {
+        var base64 = ""
+        try {
+            val file = File(path)
+            val buffer = ByteArray(file.length().toInt() + 100)
+            val length = FileInputStream(file).read(buffer)
+            base64 = android.util.Base64.encodeToString(
+                buffer, 0, length,
+                android.util.Base64.DEFAULT
+            )
+
+        } catch (e: IOException) {
+//e.printStackTrace()
+        }
+        return base64
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_to_one)
@@ -40,8 +95,21 @@ class OneToOneActivity : AppCompatActivity(), SocketManager.Observer {
             if (etMessage.text.toString().isEmpty()) {
                 Toast.makeText(this, "write something", Toast.LENGTH_LONG).show()
             } else {
-               // socketManager?.sendMessage(sendMessageAsJson())
+                socketManager?.sendMessage(sendMessageAsJson())
+                etMessage.setText("")
             }
+        }
+        ivAttach.setOnClickListener {
+            checkPermissionCamera(false, "1", "")
+        }
+        tvClear.setOnClickListener {
+            val jsonObject = JSONObject()
+            jsonObject.put("userid", loginDiverId)
+            jsonObject.put("user2Id", user2Id)
+            socketManager?.clearChat(jsonObject)
+        }
+        iv_back.setOnClickListener {
+            finish()
         }
         getChatListing()
         setAdapter()
@@ -117,13 +185,20 @@ class OneToOneActivity : AppCompatActivity(), SocketManager.Observer {
             activityScope.launch {
                 val gson = GsonBuilder().create()
                 val list = gson.fromJson(
-                    (data.get("body") as JSONObject).getString("message").toString(),
+//                    (data.get("body") as JSONObject).getString("message").toString(),
+                    data.toString(),
                     ChatListModel.ChatListModelItem::class.java
                 )
                 chatList.add(list)
                 chatAdapter?.notifyDataSetChanged()
                 rvChat.scrollToPosition(chatList.size - 1)
-
+             if (chatList.size>0){
+                 tvClear.visibility = View.VISIBLE
+                 no_dataAvailable.visibility = View.GONE
+             }else{
+                 tvClear.visibility = View.GONE
+                 no_dataAvailable.visibility = View.VISIBLE
+             }
             }
         } else if (event == SocketManager.my_chat) {
             try {
@@ -140,10 +215,26 @@ class OneToOneActivity : AppCompatActivity(), SocketManager.Observer {
 //                    binding.tvUserName.text = userName
                     chatAdapter?.notifyDataSetChanged()
                     scrollToBottom()
+                    if (chatList.size>0){
+                        tvClear.visibility = View.VISIBLE
+                        no_dataAvailable.visibility = View.GONE
+                    }else{
+                        tvClear.visibility = View.GONE
+                        no_dataAvailable.visibility = View.VISIBLE
+                    }
                 }
             } catch (e: Exception) {
 
             }
+        } else if (event == SocketManager.clear_data){
+            try {
+                activityScope.launch {
+                    chatList.clear()
+                    tvClear.visibility = View.GONE
+                    no_dataAvailable.visibility = View.VISIBLE
+                    chatAdapter?.notifyDataSetChanged()
+                }
+            }catch (e:Exception){}
         }
     }
 }

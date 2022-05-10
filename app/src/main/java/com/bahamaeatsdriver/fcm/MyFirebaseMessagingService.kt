@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import com.bahamaeats.constant.Constants
 import com.bahamaeatsdriver.R
 import com.bahamaeatsdriver.activity.Home_Page
+import com.bahamaeatsdriver.activity.chat.OneToOneActivity
 import com.bahamaeatsdriver.activity.notification_listing.NotificationActivity
 import com.bahamaeatsdriver.helper.extensions.saveTokenPrefrence
 import com.google.firebase.iid.FirebaseInstanceId
@@ -70,23 +71,23 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val message = remoteMessage.data.get("message")
             val title = remoteMessage.data.get("title")
             if (notification_code.equals("3")) 
-                sendMessagePush(notification_code!!, message!!, title!!)
+                sendMessagePush(notification_code!!, message!!, title!!,"")
             else if (notification_code.equals("10")) 
-                sendMessagePush(notification_code!!, message!!, title!!)
+                sendMessagePush(notification_code!!, message!!, title!!,"")
             else if (notification_code.equals("20")) {
                 val i = Intent("msg") //action: "msg"
                 i.setPackage(packageName)
                 i.putExtra("type", notification_code)
                 i.putExtra("message", message)
                 applicationContext.sendBroadcast(i)
-                sendMessagePush(notification_code!!, message!!, title!!)
+                sendMessagePush(notification_code!!, message!!, title!!,"")
             }  else if (notification_code.equals("21")) {
                 val i = Intent("msg") //action: "msg"
                 i.setPackage(packageName)
                 i.putExtra("type", notification_code)
                 i.putExtra("message", message)
                 applicationContext.sendBroadcast(i)
-                sendMessagePush(notification_code!!, message!!, title!!)
+                sendMessagePush(notification_code!!, message!!, title!!,"")
             }
             else if (notification_code.equals("16")) {
                 val value= JSONObject(remoteMessage.data.get("body"))
@@ -98,12 +99,23 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 applicationContext.sendBroadcast(i)
 //                sendMessagePush(notification_code!!, message!!, title!!)
             }else
-                sendMessagePush(notification_code!!, message!!, title!!)
+                sendMessagePush(notification_code!!, message!!, title!!,"")
+        }else if (remoteMessage.data["body"] != null) {
+            val json = JSONObject(remoteMessage.data["body"]!!)
+            if (json.getString("code") != null) {
+                val code = json.getString("code")
+                val message = json.getString("message")
+
+                if (code == "30") {
+                    //when new message is received
+                    sendMessagePush(code, message,"",json.getString("senderId"))
+                }
+            }
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private fun sendMessagePush(type: String, message: String, title: String) {
+    private fun sendMessagePush(type: String, message: String, title: String,id:String) {
         var notificationHeader: String
         /***
          * notification_code == 8
@@ -119,6 +131,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         var intent:Intent?=null
         if (type=="22")
          intent=   Intent(this, NotificationActivity::class.java)
+       else if (type == "30"){
+            intent = Intent(this, OneToOneActivity::class.java)
+            intent.putExtra("user2Id", id)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
         else
         intent=   Intent(this, Home_Page::class.java)
 
